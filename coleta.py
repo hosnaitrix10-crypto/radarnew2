@@ -36,11 +36,15 @@ def numero(v):
 
 def ticker_from(text):
     s=str(text).strip().upper()
-    # Em algumas tabelas o HTML concatena ticker e nome sem espaço (ex.: AAPL34Apple Inc.).
-    m=re.match(r'^([A-Z]{4}\d{1,2}|\d{2}[A-Z]{2}\d{2})(?=$|[^A-Z0-9]|[A-Z])',s)
-    if m:return m.group(1)
-    m=re.match(r'^([A-Z0-9]{4,6})$',s)
-    return m.group(1) if m else None
+    # O CotaLab concatena ticker e nome em uma única célula (ex.: AAPL34Apple,
+    # A1AP34Advance, 03BK11Galapagos, AALR3Alianca). Aceita formatos comuns
+    # da B3/BDRs/ETFs sem exigir que o ticker tenha apenas letras antes dos números.
+    m=re.match(r'^([A-Z0-9]{2,4}\d{1,2})',s)
+    if m:
+        ticker=m.group(1)
+        # Evita capturar prefixos arbitrários que não terminam em dígito.
+        return ticker if any(ch.isdigit() for ch in ticker) else None
+    return None
 
 
 def parse_catalog_table(table):
@@ -81,7 +85,7 @@ def carregar_catalogo():
         if r.status_code==404 and pagina>1: break
         r.raise_for_status()
         texto=r.text
-        m=re.search(r'Página\s*\d+\s*de\s*(\d+)',texto,re.I)
+        m=re.search(r'(?:Página|Pagina)\s*\d+\s*de\s*(\d+)',texto,re.I)
         if m: total_pag=min(MAX_PAGINAS,int(m.group(1)))
         try: tabelas=pd.read_html(StringIO(texto))
         except ValueError: tabelas=[]
