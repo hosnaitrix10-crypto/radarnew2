@@ -77,29 +77,66 @@ def parse_catalog_table(table):
 
 
 def carregar_catalogo():
-    """Busca as páginas do diretório, com fallback para o catálogo anterior válido."""
-    catalogo=[]; total_pag=1
+    """Descobre páginas do catálogo sem depender de um único formato de paginação.
+
+    Alguns diretórios não informam "Página X de Y" no HTML. Nesse caso,
+    tenta páginas sequenciais e encerra quando encontra página vazia, erro 404
+    ou uma página repetida. Nunca substitui um catálogo maior por um menor.
+    """
+    catalogo=[]; vistos_paginas=set(); total_pag=None
     for pagina in range(1,MAX_PAGINAS+1):
-        url='https://www.cotalab.com.br/ativos' if pagina==1 else f'https://www.cotalab.com.br/ativos/pagina/{pagina}'
-        r=SESSION.get(url,timeout=TIMEOUT)
-        if r.status_code==404 and pagina>1: break
-        r.raise_for_status()
+        # Suporta os dois formatos comuns de URL; a primeira página é a URL canônica.
+        urls = ['https://www.cotalab.com.br/ativos'] if pagina == 1 else [
+            f'https://www.cotalab.com.br/ativos/pagina/{pagina}',
+            f'https://www.cotalab.com.br/ativos?page={pagina}',
+            f'https://www.cotalab.com.br/ativos?pagina={pagina}',
+        ]
+        r=None; ultimo_erro=None
+        for url in urls:
+            try:
+                tentativa=SESSION.get(url,timeout=TIMEOUT,allow_redirects=True)
+                if tentativa.status_code == 404:
+                    continue
+                tentativa.raise_for_status()
+                # Se o endereço alternativo redirecionou para a mesma URL canônica,
+                # não o considere uma página nova.
+                r=tentativa
+                if pagina == 1 or url == r.url or ('pagina' in r.url.lower()) or ('page=' in r.url.lower()):
+                    break
+            except Exception as e:
+                ultimo_erro=e
+        if r is None:
+            if pagina > 1: break
+            raise RuntimeError(f'Não foi possível acessar o catálogo CotaLab: {ultimo_erro}')
         texto=r.text
         m=re.search(r'(?:Página|Pagina)\s*\d+\s*de\s*(\d+)',texto,re.I)
         if m: total_pag=min(MAX_PAGINAS,int(m.group(1)))
+        # Descobre paginação pelo próprio HTML, mesmo quando não há "Página X de Y".
+        numeros=[]
+        for padrao in [r'/ativos/pagina/(\d+)', r'[?&]page=(\d+)', r'[?&]pagina=(\d+)']:
+            numeros.extend(int(x) for x in re.findall(padrao,texto,re.I))
+        if numeros:
+            total_pag=max([total_pag or 1]+numeros)
+            total_pag=min(MAX_PAGINAS,total_pag)
         try: tabelas=pd.read_html(StringIO(texto))
         except ValueError: tabelas=[]
         candidatos=[]
         for tab in tabelas:
             cols=' '.join(str(c).lower() for c in tab.columns)
-            # Seleciona tabela com colunas/tickers e categorias; evita tabelas de navegação.
             if any(k in cols for k in ['ticker','categoria','nome']) or len(tab)>=10:
-                candidatos=parse_catalog_table(tab)
-                if len(candidatos)>=10: break
-        catalogo.extend(candidatos)
-        print(f'[CATÁLOGO] página {pagina}/{total_pag}: {len(candidatos)} ativos',flush=True)
-        if pagina>=total_pag: break
-        time.sleep(0.2)
+                achados=parse_catalog_table(tab)
+                if len(achados)>=len(candidatos): candidatos=achados
+        chaves=frozenset(a['t'] for a in candidatos)
+        print(f'[CATÁLOGO] página {pagina}/{total_pag or "?"}: {len(candidatos)} ativos (HTTP {r.status_code}; {r.url})',flush=True)
+        if not candidatos or not chaves:
+            if pagina == 1: raise RuntimeError('Não foi possível interpretar a tabela de ativos do catálogo.')
+            break
+        if chaves in vistos_paginas:
+            print('[CATÁLOGO] Página repetida; encerrando varredura de paginação.',flush=True)
+            break
+        vistos_paginas.add(chaves); catalogo.extend(candidatos)
+        if total_pag is not None and pagina >= total_pag: break
+        time.sleep(0.25)
     unicos={}
     for a in catalogo: unicos[a['t']]=a
     resultado=sorted(unicos.values(),key=lambda a:a['t'])
@@ -109,7 +146,7 @@ def carregar_catalogo():
             if len(antigo.get('ativos',[]))>len(resultado):
                 print('[AVISO] Catálogo atual incompleto; preservando catálogo anterior.',flush=True)
                 return antigo['ativos']
-        raise RuntimeError(f'Catálogo incompleto ({len(resultado)} ativos); não substituir dados existentes.')
+        raise RuntimeError(f'Catálogo incompleto ({len(resultado)} ativos após verificar paginação); não substituir dados existentes.')
     CATALOGO.write_text(json.dumps({'gerado':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z'),'fonte':'CotaLab — diretório público; validar contra cadastro oficial B3','total':len(resultado),'ativos':resultado},ensure_ascii=False,allow_nan=False),encoding='utf-8')
     return resultado
 
