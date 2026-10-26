@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#363c49">
+<meta name="theme-color" content="#0b1220">
 <title>Radar de Dividendos</title>
 <style>
 :root{--bg:#3a404d;--hd:#363c49;--cd:#464c5b;--cd2:#3f4553;--tx:#f1f3f6;--mut:#aab2c0;--ac:#7dd3c0;--gold:#e0b050;--ok:#6fd6a4;--bad:#ef8a8a}
@@ -37,6 +37,34 @@ label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)
 .lg{display:flex;gap:6px;align-items:center;font-size:13px}.lg i{width:10px;height:10px;border-radius:50%}
 .dy{display:inline-block;border:1px solid #8a92a3;border-radius:8px;padding:4px 10px;font-size:14px;font-weight:600}.dy.up{background:#5bbd9d;border-color:#5bbd9d;color:#0d2a22}
 .hide{display:none}.n{color:var(--mut);font-size:13px}.asset-table{width:100%;border-collapse:collapse;min-width:900px;font-size:13px}.asset-table th,.asset-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #596171;white-space:nowrap}.asset-table th{position:sticky;top:0;background:#343a47;color:var(--ac)}.asset-table tr:hover td{background:#505767}.asset-table .num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Redesign visual inspirado em dashboards financeiros premium: identidade própria do Radar */
+:root{--bg:#08111f;--hd:#0b1424;--cd:#111e30;--cd2:#15243a;--tx:#f4f7fb;--mut:#9eacc0;--ac:#75e0b2;--gold:#d8b66a;--ok:#75e0b2;--bad:#ff8f91}
+body{background:radial-gradient(ellipse at 50% -18%,#1c3650 0%,#0b1424 44%,#08111f 78%);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.005em}
+header{background:rgba(8,17,31,.94);backdrop-filter:blur(18px);border-bottom:1px solid #22334a;box-shadow:0 8px 30px #0002}
+.top{max-width:1240px;margin:auto;min-height:64px;gap:4px;padding:0 18px}
+.top a{padding:20px 13px;font-size:13px;font-weight:650;letter-spacing:.01em}
+.top a.on{color:var(--ac);border-color:var(--ac)}.top a.rec{color:#e4c77e}.top a.rec.on{border-color:#e4c77e}
+.logo{width:34px;height:34px;margin-right:9px}
+.btn{background:linear-gradient(135deg,#8cf0c4,#51c99c);color:#062219;border:1px solid #9bf4d0;border-radius:10px;padding:10px 15px;font-weight:750;box-shadow:0 5px 18px #4fd3a21c;transition:transform .16s,filter .16s}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn:disabled{filter:grayscale(.4);box-shadow:none}
+.sub{background:#0d192a;border-top:1px solid #1b2b40}.sub a{padding:12px 24px;font-weight:600}.sub a.on{color:var(--ac);border-color:var(--ac)}
+#st{background:#0c1929;border-bottom:1px solid #1d2d42;padding:9px 18px;color:#aebbd0;font-size:12px}#st.off{color:#e4c77e}
+main{max-width:1240px;padding:28px 20px 80px}
+h2{font-size:clamp(22px,3vw,29px);letter-spacing:-.035em;color:#f4f7fb;font-weight:760;margin:4px 0 18px}h3{font-size:15px;font-weight:700;color:#eaf1f8}
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,285px),1fr));gap:16px}
+.cd,.box,.kp div{background:linear-gradient(145deg,#142238,#101b2d);border:1px solid #263850;border-radius:16px;box-shadow:0 8px 24px #00000018}
+.cd{padding:18px;transition:transform .18s,border-color .18s}.cd:hover{transform:translateY(-2px);border-color:#3b6a65}
+.box{padding:19px;margin-bottom:16px}.kp{gap:14px}.kp div{padding:17px 18px}.kp b{font-size:clamp(20px,2.5vw,25px);letter-spacing:-.025em;color:#f6fbff}.kp small{font-size:12px;color:#a9b8cb;margin-bottom:5px}
+.r{border-color:#263850}.rk{background:#75e0b2;color:#062219}.pill{border-radius:8px}.pill.m{background:#1d4d47;color:#9af0d0}.pill.a{background:#443b25;color:#f0d28b}.pill.c{background:#194538;color:#8deac0}.pill.v{background:#4b292f;color:#ffb0b2}
+select,input,textarea{background:#0a1525;border:1px solid #30445e;border-radius:10px;padding:11px 12px;outline:none}select:focus,input:focus,textarea:focus{border-color:#75e0b2;box-shadow:0 0 0 3px #75e0b21b}
+label{font-size:12px;font-weight:600;color:#aebbd0}.bar{gap:12px;margin-bottom:18px}
+.teal{background:linear-gradient(135deg,#b2f5d8,#75e0b2)!important;color:#09261d;border:0!important}.teal small{color:#285c4a}
+.ev{background:#14263a;border:1px solid #263b52;border-left:4px solid var(--ac);border-radius:11px}
+.dy{border-color:#476176;border-radius:9px}.dy.up{background:#1a493a;border-color:#2d785c;color:#9af0c9}
+.asset-table{font-size:13px}.asset-table th,.asset-table td{border-color:#263850}.asset-table th{background:#111e30;color:#83e7bd}.asset-table tr:hover td{background:#172940}
+.n{color:#a7b5c9}.pos{color:#83e7bd}.neg{color:#ff9699}
+@media(max-width:640px){.top{padding:0 10px;gap:0}.top a{padding:16px 10px;font-size:12px}.logo{width:29px;height:29px;margin-right:4px}#upd{padding:9px 11px;font-size:12px}.sub{justify-content:flex-start;overflow-x:auto}.sub a{padding:12px 20px;white-space:nowrap}main{padding:22px 13px 90px}.cd,.box{border-radius:14px;padding:15px}.kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.kp div{padding:13px}.kp b{font-size:19px}}
 </style></head><body>
 <header><div class="top">
 <svg class="logo" viewBox="0 0 32 32" fill="none" stroke="#7dd3c0" stroke-width="2.2"><path d="M16 3 4 7v9c0 7 5 11 12 13 7-2 12-6 12-13V7z"/><path d="M10 17c4 0 6-3 6-7 0 4 2 7 6 7M16 16v8"/></svg>
