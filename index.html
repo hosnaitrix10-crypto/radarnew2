@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#363c49">
 <title>Radar de Dividendos</title>
 <style>
 :root{--bg:#3a404d;--hd:#363c49;--cd:#464c5b;--cd2:#3f4553;--tx:#f1f3f6;--mut:#aab2c0;--ac:#7dd3c0;--gold:#e0b050;--ok:#6fd6a4;--bad:#ef8a8a}
@@ -13,7 +13,7 @@ header{background:var(--hd);border-bottom:1px solid #2f3440;position:sticky;top:
 .top a.on{color:var(--ac);border-color:var(--ac)}.top a.rec{color:var(--gold)}.top a.rec.on{border-color:var(--gold)}
 .sp{flex:1}.btn{background:var(--gold);color:#222;border:0;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
 .sub{display:flex;justify-content:center;background:#3d4350}.sub a{padding:11px 22px;color:var(--mut);cursor:pointer;font-size:14px;border-bottom:2px solid transparent}.sub a.on{color:var(--tx);border-color:var(--ac)}
-#st{font-size:12.5px;color:var(--mut);padding:7px 16px;background:#333946;overflow-wrap:anywhere}#st.off{color:var(--gold)}#st a{color:var(--ac);font-weight:600}#upd:disabled{opacity:.65;cursor:wait}
+#st{font-size:12.5px;color:var(--mut);padding:7px 16px;background:#333946}#st.off{color:var(--gold)}
 main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
 h2{font-size:22px;color:var(--ac);margin:4px 0 14px;font-weight:600}h3{font-size:15px;margin:0 0 10px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
@@ -36,184 +36,97 @@ label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)
 .pie{width:190px;height:190px;border-radius:50%;margin:10px auto}
 .lg{display:flex;gap:6px;align-items:center;font-size:13px}.lg i{width:10px;height:10px;border-radius:50%}
 .dy{display:inline-block;border:1px solid #8a92a3;border-radius:8px;padding:4px 10px;font-size:14px;font-weight:600}.dy.up{background:#5bbd9d;border-color:#5bbd9d;color:#0d2a22}
-.hide{display:none}.n{color:var(--mut);font-size:13px}.asset-table{width:100%;border-collapse:collapse;min-width:900px;font-size:13px}.asset-table th,.asset-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #596171;white-space:nowrap}.asset-table th{position:sticky;top:0;background:#343a47;color:var(--ac)}.asset-table tr:hover td{background:#505767}.asset-table .num{text-align:right;font-variant-numeric:tabular-nums}
+.hide{display:none}.n{color:var(--mut);font-size:13px}
 
-/* Redesign visual inspirado em dashboards financeiros premium: identidade própria do Radar */
-:root{--bg:#08111f;--hd:#0b1424;--cd:#111e30;--cd2:#15243a;--tx:#f4f7fb;--mut:#9eacc0;--ac:#75e0b2;--gold:#d8b66a;--ok:#75e0b2;--bad:#ff8f91}
-body{background:radial-gradient(ellipse at 50% -18%,#1c3650 0%,#0b1424 44%,#08111f 78%);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.005em}
-header{background:rgba(8,17,31,.94);backdrop-filter:blur(18px);border-bottom:1px solid #22334a;box-shadow:0 8px 30px #0002}
-.top{max-width:1240px;margin:auto;min-height:64px;gap:4px;padding:0 18px}
-.top a{padding:20px 13px;font-size:13px;font-weight:650;letter-spacing:.01em}
-.top a.on{color:var(--ac);border-color:var(--ac)}.top a.rec{color:#e4c77e}.top a.rec.on{border-color:#e4c77e}
-.logo{width:34px;height:34px;margin-right:9px}
-.btn{background:linear-gradient(135deg,#8cf0c4,#51c99c);color:#062219;border:1px solid #9bf4d0;border-radius:10px;padding:10px 15px;font-weight:750;box-shadow:0 5px 18px #4fd3a21c;transition:transform .16s,filter .16s}
-.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn:disabled{filter:grayscale(.4);box-shadow:none}
-.sub{background:#0d192a;border-top:1px solid #1b2b40}.sub a{padding:12px 24px;font-weight:600}.sub a.on{color:var(--ac);border-color:var(--ac)}
-#st{background:#0c1929;border-bottom:1px solid #1d2d42;padding:9px 18px;color:#aebbd0;font-size:12px}#st.off{color:#e4c77e}
-main{max-width:1240px;padding:28px 20px 80px}
-h2{font-size:clamp(22px,3vw,29px);letter-spacing:-.035em;color:#f4f7fb;font-weight:760;margin:4px 0 18px}h3{font-size:15px;font-weight:700;color:#eaf1f8}
-.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,285px),1fr));gap:16px}
-.cd,.box,.kp div{background:linear-gradient(145deg,#142238,#101b2d);border:1px solid #263850;border-radius:16px;box-shadow:0 8px 24px #00000018}
-.cd{padding:18px;transition:transform .18s,border-color .18s}.cd:hover{transform:translateY(-2px);border-color:#3b6a65}
-.box{padding:19px;margin-bottom:16px}.kp{gap:14px}.kp div{padding:17px 18px}.kp b{font-size:clamp(20px,2.5vw,25px);letter-spacing:-.025em;color:#f6fbff}.kp small{font-size:12px;color:#a9b8cb;margin-bottom:5px}
-.r{border-color:#263850}.rk{background:#75e0b2;color:#062219}.pill{border-radius:8px}.pill.m{background:#1d4d47;color:#9af0d0}.pill.a{background:#443b25;color:#f0d28b}.pill.c{background:#194538;color:#8deac0}.pill.v{background:#4b292f;color:#ffb0b2}
-select,input,textarea{background:#0a1525;border:1px solid #30445e;border-radius:10px;padding:11px 12px;outline:none}select:focus,input:focus,textarea:focus{border-color:#75e0b2;box-shadow:0 0 0 3px #75e0b21b}
-label{font-size:12px;font-weight:600;color:#aebbd0}.bar{gap:12px;margin-bottom:18px}
-.teal{background:linear-gradient(135deg,#b2f5d8,#75e0b2)!important;color:#09261d;border:0!important}.teal small{color:#285c4a}
-.ev{background:#14263a;border:1px solid #263b52;border-left:4px solid var(--ac);border-radius:11px}
-.dy{border-color:#476176;border-radius:9px}.dy.up{background:#1a493a;border-color:#2d785c;color:#9af0c9}
-.asset-table{font-size:13px}.asset-table th,.asset-table td{border-color:#263850}.asset-table th{background:#111e30;color:#83e7bd}.asset-table tr:hover td{background:#172940}
-.n{color:#a7b5c9}.pos{color:#83e7bd}.neg{color:#ff9699}
-@media(max-width:640px){.top{padding:0 10px;gap:0}.top a{padding:16px 10px;font-size:12px}.logo{width:29px;height:29px;margin-right:4px}#upd{padding:9px 11px;font-size:12px}.sub{justify-content:flex-start;overflow-x:auto}.sub a{padding:12px 20px;white-space:nowrap}main{padding:22px 13px 90px}.cd,.box{border-radius:14px;padding:15px}.kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.kp div{padding:13px}.kp b{font-size:19px}}
+.rec-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.rec-intro p{max-width:760px;margin:0;color:var(--mut);font-size:13px;line-height:1.6}
+.rec-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.rec-filter{border:1px solid #30445e;background:#0a1525;color:var(--mut);padding:9px 13px;border-radius:999px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.rec-filter.active{background:#173d34;border-color:#4dba91;color:#a4f2cf}
+.rec-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px}
+.rec-card{background:linear-gradient(145deg,#142238,#0e1a2b);border:1px solid #263850;border-radius:17px;padding:17px;min-width:0}
+.rec-card:hover{border-color:#4a8275}
+.rec-card-top{display:flex;gap:11px;align-items:center;margin-bottom:14px}
+.rec-logo{width:48px;height:48px;flex:none;border-radius:14px;display:grid;place-items:center;overflow:hidden;background:#20364a;border:1px solid #38506a;color:#d9f8e9;font-size:13px;font-weight:850;letter-spacing:-.03em}
+.rec-logo img{width:100%;height:100%;object-fit:contain;background:#fff;padding:5px}
+.rec-name{min-width:0;flex:1}.rec-name strong{font-size:17px;letter-spacing:.01em}.rec-name small{display:block;white-space:normal;line-height:1.35;margin-top:3px}
+.rec-signal{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:800;white-space:nowrap}
+.rec-signal.buy{background:#194538;color:#94f0c6}.rec-signal.wait{background:#433a24;color:#f1d28c}.rec-signal.no{background:#482a32;color:#ffb4b7}.rec-signal.sell{background:#49332a;color:#ffc59e}.rec-signal.na{background:#263447;color:#c1cede}
+.rec-scoreline{display:flex;justify-content:space-between;align-items:center;margin:12px 0 7px;font-size:12px;color:var(--mut)}
+.rec-scorebar{height:6px;background:#26364b;border-radius:999px;overflow:hidden}.rec-scorebar span{display:block;height:100%;background:linear-gradient(90deg,#47bd91,#a1f0c8);border-radius:999px}
+.rec-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:13px 0}
+.rec-metric{background:#0b1727;border:1px solid #23364c;border-radius:10px;padding:10px;min-width:0}
+.rec-metric small{display:block;font-size:11px;margin-bottom:5px}.rec-metric b{font-size:14px;overflow-wrap:anywhere}
+.rec-reason{font-size:12px;color:#c3cede;line-height:1.55;border-top:1px solid #263850;padding-top:11px;margin:10px 0 0}
+.rec-reason strong{color:#edf6ff}.rec-empty{padding:20px;border:1px dashed #3b5068;border-radius:14px;color:var(--mut);font-size:13px;line-height:1.6}
+.rec-count{font-size:12px;color:var(--mut);margin:0 0 12px}
+@media(max-width:480px){.rec-card{padding:14px}.rec-logo{width:43px;height:43px}.rec-signal{font-size:10px;padding:5px 6px}.rec-name strong{font-size:16px}}
+
 </style></head><body>
 <header><div class="top">
 <svg class="logo" viewBox="0 0 32 32" fill="none" stroke="#7dd3c0" stroke-width="2.2"><path d="M16 3 4 7v9c0 7 5 11 12 13 7-2 12-6 12-13V7z"/><path d="M10 17c4 0 6-3 6-7 0 4 2 7 6 7M16 16v8"/></svg>
-<a data-v="todos">Todos</a><a data-v="emp">Investimentos</a><a data-v="rec" class="rec">Recomendação</a><a data-v="cfg">Ajustes</a><span class="sp"></span><button class="btn" id="upd">Atualizar</button></div>
+<a data-v="emp">Investimentos</a><a data-v="rec" class="rec">Recomendação</a><a data-v="cfg">Ajustes</a><span class="sp"></span><button class="btn" id="upd">Atualizar</button></div>
 <div class="sub" id="sub"><a data-v="renda">Renda</a><a data-v="cart">Carteira</a><a data-v="emp">Empresas</a></div></header>
-<div id="st">Carregando dados salvos…</div>
+<div id="st">Carregando…</div>
 <main id="m"></main>
 <script>
 const DATA="dados.json";
 const K="radar_v1",$=s=>document.querySelector(s);
-let S={};try{S=JSON.parse(localStorage.getItem(K)||"null")||{}}catch(e){S={}};
-const primeiraVersao=!S._radarV2;
-S=Object.assign({token:"",url:"",dy:6,desc:20,anos:3,lucro:30,watch:[],pos:[],vendas:[],cache:{},upd:null},S);
-if(primeiraVersao){S.anos=3;S._radarV2=true;try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+let S=JSON.parse(localStorage.getItem(K)||"null")||{};
+S=Object.assign({token:"",url:"",dy:6,desc:20,anos:5,lucro:30,watch:[],pos:[],cache:{},upd:null},S);
 const save=()=>localStorage.setItem(K,JSON.stringify(S));
 const R=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const P=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{maximumFractionDigits:2})+"%";
 const cls=v=>v>=0?"pos":"neg",COL=["#72b5ab","#fadba0","#e0b050","#8fa8e8","#d98fb0","#a6d98f","#c9a2e8","#e89f8f","#8fd9d9","#b0b0b0","#f0e68c"];
-let view="emp",sortK="margem",onlyCheap=false,lastErr="",todosPagina=0,todosOrdenar="t",todosOrdem=1,todosCategoria="todos",todosBusca="";
+let view="emp",sortK="margem",onlyCheap=false,lastErr="";
 
 const SEC={"Financial Services":"Financeiro","Utilities":"Energia e saneamento","Basic Materials":"Materiais básicos","Energy":"Petróleo e gás","Consumer Cyclical":"Consumo cíclico","Consumer Defensive":"Consumo defensivo","Industrials":"Indústria","Healthcare":"Saúde","Communication Services":"Telecom","Technology":"Tecnologia","Real Estate":"Imobiliário"},PER=["Financeiro","Energia e saneamento","Telecom"];
 let U={};const DV=t=>(U[t]||{}).div||[];
-const tipoAtivo=a=>{
- if(a.cat||a.categoria)return String(a.cat||a.categoria).toLowerCase();
- const t=String(a.t||"").toUpperCase(),n=String(a.nome||"").toLowerCase();
- if(/\b(fii|fundo imobiliário|fundo imobiliario)\b/.test(n))return "fii";
- if(/\b(etf|fundo de índice|fundo de indice)\b/.test(n))return "etf";
- if(/\b(bdr|depositary receipt|depositary receipts)\b/.test(n)||/\d{2}$/.test(t)&&/(34|35|39|32|33|31)$/.test(t))return "bdr";
- return "acao";
-};
-const idx=j=>{const ativos=j.ativos||j.acoes||[];U=Object.fromEntries(ativos.filter(a=>a&&a.t).map(a=>[String(a.t).toUpperCase(),{...a,t:String(a.t).toUpperCase(),cat:tipoAtivo(a)}]))};if(S.uni)idx(S.uni);
-async function carregar(forcar=false){
-  const TTL_DADOS=6*60*60*1000;
-  const cacheValido=S.uni && S.cacheDadosEm && (Date.now()-S.cacheDadosEm<TTL_DADOS);
-  if(!forcar && cacheValido){idx(S.uni);return {origem:"cache"}}
-  // Resolve dados.json a partir da pasta publicada no GitHub Pages.
-  const endereco=(S.url||new URL(DATA,location.href).href);
-  const url=forcar ? endereco+(endereco.includes("?")?"&":"?")+"v="+Date.now() : endereco;
-  const r=await fetch(url,{cache:forcar?"no-store":"default"});
-  if(!r.ok)throw new Error("Não foi possível ler dados.json (HTTP "+r.status+"). Confira o arquivo publicado.");
-  const j=await r.json();
-  if(!j || !Array.isArray(j.acoes))throw new Error("Formato inválido em dados.json: a lista 'acoes' não foi encontrada.");
-  idx(j);S.uni=j;S.cacheDadosEm=Date.now();save();
-  return {origem:"rede"}
-}
+const idx=j=>{U=Object.fromEntries((j.acoes||[]).map(a=>[a.t,a]))};if(S.uni)idx(S.uni);
+async function carregar(){const r=await fetch((S.url||DATA)+"?v="+Date.now());if(!r.ok)throw new Error("dados.json não encontrado ("+r.status+"). Confira o endereço em Ajustes");const j=await r.json();idx(j);S.uni=j;save()}
 async function fetchOne(t){const r=await fetch(`https://brapi.dev/api/quote/${t}?token=${S.token}`);const j=await r.json().catch(()=>({})),x=j.results&&j.results[0];if(!x)throw new Error(j.message||("resposta "+r.status));return{p:x.regularMarketPrice,ch:x.regularMarketChangePercent}}
-async function atualizar(forcar=true){
- const st=$("#st"),btn=$("#upd");
- if(btn.disabled)return;
- btn.disabled=true;lastErr="";
- st.className="";
- st.innerHTML=forcar
-   ? 'Atualizando os dados publicados… <span class="n">Isso apenas relê dados.json; para gerar uma nova coleta, use <a href="https://github.com/hosnaitrix10-crypto/Radarnew/actions/workflows/atualizar-dados.yml" target="_blank" rel="noopener">Executar coleta no GitHub Actions</a>.</span>'
-   : 'Carregando dados publicados…';
- try{await carregar(forcar)}catch(e){lastErr=e.message}
- let n=0;
- // A brapi é consultada apenas para as ações da carteira e somente quando o usuário pede atualização.
- if(forcar && S.token)for(const q of S.pos){try{S.cache[q.t]=await fetchOne(q.t);n++}catch(e){}}
- if(S.uni){
-   const gerado=S.uni.gerado?new Date(S.uni.gerado):null;
-   const dataTxt=gerado&&!isNaN(gerado)?gerado.toLocaleString("pt-BR"):"data sem horário";
-   const cacheTxt=S.cacheDadosEm?` · cache local ${Math.max(0,Math.round((Date.now()-S.cacheDadosEm)/60000))} min`:"";
-   st.className=lastErr?"off":"";
-   st.innerHTML=`Dados publicados de ${dataTxt} · ${Object.keys(U).length} ativos${n?` · ${n} cotações ao vivo`:""}${cacheTxt}${lastErr?" · falha ao atualizar: "+lastErr:""} · <a href="https://github.com/hosnaitrix10-crypto/Radarnew/actions/workflows/atualizar-dados.yml" target="_blank" rel="noopener">Gerar nova coleta no GitHub</a>`;
-   if(!lastErr){S.upd=Date.now();save()}
- }else offline();
- btn.disabled=false;draw()}
+async function atualizar(){const st=$("#st");$("#upd").disabled=true;lastErr="";
+ try{await carregar()}catch(e){lastErr=e.message}
+ let n=0;if(S.token)for(const q of S.pos){try{S.cache[q.t]=await fetchOne(q.t);n++}catch(e){}}
+ if(S.uni){S.upd=Date.now();save();st.className="";st.textContent=`Dados de ${new Date(S.uni.gerado).toLocaleDateString("pt-BR")} · ${Object.keys(U).length} empresas analisadas${n?` · ${n} cotações ao vivo`:""}${lastErr?" · offline: "+lastErr:""}`}else offline();
+ $("#upd").disabled=false;draw()}
 function offline(){const st=$("#st");st.className="off";st.textContent=lastErr||"Sem dados. Configure o endereço do dados.json em Ajustes."}
 function calc(t){const u=U[t];if(!u)return null;const c=S.cache[t]||{},p=c.p||u.p;if(!p)return null;const g=k=>u[k]||0;
  const dpa=g("dpa"),baz=dpa>0?dpa/(S.dy/100):null,lpa=u.pl>0?u.p/u.pl:0,vpa=u.pvp>0?u.p/u.pvp:0,gra=lpa>0&&vpa>0?Math.sqrt(22.5*lpa*vpa):null;
  const teto=Math.min(baz||Infinity,gra||Infinity),ideal=teto*(1-S.desc/100),ms=(teto/p-1)*100,setor=SEC[u.setor]||"Outros";
  const sc=Math.round(Math.min(g("dy")/8,1)*20+Math.min(g("ap"),5)*2+(PER.includes(setor)?10:0)+Math.min(Math.max(g("roe"),0)/20,1)*15+Math.min(Math.max(g("ml"),0)/15,1)*8+(u.dbp==null?0:u.dbp<=1?7:u.dbp<=2?3:0)+(g("cr")>0?5:0)+Math.min(Math.max(ms,0)/40,1)*25);
- const insuf=!(dpa>0)||g("ap")<S.anos||u.dados_yahoo==="indisponivel";
- return{t,nome:u.nome,setor,u,p,ch:c.ch,dpa,teto,ideal,min:u.lo,dym:g("dy"),margem:ms,sc,insuf,s:insuf?"i":p<=ideal?"c":p<=teto?"a":"v"}}
-const TX={c:"Comprar",a:"Aguardar",v:"Caro",i:"Dados insuficientes"};
+ return{t,nome:u.nome,setor,u,p,ch:c.ch,dpa,teto,ideal,min:u.lo,dym:g("dy"),margem:ms,sc,s:p<=ideal?"c":p<=teto?"a":"v"}}
+const TX={c:"Comprar",a:"Aguardar",v:"Caro"};
 const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
-function fut(t){const n=new Date();n.setHours(0,0,0,0);return DV(t).filter(d=>d.d&&new Date(d.d)>=n).map(d=>({t,v:d.v,d:new Date(d.d)}))}
+function fut(t){const n=new Date();n.setHours(0,0,0,0);returnDV(t).filter(d=>d.d&&new Date(d.d)>=n).map(d=>({t,v:d.v,d:new Date(d.d)}))}
 
 let sec="top";
 const cardR=(x,i)=>`<div class="cd"><div class="hd"><span class="rk">${i}</span><div><b>${x.t}</b><span class="pill ${x.s}">${TX[x.s]}</span><br><small>${x.nome} · ${x.setor}</small></div></div>${row("Nota (0-100)",`<b>${x.sc}</b>`)}${row("Cotação",R(x.p))}${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}${row("Preço mínimo (52s)",R(x.min))}${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}${row("ROE · P/L · P/VP",`${P(x.u.roe)} · ${(x.u.pl||0).toFixed(1)} · ${(x.u.pvp||0).toFixed(2)}`)}</div>`;
-const rank=()=>Object.keys(U).map(calc).filter(x=>x&&x.u.cat==="acao"&&isFinite(x.teto)).sort((a,b)=>b.sc-a.sc);
-function fmtNumero(v,d=2){return v==null||!Number.isFinite(Number(v))?"—":Number(v).toLocaleString("pt-BR",{maximumFractionDigits:d})}
-function catNome(c){return ({acao:"Ações",fii:"FIIs",etf:"ETFs",bdr:"BDRs",outro:"Outros"})[c]||"Outros"}
-function drawTodos(){
- const lista=Object.values(U).filter(a=>{
-   const c=tipoAtivo(a);if(todosCategoria!=="todos"&&c!==todosCategoria)return false;
-   const q=todosBusca.trim().toLocaleLowerCase("pt-BR");
-   return !q||String(a.t).toLowerCase().includes(q)||String(a.nome||"").toLowerCase().includes(q)||String(a.setor||"").toLowerCase().includes(q);
- });
- lista.sort((a,b)=>{let x,y;if(todosOrdenar==="nome"){x=a.nome||a.t;y=b.nome||b.t}else if(todosOrdenar==="preco"){x=Number(a.p)||-Infinity;y=Number(b.p)||-Infinity}else if(todosOrdenar==="dy"){x=Number(a.dy)||-Infinity;y=Number(b.dy)||-Infinity}else if(todosOrdenar==="setor"){x=a.setor||"";y=b.setor||""}else{x=a.t;y=b.t}return (x<y?-1:x>y?1:0)*todosOrdem});
- const porCat={acao:0,fii:0,etf:0,bdr:0,outro:0};Object.values(U).forEach(a=>{const c=tipoAtivo(a);porCat[porCat[c]===undefined?"outro":c]++});
- const porPagina=100,totalPag=Math.max(1,Math.ceil(lista.length/porPagina));todosPagina=Math.min(todosPagina,totalPag-1);const fatia=lista.slice(todosPagina*porPagina,(todosPagina+1)*porPagina);
- const rows=fatia.map(a=>{const cat=tipoAtivo(a),calcA=cat==="acao"?calc(a.t):null,status=a.p==null?"Sem cotação":(a.dados_fundamentos==="ok"?"Cotação + fundamentos":"Cotação; fundamentos limitados");return `<tr><td><b>${a.t}</b></td><td>${a.nome||"—"}</td><td>${catNome(cat)}</td><td>${a.setor||"—"}</td><td class="num">${R(a.p)}</td><td class="num">${P(a.dy)}</td><td class="num">${a.dpa!=null?R(a.dpa):"—"}</td><td class="num ${cls(a.desempenho_1a)}">${P(a.desempenho_1a)}</td><td class="num ${cls(a.desempenho_3a)}">${P(a.desempenho_3a)}</td><td>${calcA?(calcA.insuf?'<span class="pill a">Dados insuf.</span>':`<span class="pill ${calcA.s}">${TX[calcA.s]}</span>`):`<span class="pill a">${status}</span>`}</td></tr>`}).join("");
- const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
- $("#m").innerHTML=`<h2>Todos os ativos</h2><p class="n">Catálogo dos ativos presentes no arquivo publicado. Os números refletem a data de atualização da fonte; ausência de dados não significa desempenho negativo nem oportunidade de compra.</p>
- <div class="kp"><div><small>Total no catálogo</small><b>${Object.keys(U).length.toLocaleString("pt-BR")}</b></div><div><small>Ações</small><b>${porCat.acao}</b></div><div><small>FIIs</small><b>${porCat.fii}</b></div><div><small>ETFs</small><b>${porCat.etf}</b></div><div><small>BDRs</small><b>${porCat.bdr}</b></div></div>
- <div class="bar"><label>Categoria<select id="tc"><option value="todos">Todas as categorias</option><option value="acao">Ações</option><option value="fii">FIIs</option><option value="etf">ETFs</option><option value="bdr">BDRs</option><option value="outro">Outros</option></select></label><label style="flex:1;min-width:190px">Buscar ticker, empresa ou setor<input id="tb" value="${esc(todosBusca)}" placeholder="Ex.: PETR4, Itaú, tecnologia"></label><label>Ordenar por<select id="to"><option value="t">Ticker (A–Z)</option><option value="nome">Empresa (A–Z)</option><option value="setor">Setor</option><option value="preco">Preço</option><option value="dy">Dividend yield</option></select></label><button class="btn" id="tdir" style="background:#5b6275;color:white">${todosOrdem===1?"↑ Crescente":"↓ Decrescente"}</button></div>
- <div class="box" style="overflow-x:auto;padding:0"><table class="asset-table"><thead><tr><th>Ticker</th><th>Empresa / ativo</th><th>Categoria</th><th>Setor</th><th>Preço</th><th>DY</th><th>DPA médio</th><th>Desemp. 1 ano</th><th>Desemp. 3 anos</th><th>Estado dos dados</th></tr></thead><tbody>${rows||'<tr><td colspan="10">Nenhum ativo encontrado para esses filtros.</td></tr>'}</tbody></table></div>
- <div class="bar"><span class="n">Mostrando ${lista.length?todosPagina*porPagina+1:0}–${Math.min((todosPagina+1)*porPagina,lista.length)} de ${lista.length} resultados</span><button class="btn" id="tprev" ${todosPagina===0?"disabled":""} style="background:#5b6275;color:white">Anterior</button><span class="n">Página ${todosPagina+1} de ${totalPag}</span><button class="btn" id="tnext" ${todosPagina>=totalPag-1?"disabled":""} style="background:#5b6275;color:white">Próxima</button></div>`;
- $("#tc").value=todosCategoria;$("#to").value=todosOrdenar;
- $("#tc").onchange=e=>{todosCategoria=e.target.value;todosPagina=0;drawTodos()};
- $("#tb").oninput=e=>{todosBusca=e.target.value;todosPagina=0;drawTodosKeepFocus(e.target.selectionStart)};
- $("#to").onchange=e=>{todosOrdenar=e.target.value;todosPagina=0;drawTodos()};
- $("#tdir").onclick=()=>{todosOrdem*=-1;drawTodos()};$("#tprev").onclick=()=>{todosPagina=Math.max(0,todosPagina-1);drawTodos()};$("#tnext").onclick=()=>{todosPagina=Math.min(totalPag-1,todosPagina+1);drawTodos()};
-}
-function drawTodosKeepFocus(pos){drawTodos();const el=$("#tb");if(el){el.focus();try{el.setSelectionRange(pos,pos)}catch(e){}}}
+const rank=()=>Object.keys(U).map(calc).filter(x=>x&&isFinite(x.teto)).sort((a,b)=>b.sc-a.sc);
 function drawEmp(){const A=rank(),ss=[...new Set(A.map(x=>x.setor))].sort(),g=l=>`<div class="grid">${l.map((x,i)=>cardR(x,i+1)).join("")}</div>`;
  const body=!A.length?`<div class="cd">Nenhum dado ainda. Toque em Atualizar.</div>`:sec=="top"?g(A.slice(0,20)):sec=="all"?ss.map(s=>`<h3 style="margin-top:18px">${s}</h3>`+g(A.filter(x=>x.setor==s).slice(0,7))).join(""):g(A.filter(x=>x.setor==sec).slice(0,7));
- $("#m").innerHTML=`<h2>Ranking de empresas</h2><div class="bar"><select id="so"><option value="top">Top 20 geral</option><option value="all">7 melhores de cada setor</option>${ss.map(s=>`<option>${s}</option>`).join("")}</select></div><p class="n">Nota heurística (0–100), inspirada em princípios públicos associados a Barsi (dividendos, setores perenes) e Buffett/Graham (qualidade, dívida e margem de segurança); não reproduz modelos privados nem garante desempenho. Ativos sem DPA ou com histórico menor que o período configurado aparecem como dados insuficientes e não entram na carteira recomendada. Teto = menor entre Bazin (DPA médio ÷ ${S.dy}%) e Graham. Ideal = teto com ${S.desc}% de desconto.</p>${body}`;
+ $("#m").innerHTML=`<h2>Ranking de empresas</h2><div class="bar"><select id="so"><option value="top">Top 20 geral</option><option value="all">7 melhores de cada setor</option>${ss.map(s=>`<option>${s}</option>`).join("")}</select></div><p class="n">Nota = Barsi (dividendos, setores perenes) + Buffett (ROE, margem, dívida, crescimento) + margem de segurança. Teto = menor entre Bazin (DPA médio ÷ ${S.dy}%) e Graham. Ideal = teto com ${S.desc}% de desconto.</p>${body}`;
  $("#so").value=sec;$("#so").onchange=e=>{sec=e.target.value;drawEmp()}}
 
 function drawCart(){
   let inv=0,atu=0,div=0,ev=[];
   const cards=S.pos.map((q,i)=>{const x=calc(q.t),p=x?x.p:null,v=p?p*q.q:null,c=q.q*q.pm,g=v==null?null:v-c;
     inv+=c;if(v)atu+=v;if(x)div+=x.dpa*q.q;ev.push(...fut(q.t).map(e=>({...e,q:q.q})));
-    let s="m",txt="Manter",motivo="Sem alerta quantitativo forte; revisar dados e fundamentos antes de decidir.";
-    if(x){
-      if(x.insuf){s="a";txt="Revisar dados";motivo="Dados fundamentais ou histórico de proventos insuficientes; não concluir compra/venda apenas com esta tela."}
-      else if(x.p>x.teto){s="v";txt="Sinal: avaliar venda";motivo=`Cotação ${R(x.p)} acima do preço-teto estimado (${R(x.teto)}). Considere reavaliar valuation, tese e impostos; não é ordem automática.`}
-      else if(S.lucro&&c>0&&g/c*100>=S.lucro){s="a";txt="Avaliar realização";motivo=`Ganho estimado de ${P(g/c*100)} supera sua meta configurada de ${P(S.lucro)}. Compare com a tese e custos antes de decidir.`}
-      else if(x.p<=x.ideal){s="c";txt="Preço atrativo";motivo=`Cotação abaixo do preço-ideal calculado (${R(x.ideal)}); verifique qualidade, dados recentes e concentração da carteira.`}
-    }else{motivo="Cotação/fundamentos não disponíveis. Não gerar sinal de venda sem dados confiáveis."}
-    return`<div class="cd"><div class="hd"><span class="rk">${i+1}</span><div><b>${q.t}</b><span class="pill ${s}">${txt}</span><br><small>${x?x.nome:""}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">Remover</button></div>
+    let s="m",txt="Manter";
+    if(x){if(x.p>x.teto){s="v";txt="Vender: acima do teto"}else if(S.lucro&&g/c*100>=S.lucro){s="a";txt="Realizar lucro"}else if(x.p<=x.ideal){s="c";txt="Comprar mais"}}
+    return`<div class="cd"><div class="hd"><span class="rk">${i+1}</span><div><b>${q.t}</b><span class="pill ${s}">${txt}</span><br><small>${x?x.nome:""}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
     ${row("Quantidade",q.q)}${row("Preço médio",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
     ${row("Ganho / perda",`<b class="${cls(g)}">${R(g)} ${g==null?"":`(${P(g/c*100)})`}</b>`)}
-    ${row("Preço teto estimado",x?R(x.teto):"-")}${row("Preço ideal estimado",x?R(x.ideal):"-")}${row("Yield sobre custo",x?P(x.dpa/q.pm*100):"-")}
-    <p class="n"><b>Por que apareceu este sinal?</b><br>${motivo}</p><button class="btn" data-sell="${i}" style="width:100%;background:linear-gradient(135deg,#ffb2a6,#ff858b);border-color:#ffc0b6;color:#40151b">Registrar venda…</button></div>`}).join("");
+    ${row("Preço teto",x?R(x.teto):"-")}${row("Preço ideal",x?R(x.ideal):"-")}${row("Yield sobre custo",x?P(x.dpa/q.pm*100):"-")}</div>`}).join("");
   ev.sort((a,b)=>a.d-b.d);const g=atu-inv;
   $("#m").innerHTML=`<h2>Minha carteira</h2>
   <div class="kp"><div><small>Investido</small><b>${R(inv)}</b></div><div><small>Valor atual</small><b>${R(atu)}</b></div><div><small>Ganho / perda</small><b class="${cls(g)}">${R(g)}</b><small>${inv?P(g/inv*100):""}</small></div><div><small>Dividendos estimados/ano</small><b>${R(div)}</b></div></div>
   <div class="box"><h3>Adicionar compra</h3><form id="f" class="bar" style="margin:0"><label>Ticker<input id="ft" placeholder="KLBN4" required style="width:110px"></label><label>Quantidade<input id="fq" type="number" min="1" required style="width:110px"></label><label>Preço médio pago (R$)<input id="fp" type="number" step="0.01" min="0" required style="width:150px"></label><button class="btn" style="align-self:end">Adicionar</button></form></div>
-  <div class="box"><h3>Histórico de vendas registradas</h3>${(S.vendas||[]).slice().reverse().slice(0,8).map(v=>`<div class="ev"><span><b>${v.t}</b> · ${v.q} un. · ${v.data}</span><b>${R(v.preco*v.q)} <small>(${v.motivo||"venda manual"})</small></b></div>`).join("")||'<small>As vendas registradas aparecerão aqui. O botão apenas registra sua decisão; não envia ordem à corretora.</small>'}</div>
   <div class="box"><h3>Agenda de dividendos</h3>${ev.slice(0,6).map(e=>`<div class="ev"><span><b>${e.t}</b> · ${e.d.toLocaleDateString("pt-BR")}</span><b class="pos">+${R(e.v*e.q)}</b></div>`).join("")||`<small>Sem pagamentos futuros nos dados.</small>`}</div>
   <h3>Minhas empresas</h3><div class="grid">${cards||`<div class="cd">Adicione as ações que você comprou para acompanhar ganhos e saber a hora de vender.</div>`}</div>`;
   $("#f").onsubmit=async e=>{e.preventDefault();const t=$("#ft").value.trim().toUpperCase(),q=+$("#fq").value,pm=+$("#fp").value,ex=S.pos.find(a=>a.t==t);
     if(ex){ex.pm=(ex.pm*ex.q+pm*q)/(ex.q+q);ex.q+=q}else S.pos.push({t,q,pm});save();S.cache[t]?draw():await atualizar()};
-  document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{if(confirm("Remover este ativo da lista sem registrar uma venda? Use ‘Registrar venda’ para lançar uma venda real.")){S.pos.splice(+b.dataset.d,1);save();draw()}});
-  document.querySelectorAll("[data-sell]").forEach(b=>b.onclick=()=>{
-    const i=+b.dataset.sell,q=S.pos[i];if(!q)return;
-    const qt=Number(prompt(`Registrar venda de ${q.t}. Quantidade disponível: ${q.q}. Quantas unidades vendeu?`,String(q.q)));
-    if(!Number.isFinite(qt)||qt<=0||qt>q.q){alert("Quantidade inválida. Nenhuma alteração foi feita.");return}
-    const x=calc(q.t),sug=x&&x.p?x.p:0;
-    const preco=Number(prompt("Preço por unidade recebido (R$):",sug?sug.toFixed(2):""));
-    if(!Number.isFinite(preco)||preco<=0){alert("Preço inválido. Nenhuma alteração foi feita.");return}
-    const motivo=prompt("Motivo (opcional): sinal do Radar, rebalanceamento, mudança de tese etc.",x&&x.p>x.teto?"Cotação acima do preço-teto estimado":"Decisão própria");
-    const custo=q.pm*qt,receita=preco*qt;
-    S.vendas=S.vendas||[];S.vendas.push({t:q.t,q:qt,preco,pm:q.pm,custo,receita,resultado:receita-custo,motivo:motivo||"Venda manual",data:new Date().toLocaleDateString("pt-BR")});
-    q.q=Number((q.q-qt).toFixed(8));if(q.q<=0.00000001)S.pos.splice(i,1);save();draw();
-  });
+  document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{if(confirm("Remover da carteira?")){S.pos.splice(+b.dataset.d,1);save();draw()}});
 }
 
 function drawRenda(){
@@ -230,14 +143,80 @@ function drawRenda(){
 
 function pie(it){let a=0;const g=it.map((x,i)=>{const s=a;a+=x.w*100;return`${COL[i%COL.length]} ${s}% ${a}%`}).join(",");
   return`<div class="pie" style="background:conic-gradient(${g||"#555 0 100%"})"></div><div style="display:flex;gap:6px 14px;flex-wrap:wrap;justify-content:center">${it.map((x,i)=>`<span class="lg"><i style="background:${COL[i%COL.length]}"></i>${x.t}: ${P(x.w*100)}</span>`).join("")}</div>`}
-function drawRec(){const Rc=[],cnt={};for(const x of rank()){if(Rc.length>=10)break;if(x.insuf||x.p>x.teto||x.sc<50||(cnt[x.setor]||0)>=2)continue;cnt[x.setor]=(cnt[x.setor]||0)+1;Rc.push(x)}
- const pos=S.pos.map(q=>{const x=calc(q.t);return x?{t:q.t,val:x.p*q.q,dym:x.dym}:null}).filter(Boolean),tv=pos.reduce((a,b)=>a+b.val,0),A=pos.map(p=>({t:p.t,w:p.val/tv})),dyA=pos.reduce((a,p)=>a+p.val/tv*p.dym,0);
- const B=Rc.map(x=>({t:x.t,w:1/Rc.length})),out=A.filter(a=>!Rc.find(r=>r.t==a.t)).map(a=>a.t),inn=Rc.filter(r=>!A.find(a=>a.t==r.t)).map(r=>r.t);
- $("#m").innerHTML=`<h2>Carteira atual x recomendada</h2><p class="n">Recomendada: até 10 empresas do ranking com nota ≥ 50, abaixo do preço teto, no máx. 2 por setor, pesos iguais.</p><div class="row"><div class="box"><h3>Carteira atual</h3>${tv?`<span class="dy">DY projetado: ${P(dyA)}</span>${pie(A)}`:`<p class="n">Adicione compras na aba Carteira.</p>`}</div><div class="box"><h3>Carteira recomendada</h3>${B.length?pie(B):`<p class="n">Nenhuma empresa passou nos critérios hoje.</p>`}</div></div>
- <div class="box"><h3>Empresas da recomendada</h3>${Rc.map((x,i)=>row(`${i+1}. ${x.t} · ${x.setor}`,`nota ${x.sc} · teto ${R(x.teto)}`)).join("")}</div>
- <div class="box"><h3>Ajustes sugeridos</h3><p>Entrar: ${inn.join(", ")||"nenhuma"}</p><p>Reavaliar ou reduzir: ${out.join(", ")||"nenhuma"}</p><p class="n">Os sinais são apoio à análise, não ordens. A decisão de comprar/vender é sempre sua. A cotação pode estar atrasada e fundamentos podem estar ausentes; confirme data e fonte antes de operar. Rentabilidade passada não garante resultados futuros.</p></div>
- <div class="box"><h3>FIIs que passaram pela triagem inicial</h3><p class="n">Pontuação preliminar por dividendos, histórico, P/VP, desempenho em 3 anos e liquidez quando disponível. É uma lista para investigação, não uma ordem de compra. Confirme qualidade dos rendimentos, vacância, concentração, dívida e relatórios gerenciais.</p>${FI.map((x,i)=>row(`${i+1}. ${x.a.t} · ${x.a.nome||""}`,`nota ${x.score}/100 · DY ${P(x.a.dy)} · P/VP ${fmtNumero(x.a.pvp)} · DPA ${R(x.a.dpa)} · 3 anos ${P(x.a.desempenho_3a)}`)).join("")||'<p class="n">Ainda não há FIIs com dados suficientes para essa triagem.</p>'}</div>
- <div class="box"><h3>ETFs e BDRs</h3><p class="n">São monitorados na aba Todos, com preço e desempenho quando disponíveis. Não recebem recomendação fundamentalista automática nesta versão: ETFs exigem comparação de índice, taxa e tracking difference; BDRs exigem fundamentos da empresa estrangeira, moeda e riscos específicos.</p></div>`}
+function radarLogoHTML(ticker, nome='') {
+  const t = String(ticker || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6) || 'BR';
+  // Logos só são tentados para empresas conhecidas; fallback é sempre o ticker.
+  const domains = {
+    ITUB3:'itau.com.br',ITUB4:'itau.com.br',BBDC3:'bradesco.com.br',BBDC4:'bradesco.com.br',
+    BBAS3:'bb.com.br',SANB11:'santander.com.br',BPAC11:'btgpactual.com',ABEV3:'ambev.com.br',
+    WEGE3:'weg.net',VALE3:'vale.com',PETR3:'petrobras.com.br',PETR4:'petrobras.com.br',
+    PRIO3:'prio3.com.br',SUZB3:'suzano.com.br',JBSS3:'jbs.com.br',EGIE3:'egis.com.br',
+    TAEE11:'taesa.com.br',CPLE6:'copel.com',VIVT3:'vivo.com.br',TIMS3:'tim.com.br',
+    HGLG11:'patria.com',KNRI11:'kinea.com.br',MXRF11:'xpinc.com',XPML11:'xpinc.com',
+    XPLG11:'xpinc.com',VISC11:'vinci.com.br',BOVA11:'blackrock.com',IVVB11:'blackrock.com',
+    HASH11:'hashdex.com',AAPL34:'apple.com',MSFT34:'microsoft.com',GOGL34:'abc.xyz',
+    AMZO34:'aboutamazon.com',NVDC34:'nvidia.com',TSLA34:'tesla.com',MELI34:'mercadolivre.com'
+  };
+  const domain = domains[t];
+  const image = domain ? `<img src="https://logo.clearbit.com/${domain}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : '';
+  return `<span class="rec-logo" aria-label="Ícone ${t}">${image}<span>${t.slice(0,4)}</span></span>`;
+}
+
+function drawRec(){
+  const ativos = Object.keys(U).map(t => calc(t)).filter(Boolean).filter(x => x.u && x.u.cat === 'acao');
+  const classificar = x => {
+    if (x.insuf || !Number.isFinite(x.p) || !Number.isFinite(x.teto) || !(x.teto > 0) || !Number.isFinite(x.sc))
+      return {key:'na',label:'DADOS INSUFICIENTES',motivo:'Não há dados fundamentais, histórico ou preço-teto confiável suficientes para emitir um sinal. Não interpretar ausência de dados como compra ou venda.'};
+    if (x.p > x.teto)
+      return {key:'no',label:'NÃO COMPRAR AGORA',motivo:`A cotação (${R(x.p)}) está acima do preço-teto estimado (${R(x.teto)}). Isso indica preço menos atrativo pelo modelo atual, não prova que o ativo vá cair.`};
+    if (x.p <= x.ideal && x.sc >= 60)
+      return {key:'buy',label:'AVALIAR COMPRA',motivo:`Cotação abaixo do preço-ideal estimado (${R(x.ideal)}) e nota quantitativa ${x.sc}/100. Antes de comprar, confirme resultados recentes, dívida, eventos extraordinários e concentração da carteira.`};
+    if (x.p <= x.teto)
+      return {key:'wait',label:'AGUARDAR / ACOMPANHAR',motivo:`O preço não supera o teto estimado, mas não cumpre todos os critérios de preço e pontuação para o sinal de compra. Acompanhe a próxima divulgação e reavalie os fundamentos.`};
+    return {key:'wait',label:'AGUARDAR',motivo:'Os critérios atuais não justificam um sinal positivo suficientemente forte. Reavalie quando houver novos dados.'};
+  };
+  const itens = ativos.map(x=>({...x, sinal:classificar(x)}));
+  // Ranking de análise: primeiro sinais de compra, depois espera, não comprar e dados insuficientes.
+  const ordem = {buy:0,wait:1,no:2,na:3};
+  itens.sort((a,b)=>(ordem[a.sinal.key]-ordem[b.sinal.key]) || (b.sc-a.sc));
+  const n = k => itens.filter(x=>x.sinal.key===k).length;
+  const filtro = window.__radarRecFiltro || 'todos';
+  const mostrados = filtro==='todos' ? itens : itens.filter(x=>x.sinal.key===filtro);
+  const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const cards = mostrados.map(x=>{
+    const s=x.sinal;
+    const roe=Number.isFinite(Number(x.u.roe))?P(x.u.roe):'—';
+    const pl=Number.isFinite(Number(x.u.pl))&&x.u.pl>0?fmtNumero(x.u.pl):'—';
+    const pvp=Number.isFinite(Number(x.u.pvp))&&x.u.pvp>0?fmtNumero(x.u.pvp):'—';
+    return `<article class="rec-card">
+      <div class="rec-card-top">${radarLogoHTML(x.t,x.nome)}<div class="rec-name"><strong>${esc(x.t)}</strong><small>${esc(x.nome||'Nome não disponível')} · ${esc(x.setor||'Setor não informado')}</small></div><span class="rec-signal ${s.key}">${s.label}</span></div>
+      <div class="rec-scoreline"><span>Nota quantitativa</span><strong>${x.sc}/100</strong></div><div class="rec-scorebar"><span style="width:${Math.max(0,Math.min(100,x.sc))}%"></span></div>
+      <div class="rec-metrics">
+        <div class="rec-metric"><small>Cotação usada</small><b>${R(x.p)}</b></div>
+        <div class="rec-metric"><small>Dividend yield</small><b>${P(x.dym)}</b></div>
+        <div class="rec-metric"><small>Preço-teto estimado</small><b>${R(x.teto)}</b></div>
+        <div class="rec-metric"><small>Margem até o teto</small><b class="${cls(x.margem)}">${P(x.margem)}</b></div>
+      </div>
+      <div class="rec-metrics">
+        <div class="rec-metric"><small>ROE informado</small><b>${roe}</b></div>
+        <div class="rec-metric"><small>P/L · P/VP</small><b>${pl} · ${pvp}</b></div>
+      </div>
+      <p class="rec-reason"><strong>Por que este sinal?</strong><br>${esc(s.motivo)}</p>
+    </article>`;
+  }).join('');
+  const btn=(k,label,count)=>`<button class="rec-filter ${filtro===k?'active':''}" data-recf="${k}">${label} <span>${count}</span></button>`;
+  const fiis=(Array.isArray(window.FI)?window.FI:[]).slice(0,10).map((x,i)=>`<div class="r"><span><b>${esc(x.a.t)}</b> · ${esc(x.a.nome||'FII')}</span><span>DY ${P(x.a.dy)} · P/VP ${(Number.isFinite(Number(x.a.pvp))?Number(x.a.pvp).toLocaleString("pt-BR",{maximumFractionDigits:2}):"—")} · triagem ${x.score}/100</span></div>`).join('');
+  $('#m').innerHTML=`
+    <div class="rec-intro"><div><h2>Radar de recomendações</h2><p>Triagem quantitativa para ajudar na análise. Os sinais usam os dados atualmente publicados e as regras configuradas no aplicativo; não são previsões nem garantia de retorno. Confira a data dos dados e os fundamentos antes de operar.</p></div></div>
+    <div class="kp"><div><small>Avaliar compra</small><b>${n('buy')}</b></div><div><small>Aguardar</small><b>${n('wait')}</b></div><div><small>Não comprar agora</small><b>${n('no')}</b></div><div><small>Dados insuficientes</small><b>${n('na')}</b></div></div>
+    <div class="rec-filters">${btn('todos','Todas',itens.length)}${btn('buy','Avaliar compra',n('buy'))}${btn('wait','Aguardar',n('wait'))}${btn('no','Não comprar',n('no'))}${btn('na','Dados insuficientes',n('na'))}</div>
+    <p class="rec-count">${mostrados.length} ações nesta visualização · Ordenadas por sinal e nota</p>
+    ${cards?`<div class="rec-list">${cards}</div>`:'<div class="rec-empty">Nenhum ativo corresponde a este filtro. Verifique os dados publicados ou selecione outra categoria.</div>'}
+    <div class="box" style="margin-top:20px"><h3>Como interpretar</h3><p class="n"><b>Avaliar compra</b>: preço abaixo do preço-ideal calculado e nota de pelo menos 60/100; exige conferência manual. <b>Aguardar</b>: ainda não reúne os critérios do sinal positivo. <b>Não comprar agora</b>: preço acima do teto estimado pelo modelo, não significa recomendação de venda automática. <b>Dados insuficientes</b>: não é possível concluir com os dados atuais.</p><p class="n">O preço-teto depende dos fundamentos e parâmetros configurados. A nota é uma heurística explicável, não um modelo estatístico validado nem uma reprodução dos métodos privados de investidores específicos.</p></div>
+    <div class="box"><h3>FIIs para investigar</h3><p class="n">Triagem preliminar; não equivale à recomendação de compra. Confira relatório gerencial, vacância, inadimplência, dívida, concentração e sustentabilidade dos rendimentos.</p>${fiis||'<p class="n">Ainda não há FIIs suficientes para mostrar nesta triagem.</p>'}</div>
+    <div class="box"><h3>ETFs e BDRs</h3><p class="n">A listagem geral está na aba Todos. Esta versão não os mistura no ranking fundamentalista de ações porque exigem métricas específicas (índice, taxas e tracking difference para ETFs; fundamentos estrangeiros, moeda e risco de recibo para BDRs).</p></div>`;
+  document.querySelectorAll('[data-recf]').forEach(b=>b.onclick=()=>{window.__radarRecFiltro=b.dataset.recf;drawRec()});
+}
 
 function drawCfg(){
   $("#m").innerHTML=`<h2>Ajustes</h2><div class="box"><h3>Fonte de dados</h3><label>Endereço do dados.json (deixe como está se tudo estiver no mesmo site)<input id="c6" value="${S.url||DATA}"></label><br><label>Token brapi (opcional: cotação ao vivo só da carteira)<input id="c0" value="${S.token}"></label></div>
@@ -249,15 +228,13 @@ function drawCfg(){
   $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=JSON.parse(await i.files[0].text());save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
 }
-const V={todos:drawTodos,emp:drawEmp,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
+const V={emp:drawEmp,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
 function draw(){V[view]();
   document.querySelectorAll("[data-v]").forEach(a=>{const v=a.dataset.v,inv=["emp","cart","renda"].includes(view);
     a.classList.toggle("on",a.closest("#sub")?v==view:(v==view||(v=="emp"&&inv)))});
   $("#sub").classList.toggle("hide",!["emp","cart","renda"].includes(view))}
 document.querySelectorAll("[data-v]").forEach(a=>a.onclick=()=>{view=a.dataset.v;draw();scrollTo(0,0)});
-$("#upd").onclick=()=>atualizar(true);
-draw();
-if(navigator.onLine){atualizar(false)}else offline();
-// Ao voltar a conexão, só tenta buscar se ainda não houver dados locais.
-addEventListener("online",()=>{if(!S.uni)atualizar(false)});
+$("#upd").onclick=atualizar;
+draw();navigator.onLine?atualizar():offline();
+addEventListener("online",atualizar);
 </script></body></html>
