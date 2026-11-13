@@ -36,8 +36,9 @@ label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)
 .pie{width:190px;height:190px;border-radius:50%;margin:10px auto}
 .lg{display:flex;gap:6px;align-items:center;font-size:13px}.lg i{width:10px;height:10px;border-radius:50%}
 .dy{display:inline-block;border:1px solid #8a92a3;border-radius:8px;padding:4px 10px;font-size:14px;font-weight:600}.dy.up{background:#5bbd9d;border-color:#5bbd9d;color:#0d2a22}
-.w{overflow-x:auto;background:var(--cd);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:780px}th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}th{color:var(--mut);font-weight:600;font-size:13px}tr+tr td{border-top:1px solid #545b6c}
+.w{overflow-x:auto;background:var(--cd);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:980px}th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}th{color:var(--mut);font-weight:600;font-size:13px}tr+tr td{border-top:1px solid #545b6c}
 .exc{outline:2px solid var(--gold)}.alerta{background:#5a4a22;color:#ffe9b0;border-radius:8px;padding:8px 10px;font-size:13px;margin-bottom:8px}
+.lg{border-radius:10px;background:#fff;object-fit:contain;padding:3px;flex:none}.lgf{display:grid;place-items:center;border-radius:10px;background:var(--cd2);color:var(--ac);font-weight:700;font-size:13px;flex:none}.rkb{position:absolute;left:-7px;top:-7px;width:18px;height:18px;font-size:10px}
 .hide{display:none}.n{color:var(--mut);font-size:13px}
 </style></head><body>
 <header><div class="top">
@@ -91,9 +92,9 @@ const fmt=ts=>ts?new Date(ts).toLocaleString("pt-BR",{timeZone:"America/Sao_Paul
 
 /* ===== Consulta à brapi: classifica cada resultado ===== */
 class E extends Error{constructor(s,m,h){super(m);this.s=s;this.h=h}}
-async function fetchOne(t,wd){
+async function fetchOne(t,wd,mods){
   cnt();
-  let r;try{r=await fetch(`https://brapi.dev/api/quote/${t}?${wd?"dividends=true&":""}token=${S.token||DEFTOK}`)}
+  let r;try{r=await fetch(`https://brapi.dev/api/quote/${t}?${wd?"dividends=true&":""}${mods?"modules=defaultKeyStatistics,financialData&":""}token=${S.token||DEFTOK}`)}
   catch(e){throw new E("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
   const h=r.status;let j=null;try{j=await r.json()}catch(e){}
   const msg=(j&&j.message)||"";
@@ -107,9 +108,14 @@ async function fetchOne(t,wd){
   if(typeof x.regularMarketPrice!="number")throw new E("invalid","cotação ausente na resposta",h);
   let lo=x.fiftyTwoWeekLow,hi=x.fiftyTwoWeekHigh;
   if(lo==null&&x.fiftyTwoWeekRange){const m=x.fiftyTwoWeekRange.split("-").map(Number);lo=m[0];hi=m[1]}
-  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null};
+  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null};
+  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},nz=v=>Number.isFinite(v)?v:null;let re=nz(fd.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=nz(dk.priceToBook)}
   if(wd)o.div=((x.dividendsData&&x.dividendsData.cashDividends)||[]).map(d=>({v:d.rate,d:d.paymentDate||d.lastDatePrior||d.approvedOn}));
   return o}
+async function fetchDet(t){ /* tenta trazer ROE e P/VP junto da mesma chamada; se o plano recusar, refaz sem módulos e não pede mais */
+  if(S.modOK!==false){try{const r=await fetchOne(t,false,true);if(S.modOK!==true){S.modOK=true;save()}return r}
+    catch(e){if(e.h!=403&&e.h!=400)throw e;const r=await fetchOne(t,false,false);S.modOK=false;save();return r}}
+  return fetchOne(t,false,false)}
 async function fetchDivDB(t){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
   let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":S.dbKey}})}
@@ -126,7 +132,7 @@ async function fetchDivDB(t){
   const ok=/DIVID|JCP|JUROS|REND/i;
   return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
 function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,detAt:now,qAt:now,src:"brapi"};
+  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:n.logo||o.logo,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
@@ -152,7 +158,7 @@ async function listaGet(q){cnt();let r;
 async function fetchList(){ /* uma chamada traz cotação, volume e setor de todo o mercado */
   const j=await listaGet("&sortBy=volume&sortOrder=desc"),now=Date.now();let n=0;
   j.stocks.forEach(x=>{const t=x.stock;if(!/^[A-Z]{4}(3|4|5|6|11)$/.test(t||"")||typeof x.close!="number"||x.close<=0||(x.subType&&x.subType!="stock"&&x.subType!="unit"))return;const o=C[t]||{};
-    C[t]={...o,p:x.close,ch:x.change,nome:o.nome&&o.nome!=t?o.nome:(x.name&&x.name!=t?x.name:t),sec:x.sector||o.sec,vol:x.volume||0,qAt:now,src:"brapi"};n++});
+    C[t]={...o,p:x.close,ch:x.change,nome:o.nome&&o.nome!=t?o.nome:(x.name&&x.name!=t?x.name:t),sec:x.sector||o.sec,logo:x.logo||o.logo,vol:x.volume||0,qAt:now,src:"brapi"};n++});
   if(Array.isArray(j.availableSectors))M.setores=j.availableSectors;
   const faltam=()=>Object.keys(C).filter(t=>!C[t].sec).length; /* setor ausente: classifica pelo filtro de setor da própria API */
   if(faltam()&&M.setores&&Date.now()-(M.secAt||0)>864e5){M.secAt=Date.now();
@@ -160,7 +166,7 @@ async function fetchList(){ /* uma chamada traz cotação, volume e setor de tod
   return n}
 async function runIndiv(ts){let ok=0,fail=0,stop=false;
   for(const t of ts){if(stop)break;status(`Detalhes de ${t}…`);
-    try{merge(t,await viaRetry(()=>fetchOne(t,false)));ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++}
+    try{merge(t,await viaRetry(()=>fetchDet(t)));ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++}
     catch(e){const s=e.s||"neterr";ST[t]={...(ST[t]||{}),s,at:Date.now(),err:e.message};M.err={msg:t+": "+e.message,src:"brapi.dev",at:Date.now(),s};fail++;if(s=="limit")stop=true}
     await sleep(S.sched.gap)}
   return{ok,fail}}
@@ -169,7 +175,9 @@ async function runDiv(o,now){ /* dividendos aos poucos: respeita o limite diári
   const sc=S.sched,dv=sc.divDias*864e5,lim=S.dbLim||190,dk=new Date().toISOString().slice(0,10);
   if(M.db.d!=dk)M.db={d:dk,n:0};
   const E_={};Object.keys(C).forEach(t=>(E_[EMP(t)]=E_[EMP(t)]||[]).push(t));
-  const pri=new Set(S.pos.map(p=>p.t)),onlyE=new Set((o.only&&!o.divAll?o.only.filter(t=>pri.has(t)):[...pri]).map(EMP));if(!onlyE.size)return{ok:0,fail:0,left:0};
+  const pri=new Set(S.pos.map(p=>p.t)),cs=new Set();
+  if(!o.only){const G={};rankAll(true).forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));Object.values(G).forEach(L=>L.slice(0,S.nSet).forEach(t=>cs.add(t)));rankAll().slice(0,20).forEach(x=>cs.add(x.t))}
+  const onlyE=new Set((o.only&&!o.divAll?o.only.filter(t=>pri.has(t)):[...pri,...cs]).map(EMP));if(!onlyE.size)return{ok:0,fail:0,left:0};
   const sc2=t=>(pri.has(t)?2e12:0)+(C[t].vol||0)+(t.endsWith("4")?0.2:t.endsWith("3")?0.1:0);
   const need=[];
   for(const [e,ts] of Object.entries(E_)){
@@ -209,6 +217,7 @@ async function doRefresh(o){
   if(o.only||listFail){const r=await runIndiv(o.only||[...new Set([...pos,...S.watch])]);ok+=r.ok;fail+=r.fail;if(r.ok&&!o.only)M.qAt=Date.now()}
   const d=await runDiv(o,now);ok+=d.ok;fail+=d.fail;
   if(!o.divOnly&&!o.only&&!listFail){fila=filaDetalhe(o,kind);const r=await runIndiv(fila.slice(0,restanteHoje()));ok+=r.ok;fail+=r.fail;feitas=r.ok+r.fail}
+  if(!o.divOnly&&!o.only){const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
   if(!o.divOnly&&!o.only)M.skip=ok==0&&fail>0?(nextSlot()||0):0;
   M.ultimo={ok,fail,total:ok+fail,restantes:Math.max(0,fila.length-feitas),at:Date.now()};
 }
@@ -279,7 +288,7 @@ function calc(t){
   const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
   const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
   const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
-  return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
+  return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe,pvp:c.pvp,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
     exc:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,dpa,dym:dpa==null?null:dpa/c.p*100}}
 function rankAll(all){const best={};
   for(const t in C){const x=calc(t);if(!x||x.ex||(!all&&x.margem<=0))continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
@@ -290,15 +299,18 @@ const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
 function fut(t){const n=new Date();n.setHours(0,0,0,0);return((C[t]||{}).div||[]).filter(d=>d.d&&new Date(d.d)>=n).map(d=>({t,v:d.v,d:new Date(d.d)}))}
 
 const fp=v=>v==null?"-":v.toFixed(1);
+const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
+  return(u?`<img class="lg" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
+const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
-  return`<div class="cd${x.exc?" exc":""}"><div class="hd"><span class="rk">${i}</span><div><b>${x.t}</b><span class="pill ${x.s}">${TX[x.s]}</span><br><small>${x.nome} · ${sp(x.sec)}</small></div></div>
+  return`<div class="cd${x.exc?" exc":""}"><div class="hd"><div style="position:relative;flex:none">${logo(x.t,42)}<span class="rk rkb">${i}</span></div><div><b>${x.t}</b><span class="pill ${x.s}">${TX[x.s]}</span><br><small>${x.nome} · ${sp(x.sec)}</small></div><div style="margin-left:auto;text-align:right"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></div>
   ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}
   ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}
   ${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}${row("Preço mínimo (52s)",R(x.min))}${row("Preço máximo (52s)",R(x.max))}
-  ${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}
+  ${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
   ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}</div>`}
 function covBox(){const d=diagInfo();
-  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando: a análise avança dentro do orçamento diário de chamadas, restam ${restanteHoje()} hoje)`:""}. Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa.</p>`}
+  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando: a análise avança dentro do orçamento diário de chamadas, restam ${restanteHoje()} hoje)`:""}. Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p>`}
 const rkSel=()=>`<select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
@@ -315,8 +327,8 @@ let fSec="",fQ="";
 function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))].sort();
   $("#m").innerHTML=`<h2>Todas do mercado</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">Inclui também as ações acima do preço teto.</p><div class="w"><table id="tb"></table></div>`;
   const t=()=>{const q=fQ.toUpperCase(),L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
-    $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>Nota</th><th>Sinal</th></tr>`+
-      (L.map((x,i)=>`<tr><td>${i+1}</td><td>${x.exc?"🔥 ":""}<b>${x.t}</b><br><small>${x.nome}</small></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=11>Nada encontrado.</td></tr>`)};
+    $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
+      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:8px;align-items:center">${logo(x.t,28)}<div>${x.exc?"🔥 ":""}<b>${x.t}</b><br><small>${x.nome}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym==null?"-":P(x.dym)}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
   bindRk(drawAll);$("#fs").value=fSec;$("#fq").value=fQ;$("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
 const dBR=d=>d?new Date(d+"T12:00:00").toLocaleDateString("pt-BR"):"informe a data";
 const hoje=()=>new Date().toISOString().slice(0,10);
@@ -328,12 +340,12 @@ function drawCart(){
     inv+=c;if(v)atu+=v;if(r)rec+=r;
     let s="m",txt="Manter";
     if(x&&!x.sd){if(x.p>x.teto){s="v";txt="Vender: acima do teto"}else if(S.lucro&&g/c*100>=S.lucro){s="a";txt="Realizar lucro"}else if(x.p<=x.ideal){s="c";txt="Comprar mais"}}
-    return`<div class="cd"><div class="hd"><span class="rk">${i+1}</span><div><b>${q.t}</b><span class="pill ${s}">${txt}</span><br><small>Compra em ${dBR(q.d)}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
+    return`<div class="cd"><div class="hd">${logo(q.t,42)}<div><b>${q.t}</b><span class="pill ${s}">${txt}</span><br><small>Compra em ${dBR(q.d)}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
     ${row("Quantidade",q.q)}${row("Preço pago",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
     ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${g==null?"":`(${P(g/c*100)})`}</b>`)}
     ${row("Proventos desde a compra",r==null?"-":R(r))}
     ${row("Retorno total",g==null||r==null?"-":`<b class="${cls(g+r)}">${R(g+r)} (${P((g+r)/c*100)})</b>`)}
-    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}</div>`}).join("");
+    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`):""}${x?indRows(x):""}</div>`}).join("");
   const g=atu-inv;
   $("#m").innerHTML=`<h2>Minha carteira</h2>
   <div class="kp"><div><small>Investido</small><b>${R(inv)}</b></div><div><small>Valor atual</small><b>${R(atu)}</b></div><div><small>Ganho de capital</small><b class="${cls(g)}">${R(g)}</b><small>${inv?P(g/inv*100):""}</small></div><div><small>Proventos desde as compras</small><b>${R(rec)}</b></div><div><small>Retorno total</small><b class="${cls(g+rec)}">${R(g+rec)}</b><small>${inv?P((g+rec)/inv*100):""}</small></div></div>
