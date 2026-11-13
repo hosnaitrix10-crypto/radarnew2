@@ -195,8 +195,9 @@ async function fetchOne(t,wd,mods){
   if(typeof x.regularMarketPrice!="number")throw new E("invalid","cotação ausente na resposta",h);
   let lo=x.fiftyTwoWeekLow,hi=x.fiftyTwoWeekHigh;
   if(lo==null&&x.fiftyTwoWeekRange){const m=x.fiftyTwoWeekRange.split("-").map(Number);lo=m[0];hi=m[1]}
-  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null};
-  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},nz=v=>Number.isFinite(v)?v:null;let re=nz(fd.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=nz(dk.priceToBook)}
+  const num=v=>{if(Number.isFinite(v))return v;if(v&&typeof v=="object")return num(v.raw??v.value??v.val??v.fmt);if(typeof v=="string"){const z=v.replace(/%/g,"").trim(),n=Number(z.includes(",")?z.replace(/\./g,"").replace(",","."):z);return Number.isFinite(n)?n:null}return null};
+  const o={p:x.regularMarketPrice,ch:num(x.regularMarketChangePercent),nome:x.shortName||t,lo:num(lo),hi:num(hi),pl:num(x.priceEarnings),eps:num(x.earningsPerShare),logo:x.logourl||null,dy:null};
+  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},pick=(a,b)=>num(a??b);let re=pick(fd.returnOnEquity,x.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=pick(dk.priceToBook,x.priceToBook);let dy=pick(dk.dividendYield,x.dividendYield);if(dy!=null&&Math.abs(dy)<=1.5)dy*=100;o.dy=dy}
   if(wd)o.div=((x.dividendsData&&x.dividendsData.cashDividends)||[]).map(d=>({v:d.rate,d:d.paymentDate||d.lastDatePrior||d.approvedOn}));
   return o}
 async function fetchDet(t){ /* tenta trazer ROE e P/VP junto da mesma chamada; se o plano recusar, refaz sem módulos e não pede mais */
@@ -219,7 +220,7 @@ async function fetchDivDB(t){
   const ok=/DIVID|JCP|JUROS|REND/i;
   return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
 function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
+  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,dy:n.dy??o.dy??C[t]?.dy,fundV:2,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
@@ -286,7 +287,7 @@ async function runDiv(o,now){ /* dividendos aos poucos: respeita o limite diári
   return{ok,fail,left:need.length}}
 function filaDetalhe(o,kind){
   const now=Date.now(),H=3.6e6,pos=[...new Set(S.pos.map(p=>p.t))].filter(t=>C[t]);
-  const velho=(t,h)=>!C[t].detAt||now-C[t].detAt>h*H,liqOK=t=>C[t].p*(C[t].vol||0)>=S.liqMin;
+  const velho=(t,h)=>!C[t].detAt||!C[t].fundV||now-C[t].detAt>h*H,liqOK=t=>C[t].p*(C[t].vol||0)>=S.liqMin;
   const G={};rankAll().forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));
   const cand=Object.values(G).flatMap(L=>L.slice(0,S.nSet));
   const q=[...pos.filter(t=>velho(t,o.force?0:2)),...cand.filter(t=>velho(t,kind=="pregao"?2:12))];
@@ -375,9 +376,9 @@ function calc(t){
   if(!c.detAt||!(lo>0)||!(hi>lo)||!Number.isFinite(eps))ex="dados incompletos";else if(!(eps>0))ex="lucro negativo";else if(liq<S.liqMin)ex="baixa liquidez";
   const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
   const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
-  const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
+  const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null,dym=dpa==null?c.dy??null:dpa/c.p*100;
   return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe,pvp:c.pvp,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
-    exc:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,dpa,dym:dpa==null?null:dpa/c.p*100}}
+    exc:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,dpa,dym,dymAtual:dpa==null&&dym!=null}}
 function rankAll(all){const best={};
   for(const t in C){const x=calc(t);if(!x||x.ex||(!all&&x.margem<=0))continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
   return Object.values(best).sort((a,b)=>b[S.rk]-a[S.rk])}
@@ -392,7 +393,7 @@ const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)
 const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
 const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
   return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
-const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
+const indRows=x=>row(x.dymAtual?"Dividend Yield atual":"Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
   return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
   ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}
