@@ -135,7 +135,7 @@ async function fetchDivDB(t){
   const ok=/DIVID|JCP|JUROS|REND/i;
   return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
 function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:n.logo||o.logo,detAt:now,qAt:now,src:"brapi"};
+  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
@@ -210,6 +210,7 @@ function filaDetalhe(o,kind){
     rest.sort((a,b)=>((C[a].detAt||0)-(C[b].detAt||0))||((C[b].vol||0)-(C[a].vol||0)));q.push(...rest)}
   return[...new Set(q)]}
 async function doRefresh(o){
+  if(o.listOnly){try{await viaRetry(fetchList);ST.__lista={s:"ok",at:Date.now()}}catch(e){M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s}}return}
   const now=Date.now(),sc=S.sched,kind=o.kind||"full",pos=[...new Set(S.pos.map(p=>p.t))];
   if(!o.divOnly&&!o.only&&fimDeSemana()&&M.qAt>=lastClose()){status("Mercado fechado: a B3 não opera no fim de semana. Exibindo o fechamento de "+fmtDia(lastClose())+"; as atualizações voltam na segunda-feira.");await sleep(2500);return}
   if(o.manual&&!o.only&&now-M.lastTry<sc.minManual*60000){status(`Aguarde ${Math.ceil((sc.minManual*60000-(now-M.lastTry))/1000)}s: intervalo mínimo entre atualizações manuais.`);await sleep(2500);return}
@@ -317,7 +318,7 @@ function cardEmp(x,i){
   ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}${row("Setor",sp(x.sec))}</details>`}
 function covBox(){const d=diagInfo();
   return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando: a análise avança dentro do orçamento diário de chamadas, restam ${restanteHoje()} hoje)`:""}. Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p>`}
-const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
+const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
 function drawTop(){const A=rankAll(),L=A.slice(0,20),E=A.filter(x=>x.exc);
@@ -331,8 +332,9 @@ function drawSet(){const G={},T={};
   bindRk(drawSet);$("#ns").value=S.nSet;$("#ns").onchange=e=>{S.nSet=+e.target.value;save();drawSet()}}
 let fSec="",fQ="";
 function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))].sort();
-  $("#m").innerHTML=`<h2>Todas do mercado</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">Inclui também as ações acima do preço teto.</p><div class="w"><table id="tb"></table></div>`;
+  $("#m").innerHTML=`<h2>Todas do mercado</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">Inclui também as ações acima do preço teto.</p>${S.vis=="tabela"?`<div class="w"><table id="tb"></table></div>`:`<div id="tb" class="grid"></div>`}`;
   const t=()=>{const q=fQ.toUpperCase(),L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
+    if(S.vis!="tabela"){$("#tb").innerHTML=L.slice(0,150).map((x,i)=>cardEmp(x,i+1)).join("")+(L.length>150?`<p class="n">Mostrando 150 de ${L.length}. Use a busca ou o filtro de setor.</p>`:"")||`<div class="cd">Nada encontrado.</div>`;return}
     $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
       (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"🔥 ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym==null?"-":P(x.dym)}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
   bindRk(drawAll);$("#fs").value=fSec;$("#fq").value=fQ;$("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
@@ -403,7 +405,7 @@ function drawCfg(){
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
 }
 const V={top:drawTop,set:drawSet,all:drawAll,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
-function draw(){document.body.dataset.vis=S.vis||"lista";V[view]();
+function draw(){document.body.dataset.vis=S.vis=="cards"?"cards":"lista";V[view]();
   document.querySelectorAll("[data-v]").forEach(a=>{const v=a.dataset.v,inv=["top","set","all","cart","renda"].includes(view);
     a.classList.toggle("on",a.closest("#sub")?v==view:(v==view||(v=="top"&&inv)))});
   $("#sub").classList.toggle("hide",!["top","set","all","cart","renda"].includes(view))}
@@ -415,7 +417,7 @@ $("#upd").onclick=()=>refresh({manual:true,force:true});
   if(!Object.keys(C).length&&legacy){for(const t in legacy){C[t]={...legacy[t],qAt:legacyAt,dAt:legacyAt};ST[t]={s:"ok",at:legacyAt}}M.qAt=M.dAt=legacyAt||0;persist()}
   draw();status();
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-  if(!Object.keys(C).length)refresh({first:true});else refresh({divOnly:true}).then(check);
+  if(!Object.keys(C).length)refresh({first:true});else refresh({divOnly:true}).then(()=>{if(Object.values(C).some(c=>c.sec&&!c.logo)&&Date.now()-(M.logoTry||0)>864e5){M.logoTry=Date.now();return refresh({listOnly:true})}}).then(check);
   setInterval(check,30000);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
   addEventListener("online",check);
