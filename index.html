@@ -38,7 +38,10 @@ label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)
 .dy{display:inline-block;border:1px solid #8a92a3;border-radius:8px;padding:4px 10px;font-size:14px;font-weight:600}.dy.up{background:#5bbd9d;border-color:#5bbd9d;color:#0d2a22}
 .w{overflow-x:auto;background:var(--cd);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:980px}th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}th{color:var(--mut);font-weight:600;font-size:13px}tr+tr td{border-top:1px solid #545b6c}
 .exc{outline:2px solid var(--gold)}.alerta{background:#5a4a22;color:#ffe9b0;border-radius:8px;padding:8px 10px;font-size:13px;margin-bottom:8px}
-.lg{border-radius:10px;background:#fff;object-fit:contain;padding:3px;flex:none}.lgf{display:grid;place-items:center;border-radius:10px;background:var(--cd2);color:var(--ac);font-weight:700;font-size:13px;flex:none}.rkb{position:absolute;left:-7px;top:-7px;width:18px;height:18px;font-size:10px}
+.lgo{border-radius:14px;background:#fff;object-fit:contain;padding:2px;flex:none}.lgf{display:grid;place-items:center;border-radius:14px;background:var(--cd2);color:var(--ac);font-weight:700;font-size:13px;flex:none}.rkb{position:absolute;left:-7px;top:-7px;width:18px;height:18px;font-size:10px}
+summary.hd{list-style:none;cursor:pointer;margin-bottom:0}summary.hd::-webkit-details-marker{display:none}details[open]>summary.hd{margin-bottom:12px}
+.nm{display:block;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tk{color:var(--mut);font-size:15px}
+body[data-vis=lista] .grid{grid-template-columns:1fr;max-width:760px;gap:2px}body[data-vis=lista] .cd{background:transparent;border-radius:0;border-bottom:1px solid #4a5060;padding:14px 4px}body[data-vis=lista] .cd.exc{background:rgba(224,176,80,.08)}
 .hide{display:none}.n{color:var(--mut);font-size:13px}
 </style></head><body>
 <header><div class="top">
@@ -158,7 +161,7 @@ async function listaGet(q){cnt();let r;
 async function fetchList(){ /* uma chamada traz cotação, volume e setor de todo o mercado */
   const j=await listaGet("&sortBy=volume&sortOrder=desc"),now=Date.now();let n=0;
   j.stocks.forEach(x=>{const t=x.stock;if(!/^[A-Z]{4}(3|4|5|6|11)$/.test(t||"")||typeof x.close!="number"||x.close<=0||(x.subType&&x.subType!="stock"&&x.subType!="unit"))return;const o=C[t]||{};
-    C[t]={...o,p:x.close,ch:x.change,nome:o.nome&&o.nome!=t?o.nome:(x.name&&x.name!=t?x.name:t),sec:x.sector||o.sec,logo:x.logo||o.logo,vol:x.volume||0,qAt:now,src:"brapi"};n++});
+    C[t]={...o,p:x.close,ch:x.change,nome:o.nome&&o.nome!=t?o.nome:(x.name&&x.name!=t?x.name:t),sec:x.sector||o.sec,lname:x.name,logo:x.logo||o.logo,vol:x.volume||0,qAt:now,src:"brapi"};n++});
   if(Array.isArray(j.availableSectors))M.setores=j.availableSectors;
   const faltam=()=>Object.keys(C).filter(t=>!C[t].sec).length; /* setor ausente: classifica pelo filtro de setor da própria API */
   if(faltam()&&M.setores&&Date.now()-(M.secAt||0)>864e5){M.secAt=Date.now();
@@ -223,7 +226,7 @@ async function doRefresh(o){
 }
 function status(m){const st=$("#st"),u=M.ultimo,nx=S.sched.on&&nextSlot();
   st.className=!m&&u&&u.ok==0&&u.fail?"off":"";
-  st.textContent=m||`${fase()} · Última atualização: ${fmt(M.qAt)} · Próxima: ${nx?fmt(nx):"automático desligado"}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos para a carteira (Ajustes)."}`}
+  st.textContent=m||`${fase()} · Cotações atualizadas ${ago(M.qAt)} (${fmt(M.qAt)}) · Próxima: ${nx?fmt(nx):"automático desligado"}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos para a carteira (Ajustes)."}`}
 
 /* ===== Agendamento (horário de Brasília = UTC-3) ===== */
 function slotList(from){const out=[],b=new Date(from-3*36e5);
@@ -299,20 +302,23 @@ const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
 function fut(t){const n=new Date();n.setHours(0,0,0,0);return((C[t]||{}).div||[]).filter(d=>d.d&&new Date(d.d)>=n).map(d=>({t,v:d.v,d:new Date(d.d)}))}
 
 const fp=v=>v==null?"-":v.toFixed(1);
+const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)).replace(/\s+/g," ").trim().toUpperCase();
+  if(n!=t&&!/\b(ON|PN[AB]?|UNT|UNIT)\b/.test(n)){const k=t.endsWith("11")?"UNT":t.endsWith("3")?"ON":t.endsWith("4")?"PN":t.endsWith("5")?"PNA":t.endsWith("6")?"PNB":"";if(k)n+=" "+k}return n};
+const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
 const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
-  return(u?`<img class="lg" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
+  return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
 const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
-  return`<div class="cd${x.exc?" exc":""}"><div class="hd"><div style="position:relative;flex:none">${logo(x.t,42)}<span class="rk rkb">${i}</span></div><div><b>${x.t}</b><span class="pill ${x.s}">${TX[x.s]}</span><br><small>${x.nome} · ${sp(x.sec)}</small></div><div style="margin-left:auto;text-align:right"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></div>
+  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
   ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}
   ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}
   ${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}${row("Preço mínimo (52s)",R(x.min))}${row("Preço máximo (52s)",R(x.max))}
   ${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
-  ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}</div>`}
+  ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}${row("Setor",sp(x.sec))}</details>`}
 function covBox(){const d=diagInfo();
   return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando: a análise avança dentro do orçamento diário de chamadas, restam ${restanteHoje()} hoje)`:""}. Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p>`}
-const rkSel=()=>`<select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
-function bindRk(f){const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
+const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
+function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
 function drawTop(){const A=rankAll(),L=A.slice(0,20),E=A.filter(x=>x.exc);
   $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}${E.length?`<div class="box" style="border:1px solid var(--gold)"><h3>🔥 Oportunidades excepcionais (${E.length})</h3>${E.slice(0,10).map(x=>row(x.t+" · "+sp(x.sec),`margem ${P(x.margem)} · ${R(x.p)}`)).join("")}</div>`:""}<div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
@@ -328,7 +334,7 @@ function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))
   $("#m").innerHTML=`<h2>Todas do mercado</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">Inclui também as ações acima do preço teto.</p><div class="w"><table id="tb"></table></div>`;
   const t=()=>{const q=fQ.toUpperCase(),L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
     $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
-      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:8px;align-items:center">${logo(x.t,28)}<div>${x.exc?"🔥 ":""}<b>${x.t}</b><br><small>${x.nome}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym==null?"-":P(x.dym)}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
+      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"🔥 ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym==null?"-":P(x.dym)}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
   bindRk(drawAll);$("#fs").value=fSec;$("#fq").value=fQ;$("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
 const dBR=d=>d?new Date(d+"T12:00:00").toLocaleDateString("pt-BR"):"informe a data";
 const hoje=()=>new Date().toISOString().slice(0,10);
@@ -340,7 +346,7 @@ function drawCart(){
     inv+=c;if(v)atu+=v;if(r)rec+=r;
     let s="m",txt="Manter";
     if(x&&!x.sd){if(x.p>x.teto){s="v";txt="Vender: acima do teto"}else if(S.lucro&&g/c*100>=S.lucro){s="a";txt="Realizar lucro"}else if(x.p<=x.ideal){s="c";txt="Comprar mais"}}
-    return`<div class="cd"><div class="hd">${logo(q.t,42)}<div><b>${q.t}</b><span class="pill ${s}">${txt}</span><br><small>Compra em ${dBR(q.d)}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
+    return`<div class="cd"><div class="hd">${logo(q.t,56)}<div style="min-width:0"><b class="nm">${nm(q.t)}</b><span class="tk">${q.t}</span> <span class="pill ${s}">${txt}</span><br><small>Compra em ${dBR(q.d)}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
     ${row("Quantidade",q.q)}${row("Preço pago",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
     ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${g==null?"":`(${P(g/c*100)})`}</b>`)}
     ${row("Proventos desde a compra",r==null?"-":R(r))}
@@ -397,7 +403,7 @@ function drawCfg(){
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
 }
 const V={top:drawTop,set:drawSet,all:drawAll,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
-function draw(){V[view]();
+function draw(){document.body.dataset.vis=S.vis||"lista";V[view]();
   document.querySelectorAll("[data-v]").forEach(a=>{const v=a.dataset.v,inv=["top","set","all","cart","renda"].includes(view);
     a.classList.toggle("on",a.closest("#sub")?v==view:(v==view||(v=="top"&&inv)))});
   $("#sub").classList.toggle("hide",!["top","set","all","cart","renda"].includes(view))}
