@@ -12,7 +12,7 @@ header{background:var(--hd);border-bottom:1px solid #2f3440;position:sticky;top:
 .top a{padding:16px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
 .top a.on{color:var(--ac);border-color:var(--ac)}.top a.rec{color:var(--gold)}.top a.rec.on{border-color:var(--gold)}
 .sp{flex:1}.btn{background:var(--gold);color:#222;border:0;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
-.sub{display:flex;justify-content:center;background:#3d4350}.sub a{padding:11px 22px;color:var(--mut);cursor:pointer;font-size:14px;border-bottom:2px solid transparent}.sub a.on{color:var(--tx);border-color:var(--ac)}
+.sub{display:flex;overflow-x:auto;background:#3d4350}.sub a:first-child{margin-left:auto}.sub a:last-child{margin-right:auto}.sub a{flex:none;white-space:nowrap;padding:11px 16px;color:var(--mut);cursor:pointer;font-size:14px;border-bottom:2px solid transparent}.sub a.on{color:var(--tx);border-color:var(--ac)}
 #st{font-size:12.5px;color:var(--mut);padding:7px 16px;background:#333946}#st.off{color:var(--gold)}
 main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
 h2{font-size:22px;color:var(--ac);margin:4px 0 14px;font-weight:600}h3{font-size:15px;margin:0 0 10px}
@@ -42,91 +42,14 @@ label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)
 summary.hd{list-style:none;cursor:pointer;margin-bottom:0}summary.hd::-webkit-details-marker{display:none}details[open]>summary.hd{margin-bottom:12px}
 .nm{display:block;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tk{color:var(--mut);font-size:15px}
 body[data-vis=lista] .grid{grid-template-columns:1fr;max-width:760px;gap:2px}body[data-vis=lista] .cd{background:transparent;border-radius:0;border-bottom:1px solid #4a5060;padding:14px 4px}body[data-vis=lista] .cd.exc{background:rgba(224,176,80,.08)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}body{overflow-x:hidden}
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}.cd{min-width:0}
+.cd>summary.hd{margin-bottom:0}.cd[open]>summary.hd{margin-bottom:12px}.cd>summary.hd>div{min-width:0}
+body[data-vis=lista] .grid{grid-template-columns:minmax(0,1fr)}
+body[data-vis=lista] .cd{padding:12px 4px}body[data-vis=lista] .cd.exc{outline:none;border-left:3px solid var(--gold);padding-left:10px;background:rgba(224,176,80,.10)}
+.bar select{flex:1;min-width:150px}
+.ex{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #545b6c}.ex:first-of-type{border-top:0}
 .hide{display:none}.n{color:var(--mut);font-size:13px}
-
-/* ===== Ajustes de layout: preserva a lógica e o conteúdo do aplicativo ===== */
-html{background:var(--bg);overflow-x:hidden}
-body{min-width:0;overflow-x:hidden}
-header{box-shadow:0 2px 12px rgba(0,0,0,.14)}
-.top{min-height:58px;padding:0 clamp(10px,2vw,24px);gap:4px;scrollbar-width:thin}
-.top a{padding:17px clamp(9px,1.3vw,15px);font-size:14px}
-.logo{width:32px;height:32px;margin-right:clamp(2px,1vw,10px)}
-.top .btn{margin-left:8px}
-.sub{min-height:43px;overflow-x:auto;justify-content:flex-start;padding:0 max(10px,calc((100% - 1180px)/2))}
-.sub a{padding:12px clamp(13px,2vw,24px);white-space:nowrap}
-#st{min-height:31px;line-height:1.45;padding:8px max(16px,calc((100% - 1148px)/2));overflow-wrap:anywhere}
-main{width:min(100%,1212px);padding:clamp(18px,3vw,30px) clamp(12px,2.2vw,32px) 64px}
-h2{font-size:clamp(20px,2.4vw,25px);line-height:1.2;margin:0 0 16px}
-h3{line-height:1.3}
-.bar{align-items:flex-end;gap:10px;margin-bottom:18px}
-.bar>label{flex:1 1 175px;min-width:145px}
-.bar>select,.bar>input{flex:0 1 240px;min-width:145px;max-width:100%}
-select,input,textarea{max-width:100%;min-height:40px}
-textarea{display:block;resize:vertical}
-.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;align-items:start}
-.cd,.box,.kp>div{min-width:0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.cd{padding:clamp(13px,1.5vw,18px)}
-.cd .hd{min-width:0;gap:10px;margin-bottom:14px}
-.cd .hd>div:nth-child(2){min-width:0;overflow:hidden}
-.cd .hd>div:last-child{max-width:38%;overflow-wrap:anywhere}
-.nm{max-width:100%;line-height:1.25}
-.pill{display:inline-block;vertical-align:middle;white-space:nowrap}
-.r{gap:16px;min-height:34px;align-items:center}
-.r span:first-child{min-width:0;overflow-wrap:anywhere}
-.r span:last-child{text-align:right;overflow-wrap:anywhere}
-.box{padding:clamp(13px,1.6vw,20px);margin-bottom:16px}
-.row{align-items:stretch;gap:16px}
-.row>*{min-width:min(100%,280px)}
-.kp{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px;margin-bottom:18px}
-.kp div{padding:14px 15px;min-height:76px}
-.kp small{line-height:1.3}
-.kp b{display:block;margin-top:5px;overflow-wrap:anywhere}
-.ev{gap:12px;align-items:center}
-.w{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{min-width:980px}
-th,td{padding:10px 12px}
-.chart{min-width:430px;gap:7px}
-.pie{max-width:190px;max-height:190px}
-.lg{line-height:1.35}
-#f{align-items:flex-end}
-#f .btn{margin-bottom:0}
-body[data-vis=lista] .grid{max-width:820px}
-body[data-vis=lista] .cd{box-shadow:none}
-body[data-vis=lista] .cd .hd{margin-bottom:10px}
-
-@media (max-width:700px){
-  .top{min-height:54px;overflow-x:auto}
-  .top a{padding:15px 8px;font-size:13px}
-  .logo{width:28px;height:28px}
-  .top .sp{min-width:8px}
-  .top .btn{padding:8px 10px;font-size:13px;margin-left:4px}
-  .sub a{font-size:13px;padding:11px 14px}
-  #st{font-size:12px;padding:8px 12px}
-  main{padding:18px 12px 48px}
-  .bar{gap:8px}
-  .bar>label,.bar>select,.bar>input{flex:1 1 100%;min-width:0;width:100%!important}
-  .bar>.btn{flex:1 1 auto}
-  .cd .hd>div:last-child{max-width:34%}
-  .row>*{flex-basis:100%;min-width:0}
-  .box .bar{margin-bottom:12px}
-  .chart{height:190px;min-width:390px}
-}
-
-@media (max-width:420px){
-  .top{gap:0;padding:0 8px}
-  .top a{padding-left:6px;padding-right:6px}
-  .top .btn{font-size:12px;padding:7px 8px}
-  .cd{padding:12px}
-  .cd .hd{gap:8px}
-  .cd .hd>div:last-child{max-width:32%}
-  .rk{width:21px;height:21px}
-  .lgo,.lgf{transform:scale(.9);transform-origin:left center}
-  .r{gap:10px;font-size:13px}
-  .kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .kp div{padding:11px 10px}
-  .kp b{font-size:17px}
-}
-
 </style></head><body>
 <header><div class="top">
 <svg class="logo" viewBox="0 0 32 32" fill="none" stroke="#7dd3c0" stroke-width="2.2"><path d="M16 3 4 7v9c0 7 5 11 12 13 7-2 12-6 12-13V7z"/><path d="M10 17c4 0 6-3 6-7 0 4 2 7 6 7M16 16v8"/></svg>
@@ -145,6 +68,7 @@ const legacy=S.cache,legacyAt=S.upd;delete S.cache;delete S.upd;S.sched=Object.a
 if((S.v||0)<5){S.v=5;S.nSet=7;S.rk="nota";S.sched.gap=Math.max(S.sched.gap||0,1200);if(JSON.stringify(S.sched.times)=='["10:00","13:00","16:30"]')S.sched.times=["14:00","18:30"]}
 if(!["nota","margem"].includes(S.rk))S.rk="nota";
 const divSrc=()=>S.brapiDiv||!!S.dbKey;
+if((S.v||0)<6){S.v=6;S.nSet=7}
 const save=()=>localStorage.setItem(K,JSON.stringify(S));
 const R=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const P=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{maximumFractionDigits:2})+"%";
@@ -195,9 +119,8 @@ async function fetchOne(t,wd,mods){
   if(typeof x.regularMarketPrice!="number")throw new E("invalid","cotação ausente na resposta",h);
   let lo=x.fiftyTwoWeekLow,hi=x.fiftyTwoWeekHigh;
   if(lo==null&&x.fiftyTwoWeekRange){const m=x.fiftyTwoWeekRange.split("-").map(Number);lo=m[0];hi=m[1]}
-  const num=v=>{if(Number.isFinite(v))return v;if(v&&typeof v=="object")return num(v.raw??v.value??v.val??v.fmt);if(typeof v=="string"){const z=v.replace(/%/g,"").trim(),n=Number(z.includes(",")?z.replace(/\./g,"").replace(",","."):z);return Number.isFinite(n)?n:null}return null};
-  const o={p:x.regularMarketPrice,ch:num(x.regularMarketChangePercent),nome:x.shortName||t,lo:num(lo),hi:num(hi),pl:num(x.priceEarnings),eps:num(x.earningsPerShare),logo:x.logourl||null,dy:null};
-  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},pick=(a,b)=>num(a??b);let re=pick(fd.returnOnEquity,x.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=pick(dk.priceToBook,x.priceToBook);let dy=pick(dk.dividendYield,x.dividendYield);if(dy!=null&&Math.abs(dy)<=1.5)dy*=100;o.dy=dy}
+  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null};
+  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},nz=v=>Number.isFinite(v)?v:null;let re=nz(fd.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=nz(dk.priceToBook)}
   if(wd)o.div=((x.dividendsData&&x.dividendsData.cashDividends)||[]).map(d=>({v:d.rate,d:d.paymentDate||d.lastDatePrior||d.approvedOn}));
   return o}
 async function fetchDet(t){ /* tenta trazer ROE e P/VP junto da mesma chamada; se o plano recusar, refaz sem módulos e não pede mais */
@@ -220,7 +143,7 @@ async function fetchDivDB(t){
   const ok=/DIVID|JCP|JUROS|REND/i;
   return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
 function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,dy:n.dy??o.dy??C[t]?.dy,fundV:2,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
+  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
@@ -287,7 +210,7 @@ async function runDiv(o,now){ /* dividendos aos poucos: respeita o limite diári
   return{ok,fail,left:need.length}}
 function filaDetalhe(o,kind){
   const now=Date.now(),H=3.6e6,pos=[...new Set(S.pos.map(p=>p.t))].filter(t=>C[t]);
-  const velho=(t,h)=>!C[t].detAt||!C[t].fundV||now-C[t].detAt>h*H,liqOK=t=>C[t].p*(C[t].vol||0)>=S.liqMin;
+  const velho=(t,h)=>!C[t].detAt||now-C[t].detAt>h*H,liqOK=t=>C[t].p*(C[t].vol||0)>=S.liqMin;
   const G={};rankAll().forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));
   const cand=Object.values(G).flatMap(L=>L.slice(0,S.nSet));
   const q=[...pos.filter(t=>velho(t,o.force?0:2)),...cand.filter(t=>velho(t,kind=="pregao"?2:12))];
@@ -376,12 +299,14 @@ function calc(t){
   if(!c.detAt||!(lo>0)||!(hi>lo)||!Number.isFinite(eps))ex="dados incompletos";else if(!(eps>0))ex="lucro negativo";else if(liq<S.liqMin)ex="baixa liquidez";
   const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
   const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
-  const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null,dym=dpa==null?c.dy??null:dpa/c.p*100;
+  const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
   return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe,pvp:c.pvp,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
-    exc:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,dpa,dym,dymAtual:dpa==null&&dym!=null}}
+    exc:false,exc0:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,atip:!ex&&margem>200,dpa,dym:dpa==null?null:dpa/c.p*100}}
 function rankAll(all){const best={};
-  for(const t in C){const x=calc(t);if(!x||x.ex||(!all&&x.margem<=0))continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
-  return Object.values(best).sort((a,b)=>b[S.rk]-a[S.rk])}
+  for(const t in C){const x=calc(t);if(!x||x.ex)continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
+  const A=Object.values(best),lim=Math.max(3,Math.ceil(A.length*0.03));
+  A.filter(x=>x.exc0&&!x.atip).sort((a,b)=>b.nota-a.nota).slice(0,lim).forEach(x=>x.exc=true);
+  return A.filter(x=>all||x.margem>0).sort((a,b)=>b[S.rk]-a[S.rk])}
 
 const TX={c:"COMPRAR",a:"AGUARDAR",v:"CARO",x:"SEM ANÁLISE"};
 const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
@@ -393,21 +318,22 @@ const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)
 const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
 const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
   return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
-const indRows=x=>row(x.dymAtual?"Dividend Yield atual":"Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
+const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
-  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
-  ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}
+  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}${x.atip?" ⚠":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
+  ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}${x.atip?`<div class="alerta">⚠ P/L muito baixo: o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
   ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}
   ${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}${row("Preço mínimo (52s)",R(x.min))}${row("Preço máximo (52s)",R(x.max))}
   ${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
   ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}${row("Setor",sp(x.sec))}</details>`}
 function covBox(){const d=diagInfo();
-  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando: a análise avança dentro do orçamento diário de chamadas, restam ${restanteHoje()} hoje)`:""}. Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p>`}
+  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
+  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. 🔥 Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. ⚠ Margem acima de 200% indica lucro possivelmente atípico e não recebe o 🔥. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p></details>`}
 const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
 function drawTop(){const A=rankAll(),L=A.slice(0,20),E=A.filter(x=>x.exc);
-  $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}${E.length?`<div class="box" style="border:1px solid var(--gold)"><h3>🔥 Oportunidades excepcionais (${E.length})</h3>${E.slice(0,10).map(x=>row(x.t+" · "+sp(x.sec),`margem ${P(x.margem)} · ${R(x.p)}`)).join("")}</div>`:""}<div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
+  $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}${E.length?`<div class="box" style="border:1px solid var(--gold)"><h3>🔥 Oportunidades excepcionais (${E.length})</h3><p class="n" style="margin:0 0 6px">As 3% melhores notas do mercado, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas.</p>${E.slice(0,10).map(x=>`<div class="ex">${logo(x.t,34)}<div style="min-width:0;flex:1"><b>${x.t}</b><br><small>${sp(x.sec)}</small></div><div style="text-align:right"><b>${R(x.p)}</b><br><small class="pos">margem ${P(x.margem)}</small></div></div>`).join("")}</div>`:""}<div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
 function drawSet(){const G={},T={};
   for(const t in C){const k=sp(C[t].sec);(T[k]=T[k]||new Set()).add(EMP(t))}
   rankAll(true).forEach(x=>(G[sp(x.sec)]=G[sp(x.sec)]||[]).push(x));
