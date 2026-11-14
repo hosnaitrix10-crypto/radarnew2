@@ -59,6 +59,8 @@ body[data-vis=lista] .cd{padding:12px 4px}body[data-vis=lista] .cd.exc{outline:n
 <main id="m"></main>
 <script>
 const DEFTOK="7XnqyWJBnSnqEhYotwxogQ";
+const DEFDB="db3_U5ZiTldeAzeNC1EJwPQcYQOpKlfQ-rkA"; /* chave pessoal do Dados B3: não compartilhe o link deste app */
+const APPV="v12";
 const DEF="TAEE11 CMIG4 BBAS3 ISAE4 BBSE3 CPFE3 BBDC4 ITUB4 KLBN4 PETR4 VALE3 TRPL4 CXSE3 SAPR11 EGIE3 ITSA4 VIVT3 CSMG3 CPLE6 ALUP11 FLRY3 SANB11 WEGE3 TIMS3 ABCB4 BRSR6 CMIN3 GOAU4 SUZB3 LEVE3".split(" ");
 const K="radar_v2",$=s=>document.querySelector(s);
 const defS=()=>({v:5,plAlvo:10,liqMin:1000000,brLim:15000,detHoras:18,token:"",dbKey:"",brapiDiv:false,dy:6,desc:20,anos:5,lucro:30,watch:DEF,pos:[],dbLim:190,minAnos:4,rk:"nota",nSet:7,sched:{on:true,times:["14:00","18:30"],days:[1,2,3,4,5],divDias:7,gap:600,conc:1,minManual:2}});
@@ -67,7 +69,8 @@ let S=Object.assign(defS(),JSON.parse(localStorage.getItem(K)||"null")||old||{})
 const legacy=S.cache,legacyAt=S.upd;delete S.cache;delete S.upd;S.sched=Object.assign(defS().sched,S.sched);
 if((S.v||0)<5){S.v=5;S.nSet=7;S.rk="nota";S.sched.gap=Math.max(S.sched.gap||0,1200);if(JSON.stringify(S.sched.times)=='["10:00","13:00","16:30"]')S.sched.times=["14:00","18:30"]}
 if(!["nota","margem"].includes(S.rk))S.rk="nota";
-const divSrc=()=>S.brapiDiv||!!S.dbKey;
+const dbk=()=>S.dbKey||DEFDB;
+const divSrc=()=>S.brapiDiv||!!dbk();
 if((S.v||0)<6){S.v=6;S.nSet=7}
 const save=()=>localStorage.setItem(K,JSON.stringify(S));
 const R=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
@@ -144,7 +147,7 @@ async function fetchPlan(tks){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
   M.db.n+=Math.max(1,Math.ceil(tks.length*PLAN_CP.length/100));
   const pe=(s,m,h)=>new E(s,"dadosb3 (planilha): "+m,h);
-  let r;try{r=await fetch(`https://dadosb3.com/planilha/dados?codigos=${tks.join(",")}&campo=${PLAN_CP.join(",")}`,{headers:{"X-API-Key":S.dbKey}})}
+  let r;try{r=await fetch(`https://dadosb3.com/planilha/dados?codigos=${tks.join(",")}&campo=${PLAN_CP.join(",")}`,{headers:{"X-API-Key":dbk()}})}
   catch(e){throw pe("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
   const h=r.status;let j=null;try{j=await r.json()}catch(e){}
   if(h==429)throw pe("limit","limite diário da chave atingido (HTTP 429)",h);
@@ -155,7 +158,7 @@ async function fetchPlan(tks){
   if(!out){M.planRaw=JSON.stringify(j).slice(0,800);throw pe("invalid","formato de resposta não reconhecido (a resposta recebida está no diagnóstico)",h)}
   return out}
 async function runPlan(o,now){
-  if(!S.dbKey||o.only)return;
+  if(!dbk()||o.only)return;
   const reps={};Object.keys(C).forEach(t=>{const c=C[t];if(!c.detAt)return;const e=EMP(t);if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
   if(M.planErr&&M.planTry&&now-M.planTry<216e5)return; /* após falha, só tenta de novo depois de 6 horas */
   const lim=now-S.sched.divDias*864e5,need=Object.values(reps).filter(t=>!(C[t].planAt>lim));
@@ -171,7 +174,7 @@ async function runPlan(o,now){
   catch(e){M.planErr=e.message;M.err={msg:e.message,src:"dadosb3.com",at:Date.now(),s:e.s}}}
 async function fetchDivDB(t){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
-  let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":S.dbKey}})}
+  let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":dbk()}})}
   catch(e){throw new E("neterr","dadosb3: falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
   const h=r.status;let j=null;try{j=await r.json()}catch(e){}
   if(h==429)throw new E("limit","dadosb3: limite diário da chave atingido (HTTP 429)",h);
@@ -303,7 +306,8 @@ function diagBox(){const d=diagInfo(),e=M.err,bad=Object.entries(ST).filter(([t,
   const N={analisadas:"Empresas analisadas",aguard:"Aguardando análise",rank:"No ranking",prej:"Fora: lucro negativo",liq:"Fora: baixa liquidez",desat:"Análises com mais de 2 dias",nodata:"Sem dados publicados",invalid:"Resposta inválida",neterr:"Falha de rede",limit:"Limite de API",auth:"Erro de autenticação"};
   return`<div class="box"><h3>Diagnóstico</h3><div class="kp"><div><small>Ativos na lista do mercado</small><b>${d.n}</b></div><div><small>Empresas (1 por empresa)</small><b>${d.emp}</b></div>${Object.keys(N).map(k=>`<div><small>${N[k]}</small><b>${d[k]}</b></div>`).join("")}</div>
   <p class="n">Chamadas brapi hoje: ${M.api.n-M.api.d0} (restam ${rest} no orçamento de hoje) · no mês: ${M.api.n} de ${S.brLim} · Dados B3 hoje: ${M.db&&M.db.d==new Date().toISOString().slice(0,10)?M.db.n:0} de ${S.dbLim} · Última atualização válida: ${fmt(M.qAt)} · Armazenamento: ${idbOk?"IndexedDB ativo":"IndexedDB indisponível (dados só durante a sessão)"}</p>
-  <p class="n">ROE, P/VP e DY 12 meses (Dados B3): ${M.planN?M.planN+" empresas, atualizado "+fmt(M.planOk):(S.dbKey?"ainda não carregado":"sem chave")}${M.planErr?" · erro: "+M.planErr:""}</p>${M.planRaw?`<p class="n">Resposta recebida da rota /planilha/dados (para diagnóstico): ${String(M.planRaw).replace(/</g,"&lt;")}</p>`:""}
+  <p class="n">Versão do Radar: ${APPV} · chave do Dados B3: ${S.dbKey?"a que você colou":"padrão do app"}</p>
+  <p class="n">ROE, P/VP e DY 12 meses (Dados B3): ${M.planN?M.planN+" empresas, atualizado "+fmt(M.planOk):(dbk()?"ainda não carregado":"sem chave")}${M.planErr?" · erro: "+M.planErr:""}</p>${M.planRaw?`<p class="n">Resposta recebida da rota /planilha/dados (para diagnóstico): ${String(M.planRaw).replace(/</g,"&lt;")}</p>`:""}
   <p class="n">Último erro: ${e?`${e.msg} (origem: ${e.src}, ${fmt(e.at)})`:"nenhum"}</p>
   ${bad.length?`<details><summary>Ativos com falha (${bad.length})</summary>${bad.slice(0,80).map(([t,x])=>`<div class="r"><span>${t=="__lista"?"Lista do mercado":t}</span><span>${x.s&&x.s!="ok"?x.s+": "+(x.err||""):""} ${x.dv&&x.dv.s!="ok"?"proventos "+x.dv.s+": "+(x.dv.err||""):""}</span></div>`).join("")}</details>`:""}
   <button class="btn" id="dc" style="background:#5b6275;color:#fff;margin-top:10px">Copiar diagnóstico</button></div>`}
@@ -312,7 +316,7 @@ function brBox(){return`<div class="box"><h3>Orçamento de chamadas e filtros</h
   <div class="bar"><label>Cota mensal da brapi<input id="b0" type="number" min="100" value="${S.brLim}" style="width:140px"></label><label>Liquidez mínima por dia (R$)<input id="b1" type="number" min="0" step="100000" value="${S.liqMin}" style="width:170px"></label></div></div>`}
 function divBox(){return`<div class="box"><h3>Proventos da carteira</h3>
   <p class="n">Os proventos só são buscados para as ações da sua carteira. Como a brapi não os libera no plano gratuito, o Radar usa o Dados B3 (dadosb3.com), que publica proventos a partir de dados abertos da CVM e da B3. Crie uma chave grátis em dadosb3.com/chave-gratis (200 consultas por dia, sem cartão) e cole abaixo. A chave é pessoal: não a divulgue nem a deixe escrita no arquivo.</p>
-  <label>Chave do Dados B3<input id="d0" type="password" value="${S.dbKey}" autocomplete="off"></label>
+  <label>Chave do Dados B3<input id="d0" type="password" value="${S.dbKey}" placeholder="${DEFDB?"usando a chave padrão do app":""}" autocomplete="off"></label>
   <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d1" style="width:auto" ${S.brapiDiv?"checked":""}> Meu plano da brapi inclui dividendos (Startup ou superior)</label>
   <div class="bar" style="margin-top:10px"><label>Consultas diárias ao Dados B3<input id="d2" type="number" min="1" value="${S.dbLim}" style="width:140px"></label></div>
   <p class="n">O Dados B3 informa a data-com, não a data de pagamento, e o valor de JCP é bruto. Só entram dividendos, JCP e rendimentos da classe do ticker (ON, PN ou unit).</p></div>`}
@@ -454,7 +458,7 @@ function drawCfg(){
   <div class="box"><h3>Critérios de cálculo</h3><div class="bar"><label>P/L alvo (teto = lucro por ação × P/L)<input id="c1" type="number" step="0.5" value="${S.plAlvo}"></label><label>Desconto p/ preço ideal (%)<input id="c2" type="number" value="${S.desc}"></label><label>Anos de histórico de proventos<input id="c3" type="number" min="1" max="10" value="${S.anos}"></label><label>Meta de lucro p/ vender (%)<input id="c4" type="number" value="${S.lucro}"></label></div></div>
   <div class="box"><h3>Ações prioritárias (recebem dividendos primeiro)</h3><textarea id="c5" style="width:100%;min-height:90px">${S.watch.join(" ")}</textarea></div>
   ${brBox()}${divBox()}${schedBox()}${diagBox()}<div class="bar"><button class="btn" id="sv">Salvar e atualizar</button><button class="btn" style="background:#5b6275;color:#fff" id="ex">Exportar backup</button><button class="btn" style="background:#5b6275;color:#fff" id="im">Importar backup</button></div>`;
-  bindSched();$("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;S.brLim=+$("#b0").value||15000;S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.plAlvo=+$("#c1").value||10;S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
+  bindSched();$("#d0").onchange=()=>{S.dbKey=$("#d0").value.trim();save();status("Chave do Dados B3 salva. Toque em Salvar e atualizar para buscar os dados.")};$("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;S.brLim=+$("#b0").value||15000;S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.plAlvo=+$("#c1").value||10;S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
     S.watch=[...new Set($("#c5").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))];save();refresh({})};
   $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
