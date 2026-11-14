@@ -127,6 +127,48 @@ async function fetchDet(t){ /* tenta trazer ROE e P/VP junto da mesma chamada; s
   if(S.modOK!==false){try{const r=await fetchOne(t,false,true);if(S.modOK!==true){S.modOK=true;save()}return r}
     catch(e){if(e.h!=403&&e.h!=400)throw e;const r=await fetchOne(t,false,false);S.modOK=false;save();return r}}
   return fetchOne(t,false,false)}
+const PLAN_CP=["roe","pvp","dy_12m"];
+function parsePlan(j,tks,cp){ /* o formato exato da resposta não foi verificado: leitura tolerante, com diagnóstico se falhar */
+  const num=v=>{if(v&&typeof v=="object")v=v.valor??v.value;return typeof v=="number"&&isFinite(v)?v:null};
+  let rows=null;
+  for(const c of [j,j&&j.linhas,j&&j.dados,j&&j.data,j&&j.resultados,j&&j.resultado,j&&j.rows,j&&j.valores]){if(Array.isArray(c)&&c.length){rows=c;break}}
+  if(!rows&&j&&typeof j=="object"){const o=j.dados||j.data||j.resultados||j;if(o&&typeof o=="object"&&tks.some(t=>t in o))rows=tks.map(t=>o[t])}
+  if(!rows)return null;
+  const out={};let got=0;
+  rows.forEach((r,i)=>{let t=tks[i],v=null;
+    if(Array.isArray(r)){const a=r.length==cp.length+1&&typeof r[0]=="string"?(t=r[0],r.slice(1)):r;v=cp.map((c,k)=>num(a[k]))}
+    else if(r&&typeof r=="object"){t=r.codigo||r.ticker||r.cod||t;const src=r.valores&&typeof r.valores=="object"?r.valores:r;v=cp.map((c,k)=>num(Array.isArray(src)?src[k]:src[c]))}
+    if(t&&v){out[t]={roe:v[0],pvp:v[1],dy:v[2]};if(v.some(x=>x!=null))got++}});
+  return got?out:null}
+async function fetchPlan(tks){
+  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
+  M.db.n+=Math.max(1,Math.ceil(tks.length*PLAN_CP.length/100));
+  const pe=(s,m,h)=>new E(s,"dadosb3 (planilha): "+m,h);
+  let r;try{r=await fetch(`https://dadosb3.com/planilha/dados?codigos=${tks.join(",")}&campo=${PLAN_CP.join(",")}`,{headers:{"X-API-Key":S.dbKey}})}
+  catch(e){throw pe("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
+  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
+  if(h==429)throw pe("limit","limite diário da chave atingido (HTTP 429)",h);
+  if(h==401||h==403)throw pe("auth","chave ausente ou inválida (HTTP "+h+")",h);
+  if(h>=500)throw pe("neterr","erro temporário (HTTP "+h+")",h);
+  if(h>=400)throw pe("invalid","requisição recusada (HTTP "+h+")",h);
+  const out=parsePlan(j,tks,PLAN_CP);
+  if(!out){M.planRaw=JSON.stringify(j).slice(0,800);throw pe("invalid","formato de resposta não reconhecido (a resposta recebida está no diagnóstico)",h)}
+  return out}
+async function runPlan(o,now){
+  if(!S.dbKey||o.only)return;
+  const reps={};Object.keys(C).forEach(t=>{const c=C[t];if(!c.detAt)return;const e=EMP(t);if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
+  if(M.planErr&&M.planTry&&now-M.planTry<216e5)return; /* após falha, só tenta de novo depois de 6 horas */
+  const lim=now-S.sched.divDias*864e5,need=Object.values(reps).filter(t=>!(C[t].planAt>lim));
+  if(!need.length)return;
+  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
+  const left=(S.dbLim||190)-M.db.n;if(left<1)return;
+  const tks=need.slice(0,Math.min(300,Math.floor(left*100/PLAN_CP.length)));
+  status(`ROE, P/VP e DY 12 meses de ${tks.length} empresas (Dados B3)…`);M.planTry=now;
+  try{const out=await viaRetry(()=>fetchPlan(tks));let n=0;
+    for(const t of tks){C[t].planAt=Date.now();const v=out[t];if(!v)continue;
+      if(v.roe!=null)C[t].roeB=v.roe*100;if(v.pvp!=null)C[t].pvpB=v.pvp;if(v.dy!=null)C[t].dy12=v.dy*100;n++}
+    M.planOk=Date.now();M.planN=n;M.planErr=null;M.planRaw=null}
+  catch(e){M.planErr=e.message;M.err={msg:e.message,src:"dadosb3.com",at:Date.now(),s:e.s}}}
 async function fetchDivDB(t){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
   let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":S.dbKey}})}
@@ -227,9 +269,10 @@ async function doRefresh(o){
     try{await viaRetry(fetchList);ok++;ST.__lista={s:"ok",at:Date.now()};M.qAt=Date.now()}
     catch(e){ST.__lista={s:e.s||"neterr",at:Date.now(),err:e.message};M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s};fail++;listFail=true}}
   if(o.only||listFail){const r=await runIndiv(o.only||[...new Set([...pos,...S.watch])]);ok+=r.ok;fail+=r.fail;if(r.ok&&!o.only)M.qAt=Date.now()}
+  await runPlan(o,now);
   const d=await runDiv(o,now);ok+=d.ok;fail+=d.fail;
   if(!o.divOnly&&!o.only&&!listFail){fila=filaDetalhe(o,kind);const r=await runIndiv(fila.slice(0,restanteHoje()));ok+=r.ok;fail+=r.fail;feitas=r.ok+r.fail}
-  if(!o.divOnly&&!o.only){const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
+  if(!o.divOnly&&!o.only){await runPlan(o,now);const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
   if(!o.divOnly&&!o.only)M.skip=ok==0&&fail>0?(nextSlot()||0):0;
   M.ultimo={ok,fail,total:ok+fail,restantes:Math.max(0,fila.length-feitas),at:Date.now()};
 }
@@ -260,6 +303,7 @@ function diagBox(){const d=diagInfo(),e=M.err,bad=Object.entries(ST).filter(([t,
   const N={analisadas:"Empresas analisadas",aguard:"Aguardando análise",rank:"No ranking",prej:"Fora: lucro negativo",liq:"Fora: baixa liquidez",desat:"Análises com mais de 2 dias",nodata:"Sem dados publicados",invalid:"Resposta inválida",neterr:"Falha de rede",limit:"Limite de API",auth:"Erro de autenticação"};
   return`<div class="box"><h3>Diagnóstico</h3><div class="kp"><div><small>Ativos na lista do mercado</small><b>${d.n}</b></div><div><small>Empresas (1 por empresa)</small><b>${d.emp}</b></div>${Object.keys(N).map(k=>`<div><small>${N[k]}</small><b>${d[k]}</b></div>`).join("")}</div>
   <p class="n">Chamadas brapi hoje: ${M.api.n-M.api.d0} (restam ${rest} no orçamento de hoje) · no mês: ${M.api.n} de ${S.brLim} · Dados B3 hoje: ${M.db&&M.db.d==new Date().toISOString().slice(0,10)?M.db.n:0} de ${S.dbLim} · Última atualização válida: ${fmt(M.qAt)} · Armazenamento: ${idbOk?"IndexedDB ativo":"IndexedDB indisponível (dados só durante a sessão)"}</p>
+  <p class="n">ROE, P/VP e DY 12 meses (Dados B3): ${M.planN?M.planN+" empresas, atualizado "+fmt(M.planOk):(S.dbKey?"ainda não carregado":"sem chave")}${M.planErr?" · erro: "+M.planErr:""}</p>${M.planRaw?`<p class="n">Resposta recebida da rota /planilha/dados (para diagnóstico): ${String(M.planRaw).replace(/</g,"&lt;")}</p>`:""}
   <p class="n">Último erro: ${e?`${e.msg} (origem: ${e.src}, ${fmt(e.at)})`:"nenhum"}</p>
   ${bad.length?`<details><summary>Ativos com falha (${bad.length})</summary>${bad.slice(0,80).map(([t,x])=>`<div class="r"><span>${t=="__lista"?"Lista do mercado":t}</span><span>${x.s&&x.s!="ok"?x.s+": "+(x.err||""):""} ${x.dv&&x.dv.s!="ok"?"proventos "+x.dv.s+": "+(x.dv.err||""):""}</span></div>`).join("")}</details>`:""}
   <button class="btn" id="dc" style="background:#5b6275;color:#fff;margin-top:10px">Copiar diagnóstico</button></div>`}
@@ -300,7 +344,7 @@ function calc(t){
   const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
   const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
   const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
-  return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe,pvp:c.pvp,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
+  return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe??c.roeB,pvp:c.pvp??c.pvpB,dy12:c.dy12,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
     exc:false,exc0:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,atip:!ex&&margem>200,dpa,dym:dpa==null?null:dpa/c.p*100}}
 function rankAll(all){const best={};
   for(const t in C){const x=calc(t);if(!x||x.ex)continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
@@ -312,13 +356,13 @@ const TX={c:"COMPRAR",a:"AGUARDAR",v:"CARO",x:"SEM ANÁLISE"};
 const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
 function fut(t){const n=new Date();n.setHours(0,0,0,0);return((C[t]||{}).div||[]).filter(d=>d.d&&new Date(d.d)>=n).map(d=>({t,v:d.v,d:new Date(d.d)}))}
 
-const fp=v=>v==null?"-":v.toFixed(1);
+const fp=v=>v==null?"-":v.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1});
 const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)).replace(/\s+/g," ").trim().toUpperCase();
   if(n!=t&&!/\b(ON|PN[AB]?|UNT|UNIT)\b/.test(n)){const k=t.endsWith("11")?"UNT":t.endsWith("3")?"ON":t.endsWith("4")?"PN":t.endsWith("5")?"PNA":t.endsWith("6")?"PNB":"";if(k)n+=" "+k}return n};
 const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
 const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
   return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
-const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
+const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
   return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}${x.atip?" ⚠":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
   ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}${x.atip?`<div class="alerta">⚠ P/L muito baixo: o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
@@ -328,7 +372,7 @@ function cardEmp(x,i){
   ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}${row("Setor",sp(x.sec))}</details>`}
 function covBox(){const d=diagInfo();
   return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
-  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. 🔥 Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. ⚠ Margem acima de 200% indica lucro possivelmente atípico e não recebe o 🔥. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", mas o plano atual não os inclui":""}.</p></details>`}
+  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. 🔥 Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. ⚠ Margem acima de 200% indica lucro possivelmente atípico e não recebe o 🔥. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", cujo plano atual não os inclui, e então do Dados B3 (todas as empresas de uma vez, com a chave)":""}. DY 12 meses vem do Dados B3.</p></details>`}
 const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
@@ -347,7 +391,7 @@ function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))
   const t=()=>{const q=fQ.toUpperCase(),L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
     if(S.vis!="tabela"){$("#tb").innerHTML=L.slice(0,150).map((x,i)=>cardEmp(x,i+1)).join("")+(L.length>150?`<p class="n">Mostrando 150 de ${L.length}. Use a busca ou o filtro de setor.</p>`:"")||`<div class="cd">Nada encontrado.</div>`;return}
     $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
-      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"🔥 ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym==null?"-":P(x.dym)}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
+      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"🔥 ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym!=null?P(x.dym):x.dy12!=null?P(x.dy12)+" (12m)":"-"}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
   bindRk(drawAll);$("#fs").value=fSec;$("#fq").value=fQ;$("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
 const dBR=d=>d?new Date(d+"T12:00:00").toLocaleDateString("pt-BR"):"informe a data";
 const hoje=()=>new Date().toISOString().slice(0,10);
