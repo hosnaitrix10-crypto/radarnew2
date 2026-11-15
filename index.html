@@ -49,6 +49,21 @@ body[data-vis=lista] .grid{grid-template-columns:minmax(0,1fr)}
 body[data-vis=lista] .cd{padding:12px 4px}body[data-vis=lista] .cd.exc{outline:none;border-left:3px solid var(--gold);padding-left:10px;background:rgba(224,176,80,.10)}
 .bar select{flex:1;min-width:150px}
 .ex{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #545b6c}.ex:first-of-type{border-top:0}
+h2{font-size:20px;font-weight:600;letter-spacing:.2px;margin:6px 0 16px}
+.cd,.box{border-radius:14px}.kp div{border:1px solid rgba(255,255,255,.05)}
+.pill{font-size:11px;font-weight:700;letter-spacing:.4px;padding:2px 9px;margin-left:4px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.chip{background:rgba(255,255,255,.07);border-radius:8px;padding:2px 8px;font-size:12px;color:var(--mut)}
+.chip.pos{color:var(--ok)}.chip.neg{color:var(--bad)}.chip.wn{color:var(--gold)}.chip.gold{background:rgba(224,176,80,.16);color:var(--gold)}.chip.warn{background:rgba(239,138,138,.12);color:#f0b4b4}.wn{color:var(--gold)}
+.why{margin-top:6px;font-size:12.5px;color:var(--mut);line-height:1.35;white-space:normal}
+.sc::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+.rgw{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #545b6c}.rgw small{white-space:nowrap;color:var(--mut)}
+.rg{position:relative;flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,rgba(111,214,164,.55),rgba(224,176,80,.45),rgba(239,138,138,.55))}
+.rg i{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--bg);transform:translate(-50%,-50%)}
+.src{margin-top:10px;font-size:11.5px;color:var(--mut);line-height:1.4}
+.alerta{background:rgba(224,176,80,.12);border:1px solid rgba(224,176,80,.35);color:var(--tx);border-radius:10px;padding:9px 12px;font-size:13px;margin-bottom:8px}
+.sh{margin:22px 0 10px;font-size:15px;font-weight:600;color:var(--tx)}.sh small{color:var(--mut);font-weight:400}
+.btn.ghost{background:transparent;border:1px solid #6b7389;color:var(--mut);font-weight:600}
+.exc{outline:none}body[data-vis=cards] .cd.exc{box-shadow:inset 0 0 0 1px rgba(224,176,80,.55)}
 .hide{display:none}.n{color:var(--mut);font-size:13px}
 </style></head><body>
 <header><div class="top">
@@ -60,7 +75,7 @@ body[data-vis=lista] .cd{padding:12px 4px}body[data-vis=lista] .cd.exc{outline:n
 <script>
 const DEFTOK="7XnqyWJBnSnqEhYotwxogQ";
 const DEFDB="db3_U5ZiTldeAzeNC1EJwPQcYQOpKlfQ-rkA"; /* chave pessoal do Dados B3: não compartilhe o link deste app */
-const APPV="v12";
+const APPV="v13";
 const DEF="TAEE11 CMIG4 BBAS3 ISAE4 BBSE3 CPFE3 BBDC4 ITUB4 KLBN4 PETR4 VALE3 TRPL4 CXSE3 SAPR11 EGIE3 ITSA4 VIVT3 CSMG3 CPLE6 ALUP11 FLRY3 SANB11 WEGE3 TIMS3 ABCB4 BRSR6 CMIN3 GOAU4 SUZB3 LEVE3".split(" ");
 const K="radar_v2",$=s=>document.querySelector(s);
 const defS=()=>({v:5,plAlvo:10,liqMin:1000000,brLim:15000,detHoras:18,token:"",dbKey:"",brapiDiv:false,dy:6,desc:20,anos:5,lucro:30,watch:DEF,pos:[],dbLim:190,minAnos:4,rk:"nota",nSet:7,sched:{on:true,times:["14:00","18:30"],days:[1,2,3,4,5],divDias:7,gap:600,conc:1,minManual:2}});
@@ -345,14 +360,19 @@ function calc(t){
   const c=C[t];if(!c||!c.p)return null;
   const lo=c.lo,hi=c.hi,eps=c.eps,liq=c.p*(c.vol||0);let ex="";
   if(!c.detAt||!(lo>0)||!(hi>lo)||!Number.isFinite(eps))ex="dados incompletos";else if(!(eps>0))ex="lucro negativo";else if(liq<S.liqMin)ex="baixa liquidez";
+  if(!ex&&Number.isFinite(c.pl)&&c.pl>0&&Math.abs(c.p/eps-c.pl)/c.pl>0.3)ex="dados inconsistentes";
+  if(!ex&&Date.now()-c.detAt>10*864e5)ex="dados desatualizados";
   const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
   const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
   const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
   return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe??c.roeB,pvp:c.pvp??c.pvpB,dy12:c.dy12,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
-    exc:false,exc0:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,atip:!ex&&margem>200,dpa,dym:dpa==null?null:dpa/c.p*100}}
+    liqB:!ex&&liq<S.liqMin*3,dt:c.detAt,dd:c.dAt,dp:c.planAt,exc:false,exc0:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,atip:!ex&&margem>200,dpa,dym:dpa==null?null:dpa/c.p*100}}
+let SEC_MED={};
+const med=a=>{a=a.filter(v=>Number.isFinite(v)).sort((x,y)=>x-y);return a.length>=3?a[a.length>>1]:null};
 function rankAll(all){const best={};
   for(const t in C){const x=calc(t);if(!x||x.ex)continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
   const A=Object.values(best),lim=Math.max(3,Math.ceil(A.length*0.03));
+  SEC_MED={};{const g={};A.forEach(x=>(g[x.sec]=g[x.sec]||[]).push(x));for(const k in g)SEC_MED[k]={pl:med(g[k].map(x=>x.pl)),dy:med(g[k].map(x=>x.dy12)),n:g[k].length}}
   A.filter(x=>x.exc0&&!x.atip).sort((a,b)=>b.nota-a.nota).slice(0,lim).forEach(x=>x.exc=true);
   return A.filter(x=>all||x.margem>0).sort((a,b)=>b[S.rk]-a[S.rk])}
 
@@ -366,28 +386,47 @@ const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)
 const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
 const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
   return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
+const mc=m=>m==null?"":m>=50?"pos":m>=0?"wn":"neg";
+const secCor=k=>{let h=0;for(const ch of String(k||""))h=(h*31+ch.charCodeAt(0))%360;return h};
+const secChip=k=>`<span class="sc" style="--c:hsl(${secCor(sp(k))} 45% 62%)">${sp(k)}</span>`;
+const nmShort=t=>{const n=nm(t),m=n.match(/^(.*?)(\s+(?:ON|PN[AB]?|UNT|UNIT)(?:\s+(?:NM|N1|N2|MA|MB))?)$/);let h=(m?m[1]:n).replace(/\s+S[\.\/]?A\.?(?=\s|$)/g,"").replace(/\s+/g," ").trim();const tl=m?m[2]:"";if(h.length>22)h=h.slice(0,22).replace(/\s+\S*$/,"")+"…";return h+tl};
+const motivo=x=>{if(x.ex)return"Sem análise: "+x.ex+".";const d=(1-x.p/x.ideal)*100;
+  if(x.s=="c")return`Preço ${P(Math.abs(d))} abaixo do ideal e na metade inferior da faixa de 52 semanas.`;
+  if(x.s=="v")return`Preço ${P((x.p/x.teto-1)*100)} acima do teto (${R(x.teto)}).`;
+  return x.p<=x.ideal?"No preço ideal, mas na metade superior da faixa de 52 semanas: espere um recuo.":`Abaixo do teto (margem de ${P(x.margem)}), mas ainda acima do ideal (${R(x.ideal)}).`};
+const motivoCart=(x,pc)=>{if(!x)return"Sem cotação disponível.";if(x.sd)return"Sem análise: "+x.ex+".";
+  if(x.p>x.teto)return`Cotação ${P((x.p/x.teto-1)*100)} acima do teto (${R(x.teto)}): a regra indica vender.`;
+  if(S.lucro&&pc>=S.lucro)return`Ganho de ${P(pc)} passou da sua meta de ${S.lucro}%${x.margem>0?`; ainda há ${P(x.margem)} de margem até o teto`:""}.`;
+  if(x.p<=x.ideal)return`Abaixo do preço ideal (${R(x.ideal)}): espaço para comprar mais.`;
+  return`Entre o ideal (${R(x.ideal)}) e o teto (${R(x.teto)}): manter.`};
+const rangeBar=x=>x.pos==null?"":`<div class="rgw"><small>Mín. ${R(x.min)}</small><div class="rg"><i style="left:${(x.pos*100).toFixed(1)}%"></i></div><small>Máx. ${R(x.max)}</small></div>`;
+const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
+const medRows=x=>{const m=SEC_MED[x.sec];return(m&&m.pl!=null?row("P/L do setor (mediana)",fp(m.pl)):"")+(m&&m.dy!=null?row("DY 12m do setor (mediana)",P(m.dy)):"")};
+const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (brapi, ${fmt(x.dt)})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}. Modelo: teto = lucro por ação × P/L ${S.plAlvo}.</div>`;
 const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
-  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0"><b class="nm">${nm(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${x.exc?" 🔥":""}${x.atip?" ⚠":""}</div><div style="margin-left:auto;text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
-  ${x.exc?`<div class="alerta">🔥 Oportunidade excepcional: margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}</div>`:""}${x.atip?`<div class="alerta">⚠ P/L muito baixo: o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
-  ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}
-  ${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}${row("Preço mínimo (52s)",R(x.min))}${row("Preço máximo (52s)",R(x.max))}
-  ${row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
-  ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${row("Posição na faixa de 52s",P(x.pos*100))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}${row("Setor",sp(x.sec))}</details>`}
+  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${chips(x)}<div class="why">${motivo(x)}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
+  ${x.exc?`<div class="alerta"><b>Oportunidade excepcional</b> · margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}.</div>`:""}${x.atip?`<div class="alerta">Atenção: P/L muito baixo; o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
+  ${row("Empresa",nm(x.t))}${row("Setor",secChip(x.sec))}
+  ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}
+  ${rangeBar(x)}
+  ${row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
+  ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${medRows(x)}${row("Liquidez diária",R(x.liq))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}
+  ${srcLn(x)}</details>`}
 function covBox(){const d=diagInfo();
   return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
-  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. 🔥 Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. ⚠ Margem acima de 200% indica lucro possivelmente atípico e não recebe o 🔥. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", cujo plano atual não os inclui, e então do Dados B3 (todas as empresas de uma vez, com a chave)":""}. DY 12 meses vem do Dados B3.</p></details>`}
+  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. ★ Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. Margem acima de 200% indica lucro possivelmente atípico e não recebe o selo. Os números vêm da brapi e do Dados B3 exatamente como recebidos: nada é estimado ou inventado, e o que não existe aparece como "-". Dados inconsistentes (P/L que não bate com cotação ÷ lucro por ação) ou com mais de 10 dias ficam fora da análise. O sinal é uma regra matemática de apoio, não garantia de resultado. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", cujo plano atual não os inclui, e então do Dados B3 (todas as empresas de uma vez, com a chave)":""}. DY 12 meses vem do Dados B3.</p></details>`}
 const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
 function drawTop(){const A=rankAll(),L=A.slice(0,20),E=A.filter(x=>x.exc);
-  $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}${E.length?`<div class="box" style="border:1px solid var(--gold)"><h3>🔥 Oportunidades excepcionais (${E.length})</h3><p class="n" style="margin:0 0 6px">As 3% melhores notas do mercado, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas.</p>${E.slice(0,10).map(x=>`<div class="ex">${logo(x.t,34)}<div style="min-width:0;flex:1"><b>${x.t}</b><br><small>${sp(x.sec)}</small></div><div style="text-align:right"><b>${R(x.p)}</b><br><small class="pos">margem ${P(x.margem)}</small></div></div>`).join("")}</div>`:""}<div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
+  $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}${E.length?`<div class="box" style="border:1px solid var(--gold)"><h3>★ Oportunidades excepcionais (${E.length})</h3><p class="n" style="margin:0 0 6px">As 3% melhores notas do mercado, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas.</p>${E.slice(0,10).map(x=>`<div class="ex">${logo(x.t,34)}<div style="min-width:0;flex:1"><b>${x.t}</b><br><small>${sp(x.sec)}</small></div><div style="text-align:right"><b>${R(x.p)}</b><br><small class="${mc(x.margem)}">margem ${P(x.margem)}</small></div></div>`).join("")}</div>`:""}<div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
 function drawSet(){const G={},T={};
   for(const t in C){const k=sp(C[t].sec);(T[k]=T[k]||new Set()).add(EMP(t))}
   rankAll(true).forEach(x=>(G[sp(x.sec)]=G[sp(x.sec)]||[]).push(x));
   const secs=Object.keys(T).sort((a,b)=>((G[b]||[])[0]?.[S.rk]??-1)-((G[a]||[])[0]?.[S.rk]??-1));
   $("#m").innerHTML=`<h2>Melhores por setor</h2><div class="bar">${rkSel()}<select id="ns">${[3,5,7,10].map(n=>`<option value="${n}">Top ${n} por setor</option>`).join("")}</select></div>${covBox()}`+
-    (secs.map(n=>`<h3 style="margin:18px 0 10px;color:var(--ac)">${n} <small>(${(G[n]||[]).length} no ranking · ${T[n].size} empresas)</small></h3><div class="grid">${(G[n]||[]).slice(0,S.nSet).map((x,i)=>cardEmp(x,i+1)).join("")||`<div class="cd">Aguardando a análise das ações deste setor.</div>`}</div>`).join("")||VAZIO());
+    (secs.map(n=>`<h3 class="sh">${secChip(n)} <small>(${(G[n]||[]).length} no ranking · ${T[n].size} empresas)</small></h3><div class="grid">${(G[n]||[]).slice(0,S.nSet).map((x,i)=>cardEmp(x,i+1)).join("")||`<div class="cd">Aguardando a análise das ações deste setor.</div>`}</div>`).join("")||VAZIO());
   bindRk(drawSet);$("#ns").value=S.nSet;$("#ns").onchange=e=>{S.nSet=+e.target.value;save();drawSet()}}
 let fSec="",fQ="";
 function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))].sort();
@@ -395,24 +434,26 @@ function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))
   const t=()=>{const q=fQ.toUpperCase(),L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
     if(S.vis!="tabela"){$("#tb").innerHTML=L.slice(0,150).map((x,i)=>cardEmp(x,i+1)).join("")+(L.length>150?`<p class="n">Mostrando 150 de ${L.length}. Use a busca ou o filtro de setor.</p>`:"")||`<div class="cd">Nada encontrado.</div>`;return}
     $("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
-      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"🔥 ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${cls(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym!=null?P(x.dym):x.dy12!=null?P(x.dy12)+" (12m)":"-"}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
+      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"★ ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td><td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${mc(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym!=null?P(x.dym):x.dy12!=null?P(x.dy12)+" (12m)":"-"}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td></tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`)};
   bindRk(drawAll);$("#fs").value=fSec;$("#fq").value=fQ;$("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
 const dBR=d=>d?new Date(d+"T12:00:00").toLocaleDateString("pt-BR"):"informe a data";
 const hoje=()=>new Date().toISOString().slice(0,10);
 function recebido(q){const c=C[q.t];if(!c||!c.div||!q.d)return null;
   return c.div.filter(x=>x.d&&String(x.d).slice(0,10)>=q.d&&String(x.d).slice(0,10)<=hoje()).reduce((a,x)=>a+x.v*q.q,0)}
 function drawCart(){
-  let inv=0,atu=0,rec=0;
+  rankAll(true);let inv=0,atu=0,rec=0;
   const cards=S.pos.map((q,i)=>{const x=calc(q.t),p=x?x.p:null,v=p?p*q.q:null,c=q.q*q.pm,g=v==null?null:v-c,r=recebido(q);
     inv+=c;if(v)atu+=v;if(r)rec+=r;
     let s="m",txt="Manter";
     if(x&&!x.sd){if(x.p>x.teto){s="v";txt="Vender: acima do teto"}else if(S.lucro&&g/c*100>=S.lucro){s="a";txt="Realizar lucro"}else if(x.p<=x.ideal){s="c";txt="Comprar mais"}}
-    return`<div class="cd"><div class="hd">${logo(q.t,56)}<div style="min-width:0"><b class="nm">${nm(q.t)}</b><span class="tk">${q.t}</span> <span class="pill ${s}">${txt}</span><br><small>Compra em ${dBR(q.d)}</small></div><span style="flex:1"></span><button class="btn" style="background:#5b6275;color:#fff;padding:4px 10px" data-d="${i}">×</button></div>
-    ${row("Quantidade",q.q)}${row("Preço pago",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
-    ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${g==null?"":`(${P(g/c*100)})`}</b>`)}
+    const pc=g==null?null:g/c*100;
+    return`<details class="cd" ${S.vis=="cards"?"open":""}><summary class="hd">${logo(q.t,56)}<div style="min-width:0;flex:1"><b class="nm">${nmShort(q.t)}</b><span class="tk">${q.t}</span> <span class="pill ${s}">${txt}</span><div class="chips"><span class="chip ${cls(g)}">Ganho ${pc==null?"-":P(pc)}</span>${r==null?"":`<span class="chip">Proventos ${R(r)}</span>`}${x&&!x.sd?`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span>`:""}</div><div class="why">${motivoCart(x,pc)}</div></div><div style="text-align:right;flex:none"><b>${R(v)}</b><br><small class="${cls(g)}">${pc==null?"":(pc>=0?"▲ ":"▼ ")+P(Math.abs(pc))}</small></div></summary>
+    ${row("Compra em",dBR(q.d))}${row("Quantidade",q.q)}${row("Preço pago",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
+    ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${pc==null?"":`(${P(pc)})`}</b>`)}
     ${row("Proventos desde a compra",r==null?"-":R(r))}
     ${row("Retorno total",g==null||r==null?"-":`<b class="${cls(g+r)}">${R(g+r)} (${P((g+r)/c*100)})</b>`)}
-    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?row("Margem de segurança",`<b class="${cls(x.margem)}">${P(x.margem)}</b>`):""}${x?indRows(x):""}</div>`}).join("");
+    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)+rangeBar(x):""}${x?indRows(x)+medRows(x):""}${x?srcLn(x):""}
+    <div style="margin-top:12px"><button class="btn ghost" data-d="${i}">Remover esta compra</button></div></details>`}).join("");
   const g=atu-inv;
   $("#m").innerHTML=`<h2>Minha carteira</h2>
   <div class="kp"><div><small>Investido</small><b>${R(inv)}</b></div><div><small>Valor atual</small><b>${R(atu)}</b></div><div><small>Ganho de capital</small><b class="${cls(g)}">${R(g)}</b><small>${inv?P(g/inv*100):""}</small></div><div><small>Proventos desde as compras</small><b>${R(rec)}</b></div><div><small>Retorno total</small><b class="${cls(g+rec)}">${R(g+rec)}</b><small>${inv?P((g+rec)/inv*100):""}</small></div></div>
