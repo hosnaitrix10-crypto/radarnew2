@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Coleta catálogo multiclasse e dados de mercado para o Radar.
+"""Coleta e reconcilia um snapshot multiclasse do mercado brasileiro.
 
-Catálogo de descoberta: diretório público CotaLab (ações, FIIs, ETFs e BDRs).
-Fundamentos disponíveis: Fundamentus para ações e FIIs.
-Histórico de preços/proventos: Yahoo Finance via yfinance, sujeito a disponibilidade.
-A lista do CotaLab é uma fonte secundária, não uma declaração oficial da B3.
+O catálogo primário é o endpoint público paginado da brapi já usado pelo app;
+CotaLab é contingência e nunca é tratado como cadastro oficial da B3. Cotações
+só são aceitas no snapshot quando brapi e Yahoo Finance concordam dentro do
+limite documentado. Fundamentus e Yahoo Finance permanecem fontes secundárias.
 """
 from __future__ import annotations
 import concurrent.futures as cf
@@ -15,11 +15,28 @@ from pathlib import Path
 import pandas as pd
 import requests
 import yfinance as yf
+from cache_store import merge_snapshot
 
 OUT=Path('dados.json'); CATALOGO=Path('catalogo_ativos.json')
 HEADERS={'User-Agent':'Mozilla/5.0 (compatible; RadarDeDividendos/2.0)'}
 TIMEOUT=45; HISTORICO_ANOS=3; BATCH_COTACOES=50; MAX_PAGINAS=60
+MAX_PRICE_DIVERGENCE=0.08
 SESSION=requests.Session(); SESSION.headers.update(HEADERS)
+CATALOG_INFO={'complete':False,'source':'unknown'}
+PREVIOUS_ROWS={}
+PREVIOUS_GENERATED=None
+BR_TZ=dt.timezone(dt.timedelta(hours=-3))
+
+
+def data_brt(value=None):
+    if value is None: return dt.datetime.now(dt.timezone.utc).astimezone(BR_TZ).date().isoformat()
+    try:
+        if isinstance(value,str) and len(value)>=10 and value[4]=='-' and value[7]=='-':
+            parsed=dt.datetime.fromisoformat(value.replace('Z','+00:00'))
+        else: return None
+        if parsed.tzinfo is None: parsed=parsed.replace(tzinfo=dt.timezone.utc)
+        return parsed.astimezone(BR_TZ).date().isoformat()
+    except (ValueError,TypeError): return None
 
 
 def numero(v):
@@ -76,8 +93,8 @@ def parse_catalog_table(table):
     return out
 
 
-def carregar_catalogo():
-    """Descobre páginas do catálogo sem depender de um único formato de paginação.
+def carregar_catalogo_cotalab():
+    """Fallback: descobre páginas do diretório secundário CotaLab.
 
     Alguns diretórios não informam "Página X de Y" no HTML. Nesse caso,
     tenta páginas sequenciais e encerra quando encontra página vazia, erro 404
@@ -151,6 +168,109 @@ def carregar_catalogo():
     return resultado
 
 
+
+def _categoria_brapi(asset_type, subtype):
+    if asset_type == 'stock': return 'acao'
+    if asset_type == 'bdr': return 'bdr'
+    if asset_type == 'fund':
+        return {'fii':'fii','etf':'etf','fi-infra':'fi-infra','fi-agro':'fi-agro',
+                'fip':'fip','fidc':'fidc'}.get(subtype, 'fundo')
+    return 'outro'
+
+
+def carregar_catalogo_brapi():
+    """Obtém todas as páginas dos tipos públicos usados pela própria interface."""
+    global CATALOG_INFO
+    tipos=('stock','fund','bdr'); itens=[]; expected=0; page_stats={}
+    for tipo in tipos:
+        pagina=1; total_paginas=None; tipo_esperado=None; contagem=0
+        while pagina <= MAX_PAGINAS:
+            r=SESSION.get('https://brapi.dev/api/v2/tickers',
+                          params={'type':tipo,'limit':2000,'page':pagina},timeout=TIMEOUT)
+            r.raise_for_status(); j=r.json()
+            rows=j.get('results'); pag=j.get('pagination') or {}
+            if not isinstance(rows,list) or not isinstance(pag,dict):
+                raise RuntimeError(f'brapi catálogo {tipo}: resposta sem results/pagination')
+            if pagina==1:
+                tipo_esperado=int(pag.get('totalItems') or len(rows))
+                total_paginas=int(pag.get('totalPages') or 1); expected+=tipo_esperado
+            if len(rows)==0 and tipo_esperado:
+                raise RuntimeError(f'brapi catálogo {tipo}: página {pagina} vazia antes do fim')
+            requested=str(j.get('requestedAt') or '')
+            for x in rows:
+                ticker=str(x.get('symbol') or '').strip().upper()
+                if not re.fullmatch(r'[A-Z0-9.^_-]{1,24}',ticker): continue
+                asset=str(x.get('assetType') or tipo).lower()
+                subtype=str(x.get('subType') or '').lower()
+                quote=x.get('quote') if isinstance(x.get('quote'),dict) else {}
+                price=numero(quote.get('lastPrice'))
+                entry={'t':ticker,'nome':x.get('longName') or x.get('name') or ticker,
+                       'cat':_categoria_brapi(asset,subtype),'setor':x.get('sector') or '',
+                       'fonte_catalogo':'brapi.dev v2 tickers','assetType':asset,
+                       'subType':subtype,'catalogActive':x.get('isActive') is not False,
+                       'logoUrl':x.get('logoUrl'),'exchange':x.get('exchange'),
+                       'currency':x.get('currency'),'subsector':x.get('subsector'),
+                       'requestedAt':requested,'catalogo_consultado_em':requested,
+                       'quote_candidate_brapi':price,
+                       'quote_change_brapi':numero(quote.get('changePercent')),
+                       'quote_volume_brapi':numero(quote.get('volume')),
+                       'quote_marketcap_brapi':numero(quote.get('marketCap'))}
+                if price is not None and price>0:
+                    entry['precos_fontes']={'brapi.dev':{'p':price,'em':requested}}
+                itens.append(entry); contagem+=1
+            has_next=pag.get('hasNextPage') is True or pagina<total_paginas
+            if not has_next: break
+            pagina+=1; time.sleep(0.8)
+        if tipo_esperado is not None and contagem < tipo_esperado:
+            raise RuntimeError(f'brapi catálogo {tipo}: recebidos {contagem} de {tipo_esperado} registros')
+        page_stats[tipo]={'items':contagem,'pages':pagina,'expected':tipo_esperado or contagem}
+        time.sleep(0.5)
+    unique={}
+    for a in itens:
+        old=unique.get(a['t'])
+        if old is None or (old.get('assetType')!='stock' and a.get('assetType')=='stock'):
+            unique[a['t']]=a
+    result=sorted(unique.values(),key=lambda a:a['t'])
+    if len(result)<100 or len(result)<expected*0.95:
+        raise RuntimeError(f'brapi catálogo incompleto: {len(result)} únicos para {expected} declarados')
+    CATALOG_INFO={'complete':True,'source':'brapi.dev v2 tickers','expected':expected,
+                  'count':len(result),'types':page_stats}
+    private_quote_keys={'requestedAt','quote_candidate_brapi','quote_change_brapi',
+                        'quote_volume_brapi','quote_marketcap_brapi','precos_fontes'}
+    safe_rows=[{k:v for k,v in item.items() if k not in private_quote_keys} for item in result]
+    payload={'gerado':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z'),
+             'fonte':'brapi.dev v2 tickers','catalog_complete':True,'total':len(result),
+             'catalog_info':CATALOG_INFO,'ativos':safe_rows}
+    CATALOGO.write_text(json.dumps(payload,ensure_ascii=False,allow_nan=False),encoding='utf-8')
+    for tipo,info in page_stats.items():
+        print(f'[CATÁLOGO] brapi {tipo}: {info["items"]} ativos em {info["pages"]} página(s).',flush=True)
+    return result
+
+
+def carregar_catalogo():
+    """Prefere o cache do catálogo completo do dia; CotaLab é só contingência."""
+    global CATALOG_INFO
+    if CATALOGO.exists():
+        try:
+            cached=json.loads(CATALOGO.read_text(encoding='utf-8'))
+            if (cached.get('catalog_complete') is True and data_brt(cached.get('gerado'))==data_brt()
+                    and data_brt(PREVIOUS_GENERATED)==data_brt() and len(cached.get('ativos',[]))>=100):
+                CATALOG_INFO={'complete':True,'source':'brapi.dev v2 tickers (cache do dia)',
+                              'expected':cached.get('total',len(cached['ativos'])),'count':len(cached['ativos']),
+                              'types':cached.get('catalog_info',{}).get('types',{})}
+                print(f'[CATÁLOGO] Reutilizando catálogo completo salvo hoje: {len(cached["ativos"])} tickers; sem repetir chamadas.',flush=True)
+                return cached['ativos']
+        except Exception as e:
+            print(f'[AVISO] Cache local do catálogo ilegível; fazendo consulta completa: {e}',flush=True)
+    try:
+        return carregar_catalogo_brapi()
+    except Exception as e:
+        print(f'[AVISO] Catálogo brapi indisponível ou incompleto; tentando CotaLab: {e}',flush=True)
+    result=carregar_catalogo_cotalab()
+    CATALOG_INFO={'complete':False,'source':'CotaLab (contingência; completude não confirmada)',
+                  'count':len(result),'types':{}}
+    return result
+
 def col_by(df,needles):
     for c in df.columns:
         s=str(c).lower()
@@ -189,54 +309,120 @@ def carregar_fundamentos(url,cat):
 
 
 def batch_precos(ativos):
-    tickers=[a['t']+'.SA' for a in ativos]
-    saida={}
+    """Cruza o preço resumido brapi com o fechamento Yahoo quando ambos existem.
+
+    Divergências acima de 8% são retidas como conflito; preço não validado não
+    substitui o último valor confiável do cache.
+    """
+    pendentes=[]
+    for a in ativos:
+        a.setdefault('precos_fontes',{})
+        old=PREVIOUS_ROWS.get(a['t'],{}); meta=(old.get('cache_meta') or {}).get('quote') or {}
+        if old and data_brt(meta.get('last_attempt'))==data_brt():
+            for key in ('p','ch','vol','data_cotacao','cotacao_em','preco_fonte','desempenho_1a','desempenho_3a','divergencia_preco_pct','precos_fontes'):
+                if old.get(key) is not None: a[key]=old[key]
+            if old.get('dados_cotacao')=='verificada' and meta.get('last_status')=='ok' and numero(old.get('p')) and numero(old.get('p'))>0:
+                a['dados_cotacao']='verificada'
+            else:
+                a['p']=old.get('p') if numero(old.get('p')) and numero(old.get('p'))>0 else None
+                a['dados_cotacao']=old.get('dados_cotacao') or meta.get('last_status') or 'indisponível'
+                for key in ('preco_conflito','preco_candidato','erro_cotacao'):
+                    if old.get(key) is not None: a[key]=old[key]
+                a['erro_cotacao']=a.get('erro_cotacao') or 'já consultado hoje; nova tentativa no próximo ciclo'
+            a['_skip_quote_refresh']=True
+        else:
+            bp=numero(a.get('quote_candidate_brapi'))
+            if bp is not None and bp>0:
+                a['precos_fontes']['brapi.dev']={'p':bp,'em':a.get('requestedAt')}
+            pendentes.append(a)
+    tickers=[a['t']+'.SA' for a in pendentes]
     for ini in range(0,len(tickers),BATCH_COTACOES):
         grupo=tickers[ini:ini+BATCH_COTACOES]
         try:
-            hist=yf.download(tickers=grupo,period=f'{HISTORICO_ANOS}y',interval='1d',auto_adjust=True,group_by='ticker',threads=True,progress=False,timeout=TIMEOUT)
-            if hist is None or hist.empty: continue
-            for a,ticker in zip(ativos[ini:ini+BATCH_COTACOES],grupo):
-                try:
+            hist=yf.download(tickers=grupo,period=f'{HISTORICO_ANOS}y',interval='1d',auto_adjust=False,group_by='ticker',threads=True,progress=False,timeout=TIMEOUT)
+            if hist is None or hist.empty: hist=None
+        except Exception as e:
+            print(f'[AVISO] Lote de cotações {ini+1}-{min(ini+len(grupo),len(tickers))}: {e}',flush=True);hist=None
+        for a,ticker in zip(pendentes[ini:ini+BATCH_COTACOES],grupo):
+            one=None; close=pd.Series(dtype=float)
+            try:
+                if hist is not None:
                     if isinstance(hist.columns,pd.MultiIndex):
                         if ticker in hist.columns.get_level_values(0): one=hist[ticker]
                         elif ticker in hist.columns.get_level_values(1): one=hist.xs(ticker,axis=1,level=1)
-                        else: continue
                     else: one=hist
-                    close=one['Close'].dropna() if 'Close' in one else pd.Series(dtype=float)
-                    if close.empty: continue
-                    first=float(close.iloc[0]); last=float(close.iloc[-1])
-                    if not math.isfinite(last) or last<=0: continue
-                    a['p']=round(last,6);a['desempenho_3a']=round((last/first-1)*100,2) if first>0 else None
-                    one_year=close[close.index>=pd.Timestamp.now(tz=None)-pd.DateOffset(years=1)]
-                    a['desempenho_1a']=round((last/float(one_year.iloc[0])-1)*100,2) if len(one_year)>1 and float(one_year.iloc[0])>0 else None
-                    a['data_cotacao']=str(close.index[-1].date())
-                except Exception: continue
-        except Exception as e: print(f'[AVISO] Lote de cotações {ini+1}-{min(ini+len(grupo),len(tickers))}: {e}',flush=True)
+                    if one is not None: close=one['Close'].dropna() if 'Close' in one else pd.Series(dtype=float)
+            except Exception: close=pd.Series(dtype=float)
+            bp=numero(a.get('quote_candidate_brapi'))
+            yp=float(close.iloc[-1]) if not close.empty and math.isfinite(float(close.iloc[-1])) and float(close.iloc[-1])>0 else None
+            if yp is not None:
+                yahoo_date=str(close.index[-1].date())
+                a['precos_fontes']['Yahoo Finance']={'p':yp,'data':yahoo_date}
+                first=float(close.iloc[0]) if len(close) else yp
+                a['desempenho_3a']=round((yp/first-1)*100,2) if first>0 else None
+                one_year=close[close.index>=pd.Timestamp.now(tz=None)-pd.DateOffset(years=1)]
+                a['desempenho_1a']=round((yp/float(one_year.iloc[0])-1)*100,2) if len(one_year)>1 and float(one_year.iloc[0])>0 else None
+            if bp is not None and bp>0 and yp is not None:
+                gap=abs(bp/yp-1)
+                if gap<=MAX_PRICE_DIVERGENCE:
+                    a['p']=bp;a['ch']=numero(a.get('quote_change_brapi'));a['vol']=numero(a.get('quote_volume_brapi')) or 0
+                    a['data_cotacao']=yahoo_date
+                    a['cotacao_em']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
+                    a['preco_fonte']='brapi.dev validada contra Yahoo Finance';a['dados_cotacao']='verificada'
+                    a['divergencia_preco_pct']=round(gap*100,3)
+                else:
+                    a['p']=None;a['dados_cotacao']='conflito';a['preco_conflito']=True
+                    a['preco_candidato']={'brapi.dev':bp,'Yahoo Finance':yp,'diferenca_pct':round(gap*100,3)}
+                    a['erro_cotacao']='fontes divergem acima do limite; preço anterior preservado'
+            elif bp is not None and bp>0:
+                a['p']=None;a['dados_cotacao']='uma_fonte';a['preco_candidato']={'brapi.dev':bp}
+                a['erro_cotacao']='sem cotação Yahoo para validação cruzada'
+            elif yp is not None:
+                a['p']=None;a['dados_cotacao']='uma_fonte';a['preco_candidato']={'Yahoo Finance':yp}
+                a['erro_cotacao']='sem preço brapi para validação cruzada'
+            else:
+                a['p']=None;a['dados_cotacao']='indisponível';a['erro_cotacao']='sem preço válido nas fontes consultadas'
         if (ini//BATCH_COTACOES+1)%5==0: print(f'[COTAÇÕES] {min(ini+len(grupo),len(tickers))}/{len(tickers)} tickers processados',flush=True)
-    return saida
+    for a in ativos: a.pop('_skip_quote_refresh',None)
+    return ativos
 
 
 def dividendos_ticker(a,agora):
     if a['cat'] not in {'acao','fii'}: return a
+    old=PREVIOUS_ROWS.get(a['t'],{}); dm=(old.get('cache_meta') or {}).get('dividends') or {}
+    if data_brt(dm.get('last_attempt'))==data_brt():
+        for key in ('dpa','ap','div','dados_proventos','fonte_proventos','proventos_em'):
+            if old.get(key) is not None: a[key]=old[key]
+        a.pop('_skip_dividend_refresh',None)
+        return a
     try:
+        time.sleep(0.35)
         s=yf.Ticker(a['t']+'.SA').dividends
         if s is None or s.empty:
-            a.setdefault('dpa',None);a.setdefault('ap',0);a.setdefault('div',[]);a['dados_proventos']='sem histórico';return a
+            a.setdefault('dpa',None);a.setdefault('ap',0);a.setdefault('div',[]);a['dados_proventos']='sem histórico';a['fonte_proventos']='Yahoo Finance';return a
         idx=pd.DatetimeIndex(s.index);idx=idx.tz_localize(None) if idx.tz is not None else idx;s.index=idx
         inicio=agora-pd.DateOffset(years=HISTORICO_ANOS); rec=s[s.index>=inicio]
         anos=len(set(int(y) for y in rec.index.year))
         a['ap']=min(HISTORICO_ANOS,anos)
         a['dpa']=round(float(rec.sum())/anos,4) if anos else None
         a['div']=[{'v':float(v),'d':d.strftime('%Y-%m-%d')} for d,v in s.items() if math.isfinite(float(v)) and d>=agora-pd.DateOffset(months=18)]
-        a['dados_proventos']='ok' if anos else 'sem histórico'
+        a['dados_proventos']='ok' if anos and len(rec)>0 else 'sem histórico';a['fonte_proventos']='Yahoo Finance'
+        a['proventos_em']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
     except Exception as e:
-        a.setdefault('dpa',None);a.setdefault('ap',0);a.setdefault('div',[]);a['dados_proventos']='indisponível';a['erro_proventos']=str(e)[:160]
+        a.setdefault('dpa',None);a.setdefault('ap',0);a.setdefault('div',[]);a['dados_proventos']='indisponível';a['fonte_proventos']='Yahoo Finance';a['erro_proventos']=str(e)[:160]
+    a.pop('_skip_dividend_refresh',None)
     return a
 
 
 def main():
+    global PREVIOUS_ROWS, PREVIOUS_GENERATED
     agora=pd.Timestamp.now().tz_localize(None)
+    previous=None
+    if OUT.exists():
+        try: previous=json.loads(OUT.read_text(encoding='utf-8'))
+        except Exception as e: raise RuntimeError(f'Cache anterior inválido; recusando sobrescrever dados.json: {e}')
+    PREVIOUS_GENERATED=(previous or {}).get('gerado')
+    PREVIOUS_ROWS={str(a.get('t','')).upper():a for a in (previous or {}).get('ativos',[]) if a.get('t')}
     print('[1/5] Descobrindo catálogo multiclasse...',flush=True)
     catalogo=carregar_catalogo()
     print(f'[CATÁLOGO] {len(catalogo)} instrumentos únicos.',flush=True)
@@ -251,11 +437,12 @@ def main():
         a.setdefault('p',None);a.setdefault('pl',None);a.setdefault('pvp',None);a.setdefault('dy',None)
         a.setdefault('roe',None);a.setdefault('ml',None);a.setdefault('liq',None);a.setdefault('dpa',None);a.setdefault('ap',0);a.setdefault('div',[])
         a['dados_fundamentos']='ok' if f else 'indisponível'
+        if f: a['fonte_fundamentos']='Fundamentus';a['fundamentos_em']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
     print('[3/5] Obtendo histórico de preços em lotes de 50 tickers...',flush=True)
     batch_precos(catalogo)
     print('[4/5] Buscando proventos para ações e FIIs (pode demorar)...',flush=True)
     alvo=[a for a in catalogo if a['cat'] in {'acao','fii'}]
-    with cf.ThreadPoolExecutor(max_workers=4) as pool:
+    with cf.ThreadPoolExecutor(max_workers=2) as pool:
         futs=[pool.submit(dividendos_ticker,a,agora) for a in alvo]
         for i,f in enumerate(cf.as_completed(futs),1):
             try:f.result()
@@ -265,9 +452,10 @@ def main():
     for a in catalogo:
         a['dados_completos']=bool(a.get('p') is not None and (a.get('dados_fundamentos')=='ok' or a['cat'] in {'etf','bdr'}))
     gerado=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
-    doc={'gerado':gerado,'fonte':['CotaLab (catálogo secundário)','Fundamentus (fundamentos quando disponíveis)','Yahoo Finance/yfinance (cotações e proventos quando disponíveis)'],'historico_anos':HISTORICO_ANOS,'total':len(catalogo),'resumo_categorias':{c:sum(1 for a in catalogo if a['cat']==c) for c in ['acao','fii','etf','bdr']},'ativos':catalogo,'acoes':[a for a in catalogo if a['cat']=='acao']}
+    doc={'gerado':gerado,'fonte':[CATALOG_INFO.get('source','catálogo desconhecido'),'Fundamentus (fundamentos quando disponíveis)','Yahoo Finance/yfinance (série histórica e proventos)'],'catalog_complete':CATALOG_INFO.get('complete') is True,'catalog_info':CATALOG_INFO,'historico_anos':HISTORICO_ANOS,'total':len(catalogo),'resumo_categorias':{c:sum(1 for a in catalogo if a['cat']==c) for c in sorted({a['cat'] for a in catalogo})},'ativos':catalogo}
+    doc=merge_snapshot(doc,previous)
     temp=OUT.with_suffix('.json.tmp');temp.write_text(json.dumps(doc,ensure_ascii=False,allow_nan=False),encoding='utf-8');json.loads(temp.read_text(encoding='utf-8'));temp.replace(OUT)
-    print(f'[5/5] Concluído: {len(catalogo)} ativos; resumo {doc["resumo_categorias"]}.',flush=True)
+    print(f'[5/5] Concluído: {doc["total"]} ativos atuais, {doc["total_historico"]} incluindo histórico; resumo {doc["resumo_categorias"]}.',flush=True)
 
 if __name__=='__main__':
     try: main()
