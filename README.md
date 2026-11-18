@@ -22,7 +22,7 @@ python -m unittest discover -s tests -v
 python -u coleta.py
 ```
 
-O workflow agendado executa a suíte de testes antes da coleta e publica somente `dados.json` e `catalogo_ativos.json` quando há alteração. Para evitar apagar o estado conhecido, o coletor interrompe a escrita se o `dados.json` anterior estiver inválido. Nenhuma chave de API deve ser gravada nesses arquivos nem no HTML.
+O workflow agendado executa a suíte de testes antes da coleta e publica somente `dados.json` e `catalogo_ativos.json` quando há alteração. Em pull requests, apenas a suíte de testes roda; a coleta e a publicação são ignoradas. Para evitar apagar o estado conhecido, o coletor interrompe a escrita se o `dados.json` anterior estiver inválido. Nenhuma chave de API deve ser gravada nesses arquivos nem no HTML.
 
 ## Limites importantes
 
