@@ -360,7 +360,7 @@ async function doRefresh(o){
 }
 function status(m){const st=$("#st"),u=M.ultimo,nx=S.sched.on&&nextSlot();
   st.className=!m&&u&&u.ok==0&&u.fail?"off":"";
-  st.textContent=m||`${fase()} · Catálogo ${M.catalog?`${M.catalog.active||M.catalog.count} ativos`:(Object.keys(C).length?"em cache":"aguardando carga")}${M.catalog&&!M.catalog.complete?" (parcial)":""} · Última lista ${ago(M.qAt)}${intradia()?"":" · plano gratuito: cotações detalhadas respeitam a cota mensal"} · Próxima: ${nx?fmt(nx):"automático desligado"}${!S.token&&!DEFTOK?" · informe um token brapi em Ajustes para análise detalhada":""}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos configurada em Ajustes."}`}
+  st.textContent=m||`${fase()} · Catálogo ${M.catalog?`${M.catalog.active||M.catalog.count} ativos`:(Object.keys(C).length?"em cache":"aguardando carga")}${M.catalog&&!M.catalog.complete?" (parcial)":""} · Última lista ${ago(M.qAt)}${intradia()?"":" · plano gratuito: cotações detalhadas respeitam a cota mensal"} · Próxima: ${nx?fmt(nx):"automático desligado"}${!S.token&&!DEFTOK?" · informe um token brapi em Ajustes para análise detalhada":""}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos configurada em Ajustes."}${M.sharedCache?` · Cache GitHub: ${M.sharedCache.loaded} ativos (${M.sharedCache.quotes} preços validados), ${fmt(M.sharedCache.at)}; valores de cache são informativos.`:""}`}
 
 
 /* ===== Agendamento (horário de Brasília = UTC-3) ===== */
@@ -499,7 +499,8 @@ const rangeBar=x=>x.pos==null?"":`<div class="rgw"><small>Mín. ${R(x.min)}</sma
 const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span><span class="chip ${cfCls(x.conf)}">Confiança ${x.conf}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
 const medRows=x=>{const m=SEC_MED[x.sec];return(m&&m.pl!=null?row("P/L do setor (mediana)",fp(m.pl)):"")+(m&&m.dy!=null?row("DY 12m do setor (mediana)",P(m.dy)):"")};
 const qd=v=>{if(!v)return"";const t=typeof v=="number"?(v<1e12?v*1000:v):Date.parse(v);return isNaN(t)?"":fmtDia(t)};
-const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (brapi, coletado em ${fmt(x.dt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}. Modelo: valor justo = mediana de métodos calculados com o histórico real da própria empresa (P/L, P/VP ou EV/EBITDA, Graham).</div>`;
+const srcLn=x=>{const c=C[x.t]||{},q=c.detAt?`cotação e lucro por ação da brapi (${fmt(x.dt)}${x.qt&&qd(x.qt)?`; pregão de ${qd(x.qt)}`:""})`:c.cacheQuote?`cotação informativa do cache (${c.cacheQuote.source||"fonte pública"}, ${fmt(c.cacheQuote.at)}${c.cacheQuote.status&&c.cacheQuote.status!="ok"?`; status ${c.cacheQuote.status}`:""}); não habilita análise nem sinal`:`cotação detalhada ainda não carregada`;
+  return`<div class="src">Fontes: ${q}${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}. Modelo: valor justo = mediana de métodos calculados com o histórico real da própria empresa (P/L, P/VP ou EV/EBITDA, Graham).</div>`};
 const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
   return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${chips(x)}<div class="why">${motivo(x)}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
@@ -526,7 +527,7 @@ function drawSet(){const G={},T={};
     (secs.map(n=>`<h3 class="sh">${secChip(n)} <small>(${(G[n]||[]).length} no ranking · ${T[n].size} empresas)</small></h3><div class="grid">${(G[n]||[]).slice(0,S.nSet).map((x,i)=>cardEmp(x,i+1)).join("")||`<div class="cd">Aguardando a análise das ações deste setor.</div>`}</div>`).join("")||VAZIO());
   bindRk(drawSet);$("#ns").value=S.nSet;$("#ns").onchange=e=>{S.nSet=+e.target.value;save();drawSet()}}
 let fSec="",fQ="",fType="",fOld=false,allPage=0;
-function drawAll(){const L0=rankAll(true),secs=[...new Set(L0.map(x=>sp(x.sec)))].sort();
+function drawAll(){const L0=Object.keys(C).map(t=>calc(t)).filter(Boolean);L0.sort((a,b)=>{const av=Number.isFinite(a[S.rk])?a[S.rk]:-Infinity,bv=Number.isFinite(b[S.rk])?b[S.rk]:-Infinity;return bv-av||a.t.localeCompare(b.t)});const secs=[...new Set(L0.map(x=>sp(x.sec)))].sort();
   const types=[...new Set(Object.keys(C).filter(t=>C[t].catalogActive!==false).map(t=>assetLabel(C[t])))].sort();
   $("#m").innerHTML=`<h2>Todos os ativos catalogados</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><select id="ftype"><option value="">Todos os tipos</option>${types.map(n=>`<option>${n}</option>`).join("")}</select><select id="fa"><option value="active">Ativos na lista atual</option><option value="all">Incluir histórico preservado</option></select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">O catálogo inclui ações, units, fundos e BDRs disponibilizados pela brapi. O cálculo de valor justo deste Radar é específico para ações e units; os outros tipos aparecem no cadastro, mas não recebem sinal de compra/venda.</p><div id="tb" class="${S.vis=="tabela"?"w":"grid"}"></div><div id="pg"></div>`;
   const t=()=>{const q=fQ.toUpperCase();let L=L0.filter(x=>(fOld||C[x.t].catalogActive!==false)&&(!fSec||sp(x.sec)==fSec)&&(!fType||assetLabel(C[x.t])==fType)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q)));
@@ -606,6 +607,41 @@ function drawCfg(){
   $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
 }
+async function loadSharedCache(){
+  try{
+    const r=await fetch(new URL("dados.json",location.href),{cache:"no-store"});if(!r.ok)return 0;
+    const doc=await r.json();if(!doc||!Array.isArray(doc.ativos))return 0;
+    const generated=Date.parse(doc.gerado)||0,activeRows=doc.ativos.filter(x=>x&&x.catalogActive!==false);let loaded=0,quotes=0;
+    for(const a of doc.ativos){
+      const t=String(a.t||"").trim().toUpperCase();if(!/^[A-Z0-9.^_-]{1,24}$/.test(t))continue;
+      const prev=C[t]||{},cat=String(a.cat||"").toLowerCase(),assetType=a.assetType||(cat==="acao"?"stock":cat==="bdr"?"bdr":"fund");
+      const subType=a.subType||(cat==="acao"?(t.endsWith("11")?"unit":"stock"):cat);
+      const qm=a.cache_meta&&a.cache_meta.quote||{},qAt=Date.parse(qm.last_success||a.cotacao_em||a.data_cotacao||"")||0;
+      const validQuote=Number.isFinite(a.p)&&a.p>0&&qAt>0&&!!a.preco_fonte;
+      const previousQuoteAt=Math.max(prev.detAt||0,prev.qAt||0),useQuote=validQuote&&qAt>previousQuoteAt;
+      const newerCatalog=generated>=(prev.catalogAt||0);
+      const cachedFundamentals={};for(const k of ["pl","pvp","dy","roe","ml","liq","dpa","ap"]){if(Number.isFinite(a[k]))cachedFundamentals[k]=a[k]}
+      C[t]={...prev,
+        ...(useQuote?{p:a.p,ch:Number.isFinite(a.ch)?a.ch:prev.ch,vol:Number.isFinite(a.vol)?a.vol:(prev.vol||0),qAt,detAt:prev.detAt&&qAt>prev.detAt?0:prev.detAt}:{}),
+        nome:newerCatalog?(a.nome||prev.nome||t):(prev.nome||a.nome||t),
+        sec:newerCatalog?(a.setor||prev.sec||""):(prev.sec||a.setor||""),
+        assetType:newerCatalog?assetType:(prev.assetType||assetType),subType:newerCatalog?subType:(prev.subType||subType),
+        catalogActive:a.catalogActive===false?false:(prev.catalogActive??true),catalogAt:Math.max(prev.catalogAt||0,generated),
+        catalogSrc:"snapshot GitHub Actions",cacheQuote:validQuote?{at:qAt,source:a.preco_fonte,status:qm.last_status||"ok",conflict:!!a.preco_conflito,candidates:a.preco_candidato||null}:prev.cacheQuote,
+        cacheFundamentals:Object.keys(cachedFundamentals).length?cachedFundamentals:(prev.cacheFundamentals||{})};
+      loaded++;if(validQuote&&a.catalogActive!==false)quotes++;
+    }
+    const day=generated?new Date(generated-3*36e5).toISOString().slice(0,10):"";
+    M.sharedCache={at:generated,loaded:activeRows.length,quotes,source:(doc.fonte||[]).join(", ")||"snapshot público"};
+    if(doc.catalog_complete===true&&day===hojeBR()){
+      const types={stock:activeRows.filter(x=>x.cat==="acao").length,bdr:activeRows.filter(x=>x.cat==="bdr").length,fund:activeRows.filter(x=>!['acao','bdr'].includes(x.cat)).length};
+      if(!M.catalog||generated>(M.catalog.at||0))M.catalog={at:generated,count:activeRows.length,active:activeRows.length,total:activeRows.length,complete:true,types,pages:{},source:"snapshot brapi validado no GitHub"};
+      M.catalogDay=day;M.qAt=Math.max(M.qAt||0,generated);
+    }
+    persist();return loaded;
+  }catch(e){M.sharedCacheError=String(e&&e.message||e).slice(0,180);return 0}
+}
+
 const V={top:drawTop,set:drawSet,all:drawAll,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
 function draw(){document.body.dataset.vis=S.vis=="cards"?"cards":"lista";V[view]();
   document.querySelectorAll("[data-v]").forEach(a=>{const v=a.dataset.v,inv=["top","set","all","cart","renda"].includes(view);
@@ -617,9 +653,10 @@ $("#upd").onclick=()=>refresh({manual:true,force:true});
   try{DB=await idb();idbOk=true}catch(e){}
   if(idbOk){const c=await kvGet("cache"),m=await kvGet("meta");if(c){C=c;for(const t in C)if(C[t].sec=="Outros")delete C[t].sec}if(m){ST=m.ST||{};M=Object.assign(M,m.M)}}
   if(!Object.keys(C).length&&legacy){for(const t in legacy){C[t]={...legacy[t],qAt:legacyAt,dAt:legacyAt};ST[t]={s:"ok",at:legacyAt}}M.qAt=M.dAt=legacyAt||0;persist()}
+  await loadSharedCache();
   draw();status();
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-  if(!Object.keys(C).length)refresh({first:true});else refresh({divOnly:true}).then(()=>{if(Object.values(C).some(c=>c.sec&&!c.logo)&&Date.now()-(M.logoTry||0)>864e5){M.logoTry=Date.now();return refresh({listOnly:true})}}).then(check);
+  if(!Object.keys(C).length||M.sharedCache)refresh({first:true});else refresh({divOnly:true}).then(()=>{if(Object.values(C).some(c=>c.sec&&!c.logo)&&Date.now()-(M.logoTry||0)>864e5){M.logoTry=Date.now();return refresh({listOnly:true})}}).then(check);
   setInterval(check,30000);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
   addEventListener("online",check);
