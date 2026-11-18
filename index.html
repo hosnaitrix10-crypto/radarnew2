@@ -75,10 +75,11 @@ h2{font-size:20px;font-weight:600;letter-spacing:.2px;margin:6px 0 16px}
 <script>
 const DEFTOK="7XnqyWJBnSnqEhYotwxogQ";
 const DEFDB="db3_U5ZiTldeAzeNC1EJwPQcYQOpKlfQ-rkA"; /* chave pessoal do Dados B3: não compartilhe o link deste app */
-const APPV="v13";
+const APPV="v15";
 const DEF="TAEE11 CMIG4 BBAS3 ISAE4 BBSE3 CPFE3 BBDC4 ITUB4 KLBN4 PETR4 VALE3 TRPL4 CXSE3 SAPR11 EGIE3 ITSA4 VIVT3 CSMG3 CPLE6 ALUP11 FLRY3 SANB11 WEGE3 TIMS3 ABCB4 BRSR6 CMIN3 GOAU4 SUZB3 LEVE3".split(" ");
 const K="radar_v2",$=s=>document.querySelector(s);
-const defS=()=>({v:5,plAlvo:10,liqMin:1000000,brLim:15000,detHoras:18,token:"",dbKey:"",brapiDiv:false,dy:6,desc:20,anos:5,lucro:30,watch:DEF,pos:[],dbLim:190,minAnos:4,rk:"nota",nSet:7,sched:{on:true,times:["14:00","18:30"],days:[1,2,3,4,5],divDias:7,gap:600,conc:1,minManual:2}});
+const PLANOS={gratis:{n:"Gratuito",lim:15000,lote:1,atu:"dia anterior"},startup:{n:"Startup",lim:150000,lote:10,atu:"15 min"},pro:{n:"Pro",lim:500000,lote:20,atu:"5 min"}};
+const defS=()=>({v:5,plano:"gratis",plAlvo:10,multDias:30,liqMin:1000000,brLim:15000,detHoras:18,token:"",dbKey:"",brapiDiv:false,dy:6,desc:20,anos:5,lucro:30,watch:DEF,pos:[],dbLim:190,minAnos:4,rk:"nota",nSet:7,sched:{on:true,times:["08:30"],days:[1,2,3,4,5],divDias:7,gap:1500,conc:1,minManual:2}});
 const old=JSON.parse(localStorage.getItem("radar_v1")||"null");
 let S=Object.assign(defS(),JSON.parse(localStorage.getItem(K)||"null")||old||{});
 const legacy=S.cache,legacyAt=S.upd;delete S.cache;delete S.upd;S.sched=Object.assign(defS().sched,S.sched);
@@ -87,6 +88,10 @@ if(!["nota","margem"].includes(S.rk))S.rk="nota";
 const dbk=()=>S.dbKey||DEFDB;
 const divSrc=()=>S.brapiDiv||!!dbk();
 if((S.v||0)<6){S.v=6;S.nSet=7}
+if((S.v||0)<7){S.v=7;S.plano=S.plano||"gratis";S.sched.gap=Math.max(S.sched.gap||0,1500);if(JSON.stringify(S.sched.times)=='["14:00","18:30"]')S.sched.times=["08:30"]}
+const intradia=()=>(PLANOS[S.plano]||PLANOS.gratis).atu!="dia anterior";
+const hojeBR=()=>new Date(Date.now()-3*36e5).toISOString().slice(0,10);
+let gapMul=1;
 const save=()=>localStorage.setItem(K,JSON.stringify(S));
 const R=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const P=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{maximumFractionDigits:2})+"%";
@@ -137,7 +142,7 @@ async function fetchOne(t,wd,mods){
   if(typeof x.regularMarketPrice!="number")throw new E("invalid","cotação ausente na resposta",h);
   let lo=x.fiftyTwoWeekLow,hi=x.fiftyTwoWeekHigh;
   if(lo==null&&x.fiftyTwoWeekRange){const m=x.fiftyTwoWeekRange.split("-").map(Number);lo=m[0];hi=m[1]}
-  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null};
+  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null,qt:x.regularMarketTime||null};
   if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},nz=v=>Number.isFinite(v)?v:null;let re=nz(fd.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=nz(dk.priceToBook)}
   if(wd)o.div=((x.dividendsData&&x.dividendsData.cashDividends)||[]).map(d=>({v:d.rate,d:d.paymentDate||d.lastDatePrior||d.approvedOn}));
   return o}
@@ -145,7 +150,7 @@ async function fetchDet(t){ /* tenta trazer ROE e P/VP junto da mesma chamada; s
   if(S.modOK!==false){try{const r=await fetchOne(t,false,true);if(S.modOK!==true){S.modOK=true;save()}return r}
     catch(e){if(e.h!=403&&e.h!=400)throw e;const r=await fetchOne(t,false,false);S.modOK=false;save();return r}}
   return fetchOne(t,false,false)}
-const PLAN_CP=["roe","pvp","dy_12m"];
+const PLAN_CP=["roe","pvp","dy_12m","piotroski","divida_liquida_ebitda","liquidez_corrente","margem_liquida","ebitda","roic"];
 function parsePlan(j,tks,cp){ /* o formato exato da resposta não foi verificado: leitura tolerante, com diagnóstico se falhar */
   const num=v=>{if(v&&typeof v=="object")v=v.valor??v.value;return typeof v=="number"&&isFinite(v)?v:null};
   let rows=null;
@@ -156,7 +161,7 @@ function parsePlan(j,tks,cp){ /* o formato exato da resposta não foi verificado
   rows.forEach((r,i)=>{let t=tks[i],v=null;
     if(Array.isArray(r)){const a=r.length==cp.length+1&&typeof r[0]=="string"?(t=r[0],r.slice(1)):r;v=cp.map((c,k)=>num(a[k]))}
     else if(r&&typeof r=="object"){t=r.codigo||r.ticker||r.cod||t;const src=r.valores&&typeof r.valores=="object"?r.valores:r;v=cp.map((c,k)=>num(Array.isArray(src)?src[k]:src[c]))}
-    if(t&&v){out[t]={roe:v[0],pvp:v[1],dy:v[2]};if(v.some(x=>x!=null))got++}});
+    if(t&&v){out[t]=Object.fromEntries(cp.map((c,k)=>[c,v[k]]));if(v.some(x=>x!=null))got++}});
   return got?out:null}
 async function fetchPlan(tks){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
@@ -176,7 +181,7 @@ async function runPlan(o,now){
   if(!dbk()||o.only)return;
   const reps={};Object.keys(C).forEach(t=>{const c=C[t];if(!c.detAt)return;const e=EMP(t);if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
   if(M.planErr&&M.planTry&&now-M.planTry<216e5)return; /* após falha, só tenta de novo depois de 6 horas */
-  const lim=now-S.sched.divDias*864e5,need=Object.values(reps).filter(t=>!(C[t].planAt>lim));
+  const lim=now-S.sched.divDias*864e5,need=Object.values(reps).filter(t=>!(C[t].planAt>lim)||C[t].planV!==2);
   if(!need.length)return;
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
   const left=(S.dbLim||190)-M.db.n;if(left<1)return;
@@ -184,9 +189,57 @@ async function runPlan(o,now){
   status(`ROE, P/VP e DY 12 meses de ${tks.length} empresas (Dados B3)…`);M.planTry=now;
   try{const out=await viaRetry(()=>fetchPlan(tks));let n=0;
     for(const t of tks){C[t].planAt=Date.now();const v=out[t];if(!v)continue;
-      if(v.roe!=null)C[t].roeB=v.roe*100;if(v.pvp!=null)C[t].pvpB=v.pvp;if(v.dy!=null)C[t].dy12=v.dy*100;n++}
+      if(v.roe!=null)C[t].roeB=v.roe*100;if(v.pvp!=null)C[t].pvpB=v.pvp;if(v.dy_12m!=null)C[t].dy12=v.dy_12m*100;C[t].fu={pio:v.piotroski,dle:v.divida_liquida_ebitda,lc:v.liquidez_corrente,ml:v.margem_liquida,ebitda:v.ebitda,roic:v.roic};C[t].planV=2;n++}
     M.planOk=Date.now();M.planN=n;M.planErr=null;M.planRaw=null}
   catch(e){M.planErr=e.message;M.err={msg:e.message,src:"dadosb3.com",at:Date.now(),s:e.s}}}
+async function dbGet(path,tag){
+  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
+  const ee=(s,m,h)=>new E(s,"dadosb3 ("+tag+"): "+m,h);
+  let r;try{r=await fetch("https://dadosb3.com"+path,{headers:{"X-API-Key":dbk()}})}catch(e){throw ee("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
+  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
+  if(h==429)throw ee("limit","limite diário da chave atingido (HTTP 429)",h);
+  if(h==401||h==403)throw ee("auth","chave ausente ou inválida (HTTP "+h+")",h);
+  if(h==404)throw ee("nodata","não encontrado",h);
+  if(h>=500)throw ee("neterr","erro temporário (HTTP "+h+")",h);
+  if(h>=400)throw ee("invalid","requisição recusada (HTTP "+h+")",h);
+  if(!j||typeof j!="object")throw ee("invalid","resposta não é JSON válido",h);
+  return j}
+const medN=a=>{a=a.filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+const qN=(a,q)=>{a=a.filter(Number.isFinite).sort((x,y)=>x-y);if(a.length<2)return null;const i=(a.length-1)*q,l=Math.floor(i);return a[l]+(a[Math.min(a.length-1,l+1)]-a[l])*(i-l)};
+function parseMult(j){ /* extrai do histórico REAL da própria empresa; nada é estimado */
+  if(!Array.isArray(j.anuais)||!j.valuation)throw new E("invalid","dadosb3 (múltiplos): resposta sem 'anuais' ou 'valuation'",200);
+  const an=j.anuais.slice().sort((a,b)=>b.ano-a.ano),tr=(Array.isArray(j.trimestrais)?j.trimestrais:[]).slice().sort((a,b)=>(b.ano*10+b.trimestre)-(a.ano*10+a.trimestre));
+  const pk=(L,k,mx,n)=>L.map(a=>a[k]).filter(v=>Number.isFinite(v)&&v>0&&v<mx).slice(0,n);
+  let pl=pk(tr,"pl_ttm",80,20);if(pl.length<8)pl=pk(an,"pl",80,8);
+  let pv=pk(tr,"pvp",40,20);if(pv.length<8)pv=pk(an,"pvp",40,8);
+  const ev=pk(an,"ev_ebitda",60,8),v=j.valuation,t0=tr.find(x=>Number.isFinite(x.lpa_ttm)),tv=tr.find(x=>Number.isFinite(x.pvp)&&x.pvp>0&&Number.isFinite(x.preco)),aa=j.aviso_lucro_atipico&&j.aviso_lucro_atipico.doze_meses;
+  return{at:Date.now(),pl:{m:medN(pl),n:pl.length,q1:qN(pl,.25),q3:qN(pl,.75)},pvp:{m:medN(pv),n:pv.length},ev:{m:medN(ev),n:ev.length},
+    lpa:t0?t0.lpa_ttm:(Number.isFinite(v.lpa)?v.lpa:null),vpa:tv?tv.preco/tv.pvp:(Number.isFinite(v.vpa)?v.vpa:null),
+    acoes:Number.isFinite(v.acoes)?v.acoes:null,dl:Number.isFinite(v.divida_liquida)?v.divida_liquida:null,
+    atip:!!v.lucro_salto_atipico||!!(aa&&aa.lucro_salto_atipico),preco:v.preco,dpreco:v.data_preco,ano:v.ano}}
+async function runMult(o,now){
+  if(!dbk())return;
+  const lim=S.dbLim||190,cap=Math.floor(lim*0.7),dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
+  const pri=new Set(S.pos.map(p=>p.t)),only=o.only&&new Set(o.only.map(EMP)),reps={};
+  Object.keys(C).forEach(t=>{const c=C[t];if(!c.detAt||!c.sec||c.p*(c.vol||0)<S.liqMin)return;const e=EMP(t);if(only&&!only.has(e))return;if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
+  const dias=S.multDias*864e5,need=Object.values(reps).filter(t=>{const x=ST[t]&&ST[t].mtS;if(x&&(x.s=="nodata"||x.s=="invalid")&&now-x.at<7*864e5)return false;return !C[t].mt||now-C[t].mt.at>dias});
+  need.sort((a,b)=>(pri.has(b)-pri.has(a))||(C[b].p*C[b].vol-C[a].p*C[a].vol));
+  let done=0;M.mtLeft=need.length;
+  while(need.length&&M.db.n<lim&&(o.only||M.db.n<cap)){const t=need.shift();status(`Balanços e múltiplos próprios: ${++done} consultados · ${need.length} na fila`);
+    try{C[t].mt=parseMult(await viaRetry(()=>dbGet(`/empresas/${t}/multiplos`,"múltiplos")));ST[t]={...(ST[t]||{}),mtS:{s:"ok",at:Date.now()}}}
+    catch(e){const s=e.s||"neterr";ST[t]={...(ST[t]||{}),mtS:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:"dadosb3.com",at:Date.now(),s};if(s=="limit"||s=="auth")break}
+    await sleep(S.sched.gap)}
+  M.mtLeft=need.length}
+async function runVered(o,now){
+  if(!dbk()||o.only)return;const lim=S.dbLim||190;if(M.db.n>=lim)return;
+  const G={};rankAll(true).forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));
+  const cand=new Set([...S.pos.map(p=>p.t).filter(t=>C[t]),...Object.values(G).flatMap(L=>L.slice(0,S.nSet)),...rankAll().slice(0,20).map(x=>x.t)]);
+  const need=[...cand].filter(t=>C[t]&&C[t].mt&&(!C[t].vd||now-C[t].vd.at>30*864e5)&&!(ST[t]&&ST[t].vdS&&(ST[t].vdS.s=="nodata"||ST[t].vdS.s=="invalid")&&now-ST[t].vdS.at<7*864e5));
+  while(need.length&&M.db.n<lim){const t=need.shift();
+    try{const j=await viaRetry(()=>dbGet(`/empresas/${t}/veredito`,"veredito")),b=j.bandeira||{};if(!b.cor)throw new E("invalid","dadosb3 (veredito): resposta sem bandeira",200);
+      C[t].vd={cor:b.cor,tx:b.texto,at:Date.now()};ST[t]={...(ST[t]||{}),vdS:{s:"ok",at:Date.now()}}}
+    catch(e){const s=e.s||"neterr";ST[t]={...(ST[t]||{}),vdS:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:"dadosb3.com",at:Date.now(),s};if(s=="limit"||s=="auth")break}
+    await sleep(S.sched.gap)}}
 async function fetchDivDB(t){
   const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
   let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":dbk()}})}
@@ -203,7 +256,7 @@ async function fetchDivDB(t){
   const ok=/DIVID|JCP|JUROS|REND/i;
   return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
 function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,detAt:now,qAt:now,src:"brapi"};
+  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,qt:n.qt||o.qt,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
@@ -235,11 +288,13 @@ async function fetchList(){ /* uma chamada traz cotação, volume e setor de tod
   if(faltam()&&M.setores&&Date.now()-(M.secAt||0)>864e5){M.secAt=Date.now();
     for(const sec of M.setores){if(!faltam())break;try{(await listaGet("&sector="+encodeURIComponent(sec))).stocks.forEach(x=>{if(C[x.stock]&&!C[x.stock].sec)C[x.stock].sec=sec})}catch(e){break}await sleep(S.sched.gap)}}
   return n}
-async function runIndiv(ts){let ok=0,fail=0,stop=false;
-  for(const t of ts){if(stop)break;status(`Detalhes de ${t}…`);
-    try{merge(t,await viaRetry(()=>fetchDet(t)));ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++}
-    catch(e){const s=e.s||"neterr";ST[t]={...(ST[t]||{}),s,at:Date.now(),err:e.message};M.err={msg:t+": "+e.message,src:"brapi.dev",at:Date.now(),s};fail++;if(s=="limit")stop=true}
-    await sleep(S.sched.gap)}
+async function runIndiv(ts){let ok=0,fail=0,stop=false;const q=[...ts],again=new Set();gapMul=1;
+  while(q.length&&!stop){const t=q.shift();status(`Detalhes de ${t}… (${ok+fail+1}/${ok+fail+q.length+1})`);
+    try{merge(t,await viaRetry(()=>fetchDet(t)));ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++;gapMul=Math.max(1,gapMul*0.9)}
+    catch(e){const s=e.s||"neterr";
+      if(s=="limit"&&e.h==429&&!again.has(t)){again.add(t);gapMul=Math.min(8,gapMul*2);q.unshift(t);status("A brapi pediu calma: esperando antes de continuar…");await sleep(15000);continue}
+      ST[t]={...(ST[t]||{}),s,at:Date.now(),err:e.message};M.err={msg:t+": "+e.message,src:"brapi.dev",at:Date.now(),s};fail++;if(s=="limit")stop=true}
+    await sleep(S.sched.gap*gapMul)}
   return{ok,fail}}
 async function runDiv(o,now){ /* dividendos aos poucos: respeita o limite diário da chave */
   if(!divSrc())return{ok:0,fail:0,left:0};
@@ -282,21 +337,24 @@ async function doRefresh(o){
   const now=Date.now(),sc=S.sched,kind=o.kind||"full",pos=[...new Set(S.pos.map(p=>p.t))];
   if(!o.divOnly&&!o.only&&fimDeSemana()&&M.qAt>=lastClose()){status("Mercado fechado: a B3 não opera no fim de semana. Exibindo o fechamento de "+fmtDia(lastClose())+"; as atualizações voltam na segunda-feira.");await sleep(2500);return}
   if(o.manual&&!o.only&&now-M.lastTry<sc.minManual*60000){status(`Aguarde ${Math.ceil((sc.minManual*60000-(now-M.lastTry))/1000)}s: intervalo mínimo entre atualizações manuais.`);await sleep(2500);return}
+  const skipBr=!o.divOnly&&!o.only&&!intradia()&&M.qDia===hojeBR()&&Object.keys(C).length>0;
+  if(skipBr){M.qAt=now;M.skip=0;status("Plano gratuito da brapi: os preços já foram atualizados hoje e só mudam no dia seguinte. Nada foi consultado; só os dados do Dados B3 continuam.");await sleep(2500)}
   let ok=0,fail=0,listFail=false,fila=[],feitas=0;
-  if(!o.divOnly&&!o.only){M.lastTry=now;status("Buscando a lista e as cotações do mercado…");
+  if(!o.divOnly&&!o.only&&!skipBr){M.lastTry=now;status("Buscando a lista e as cotações do mercado…");
     try{await viaRetry(fetchList);ok++;ST.__lista={s:"ok",at:Date.now()};M.qAt=Date.now()}
     catch(e){ST.__lista={s:e.s||"neterr",at:Date.now(),err:e.message};M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s};fail++;listFail=true}}
   if(o.only||listFail){const r=await runIndiv(o.only||[...new Set([...pos,...S.watch])]);ok+=r.ok;fail+=r.fail;if(r.ok&&!o.only)M.qAt=Date.now()}
-  await runPlan(o,now);
+  await runPlan(o,now);await runMult(o,now);
   const d=await runDiv(o,now);ok+=d.ok;fail+=d.fail;
-  if(!o.divOnly&&!o.only&&!listFail){fila=filaDetalhe(o,kind);const r=await runIndiv(fila.slice(0,restanteHoje()));ok+=r.ok;fail+=r.fail;feitas=r.ok+r.fail}
-  if(!o.divOnly&&!o.only){await runPlan(o,now);const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
+  if(!o.divOnly&&!o.only&&!listFail&&!skipBr){fila=filaDetalhe(o,kind);const r=await runIndiv(fila.slice(0,restanteHoje()));ok+=r.ok;fail+=r.fail;feitas=r.ok+r.fail}
+  if(!o.divOnly&&!o.only){await runPlan(o,now);await runMult(o,now);await runVered(o,now);const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
   if(!o.divOnly&&!o.only)M.skip=ok==0&&fail>0?(nextSlot()||0):0;
+  if(!o.divOnly&&!o.only&&!listFail&&!skipBr&&feitas>=fila.length)M.qDia=hojeBR();
   M.ultimo={ok,fail,total:ok+fail,restantes:Math.max(0,fila.length-feitas),at:Date.now()};
 }
 function status(m){const st=$("#st"),u=M.ultimo,nx=S.sched.on&&nextSlot();
   st.className=!m&&u&&u.ok==0&&u.fail?"off":"";
-  st.textContent=m||`${fase()} · Cotações atualizadas ${ago(M.qAt)} (${fmt(M.qAt)}) · Próxima: ${nx?fmt(nx):"automático desligado"}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos para a carteira (Ajustes)."}`}
+  st.textContent=m||`${fase()} · Cotações atualizadas ${ago(M.qAt)} (${fmt(M.qAt)})${intradia()?"":" · plano gratuito: preços do dia anterior"} · Próxima: ${nx?fmt(nx):"automático desligado"}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}${divSrc()?"":" · Sem fonte de proventos para a carteira (Ajustes)."}`}
 
 /* ===== Agendamento (horário de Brasília = UTC-3) ===== */
 function slotList(from){const out=[],b=new Date(from-3*36e5);
@@ -312,10 +370,10 @@ function check(){ /* no máximo UMA atualização, mesmo que vários horários t
 
 /* ===== Diagnóstico ===== */
 function diagInfo(){const E_={};Object.keys(C).forEach(t=>(E_[EMP(t)]=E_[EMP(t)]||[]).push(t));
-  const d={n:Object.keys(C).length,emp:Object.keys(E_).length,analisadas:0,aguard:0,rank:0,prej:0,liq:0,desat:0,nodata:0,invalid:0,neterr:0,limit:0,auth:0},lim=Date.now()-2*864e5;
+  const d={n:Object.keys(C).length,emp:Object.keys(E_).length,fund:0,analisadas:0,aguard:0,rank:0,prej:0,liq:0,desat:0,nodata:0,invalid:0,neterr:0,limit:0,auth:0},lim=Date.now()-2*864e5;
   for(const ts of Object.values(E_)){const x=ts.map(calc).filter(Boolean).sort((a,b)=>b.vol-a.vol)[0];if(!x)continue;
-    const ex=x.ex=="dados incompletos"&&x.liq<S.liqMin?"baixa liquidez":x.ex;
-    if(ex=="dados incompletos")d.aguard++;else{d.analisadas++;if(ex=="lucro negativo")d.prej++;else if(ex=="baixa liquidez")d.liq++;else d.rank++;if(C[x.t].detAt&&C[x.t].detAt<lim)d.desat++}}
+    const ex=x.ex=="dados incompletos"&&x.liq<S.liqMin?"baixa liquidez":x.ex;if(C[x.t].mt)d.fund++;
+    if(ex=="dados incompletos"||ex=="aguardando dados fundamentalistas")d.aguard++;else{d.analisadas++;if(ex=="lucro negativo")d.prej++;else if(ex=="baixa liquidez")d.liq++;else d.rank++;if(C[x.t].detAt&&C[x.t].detAt<lim)d.desat++}}
   Object.values(ST).forEach(x=>{if(x.s&&x.s!="ok"&&x.s in d)d[x.s]++});return d}
 function diagBox(){const d=diagInfo(),e=M.err,bad=Object.entries(ST).filter(([t,x])=>(x.s&&x.s!="ok"&&x.s!="pending")||(x.dv&&x.dv.s!="ok")),rest=restanteHoje();
   const N={analisadas:"Empresas analisadas",aguard:"Aguardando análise",rank:"No ranking",prej:"Fora: lucro negativo",liq:"Fora: baixa liquidez",desat:"Análises com mais de 2 dias",nodata:"Sem dados publicados",invalid:"Resposta inválida",neterr:"Falha de rede",limit:"Limite de API",auth:"Erro de autenticação"};
@@ -327,6 +385,8 @@ function diagBox(){const d=diagInfo(),e=M.err,bad=Object.entries(ST).filter(([t,
   ${bad.length?`<details><summary>Ativos com falha (${bad.length})</summary>${bad.slice(0,80).map(([t,x])=>`<div class="r"><span>${t=="__lista"?"Lista do mercado":t}</span><span>${x.s&&x.s!="ok"?x.s+": "+(x.err||""):""} ${x.dv&&x.dv.s!="ok"?"proventos "+x.dv.s+": "+(x.dv.err||""):""}</span></div>`).join("")}</details>`:""}
   <button class="btn" id="dc" style="background:#5b6275;color:#fff;margin-top:10px">Copiar diagnóstico</button></div>`}
 function brBox(){return`<div class="box"><h3>Orçamento de chamadas e filtros</h3>
+  <label>Plano da brapi<select id="b2">${Object.entries(PLANOS).map(([k,v])=>`<option value="${k}" ${S.plano==k?"selected":""}>${v.n}: ${v.lim.toLocaleString("pt-BR")} chamadas/mês, ${v.lote} ticker${v.lote>1?"s":""} por chamada, preços ${v.atu=="dia anterior"?"do dia anterior":"a cada "+v.atu}</option>`).join("")}</select></label>
+  <p class="n">${intradia()?"Neste plano os preços se renovam durante o pregão: os horários dentro do expediente fazem sentido.":"No plano gratuito os preços são sempre os do dia anterior. Por isso o Radar consulta a brapi uma vez por dia útil, de manhã, e ignora os horários durante o pregão, para não gastar cota sem preço novo. Para preços de pregão seria preciso o plano Startup."}</p>
   <p class="n">O Radar divide o orçamento mensal pelos dias úteis que restam e nunca passa disso: usa 90% da cota e guarda 10% de reserva. A análise do mercado avança aos poucos (primeiro sua carteira e as melhores de cada setor, depois as demais, da análise mais antiga para a mais recente). Nos fins de semana não há chamadas.</p>
   <div class="bar"><label>Cota mensal da brapi<input id="b0" type="number" min="100" value="${S.brLim}" style="width:140px"></label><label>Liquidez mínima por dia (R$)<input id="b1" type="number" min="0" step="100000" value="${S.liqMin}" style="width:170px"></label></div></div>`}
 function divBox(){return`<div class="box"><h3>Proventos da carteira</h3>
@@ -356,17 +416,39 @@ const EMP=t=>t.slice(0,4);
 const SEC={"Finance":"Financeiro","Energy Minerals":"Petróleo, gás e carvão","Non-Energy Minerals":"Mineração e siderurgia","Utilities":"Utilidade pública","Communications":"Comunicações","Consumer Non-Durables":"Consumo não durável","Consumer Durables":"Consumo durável","Consumer Services":"Serviços ao consumidor","Distribution Services":"Distribuição","Electronic Technology":"Tecnologia eletrônica","Health Services":"Serviços de saúde","Health Technology":"Tecnologia em saúde","Industrial Services":"Serviços industriais","Miscellaneous":"Diversos","Process Industries":"Indústrias de processo","Producer Manufacturing":"Indústria e bens de capital","Retail Trade":"Varejo","Technology Services":"Serviços de tecnologia","Transportation":"Transporte","Commercial Services":"Serviços comerciais"};
 const sp=x=>SEC[x]||x||"Sem classificação";
 const dpaOf=ds=>{const l=new Date();l.setFullYear(l.getFullYear()-S.anos);return(ds||[]).filter(d=>d.d&&new Date(d.d)>=l).reduce((a,d)=>a+(d.v||0),0)/S.anos};
+const bi=v=>v==null?"-":"R$ "+(Math.abs(v)>=1e9?(v/1e9).toLocaleString("pt-BR",{maximumFractionDigits:1})+" bi":(v/1e6).toLocaleString("pt-BR",{maximumFractionDigits:0})+" mi");
 function calc(t){
   const c=C[t];if(!c||!c.p)return null;
-  const lo=c.lo,hi=c.hi,eps=c.eps,liq=c.p*(c.vol||0);let ex="";
-  if(!c.detAt||!(lo>0)||!(hi>lo)||!Number.isFinite(eps))ex="dados incompletos";else if(!(eps>0))ex="lucro negativo";else if(liq<S.liqMin)ex="baixa liquidez";
-  if(!ex&&Number.isFinite(c.pl)&&c.pl>0&&Math.abs(c.p/eps-c.pl)/c.pl>0.3)ex="dados inconsistentes";
-  if(!ex&&Date.now()-c.detAt>10*864e5)ex="dados desatualizados";
-  const teto=eps>0?eps*S.plAlvo:0,ideal=teto*(1-S.desc/100),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
-  const nota=ex?null:100*(0.6*Math.min(1,Math.max(0,margem/100+0.2))+0.4*(1-pos));
-  const s=ex?"x":c.p<=ideal&&pos<=0.5?"c":c.p<=teto?"a":"v",dpa=c.dAt?dpaOf(c.div):null;
-  return{t,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:c.pl,roe:c.roe??c.roeB,pvp:c.pvp??c.pvpB,dy12:c.dy12,eps,teto,ideal,margem,pos,nota,ex,sd:!!ex,s,
-    liqB:!ex&&liq<S.liqMin*3,dt:c.detAt,dd:c.dAt,dp:c.planAt,exc:false,exc0:!ex&&c.p<=ideal&&margem>=50&&pos<=0.25,atip:!ex&&margem>200,dpa,dym:dpa==null?null:dpa/c.p*100}}
+  const lo=c.lo,hi=c.hi,liq=c.p*(c.vol||0),m=c.mt,fu=c.fu||{},fin=c.sec=="Finance",now=Date.now();let ex="";
+  if(!c.detAt||!(lo>0)||!(hi>lo))ex="dados incompletos";
+  else if(liq<S.liqMin)ex="baixa liquidez";
+  else if(!m)ex="aguardando dados fundamentalistas";
+  else if(now-c.detAt>10*864e5)ex="dados desatualizados";
+  else if(now-m.at>(S.multDias+15)*864e5)ex="fundamentos desatualizados";
+  else if(!(m.lpa>0))ex="lucro negativo";
+  else if(m.preco>0&&Math.abs(now-Date.parse(m.dpreco||0))<6*864e5&&Math.abs(m.preco/c.p-1)>0.15)ex="preços divergem entre as fontes";
+  const MT=[];
+  if(!ex){
+    if(!m.atip&&m.pl.n>=4&&m.pl.m>0)MT.push({k:"pl",n:"P/L próprio",v:m.lpa*m.pl.m,d:`mediana de ${fp(m.pl.m)} em ${m.pl.n} balanços da própria empresa × lucro por ação (12 meses) de ${R(m.lpa)}`});
+    if(fin&&m.pvp.n>=4&&m.vpa>0)MT.push({k:"pvp",n:"P/VP próprio",v:m.vpa*m.pvp.m,d:`mediana de ${fp(m.pvp.m)} em ${m.pvp.n} balanços × valor patrimonial por ação de ${R(m.vpa)}`});
+    if(!fin&&m.ev.n>=4&&fu.ebitda>0&&m.acoes>0&&m.dl!=null){const v=(fu.ebitda*m.ev.m-m.dl)/m.acoes;if(v>0)MT.push({k:"ev",n:"EV/EBITDA próprio",v,d:`mediana de ${fp(m.ev.m)} em ${m.ev.n} anos × EBITDA de ${bi(fu.ebitda)}, menos dívida líquida de ${bi(m.dl)}, dividido pelas ações`})}
+    if(!fin&&m.vpa>0&&m.lpa/m.vpa<=0.30)MT.push({k:"gr",n:"Graham",v:Math.sqrt(22.5*m.lpa*m.vpa),d:`√(22,5 × lucro por ação ${R(m.lpa)} × patrimônio por ação ${R(m.vpa)}); só vale com ROE de até 30%`});
+    if(!MT.length)ex="dados insuficientes para o valor justo";
+  }
+  const vals=MT.map(x=>x.v),vj=ex?null:medN(vals),disp=vals.length>1?Math.max(...vals)/Math.min(...vals)-1:0;
+  const cv=m&&m.pl&&m.pl.m>0&&m.pl.q1!=null?(m.pl.q3-m.pl.q1)/(2*m.pl.m):0.3,piso=S.desc/100,req=Math.min(0.45,Math.max(piso,piso+0.5*disp+0.5*cv));
+  const teto=vj||0,ideal=teto*(1-req),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
+  const roe=c.roe??c.roeB,fal=[];
+  if(!ex){if(!fin){if(fu.pio!=null&&fu.pio<5)fal.push(`Piotroski ${fu.pio} (mínimo 5)`);if(fu.dle!=null&&fu.ebitda>0&&fu.dle>3.5)fal.push(`dívida líquida/EBITDA ${fp(fu.dle)} (máximo 3,5)`);if(fu.lc!=null&&fu.lc<0.8)fal.push(`liquidez corrente ${fp(fu.lc)} (mínimo 0,8)`)}
+    if(roe!=null&&roe<=0)fal.push("ROE negativo");if(fu.ml!=null&&fu.ml<=0)fal.push("margem líquida negativa")}
+  const bd=c.vd&&c.vd.cor,conf=ex?null:(vals.length>=2&&disp<=0.25&&cv<=0.35&&bd=="verde"?"Alta":vals.length>=2&&disp<=0.5&&bd!="vermelho"?"Média":"Baixa");
+  const qual=ex?0:(fal.length?0.25:(fin?Math.min(1,Math.max(0,(roe||0)/20)):(fu.pio!=null?fu.pio/9:0.5)));
+  const nota=ex?null:100*(0.5*Math.min(1,Math.max(0,margem/60))+0.3*qual+0.2*(conf=="Alta"?1:conf=="Média"?0.6:0.2));
+  const s=ex?"x":c.p>teto?"v":(c.p<=ideal&&conf!="Baixa"&&!fal.length&&!m.atip)?"c":"a",dpa=c.dAt?dpaOf(c.div):null;
+  return{t,qt:c.qt,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:Number.isFinite(c.pl)?c.pl:(m&&m.lpa>0?c.p/m.lpa:null),roe:c.roe??c.roeB,pvp:c.pvp??c.pvpB,dy12:c.dy12,eps:m?m.lpa:null,
+    teto,ideal,margem,pos,nota,ex,sd:!!ex,s,vj,req,disp,cv,conf,metodos:MT,falhas:fal,bd,fin,mt:m,
+    liqB:!ex&&liq<S.liqMin*3,dt:c.detAt,dd:c.dAt,dp:c.planAt,exc:false,exc0:!ex&&conf=="Alta"&&c.p<=ideal&&margem>=40&&!fal.length&&!m.atip,atip:!ex&&!!m.atip,dpa,dym:dpa==null?null:dpa/c.p*100}}
+
 let SEC_MED={};
 const med=a=>{a=a.filter(v=>Number.isFinite(v)).sort((x,y)=>x-y);return a.length>=3?a[a.length>>1]:null};
 function rankAll(all){const best={};
@@ -390,32 +472,36 @@ const mc=m=>m==null?"":m>=50?"pos":m>=0?"wn":"neg";
 const secCor=k=>{let h=0;for(const ch of String(k||""))h=(h*31+ch.charCodeAt(0))%360;return h};
 const secChip=k=>`<span class="sc" style="--c:hsl(${secCor(sp(k))} 45% 62%)">${sp(k)}</span>`;
 const nmShort=t=>{const n=nm(t),m=n.match(/^(.*?)(\s+(?:ON|PN[AB]?|UNT|UNIT)(?:\s+(?:NM|N1|N2|MA|MB))?)$/);let h=(m?m[1]:n).replace(/\s+S[\.\/]?A\.?(?=\s|$)/g,"").replace(/\s+/g," ").trim();const tl=m?m[2]:"";if(h.length>22)h=h.slice(0,22).replace(/\s+\S*$/,"")+"…";return h+tl};
-const motivo=x=>{if(x.ex)return"Sem análise: "+x.ex+".";const d=(1-x.p/x.ideal)*100;
-  if(x.s=="c")return`Preço ${P(Math.abs(d))} abaixo do ideal e na metade inferior da faixa de 52 semanas.`;
-  if(x.s=="v")return`Preço ${P((x.p/x.teto-1)*100)} acima do teto (${R(x.teto)}).`;
-  return x.p<=x.ideal?"No preço ideal, mas na metade superior da faixa de 52 semanas: espere um recuo.":`Abaixo do teto (margem de ${P(x.margem)}), mas ainda acima do ideal (${R(x.ideal)}).`};
+const motivo=x=>{if(x.ex)return"Sem análise: "+x.ex+".";const d=(1-x.p/x.ideal)*100,cf=x.conf.toLowerCase();
+  if(x.s=="c")return`Preço ${P(Math.abs(d))} abaixo do ideal (${R(x.ideal)}); confiança ${cf}, ${x.metodos.length} métodos da própria empresa.`;
+  if(x.s=="v")return`Preço ${P((x.p/x.teto-1)*100)} acima do valor justo (${R(x.teto)}).`;
+  if(x.p<=x.ideal)return x.falhas.length?`No preço ideal, mas não atende: ${x.falhas[0]}.`:x.atip?"No preço ideal, mas o lucro recente é atípico: o P/L foi desconsiderado.":`No preço ideal, mas a confiança é ${cf}: ${x.metodos.length<2?"só um método se aplica":"os métodos divergem"}.`;
+  return`Abaixo do valor justo (margem de ${P(x.margem)}), mas acima do ideal de ${R(x.ideal)}, que exige ${P(x.req*100)} de margem para esta empresa.`};
+const cfCls=c=>c=="Alta"?"pos":c=="Média"?"wn":"neg";
+const valBlock=x=>x.ex||!x.metodos.length?"":`<div class="vb"><div class="r"><span><b>Valor justo</b> (mediana de ${x.metodos.length} método${x.metodos.length>1?"s":""} da própria empresa)</span><b>${R(x.vj)}</b></div>${x.metodos.map(m=>`<div class="r"><span>${m.n}</span><span>${R(m.v)}</span></div><div class="src" style="margin:0 0 8px">${m.d}</div>`).join("")}${row("Margem exigida (cautela)",P(x.req*100))}<div class="src" style="margin:0 0 6px">Mínimo de ${S.desc}% mais metade da divergência entre os métodos (${P(x.disp*100)}) e metade da variação histórica do P/L (${P(x.cv*100)}), no máximo 45%.</div>${row("Confiança",`<b class="${cfCls(x.conf)}">${x.conf}</b>`)}${row("Bandeira dos dados (Dados B3)",x.bd?x.bd:"ainda não consultada")}${x.falhas.length?`<div class="alerta">Critérios de qualidade não atendidos: ${x.falhas.join("; ")}.</div>`:""}</div>`;
 const motivoCart=(x,pc)=>{if(!x)return"Sem cotação disponível.";if(x.sd)return"Sem análise: "+x.ex+".";
   if(x.p>x.teto)return`Cotação ${P((x.p/x.teto-1)*100)} acima do teto (${R(x.teto)}): a regra indica vender.`;
   if(S.lucro&&pc>=S.lucro)return`Ganho de ${P(pc)} passou da sua meta de ${S.lucro}%${x.margem>0?`; ainda há ${P(x.margem)} de margem até o teto`:""}.`;
   if(x.p<=x.ideal)return`Abaixo do preço ideal (${R(x.ideal)}): espaço para comprar mais.`;
   return`Entre o ideal (${R(x.ideal)}) e o teto (${R(x.teto)}): manter.`};
 const rangeBar=x=>x.pos==null?"":`<div class="rgw"><small>Mín. ${R(x.min)}</small><div class="rg"><i style="left:${(x.pos*100).toFixed(1)}%"></i></div><small>Máx. ${R(x.max)}</small></div>`;
-const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
+const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span><span class="chip ${cfCls(x.conf)}">Confiança ${x.conf}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
 const medRows=x=>{const m=SEC_MED[x.sec];return(m&&m.pl!=null?row("P/L do setor (mediana)",fp(m.pl)):"")+(m&&m.dy!=null?row("DY 12m do setor (mediana)",P(m.dy)):"")};
-const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (brapi, ${fmt(x.dt)})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}. Modelo: teto = lucro por ação × P/L ${S.plAlvo}.</div>`;
+const qd=v=>{if(!v)return"";const t=typeof v=="number"?(v<1e12?v*1000:v):Date.parse(v);return isNaN(t)?"":fmtDia(t)};
+const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (brapi, coletado em ${fmt(x.dt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}. Modelo: valor justo = mediana de métodos calculados com o histórico real da própria empresa (P/L, P/VP ou EV/EBITDA, Graham).</div>`;
 const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
   return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${chips(x)}<div class="why">${motivo(x)}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
   ${x.exc?`<div class="alerta"><b>Oportunidade excepcional</b> · margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}.</div>`:""}${x.atip?`<div class="alerta">Atenção: P/L muito baixo; o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
   ${row("Empresa",nm(x.t))}${row("Setor",secChip(x.sec))}
-  ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}${row("Preço teto",R(x.teto))}${row("Preço ideal",R(x.ideal))}
+  ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}${row("Valor justo (teto)",R(x.teto))}${row("Preço ideal de compra",R(x.ideal))}${valBlock(x)}
   ${rangeBar(x)}
   ${row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
   ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${medRows(x)}${row("Liquidez diária",R(x.liq))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}
   ${srcLn(x)}</details>`}
 function covBox(){const d=diagInfo();
-  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
-  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>Nota = 60% margem de segurança + 40% proximidade da mínima de 52 semanas. Teto = lucro por ação × P/L ${S.plAlvo}; ideal = teto com ${S.desc}% de desconto. Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia e dados incompletos. Uma linha por empresa. ★ Oportunidade excepcional: entre as 3% melhores notas, com preço no ideal ou abaixo, margem de pelo menos 50% e na faixa inferior de 52 semanas. Margem acima de 200% indica lucro possivelmente atípico e não recebe o selo. Os números vêm da brapi e do Dados B3 exatamente como recebidos: nada é estimado ou inventado, e o que não existe aparece como "-". Dados inconsistentes (P/L que não bate com cotação ÷ lucro por ação) ou com mais de 10 dias ficam fora da análise. O sinal é uma regra matemática de apoio, não garantia de resultado. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", cujo plano atual não os inclui, e então do Dados B3 (todas as empresas de uma vez, com a chave)":""}. DY 12 meses vem do Dados B3.</p></details>`}
+  return`<p class="n">${fase()} · ${d.emp} empresas, ${d.analisadas} analisadas, ${d.fund} com balanços próprios carregados${M.mtLeft?` (faltam ${M.mtLeft}, cerca de ${Math.ceil(M.mtLeft/Math.max(1,Math.floor(S.dbLim*0.7)))} dia(s) com o limite da chave)`:""}${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
+  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>O valor justo é calculado para cada empresa com os balanços reais dela: P/L e P/VP (bancos e seguradoras) ou EV/EBITDA e Graham (demais) usam a mediana do histórico da própria empresa; vale a mediana dos métodos aplicáveis. O preço ideal exige uma margem que cresce quando os métodos divergem ou o histórico é instável (mínimo ${S.desc}%, máximo 45%). COMPRAR exige preço no ideal, confiança Média ou Alta e critérios de qualidade (Piotroski, endividamento, liquidez). Ficam de fora prejuízo, liquidez abaixo de ${R(S.liqMin)}/dia, lucro atípico sem outro método e dados incompletos. Uma linha por empresa. ★ Oportunidade excepcional: entre as 3% melhores notas, com confiança Alta (bandeira verde dos dados), preço no ideal ou abaixo e margem de pelo menos 40%. Lucro atípico nunca recebe o selo. Os números vêm da brapi e do Dados B3 exatamente como recebidos: nada é estimado ou inventado, e o que não existe aparece como "-". Preços que divergem entre as fontes e dados desatualizados ficam fora da análise. O sinal é uma regra matemática de apoio, não garantia de resultado. DY médio e DPA médio usam a média dos proventos dos últimos ${S.anos} anos, carregados pelo Dados B3 para a carteira e para as ações candidatas, aos poucos (sem a chave aparecem como "-"). ROE e P/VP vêm da brapi${S.modOK===false?", cujo plano atual não os inclui, e então do Dados B3 (todas as empresas de uma vez, com a chave)":""}. DY 12 meses vem do Dados B3.</p></details>`}
 const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
@@ -452,7 +538,7 @@ function drawCart(){
     ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${pc==null?"":`(${P(pc)})`}</b>`)}
     ${row("Proventos desde a compra",r==null?"-":R(r))}
     ${row("Retorno total",g==null||r==null?"-":`<b class="${cls(g+r)}">${R(g+r)} (${P((g+r)/c*100)})</b>`)}
-    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)+rangeBar(x):""}${x?indRows(x)+medRows(x):""}${x?srcLn(x):""}
+    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?valBlock(x):""}${x&&!x.sd?row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)+rangeBar(x):""}${x?indRows(x)+medRows(x):""}${x?srcLn(x):""}
     <div style="margin-top:12px"><button class="btn ghost" data-d="${i}">Remover esta compra</button></div></details>`}).join("");
   const g=atu-inv;
   $("#m").innerHTML=`<h2>Minha carteira</h2>
@@ -496,10 +582,10 @@ function drawRec(){
 }
 function drawCfg(){
   $("#m").innerHTML=`<h2>Ajustes</h2><div class="box"><h3>Fonte de dados</h3><label>Token brapi (já vem preenchido por padrão)<input id="c0" value="${S.token}" placeholder="usando o token padrão"></label></div>
-  <div class="box"><h3>Critérios de cálculo</h3><div class="bar"><label>P/L alvo (teto = lucro por ação × P/L)<input id="c1" type="number" step="0.5" value="${S.plAlvo}"></label><label>Desconto p/ preço ideal (%)<input id="c2" type="number" value="${S.desc}"></label><label>Anos de histórico de proventos<input id="c3" type="number" min="1" max="10" value="${S.anos}"></label><label>Meta de lucro p/ vender (%)<input id="c4" type="number" value="${S.lucro}"></label></div></div>
+  <div class="box"><h3>Critérios de cálculo</h3><div class="bar"><label>Margem de segurança mínima (%)<input id="c2" type="number" value="${S.desc}"></label><label>Anos de histórico de proventos<input id="c3" type="number" min="1" max="10" value="${S.anos}"></label><label>Meta de lucro p/ vender (%)<input id="c4" type="number" value="${S.lucro}"></label></div></div>
   <div class="box"><h3>Ações prioritárias (recebem dividendos primeiro)</h3><textarea id="c5" style="width:100%;min-height:90px">${S.watch.join(" ")}</textarea></div>
   ${brBox()}${divBox()}${schedBox()}${diagBox()}<div class="bar"><button class="btn" id="sv">Salvar e atualizar</button><button class="btn" style="background:#5b6275;color:#fff" id="ex">Exportar backup</button><button class="btn" style="background:#5b6275;color:#fff" id="im">Importar backup</button></div>`;
-  bindSched();$("#d0").onchange=()=>{S.dbKey=$("#d0").value.trim();save();status("Chave do Dados B3 salva. Toque em Salvar e atualizar para buscar os dados.")};$("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;S.brLim=+$("#b0").value||15000;S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.plAlvo=+$("#c1").value||10;S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
+  bindSched();$("#d0").onchange=()=>{S.dbKey=$("#d0").value.trim();save();status("Chave do Dados B3 salva. Toque em Salvar e atualizar para buscar os dados.")};$("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;{const np=$("#b2").value;if(np!=S.plano){S.plano=np;S.brLim=PLANOS[np].lim}else S.brLim=+$("#b0").value||PLANOS[S.plano].lim}S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
     S.watch=[...new Set($("#c5").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))];save();refresh({})};
   $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
