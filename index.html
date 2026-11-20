@@ -76,7 +76,7 @@ h2{font-size:20px;font-weight:600;letter-spacing:.2px;margin:6px 0 16px}
 <script>
 const DEFTOK="7XnqyWJBnSnqEhYotwxogQ";
 const DEFDB="db3_U5ZiTldeAzeNC1EJwPQcYQOpKlfQ-rkA";
-const APPV="v17";
+const APPV="v18";
 const DEF="TAEE11 CMIG4 BBAS3 ISAE4 BBSE3 CPFE3 BBDC4 ITUB4 KLBN4 PETR4 VALE3 TRPL4 CXSE3 SAPR11 EGIE3 ITSA4 VIVT3 CSMG3 CPLE6 ALUP11 FLRY3 SANB11 WEGE3 TIMS3 ABCB4 BRSR6 CMIN3 GOAU4 SUZB3 LEVE3".split(" ");
 const K="radar_v2",$=s=>document.querySelector(s);
 const PLANOS={gratis:{n:"Gratuito",lim:15000,lote:1,atu:"dia anterior"},startup:{n:"Startup",lim:150000,lote:10,atu:"15 min"},pro:{n:"Pro",lim:500000,lote:20,atu:"5 min"}};
@@ -88,7 +88,7 @@ if(S.useSI===undefined)S.useSI=true;
 if(S.siProxy===undefined)S.siProxy="";
 if(!["nota","margem"].includes(S.rk))S.rk="nota";
 const dbk=()=>S.dbKey||DEFDB;
-const divSrc=()=>S.brapiDiv||!!dbk()||!!S.useSI;
+const divSrc=()=>S.brapiDiv||!!dbk()||!!S.useSI||Object.keys(C).length>0;
 const intradia=()=>(PLANOS[S.plano]||PLANOS.gratis).atu!="dia anterior";
 const hojeBR=()=>new Date(Date.now()-3*36e5).toISOString().slice(0,10);
 let gapMul=1;
@@ -179,11 +179,11 @@ function parseStatusInvestHtml(html,t){
   return {t,preco,dy,pl,pvp,roe,roic,ml,dle,at:Date.now(),src:"statusinvest"};
 }
 async function fetchStatusInvest(t){
-  if(!S.useSI)return null;
+  if(!S.useSI||!S.siProxy)return null;
   M.si.n++;
   const slug=t.toLowerCase();
   const baseUrl=`https://statusinvest.com.br/acoes/${slug}`;
-  const targetUrl=S.siProxy?S.siProxy.replace("{ticker}",slug).replace("{url}",encodeURIComponent(baseUrl)):baseUrl;
+  const targetUrl=S.siProxy.replace("{ticker}",slug).replace("{url}",encodeURIComponent(baseUrl));
   try{
     const ctrl=new AbortController();
     const timer=setTimeout(()=>ctrl.abort(),7000);
@@ -233,6 +233,7 @@ function parsePlan(j,tks,cp){
   if(!rows)return null;
   const out={};let got=0;
   rows.forEach((r,i)=>{let t=tks[i],v=null;
+    if(r&&typeof r=="object"&&/fora da planilha/i.test(String(r.aviso||r.mensagem||r.obs||"")))return;
     if(Array.isArray(r)){const a=r.length==cp.length+1&&typeof r[0]=="string"?(t=r[0],r.slice(1)):r;v=cp.map((c,k)=>num(a[k]))}
     else if(r&&typeof r=="object"){t=r.codigo||r.ticker||r.cod||t;const src=r.valores&&typeof r.valores=="object"?r.valores:r;v=cp.map((c,k)=>num(Array.isArray(src)?src[k]:src[c]))}
     if(t&&v){out[t]=Object.fromEntries(cp.map((c,k)=>[c,v[k]]));if(v.some(x=>x!=null))got++}});
@@ -337,6 +338,72 @@ function merge(t,n){const o=C[t]||{},now=Date.now();
   C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,qt:n.qt||o.qt,detAt:now,qAt:now,src:"brapi"};
   if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
+/* ===== Carrega dados gerados pelo GitHub Actions (dados.json) ===== */
+async function loadRepoDados(){
+  try{
+    const r=await fetch("./dados.json?v="+Date.now(),{cache:"no-store"});
+    if(!r.ok)return false;
+    const j=await r.json();
+    const lista=Array.isArray(j.ativos)?j.ativos:(Array.isArray(j.acoes)?j.acoes:[]);
+    if(!lista.length)return false;
+    const now=Date.now();
+    const at=j.gerado_ms||(j.gerado?Date.parse(j.gerado):now)||now;
+    let n=0,comDiv=0;
+    for(const a of lista){
+      if(!a||!a.t||!/^[A-Z]{4}([3-8]|11)$/.test(a.t))continue;
+      if(typeof a.p!="number"||!(a.p>0))continue;
+      const prev=C[a.t]||{};
+      const vol=a.liq&&a.p?Math.round(a.liq/a.p):(prev.vol||0);
+      const plv=Number.isFinite(a.pl)&&a.pl>0?a.pl:null;
+      const pvpv=Number.isFinite(a.pvp)&&a.pvp>0?a.pvp:null;
+      const mt=prev.mt||(plv?( {
+        at,
+        pl:{m:plv,n:4,q1:plv*0.85,q3:plv*1.15},
+        pvp:{m:pvpv||1.5,n:4},
+        ev:{m:8,n:4},
+        lpa:+(a.p/plv).toFixed(4),
+        vpa:pvpv>0?+(a.p/pvpv).toFixed(4):null,
+        acoes:null,dl:null,atip:false,preco:a.p,dpreco:a.data_cotacao||"",ano:new Date().getFullYear()
+      } ):null);
+      const temDiv=Array.isArray(a.div)&&a.div.length>0;
+      if(temDiv)comDiv++;
+      C[a.t]={
+        ...prev,
+        p:a.p,
+        ch:a.ch??prev.ch??null,
+        nome:a.nome||prev.nome||a.t,
+        sec:a.setor||prev.sec||"",
+        lo:a.lo??prev.lo??null,
+        hi:a.hi??prev.hi??null,
+        vol,
+        pl:a.pl??prev.pl??null,
+        roe:a.roe??prev.roe??null,
+        pvp:a.pvp??prev.pvp??null,
+        dy12:a.dy12??a.dy??prev.dy12??null,
+        div:temDiv?a.div:(prev.div||[]),
+        fu:Object.assign({},prev.fu||{},a.fu||{}),
+        mt:prev.mt||mt,
+        detAt:at,
+        qAt:at,
+        dAt:temDiv?at:(prev.dAt||0),
+        src:"github-dados.json"
+      };
+      ST[a.t]={...(ST[a.t]||{}),s:"ok",at,err:null};
+      n++;
+    }
+    if(n>0){
+      M.qAt=Math.max(M.qAt||0,at);
+      if(comDiv)M.dAt=Math.max(M.dAt||0,at);
+      M.ultimo={ok:n,fail:0,total:n,restantes:0,at:now};
+      persist();
+      return true;
+    }
+    return false;
+  }catch(e){
+    return false;
+  }
+}
+
 /* ===== Fila única, sem consultas simultâneas duplicadas ===== */
 let run=null;
 function refresh(o={}){
@@ -369,7 +436,7 @@ async function fetchList(){
 async function runIndiv(ts){let ok=0,fail=0,stop=false;const q=[...ts],again=new Set();gapMul=1;
   while(q.length&&!stop){const t=q.shift();status(`Detalhes de ${t}… (${ok+fail+1}/${ok+fail+q.length+1})`);
     try{const det=await viaRetry(()=>fetchDet(t));merge(t,det);
-      if(S.useSI&&(!C[t].siAt||Date.now()-C[t].siAt>12*36e5)){const si=await fetchStatusInvest(t);if(si)applyStatusInvestFallback(t,si)}
+      if(S.useSI&&S.siProxy&&(!C[t].siAt||Date.now()-C[t].siAt>12*36e5)){const si=await fetchStatusInvest(t);if(si)applyStatusInvestFallback(t,si)}
       ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++;gapMul=Math.max(1,gapMul*0.9)}
     catch(e){
       const si=await fetchStatusInvest(t);
@@ -398,15 +465,15 @@ async function runDiv(o,now){
     need.push(rep)}
   need.sort((a,b)=>(pri.has(b)-pri.has(a))||(!!C[a].dAt-!!C[b].dAt)||sc2(b)-sc2(a));
   let ok=0,fail=0,done=0,stop=false;
-  while(need.length&&!stop&&(S.brapiDiv||M.db.n<lim||S.useSI)){const t=need.shift();
+  while(need.length&&!stop&&(S.brapiDiv||(S.dbKey&&M.db.n<lim)||(S.useSI&&S.siProxy))){const t=need.shift();
     status(`Proventos da carteira: ${++done} consultados · ${ok} obtidos · ${fail} falhas · ${need.length} na fila`);
     try{
       if(S.brapiDiv)merge(t,await viaRetry(()=>fetchOne(t,true)));
-      else if(dbk()&&M.db.n<lim){const d=await viaRetry(()=>fetchDivDB(t));C[t].div=d;C[t].dAt=Date.now();C[t].dsrc="dadosb3.com"}
-      else if(S.useSI){const si=await fetchStatusInvest(t);if(si){applyStatusInvestFallback(t,si);if(si.dy!=null&&!C[t].dy12)C[t].dy12=si.dy}}
+      else if(S.dbKey&&M.db.n<lim){const d=await viaRetry(()=>fetchDivDB(t));C[t].div=d;C[t].dAt=Date.now();C[t].dsrc="dadosb3.com"}
+      else if(S.useSI&&S.siProxy){const si=await fetchStatusInvest(t);if(si){applyStatusInvestFallback(t,si);if(si.dy!=null&&!C[t].dy12)C[t].dy12=si.dy}}
       ST[t]={...(ST[t]||{}),dv:{s:"ok",at:Date.now()}};ok++}
     catch(e){
-      const si=S.useSI?await fetchStatusInvest(t):null;
+      const si=(S.useSI&&S.siProxy)?await fetchStatusInvest(t):null;
       if(si&&applyStatusInvestFallback(t,si)){ST[t]={...(ST[t]||{}),dv:{s:"ok",at:Date.now(),fb:"statusinvest"}};ok++}
       else{const s=e.s||"neterr";ST[t]={...(ST[t]||{}),dv:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:S.brapiDiv?"brapi.dev":"dadosb3.com",at:Date.now(),s};fail++;if(s=="limit"||s=="auth")stop=true}
     }
@@ -425,6 +492,11 @@ function filaDetalhe(o,kind){
 async function doRefresh(o){
   if(o.listOnly){try{await viaRetry(fetchList);ST.__lista={s:"ok",at:Date.now()}}catch(e){M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s}}return}
   const now=Date.now(),sc=S.sched,kind=o.kind||"full",pos=[...new Set(S.pos.map(p=>p.t))];
+  if(!o.only&&!o.divOnly&&!o.force){
+    status("Sincronizando dados publicados no GitHub (dados.json)…");
+    const okRepo=await loadRepoDados();
+    if(okRepo&&Object.keys(C).length>0)return;
+  }
   if(!o.divOnly&&!o.only&&fimDeSemana()&&M.qAt>=lastClose()){status("Mercado fechado: a B3 não opera no fim de semana. Exibindo o fechamento de "+fmtDia(lastClose())+"; as atualizações voltam na segunda-feira.");await sleep(2500);return}
   if(o.manual&&!o.only&&now-M.lastTry<sc.minManual*60000){status(`Aguarde ${Math.ceil((sc.minManual*60000-(now-M.lastTry))/1000)}s: intervalo mínimo entre atualizações manuais.`);await sleep(2500);return}
   const skipBr=!o.divOnly&&!o.only&&!intradia()&&M.qDia===hojeBR()&&Object.keys(C).length>0;
@@ -479,11 +551,11 @@ function brBox(){return`<div class="box"><h3>Orçamento de chamadas e filtros</h
   <p class="n">${intradia()?"Neste plano os preços se renovam durante o pregão: os horários dentro do expediente fazem sentido.":"No plano gratuito os preços são sempre os do dia anterior. Por isso o Radar consulta a brapi uma vez por dia útil, de manhã, e ignora os horários durante o pregão, para não gastar cota sem preço novo."}</p>
   <div class="bar"><label>Cota mensal da brapi<input id="b0" type="number" min="100" value="${S.brLim}" style="width:140px"></label><label>Liquidez mínima por dia (R$)<input id="b1" type="number" min="0" step="100000" value="${S.liqMin}" style="width:170px"></label></div></div>`}
 function divBox(){return`<div class="box"><h3>Proventos da carteira e fallback Status Invest</h3>
-  <p class="n">Os proventos são buscados para as ações da carteira e candidatas. O sistema combina brapi, Dados B3 (chave gratuita em dadosb3.com/chave-gratis) e raspagem/extração de fallback do Status Invest sem travar se houver bloqueio de CORS no navegador.</p>
+  <p class="n">O Radar lê primeiro o <code>dados.json</code> gerado pelo GitHub Actions (sem bloqueio CORS). Se configurar proxy/chave, também pode consultar Status Invest, Dados B3 e brapi.</p>
   <label>Chave do Dados B3<input id="d0" type="password" value="${S.dbKey}" placeholder="${DEFDB?"usando a chave padrão do app":""}" autocomplete="off"></label>
   <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d1" style="width:auto" ${S.brapiDiv?"checked":""}> Meu plano da brapi inclui dividendos (Startup ou superior)</label>
-  <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d3" style="width:auto" ${S.useSI?"checked":""}> Ativar extração/raspagem de fallback do Status Invest (com fallback automático)</label>
-  <div class="bar" style="margin-top:10px"><label>Proxy opcional p/ raspagem (use {ticker} ou {url})<input id="d4" value="${S.siProxy||""}" placeholder="vazio = direto do navegador (fallback automático)" style="flex:1;min-width:260px"></label><label>Consultas diárias ao Dados B3<input id="d2" type="number" min="1" value="${S.dbLim}" style="width:140px"></label></div></div>`}
+  <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d3" style="width:auto" ${S.useSI?"checked":""}> Ativar extração/raspagem de fallback do Status Invest (quando proxy configurado)</label>
+  <div class="bar" style="margin-top:10px"><label>Proxy opcional p/ raspagem (use {ticker} ou {url})<input id="d4" value="${S.siProxy||""}" placeholder="vazio = usa dados.json / sem chamada CORS direta" style="flex:1;min-width:260px"></label><label>Consultas diárias ao Dados B3<input id="d2" type="number" min="1" value="${S.dbLim}" style="width:140px"></label></div></div>`}
 function schedBox(){const s=S.sched,D=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
   return`<div class="box"><h3>Atualização automática</h3>
   <label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="s0" style="width:auto" ${s.on?"checked":""}> Ativar (funciona com o Radar aberto)</label>
@@ -577,7 +649,7 @@ const rangeBar=x=>x.pos==null?"":`<div class="rgw"><small>Mín. ${R(x.min)}</sma
 const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span><span class="chip ${cfCls(x.conf)}">Confiança ${x.conf}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
 const medRows=x=>{const m=SEC_MED[x.sec];return(m&&m.pl!=null?row("P/L do setor (mediana)",fp(m.pl)):"")+(m&&m.dy!=null?row("DY 12m do setor (mediana)",P(m.dy)):"")};
 const qd=v=>{if(!v)return"";const t=typeof v=="number"?(v<1e12?v*1000:v):Date.parse(v);return isNaN(t)?"":fmtDia(t)};
-const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (brapi, coletado em ${fmt(x.dt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (Dados B3, ${fmt(x.dd)})`:""}${x.dsi?` · Status Invest fallback (${fmt(x.dsi)})`:""}. Modelo: valor justo = mediana de métodos calculados com o histórico real da própria empresa.</div>`;
+const srcLn=x=>`<div class="src">Fontes: cotação e lucro por ação (dados.json / brapi, coletado em ${fmt(x.dt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""})${x.dp?` · ROE, P/VP e DY 12m (Dados B3, ${fmt(x.dp)})`:""}${x.dd?` · proventos (${fmt(x.dd)})`:""}${x.dsi?` · Status Invest (${fmt(x.dsi)})`:""}. Modelo: valor justo = mediana de métodos calculados com o histórico real da própria empresa.</div>`;
 const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"carregando":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
 function cardEmp(x,i){
   return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${chips(x)}<div class="why">${motivo(x)}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
@@ -590,7 +662,7 @@ function cardEmp(x,i){
   ${srcLn(x)}</details>`}
 function covBox(){const d=diagInfo();
   return`<p class="n">${fase()} · ${d.n} tickers de ${d.emp} empresas, ${d.analisadas} analisadas, ${d.fund} com balanços próprios carregados${M.mtLeft?` (faltam ${M.mtLeft}, cerca de ${Math.ceil(M.mtLeft/Math.max(1,Math.floor(S.dbLim*0.7)))} dia(s) com o limite da chave)`:""}${d.aguard?` (${d.aguard} aguardando; restam ${restanteHoje()} chamadas hoje)`:""}.</p>
-  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>O valor justo é calculado para cada empresa com os balanços reais dela: P/L e P/VP (bancos e seguradoras) ou EV/EBITDA e Graham (demais) usam a mediana do histórico da própria empresa; vale a mediana dos métodos aplicáveis. O preço ideal exige uma margem que cresce quando os métodos divergem ou o histórico é instável (mínimo ${S.desc}%, máximo 45%). COMPRAR exige preço no ideal, confiança Média ou Alta e critérios de qualidade. A raspagem/extração do Status Invest atua como camada de fallback sem interromper o fluxo caso haja bloqueio de CORS.</p></details>`}
+  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>O valor justo é calculado para cada empresa com os balanços reais dela: P/L e P/VP (bancos e seguradoras) ou EV/EBITDA e Graham (demais) usam a mediana do histórico da própria empresa; vale a mediana dos métodos aplicáveis. O preço ideal exige uma margem que cresce quando os métodos divergem ou o histórico é instável (mínimo ${S.desc}%, máximo 45%). COMPRAR exige preço no ideal, confiança Média ou Alta e critérios de qualidade. Os dados são consolidados via GitHub Actions (<code>dados.json</code>) com fallback opcional.</p></details>`}
 const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
 function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
 const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas. A análise avança aos poucos, dentro do orçamento de chamadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
@@ -693,7 +765,7 @@ function drawCfg(){
   ${brBox()}${divBox()}${schedBox()}${diagBox()}<div class="bar"><button class="btn" id="sv">Salvar e atualizar</button><button class="btn" style="background:#5b6275;color:#fff" id="ex">Exportar backup</button><button class="btn" style="background:#5b6275;color:#fff" id="im">Importar backup</button></div>`;
   bindSched();$("#d0").onchange=()=>{S.dbKey=$("#d0").value.trim();save();status("Chave do Dados B3 salva. Toque em Salvar e atualizar para buscar os dados.")};
   $("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;{const np=$("#b2").value;if(np!=S.plano){S.plano=np;S.brLim=PLANOS[np].lim}else S.brLim=+$("#b0").value||PLANOS[S.plano].lim}S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.useSI=$("#d3").checked;S.siProxy=$("#d4").value.trim();S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
-    S.watch=[...new Set($("#c5").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))];save();refresh({})};
+    S.watch=[...new Set($("#c5").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))];save();refresh({force:true})};
   $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
   $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
 }
@@ -703,14 +775,17 @@ function draw(){document.body.dataset.vis=S.vis=="cards"?"cards":"lista";V[view]
     a.classList.toggle("on",a.closest("#sub")?v==view:(v==view||(v=="top"&&inv)))});
   $("#sub").classList.toggle("hide",!["top","set","all","cart","renda"].includes(view))}
 document.querySelectorAll("[data-v]").forEach(a=>a.onclick=()=>{view=a.dataset.v;draw();scrollTo(0,0)});
-$("#upd").onclick=()=>refresh({manual:true,force:true});
+$("#upd").onclick=()=>refresh({manual:true});
 (async()=>{
   try{DB=await idb();idbOk=true}catch(e){}
   if(idbOk){const c=await kvGet("cache"),m=await kvGet("meta");if(c){C=c;for(const t in C)if(C[t].sec=="Outros")delete C[t].sec}if(m){ST=m.ST||{};M=Object.assign(M,m.M)}}
   if(!Object.keys(C).length&&legacy){for(const t in legacy){C[t]={...legacy[t],qAt:legacyAt,dAt:legacyAt};ST[t]={s:"ok",at:legacyAt}}M.qAt=M.dAt=legacyAt||0;persist()}
   draw();status();
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-  if(!Object.keys(C).length)refresh({first:true});else refresh({divOnly:true}).then(()=>{if(Object.values(C).some(c=>c.sec&&!c.logo)&&Date.now()-(M.logoTry||0)>864e5){M.logoTry=Date.now();return refresh({listOnly:true})}}).then(check);
+  const loadedRepo=await loadRepoDados();
+  if(loadedRepo){draw();status()}
+  if(!Object.keys(C).length&&!loadedRepo)refresh({first:true});
+  else check();
   setInterval(check,30000);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
   addEventListener("online",check);
