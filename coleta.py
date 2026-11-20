@@ -2,7 +2,7 @@
 """Coleta catálogo multiclasse e dados de mercado para o Radar.
 
 Catálogo de descoberta: diretório público CotaLab (ações, FIIs, ETFs e BDRs).
-Fundamentos: Fundamentus (ações e FIIs) + enriquecimento opcional Status Invest.
+Fundamentos: Fundamentus (ações e FIIs) + enriquecimento forçado Status Invest.
 Histórico de preços/proventos: Yahoo Finance via yfinance.
 """
 from __future__ import annotations
@@ -16,6 +16,7 @@ from pathlib import Path
 import re
 import time
 
+from lxml import html as lxml_html
 import pandas as pd
 import requests
 import yfinance as yf
@@ -31,18 +32,21 @@ HEADERS = {
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8",
+    "Referer": "https://statusinvest.com.br/",
 }
 
 TIMEOUT = 35
 HISTORICO_ANOS = 3
 BATCH_COTACOES = 50
 MAX_PAGINAS = 60
-MAX_SI_ENRICH = 120  # Limite por execução para não estourar tempo do GitHub Actions
+MAX_SI_ENRICH = 600  # Máximo de ativos consultados no Status Invest por execução
+MAX_SI_WORKERS = 6   # Concorrência controlada para maximizar chamadas sem derrubar o host
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
 TICKER_ACAO_RE = re.compile(r"^[A-Z]{4}(3|4|5|6|11)$")
+TICKER_FII_RE = re.compile(r"^[A-Z]{4}11$")
 
 
 def numero(v):
@@ -285,18 +289,54 @@ def carregar_fundamentos(url, cat):
         return {}
 
 
-def raspar_status_invest_acao(ticker: str) -> dict | None:
-    """Extrai indicadores básicos de /acoes/<ticker> no Status Invest sem derrubar a coleta."""
-    url = f"https://statusinvest.com.br/acoes/{ticker.lower()}"
+def _extrair_blocos_lxml(html_str: str) -> dict[str, float]:
+    """Extrai pares rótulo -> valor numérico de cards/boxes do Status Invest via lxml."""
+    encontrados: dict[str, float] = {}
     try:
-        r = SESSION.get(url, timeout=15, headers={"Referer": "https://statusinvest.com.br/"})
-        if r.status_code != 200:
+        tree = lxml_html.fromstring(html_str)
+    except Exception:
+        return encontrados
+
+    # Procura containers típicos de indicadores (div/li/tr com título e valor)
+    for node in tree.xpath("//*[self::div or self::li or self::tr]"):
+        txt_parts = [re.sub(r"\s+", " ", x).strip() for x in node.xpath(".//text()") if x and x.strip()]
+        if len(txt_parts) < 2:
+            continue
+        joined = " ".join(txt_parts)
+        if len(joined) > 160:
+            continue
+        # Tenta casar rótulo curto no início e valor numérico próximo
+        rotulo = " ".join(txt_parts[:-1]).lower()
+        valor = numero(txt_parts[-1])
+        if valor is None and len(txt_parts) >= 3:
+            valor = numero(txt_parts[-2])
+        if valor is not None and rotulo:
+            encontrados.setdefault(rotulo, valor)
+    return encontrados
+
+
+def raspar_status_invest(ticker: str, cat: str = "acao") -> dict | None:
+    """Extrai indicadores do Status Invest para ação ou FII."""
+    rota = "fiis" if cat == "fii" else "acoes"
+    url = f"https://statusinvest.com.br/{rota}/{ticker.lower()}"
+    try:
+        r = requests.get(url, timeout=15, headers=HEADERS)
+        if r.status_code != 200 or not r.text:
             return None
-        html = r.text
-        texto = re.sub(r"<[^>]+>", " ", html)
+        html_str = r.text
+        blocos = _extrair_blocos_lxml(html_str)
+
+        texto = re.sub(r"<[^>]+>", " ", html_str)
         texto = re.sub(r"\s+", " ", texto)
 
-        def pick(padroes):
+        def pick_blocos(chaves):
+            for chave in chaves:
+                for k, v in blocos.items():
+                    if chave in k:
+                        return v
+            return None
+
+        def pick_rx(padroes):
             for rx in padroes:
                 m = re.search(rx, texto, flags=re.I)
                 if m:
@@ -305,15 +345,45 @@ def raspar_status_invest_acao(ticker: str) -> dict | None:
                         return val
             return None
 
-        dy = pick([r"D\.?Y\.?\s*\(12m\)\s*(-?\d[\d.,]*)\s*%?", r"Dividend\s*Yield\s*(-?\d[\d.,]*)\s*%?"])
-        pl = pick([r"\bP/L\b\s*(-?\d[\d.,]*)"])
-        pvp = pick([r"\bP/VP\b\s*(-?\d[\d.,]*)"])
-        roe = pick([r"\bROE\b\s*(-?\d[\d.,]*)\s*%?"])
-        roic = pick([r"\bROIC\b\s*(-?\d[\d.,]*)\s*%?"])
-        ml = pick([r"Margem\s+L[íi]quida\s*(-?\d[\d.,]*)\s*%?"])
+        dy = pick_blocos(["d.y (12m)", "dy (12m)", "dividend yield", "dividendo / cota"])
+        if dy is None:
+            dy = pick_rx([r"D\.?Y\.?\s*\(12m\)\s*(-?\d[\d.,]*)\s*%?", r"Dividend\s*Yield\s*(-?\d[\d.,]*)\s*%?"])
 
-        if all(x is None for x in (dy, pl, pvp, roe, roic, ml)):
+        pl = pick_blocos(["p/l"])
+        if pl is None:
+            pl = pick_rx([r"\bP/L\b\s*(-?\d[\d.,]*)"])
+
+        pvp = pick_blocos(["p/vp"])
+        if pvp is None:
+            pvp = pick_rx([r"\bP/VP\b\s*(-?\d[\d.,]*)"])
+
+        roe = pick_blocos(["roe"])
+        if roe is None:
+            roe = pick_rx([r"\bROE\b\s*(-?\d[\d.,]*)\s*%?"])
+
+        roic = pick_blocos(["roic"])
+        if roic is None:
+            roic = pick_rx([r"\bROIC\b\s*(-?\d[\d.,]*)\s*%?"])
+
+        ml = pick_blocos(["m. líquida", "margem líquida", "margem liquida"])
+        if ml is None:
+            ml = pick_rx([r"Margem\s+L[íi]quida\s*(-?\d[\d.,]*)\s*%?"])
+
+        dle = pick_blocos(["d.líq./ebitda", "dív. líq./ebitda", "div. liq./ebitda"])
+        if dle is None:
+            dle = pick_rx([r"D[íi]v\.?\s*L[íi]q\.?\s*/\s*EBITDA\s*(-?\d[\d.,]*)"])
+
+        lpa = pick_blocos(["lpa"])
+        if lpa is None:
+            lpa = pick_rx([r"\bLPA\b\s*R?\$?\s*(-?\d[\d.,]*)"])
+
+        vpa = pick_blocos(["vpa"])
+        if vpa is None:
+            vpa = pick_rx([r"\bVPA\b\s*R?\$?\s*(-?\d[\d.,]*)"])
+
+        if all(x is None for x in (dy, pl, pvp, roe, roic, ml, dle, lpa, vpa)):
             return None
+
         return {
             "dy12": dy,
             "pl": pl,
@@ -321,45 +391,71 @@ def raspar_status_invest_acao(ticker: str) -> dict | None:
             "roe": roe,
             "roic": roic,
             "ml": ml,
+            "dle": dle,
+            "lpa": lpa,
+            "vpa": vpa,
+            "fonte": "Status Invest",
         }
     except Exception:
         return None
 
 
+def _aplicar_si_no_ativo(a: dict, dados: dict) -> None:
+    # Força atualização quando o Status Invest traz valor válido
+    if dados.get("pl") is not None:
+        a["pl"] = dados["pl"]
+    if dados.get("pvp") is not None:
+        a["pvp"] = dados["pvp"]
+    if dados.get("roe") is not None:
+        a["roe"] = dados["roe"]
+    if dados.get("dy12") is not None:
+        a["dy12"] = dados["dy12"]
+        if a.get("dy") is None:
+            a["dy"] = dados["dy12"]
+    if dados.get("ml") is not None:
+        a["ml"] = dados["ml"]
+    fu = dict(a.get("fu") or {})
+    for k_src, k_dst in [("roic", "roic"), ("ml", "ml"), ("dle", "dle"), ("lpa", "lpa"), ("vpa", "vpa")]:
+        if dados.get(k_src) is not None:
+            fu[k_dst] = dados[k_src]
+    a["fu"] = fu
+    a["si"] = dados
+    a["si_ok"] = True
+
+
 def enriquecer_status_invest(ativos: list[dict]):
-    """Completa lacunas de fundamentos de ações com Status Invest quando necessário."""
+    """Força coleta em massa do Status Invest para ações e FIIs."""
     alvos = [
         a
         for a in ativos
-        if a.get("cat") == "acao"
-        and TICKER_ACAO_RE.match(a.get("t", ""))
-        and (a.get("pl") is None or a.get("pvp") is None or a.get("roe") is None or a.get("dy") is None)
+        if (
+            (a.get("cat") == "acao" and TICKER_ACAO_RE.match(a.get("t", "")))
+            or (a.get("cat") == "fii" and TICKER_FII_RE.match(a.get("t", "")))
+        )
     ][:MAX_SI_ENRICH]
 
     if not alvos:
         return
 
     ok = 0
-    for a in alvos:
-        dados = raspar_status_invest_acao(a["t"])
-        if dados:
-            if a.get("pl") is None and dados.get("pl") is not None:
-                a["pl"] = dados["pl"]
-            if a.get("pvp") is None and dados.get("pvp") is not None:
-                a["pvp"] = dados["pvp"]
-            if a.get("roe") is None and dados.get("roe") is not None:
-                a["roe"] = dados["roe"]
-            if a.get("dy") is None and dados.get("dy12") is not None:
-                a["dy"] = dados["dy12"]
-            a["dy12"] = dados.get("dy12") if dados.get("dy12") is not None else a.get("dy")
-            a["fu"] = {
-                "roic": dados.get("roic"),
-                "ml": dados.get("ml") if dados.get("ml") is not None else a.get("ml"),
-            }
-            a["si_ok"] = True
-            ok += 1
-        time.sleep(0.5)
-    print(f"[STATUS INVEST] Enriquecidos {ok}/{len(alvos)} ativos com lacunas.", flush=True)
+
+    def _worker(item):
+        res = raspar_status_invest(item["t"], item.get("cat", "acao"))
+        time.sleep(0.15)
+        return item, res
+
+    with cf.ThreadPoolExecutor(max_workers=MAX_SI_WORKERS) as pool:
+        futs = [pool.submit(_worker, item) for item in alvos]
+        for fut in cf.as_completed(futs):
+            try:
+                item, dados = fut.result()
+                if dados:
+                    _aplicar_si_no_ativo(item, dados)
+                    ok += 1
+            except Exception:
+                continue
+
+    print(f"[STATUS INVEST] Coletados {ok}/{len(alvos)} ativos (máx. {MAX_SI_ENRICH} chamadas).", flush=True)
 
 
 def batch_precos(ativos):
@@ -458,7 +554,7 @@ def main():
     catalogo = carregar_catalogo()
     print(f"[CATÁLOGO] {len(catalogo)} instrumentos únicos.", flush=True)
 
-    print("[2/5] Carregando fundamentos de ações e FIIs...", flush=True)
+    print("[2/5] Carregando fundamentos e forçando Status Invest...", flush=True)
     fund = {}
     fund.update(carregar_fundamentos("https://www.fundamentus.com.br/resultado.php", "acao"))
     fund.update(carregar_fundamentos("https://www.fundamentus.com.br/fii_resultado.php", "fii"))
@@ -507,7 +603,8 @@ def main():
             if a.get("div"):
                 a["dAt"] = now_ms
         a["dados_completos"] = bool(
-            a.get("p") is not None and (a.get("dados_fundamentos") == "ok" or a.get("si_ok") or a["cat"] in {"etf", "bdr"})
+            a.get("p") is not None
+            and (a.get("dados_fundamentos") == "ok" or a.get("si_ok") or a["cat"] in {"etf", "bdr"})
         )
 
     gerado = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -516,8 +613,8 @@ def main():
         "gerado_ms": now_ms,
         "fonte": [
             "CotaLab (catálogo secundário)",
-            "Fundamentus (fundamentos)",
-            "Status Invest (complemento de fundamentos)",
+            "Status Invest (fundamentos primários/forçados)",
+            "Fundamentus (fundamentos complementares)",
             "Yahoo Finance/yfinance (cotações e proventos)",
         ],
         "historico_anos": HISTORICO_ANOS,
