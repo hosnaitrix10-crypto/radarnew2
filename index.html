@@ -172,11 +172,13 @@ function parseStatusInvestHtml(html,t){
   const roic=pick(/\bROIC\b\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%?/i);
   const ml=pick(/Margem\s+L[íi]quida\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%?/i);
   const dle=pick(/D[íi]v\.?\s*L[íi]q\.?\s*\/\s*EBITDA\s*[:\n\r\s]*(-?\d[\d.,]*)/i);
+  const lpa=pick(/\bLPA\b\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
+  const vpa=pick(/\bVPA\b\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
   const preco=pick(/(?:Valor\s+atual|Cota[çc][ãa]o)\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
-  if(dy==null&&pl==null&&pvp==null&&roe==null&&preco==null){
+  if(dy==null&&pl==null&&pvp==null&&roe==null&&preco==null&&lpa==null&&vpa==null){
     throw new E("nodata","raspagem Status Invest sem indicadores parseáveis para "+t,200);
   }
-  return {t,preco,dy,pl,pvp,roe,roic,ml,dle,at:Date.now(),src:"statusinvest"};
+  return {t,preco,dy,pl,pvp,roe,roic,ml,dle,lpa,vpa,at:Date.now(),src:"statusinvest"};
 }
 async function fetchStatusInvest(t){
   if(!S.useSI||!S.siProxy)return null;
@@ -205,22 +207,54 @@ async function fetchStatusInvest(t){
     return null;
   }
 }
-function applyStatusInvestFallback(t,si){
-  if(!si||!C[t])return false;
-  const c=C[t];
-  if(si.pl!=null&&!Number.isFinite(c.pl))c.pl=si.pl;
-  if(si.pvp!=null&&c.pvp==null)c.pvpB=si.pvp;
-  if(si.roe!=null&&c.roe==null)c.roeB=si.roe;
-  if(si.dy!=null&&c.dy12==null)c.dy12=si.dy;
-  if(si.roic!=null||si.ml!=null||si.dle!=null){
-    c.fu=Object.assign({},c.fu||{},{
-      roic:si.roic??(c.fu&&c.fu.roic),
-      ml:si.ml??(c.fu&&c.fu.ml),
-      dle:si.dle??(c.fu&&c.fu.dle)
+function buildSyntheticMtFromSi(a, at){
+  const p = Number.isFinite(a.p) && a.p > 0 ? a.p : null;
+  const pl = Number.isFinite(a.pl) && a.pl > 0 ? a.pl : null;
+  const pvp = Number.isFinite(a.pvp) && a.pvp > 0 ? a.pvp : null;
+  const si = a.si || {};
+  const lpa = Number.isFinite(si.lpa) && si.lpa > 0 ? si.lpa : (p && pl ? +(p / pl).toFixed(4) : null);
+  const vpa = Number.isFinite(si.vpa) && si.vpa > 0 ? si.vpa : (p && pvp ? +(p / pvp).toFixed(4) : null);
+  if(!lpa && !vpa) return null;
+  return {
+    at,
+    pl: pl ? {m: pl, n: 4, q1: pl * 0.85, q3: pl * 1.15} : {m: null, n: 0, q1: null, q3: null},
+    pvp: pvp ? {m: pvp, n: 4} : {m: null, n: 0},
+    ev: {m: null, n: 0},
+    lpa,
+    vpa,
+    acoes: null,
+    dl: null,
+    atip: false,
+    preco: p,
+    dpreco: a.data_cotacao || "",
+    ano: new Date().getFullYear(),
+    src: "statusinvest"
+  };
+}
+function applyStatusInvestFallback(t, si){
+  if(!si || !C[t]) return false;
+  const c = C[t];
+  if(si.pl != null) c.pl = si.pl;
+  if(si.pvp != null){ c.pvp = si.pvp; c.pvpB = si.pvp; }
+  if(si.roe != null){ c.roe = si.roe; c.roeB = si.roe; }
+  if(si.dy != null) c.dy12 = si.dy;
+  if(si.ml != null) c.ml = si.ml;
+  if(si.roic != null || si.ml != null || si.dle != null || si.lpa != null || si.vpa != null){
+    c.fu = Object.assign({}, c.fu || {}, {
+      roic: si.roic ?? (c.fu && c.fu.roic),
+      ml: si.ml ?? (c.fu && c.fu.ml),
+      dle: si.dle ?? (c.fu && c.fu.dle),
+      lpa: si.lpa ?? (c.fu && c.fu.lpa),
+      vpa: si.vpa ?? (c.fu && c.fu.vpa)
     });
   }
-  c.siAt=Date.now();
-  c.sisrc="statusinvest";
+  c.si = Object.assign({}, c.si || {}, si);
+  c.siAt = Date.now();
+  c.sisrc = "statusinvest";
+  if(!c.mt && c.p > 0){
+    const synMt = buildSyntheticMtFromSi(c, c.siAt);
+    if(synMt) c.mt = synMt;
+  }
   return true;
 }
 
@@ -341,60 +375,62 @@ function merge(t,n){const o=C[t]||{},now=Date.now();
 /* ===== Carrega dados gerados pelo GitHub Actions (dados.json) ===== */
 async function loadRepoDados(){
   try{
-    const r=await fetch("./dados.json?v="+Date.now(),{cache:"no-store"});
-    if(!r.ok)return false;
-    const j=await r.json();
-    const lista=Array.isArray(j.ativos)?j.ativos:(Array.isArray(j.acoes)?j.acoes:[]);
-    if(!lista.length)return false;
-    const now=Date.now();
-    const at=j.gerado_ms||(j.gerado?Date.parse(j.gerado):now)||now;
-    let n=0,comDiv=0;
+    const r = await fetch("./dados.json?v=" + Date.now(), {cache: "no-store"});
+    if(!r.ok) return false;
+    const j = await r.json();
+    const lista = Array.isArray(j.ativos) ? j.ativos : (Array.isArray(j.acoes) ? j.acoes : []);
+    if(!lista.length) return false;
+    const now = Date.now();
+    const at = j.gerado_ms || (j.gerado ? Date.parse(j.gerado) : now) || now;
+    let n = 0, comDiv = 0, comSi = 0;
     for(const a of lista){
-      if(!a||!a.t||!/^[A-Z]{4}([3-8]|11)$/.test(a.t))continue;
-      if(typeof a.p!="number"||!(a.p>0))continue;
-      const prev=C[a.t]||{};
-      const vol=a.liq&&a.p?Math.round(a.liq/a.p):(prev.vol||0);
-      const plv=Number.isFinite(a.pl)&&a.pl>0?a.pl:null;
-      const pvpv=Number.isFinite(a.pvp)&&a.pvp>0?a.pvp:null;
-      const mt=prev.mt||(plv?( {
-        at,
-        pl:{m:plv,n:4,q1:plv*0.85,q3:plv*1.15},
-        pvp:{m:pvpv||1.5,n:4},
-        ev:{m:8,n:4},
-        lpa:+(a.p/plv).toFixed(4),
-        vpa:pvpv>0?+(a.p/pvpv).toFixed(4):null,
-        acoes:null,dl:null,atip:false,preco:a.p,dpreco:a.data_cotacao||"",ano:new Date().getFullYear()
-      } ):null);
-      const temDiv=Array.isArray(a.div)&&a.div.length>0;
-      if(temDiv)comDiv++;
-      C[a.t]={
+      if(!a || !a.t || !/^[A-Z]{4}([3-8]|11)$/.test(a.t)) continue;
+      if(typeof a.p != "number" || !(a.p > 0)) continue;
+      const prev = C[a.t] || {};
+      const vol = a.liq && a.p ? Math.round(a.liq / a.p) : (prev.vol || 0);
+      const plv = Number.isFinite(a.pl) && a.pl > 0 ? a.pl : (Number.isFinite(prev.pl) && prev.pl > 0 ? prev.pl : null);
+      const pvpv = Number.isFinite(a.pvp) && a.pvp > 0 ? a.pvp : (Number.isFinite(prev.pvp) && prev.pvp > 0 ? prev.pvp : null);
+      const temDiv = Array.isArray(a.div) && a.div.length > 0;
+      if(temDiv) comDiv++;
+      if(a.si_ok || a.si) comSi++;
+      C[a.t] = {
         ...prev,
-        p:a.p,
-        ch:a.ch??prev.ch??null,
-        nome:a.nome||prev.nome||a.t,
-        sec:a.setor||prev.sec||"",
-        lo:a.lo??prev.lo??null,
-        hi:a.hi??prev.hi??null,
+        p: a.p,
+        ch: a.ch ?? prev.ch ?? null,
+        nome: a.nome || prev.nome || a.t,
+        sec: a.setor || prev.sec || "",
+        lo: a.lo ?? prev.lo ?? null,
+        hi: a.hi ?? prev.hi ?? null,
         vol,
-        pl:a.pl??prev.pl??null,
-        roe:a.roe??prev.roe??null,
-        pvp:a.pvp??prev.pvp??null,
-        dy12:a.dy12??a.dy??prev.dy12??null,
-        div:temDiv?a.div:(prev.div||[]),
-        fu:Object.assign({},prev.fu||{},a.fu||{}),
-        mt:prev.mt||mt,
-        detAt:at,
-        qAt:at,
-        dAt:temDiv?at:(prev.dAt||0),
-        src:"github-dados.json"
+        pl: plv,
+        roe: a.roe ?? prev.roe ?? null,
+        pvp: pvpv,
+        pvpB: pvpv ?? prev.pvpB ?? null,
+        roeB: a.roe ?? prev.roeB ?? null,
+        ml: a.ml ?? prev.ml ?? null,
+        dy12: a.dy12 ?? a.dy ?? prev.dy12 ?? null,
+        div: temDiv ? a.div : (prev.div || []),
+        fu: Object.assign({}, prev.fu || {}, a.fu || {}),
+        si: a.si || prev.si || null,
+        siAt: (a.si_ok || a.si) ? at : (prev.siAt || 0),
+        sisrc: (a.si_ok || a.si) ? "statusinvest" : (prev.sisrc || ""),
+        detAt: at,
+        qAt: at,
+        dAt: temDiv ? at : (prev.dAt || 0),
+        src: "github-dados.json"
       };
-      ST[a.t]={...(ST[a.t]||{}),s:"ok",at,err:null};
+      if(!C[a.t].mt || C[a.t].mt.src === "statusinvest"){
+        const synMt = buildSyntheticMtFromSi(C[a.t], at);
+        if(synMt) C[a.t].mt = synMt;
+      }
+      ST[a.t] = {...(ST[a.t] || {}), s: "ok", at, err: null};
       n++;
     }
-    if(n>0){
-      M.qAt=Math.max(M.qAt||0,at);
-      if(comDiv)M.dAt=Math.max(M.dAt||0,at);
-      M.ultimo={ok:n,fail:0,total:n,restantes:0,at:now};
+    if(n > 0){
+      M.qAt = Math.max(M.qAt || 0, at);
+      if(comDiv) M.dAt = Math.max(M.dAt || 0, at);
+      if(comSi) M.si = {n: comSi, ok: comSi, skip: 0, lastErr: ""};
+      M.ultimo = {ok: n, fail: 0, total: n, restantes: 0, at: now};
       persist();
       return true;
     }
