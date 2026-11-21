@@ -1,6 +1,6 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-21T19:51:31.636022+00:00",
+  "updatedAt": "2026-11-21T19:56:25.657330+00:00",
   "stats": {
     "total": 273,
     "ok": 0,
@@ -165,7 +165,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/brkm5",
-      "updatedAt": "2026-11-21T19:48:46.529766+00:00",
+      "updatedAt": "2026-11-21T19:56:19.396658+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -175,7 +175,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/brfs3",
-      "updatedAt": "2026-11-21T19:48:47.146345+00:00",
+      "updatedAt": "2026-11-21T19:56:20.035740+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -185,7 +185,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/bpac11",
-      "updatedAt": "2026-11-21T19:48:47.758736+00:00",
+      "updatedAt": "2026-11-21T19:56:20.666994+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -195,7 +195,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/crfb3",
-      "updatedAt": "2026-11-21T19:48:48.351423+00:00",
+      "updatedAt": "2026-11-21T19:56:21.313343+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -205,7 +205,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/ccro3",
-      "updatedAt": "2026-11-21T19:48:48.969921+00:00",
+      "updatedAt": "2026-11-21T19:56:21.945823+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -215,7 +215,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/cmpy3",
-      "updatedAt": "2026-11-21T19:48:49.580560+00:00",
+      "updatedAt": "2026-11-21T19:56:22.588119+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -225,7 +225,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/cmig4",
-      "updatedAt": "2026-11-21T19:48:50.185915+00:00",
+      "updatedAt": "2026-11-21T19:56:23.229929+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -235,7 +235,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/ciel3",
-      "updatedAt": "2026-11-21T19:48:50.793973+00:00",
+      "updatedAt": "2026-11-21T19:56:23.859955+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -245,7 +245,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/cogn3",
-      "updatedAt": "2026-11-21T19:48:51.389417+00:00",
+      "updatedAt": "2026-11-21T19:56:24.485565+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -255,7 +255,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/cpfe3",
-      "updatedAt": "2026-11-21T19:48:51.999678+00:00",
+      "updatedAt": "2026-11-21T19:56:25.104459+00:00",
       "error": "HTTP 403",
       "data": {}
     },
