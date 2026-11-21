@@ -8,7 +8,7 @@ on:
       batch_size:
         description: "Quantidade de ativos por execução"
         required: false
-        default: "60"
+        default: "40"
 
 jobs:
   coletar:
@@ -33,18 +33,18 @@ jobs:
 
       - name: Executar coleta Status Invest
         env:
-          BATCH_SIZE: ${{ github.event.inputs.batch_size || '60' }}
+          BATCH_SIZE: ${{ github.event.inputs.batch_size || '40' }}
         run: python coleta.py
 
       - name: Commit e push de dados.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
           git add dados.json
           if git diff --staged --quiet; then
             echo "Sem alterações em dados.json"
             exit 0
           fi
           git commit -m "chore: atualiza dados do Status Invest"
-          git pull --rebase --autostash origin main
           git push origin main
