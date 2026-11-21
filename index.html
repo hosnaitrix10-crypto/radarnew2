@@ -1,28 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radar Status Invest</title>
+  <title>Radar — Status Invest</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 20px; }
-    .top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
-    input, select { padding: 8px 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #f8fafc; }
-    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; font-size: 14px; }
-    th { background: #020617; color: #94a3b8; }
-    .ok { color: #4ade80; font-weight: bold; }
-    .nodata { color: #facc15; }
-    .neterr, .limit { color: #f87171; }
-    a { color: #38bdf8; text-decoration: none; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      color: #f8fafc;
+    }
+    .resumo {
+      margin-bottom: 16px;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .controles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    input, select, button {
+      padding: 9px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 14px;
+    }
+    button {
+      cursor: pointer;
+      background: #1d4ed8;
+      border-color: #2563eb;
+      font-weight: 600;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+    .tabela-wrap {
+      width: 100%;
+      overflow-x: auto;
+      background: #1e293b;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    th {
+      background: #020617;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .ok { color: #4ade80; font-weight: 700; }
+    .nodata { color: #facc15; font-weight: 600; }
+    .neterr, .limit { color: #f87171; font-weight: 600; }
+    .erro-txt {
+      display: block;
+      color: #fca5a5;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .vazio {
+      text-align: center;
+      padding: 24px;
+      color: #94a3b8;
+    }
   </style>
 </head>
 <body>
   <h1>Radar — Status Invest</h1>
-  <div id="resumo" style="margin-bottom: 14px; color: #94a3b8;">Carregando dados.json...</div>
+  <div id="resumo" class="resumo">A carregar dados.json...</div>
 
-  <div class="top">
+  <div class="controles">
     <input id="busca" type="text" placeholder="Filtrar ticker (ex.: PETR4, MXRF11)..." />
+    <select id="filtroTipo">
+      <option value="all">Todos os tipos</option>
+      <option value="stock">Ações (stock)</option>
+      <option value="fund">Fundos / FIIs (fund)</option>
+      <option value="bdr">BDRs (bdr)</option>
+    </select>
     <select id="filtroStatus">
       <option value="all">Todos os status</option>
       <option value="ok">ok</option>
@@ -30,66 +117,140 @@
       <option value="neterr">neterr</option>
       <option value="limit">limit</option>
     </select>
+    <button id="btnAtualizar" type="button">Recarregar</button>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Ticker</th>
-        <th>Tipo</th>
-        <th>Status</th>
-        <th>Indicadores extraídos</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody id="corpo"></tbody>
-  </table>
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Indicadores extraídos</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody id="corpo">
+        <tr><td colspan="5" class="vazio">A carregar...</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
     let todosItens = [];
+
+    function escaparHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
 
     function resumirIndicadores(dataObj) {
       if (!dataObj || typeof dataObj !== "object") return "-";
       const chaves = Object.keys(dataObj);
       if (!chaves.length) return "-";
-      return chaves.slice(0, 5).map(k => `${k}: ${dataObj[k]?.raw ?? "-"}`).join(" | ");
+      return chaves
+        .slice(0, 6)
+        .map((k) => {
+          const val = dataObj[k]?.raw ?? dataObj[k]?.num ?? "-";
+          return `${escaparHtml(k)}: ${escaparHtml(val)}`;
+        })
+        .join(" | ");
     }
 
     function renderizar() {
       const q = document.getElementById("busca").value.trim().toUpperCase();
+      const tipo = document.getElementById("filtroTipo").value;
       const st = document.getElementById("filtroStatus").value;
       const corpo = document.getElementById("corpo");
 
-      const filtrados = todosItens.filter(item => {
-        const matchTicker = !q || item.ticker.includes(q);
+      const filtrados = todosItens.filter((item) => {
+        const tk = String(item.ticker || "").toUpperCase();
+        const matchTicker = !q || tk.includes(q);
+        const matchTipo = tipo === "all" || (item.type || "stock") === tipo;
         const matchStatus = st === "all" || item.status === st;
-        return matchTicker && matchStatus;
+        return matchTicker && matchTipo && matchStatus;
       });
 
-      corpo.innerHTML = filtrados.map(item => `
-        <tr>
-          <td><strong>${item.ticker}</strong></td>
-          <td>${item.type || "-"}</td>
-          <td class="${item.status || ""}">${item.status || "-"}</td>
-          <td>${resumirIndicadores(item.data)}</td>
-          <td>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">Abrir</a>` : "-"}</td>
-        </tr>
-      `).join("");
+      if (!filtrados.length) {
+        corpo.innerHTML = `<tr><td colspan="5" class="vazio">Nenhum registo encontrado com os filtros atuais.</td></tr>`;
+        return;
+      }
+
+      corpo.innerHTML = filtrados
+        .map((item) => {
+          const tk = escaparHtml(item.ticker || "-");
+          const tp = escaparHtml(item.type || "-");
+          const status = escaparHtml(item.status || "-");
+          const detalheErro = item.error && item.status !== "ok"
+            ? `<span class="erro-txt">${escaparHtml(item.error)}</span>`
+            : "";
+          const urlSegura = item.url && /^https?:\/\//i.test(item.url)
+            ? `<a href="${escaparHtml(item.url)}" target="_blank" rel="noopener noreferrer">Abrir</a>`
+            : "-";
+
+          return `
+            <tr>
+              <td><strong>${tk}</strong></td>
+              <td>${tp}</td>
+              <td>
+                <span class="${status}">${status}</span>
+                ${detalheErro}
+              </td>
+              <td>${resumirIndicadores(item.data)}</td>
+              <td>${urlSegura}</td>
+            </tr>
+          `;
+        })
+        .join("");
     }
 
     async function carregar() {
-      const res = await fetch(`./dados.json?t=${Date.now()}`);
-      const json = await res.json();
-      const stats = json.stats || {};
-      document.getElementById("resumo").textContent =
-        `Atualizado em: ${json.updatedAt || "-"} | Total: ${stats.total ?? 0} | OK: ${stats.ok ?? 0} | Sem dados: ${stats.nodata ?? 0} | Erro rede: ${stats.neterr ?? 0} | Limite: ${stats.limit ?? 0}`;
+      const resumoEl = document.getElementById("resumo");
+      try {
+        const res = await fetch(`./dados.json?t=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        const json = await res.json();
+        const itemsObj = json && typeof json.items === "object" && json.items !== null
+          ? json.items
+          : {};
 
-      todosItens = Object.values(json.items || {});
-      renderizar();
+        todosItens = Object.entries(itemsObj).map(([chave, valor]) => ({
+          ticker: (valor && valor.ticker) || chave,
+          ...(valor && typeof valor === "object" ? valor : {}),
+        }));
+
+        const stats = json.stats || {
+          total: todosItens.length,
+          ok: todosItens.filter((i) => i.status === "ok").length,
+          nodata: todosItens.filter((i) => i.status === "nodata").length,
+          neterr: todosItens.filter((i) => i.status === "neterr").length,
+          limit: todosItens.filter((i) => i.status === "limit").length,
+        };
+
+        resumoEl.textContent =
+          `Atualizado em: ${json.updatedAt || "-"} | Total: ${stats.total ?? 0} | ` +
+          `OK: ${stats.ok ?? 0} | Sem dados: ${stats.nodata ?? 0} | ` +
+          `Erro rede: ${stats.neterr ?? 0} | Limite: ${stats.limit ?? 0}`;
+
+        renderizar();
+      } catch (err) {
+        resumoEl.textContent = `Falha ao carregar dados.json: ${err.message || err}`;
+        document.getElementById("corpo").innerHTML =
+          `<tr><td colspan="5" class="vazio">Não foi possível ler dados.json.</td></tr>`;
+      }
     }
 
     document.getElementById("busca").addEventListener("input", renderizar);
+    document.getElementById("filtroTipo").addEventListener("change", renderizar);
     document.getElementById("filtroStatus").addEventListener("change", renderizar);
+    document.getElementById("btnAtualizar").addEventListener("click", carregar);
+
     carregar();
   </script>
 </body>
