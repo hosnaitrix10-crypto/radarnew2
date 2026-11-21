@@ -2,17 +2,18 @@ name: Atualizar Dados Status Invest
 
 on:
   schedule:
-    - cron: "0 */4 * * *"
+    - cron: "0 */6 * * *"
   workflow_dispatch:
     inputs:
       batch_size:
-        description: "Quantidade de ativos por execução"
+        description: "Quantidade de ativos por execução (0 = todos)"
         required: false
-        default: "40"
+        default: "400"
 
 jobs:
   coletar:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     permissions:
       contents: write
 
@@ -31,9 +32,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Executar coleta Status Invest
+      - name: Executar coleta completa Status Invest
         env:
-          BATCH_SIZE: ${{ github.event.inputs.batch_size || '40' }}
+          BATCH_SIZE: ${{ github.event.inputs.batch_size || '400' }}
         run: python coleta.py
 
       - name: Commit e push de dados.json
@@ -46,5 +47,5 @@ jobs:
             echo "Sem alterações em dados.json"
             exit 0
           fi
-          git commit -m "chore: atualiza dados do Status Invest"
+          git commit -m "chore: atualiza dados B3 via Status Invest"
           git push origin main
