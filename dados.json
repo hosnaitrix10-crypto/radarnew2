@@ -97461,7 +97461,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/acoes/petr4",
-      "updatedAt": "2026-11-21T19:10:41.860898+00:00",
+      "updatedAt": "2026-11-21T19:14:17.994874+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -97695,66 +97695,6 @@
         "CAGR Lucros 5 anos": {
           "raw": "81,61%",
           "num": 81.61
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "Artigo detalhando Patrimônio líquido": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida bruta": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida líquida": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de mercado": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de firma": {
-          "raw": "R$",
-          "num": null
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -97764,7 +97704,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/acoes/vale3",
-      "updatedAt": "2026-11-21T19:10:42.969704+00:00",
+      "updatedAt": "2026-11-21T19:14:19.037088+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -97998,66 +97938,6 @@
         "CAGR Lucros 5 anos": {
           "raw": "-39,37%",
           "num": -39.37
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "Artigo detalhando Patrimônio líquido": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida bruta": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida líquida": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de mercado": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de firma": {
-          "raw": "R$",
-          "num": null
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -98067,7 +97947,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/acoes/itub4",
-      "updatedAt": "2026-11-21T19:10:44.182786+00:00",
+      "updatedAt": "2026-11-21T19:14:20.082030+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -98301,66 +98181,6 @@
         "CAGR Lucros 5 anos": {
           "raw": "20,37%",
           "num": 20.37
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "Artigo detalhando Patrimônio líquido": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida bruta": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida líquida": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de mercado": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de firma": {
-          "raw": "R$",
-          "num": null
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -98370,7 +98190,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/acoes/bbas3",
-      "updatedAt": "2026-11-21T19:10:45.289942+00:00",
+      "updatedAt": "2026-11-21T19:14:21.037302+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -98604,66 +98424,6 @@
         "CAGR Lucros 5 anos": {
           "raw": "1,26%",
           "num": 1.26
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "Artigo detalhando Patrimônio líquido": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida bruta": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida líquida": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de mercado": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de firma": {
-          "raw": "R$",
-          "num": null
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -98673,7 +98433,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/acoes/wege3",
-      "updatedAt": "2026-11-21T19:10:46.466214+00:00",
+      "updatedAt": "2026-11-21T19:14:22.024702+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -98907,66 +98667,6 @@
         "CAGR Lucros 5 anos": {
           "raw": "21,78%",
           "num": 21.78
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "Artigo detalhando Patrimônio líquido": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida bruta": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Dívida líquida": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de mercado": {
-          "raw": "R$",
-          "num": null
-        },
-        "Artigo detalhando Valor de firma": {
-          "raw": "R$",
-          "num": null
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -98976,7 +98676,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
-      "updatedAt": "2026-11-21T19:10:47.571055+00:00",
+      "updatedAt": "2026-11-21T19:14:23.004999+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -99086,46 +98786,6 @@
         "Segmento ANBIMA": {
           "raw": "Logística",
           "num": "Logística"
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pelo fundo direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pelo fundo": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -99135,7 +98795,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
-      "updatedAt": "2026-11-21T19:10:48.684991+00:00",
+      "updatedAt": "2026-11-21T19:14:23.945572+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -99241,46 +98901,6 @@
         "Prazo de duração": {
           "raw": "Indeterminado",
           "num": "Indeterminado"
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pelo fundo direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pelo fundo": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -99290,7 +98910,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
-      "updatedAt": "2026-11-21T19:10:49.712202+00:00",
+      "updatedAt": "2026-11-21T19:14:24.901987+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -99400,46 +99020,6 @@
         "Segmento ANBIMA": {
           "raw": "Shoppings",
           "num": "Shoppings"
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pelo fundo direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pelo fundo": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -99449,7 +99029,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
-      "updatedAt": "2026-11-21T19:10:50.744126+00:00",
+      "updatedAt": "2026-11-21T19:14:25.855454+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -99555,46 +99135,6 @@
         "Prazo de duração": {
           "raw": "Indeterminado",
           "num": "Indeterminado"
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "De": {
-          "raw": "até",
-          "num": "até"
-        },
-        "Comunicado criado pelo fundo direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pelo fundo": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
         }
       }
     },
@@ -99604,7 +99144,7 @@
       "source": "statusinvest",
       "status": "ok",
       "url": "https://statusinvest.com.br/bdrs/nvdc34",
-      "updatedAt": "2026-11-21T19:10:51.858318+00:00",
+      "updatedAt": "2026-11-21T19:14:26.768841+00:00",
       "error": null,
       "data": {
         "Valor atual": {
@@ -99790,47 +99330,11 @@
         "CAGR Lucros 5 anos": {
           "raw": "94,33%",
           "num": 94.33
-        },
-        "Data de início da busca": {
-          "raw": "ATÉ",
-          "num": "ATÉ"
-        },
-        "ticker/código do ativo": {
-          "raw": "{name}",
-          "num": "{name}"
-        },
-        "Preço atual do ativo": {
-          "raw": "{price} % {helper}",
-          "num": "{price} % {helper}"
-        },
-        "Variação atual no preço do ativo": {
-          "raw": "{variation} % (12m)",
-          "num": "{variation} % (12m)"
-        },
-        "Comunicado criado pela empresa direcionado ao mercado": {
-          "raw": "PROVENTO",
-          "num": "PROVENTO"
-        },
-        "Data com do provento declarado pela empresa": {
-          "raw": "PAGAMENTO",
-          "num": "PAGAMENTO"
-        },
-        "Data de pagamento de provento": {
-          "raw": "EVENTOS",
-          "num": "EVENTOS"
-        },
-        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
-          "raw": "IPO",
-          "num": "IPO"
-        },
-        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
-          "raw": "FERIADO",
-          "num": "FERIADO"
         }
       }
     }
   },
-  "updatedAt": "2026-11-21T19:10:52.558760+00:00",
+  "updatedAt": "2026-11-21T19:14:27.469268+00:00",
   "stats": {
     "total": 10,
     "ok": 10,
