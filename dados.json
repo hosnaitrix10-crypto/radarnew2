@@ -97454,13 +97454,114 @@
     }
   ],
   "source": "statusinvest",
-  "items": {},
-  "updatedAt": "2026-11-21T18:58:30.604327+00:00",
+  "items": {
+    "PETR4": {
+      "ticker": "PETR4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/petr4",
+      "updatedAt": "2026-11-21T19:05:04.899713+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VALE3": {
+      "ticker": "VALE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vale3",
+      "updatedAt": "2026-11-21T19:05:05.669844+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ITUB4": {
+      "ticker": "ITUB4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/itub4",
+      "updatedAt": "2026-11-21T19:05:06.429818+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BBAS3": {
+      "ticker": "BBAS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/bbas3",
+      "updatedAt": "2026-11-21T19:05:07.190597+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "WEGE3": {
+      "ticker": "WEGE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/wege3",
+      "updatedAt": "2026-11-21T19:05:07.935483+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MXRF11": {
+      "ticker": "MXRF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
+      "updatedAt": "2026-11-21T19:05:08.700199+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HGLG11": {
+      "ticker": "HGLG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
+      "updatedAt": "2026-11-21T19:05:09.466182+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "XPML11": {
+      "ticker": "XPML11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
+      "updatedAt": "2026-11-21T19:05:10.234272+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNCR11": {
+      "ticker": "KNCR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
+      "updatedAt": "2026-11-21T19:05:10.998060+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "NVDC34": {
+      "ticker": "NVDC34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/nvdc34",
+      "updatedAt": "2026-11-21T19:05:11.740600+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    }
+  },
+  "updatedAt": "2026-11-21T19:05:12.440846+00:00",
   "stats": {
-    "total": 0,
+    "total": 10,
     "ok": 0,
     "nodata": 0,
-    "neterr": 0,
+    "neterr": 10,
     "limit": 0
   }
 }
