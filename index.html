@@ -1,820 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#363c49">
-<title>Radar de Dividendos</title>
-<style>
-:root{--bg:#3a404d;--hd:#363c49;--cd:#464c5b;--cd2:#3f4553;--tx:#f1f3f6;--mut:#aab2c0;--ac:#7dd3c0;--gold:#e0b050;--ok:#6fd6a4;--bad:#ef8a8a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 "Avenir Next","Segoe UI",Helvetica,Arial,sans-serif}
-header{background:var(--hd);border-bottom:1px solid #2f3440;position:sticky;top:0;z-index:9}
-.top{display:flex;align-items:center;gap:6px;padding:0 14px;overflow-x:auto}
-.logo{width:30px;height:30px;margin-right:8px;flex:none}
-.top a{padding:16px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
-.top a.on{color:var(--ac);border-color:var(--ac)}.top a.rec{color:var(--gold)}.top a.rec.on{border-color:var(--gold)}
-.sp{flex:1}.btn{background:var(--gold);color:#222;border:0;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
-.sub{display:flex;overflow-x:auto;background:#3d4350}.sub a:first-child{margin-left:auto}.sub a:last-child{margin-right:auto}.sub a{flex:none;white-space:nowrap;padding:11px 16px;color:var(--mut);cursor:pointer;font-size:14px;border-bottom:2px solid transparent}.sub a.on{color:var(--tx);border-color:var(--ac)}
-#st{font-size:12.5px;color:var(--mut);padding:7px 16px;background:#333946}#st.off{color:var(--gold)}
-main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
-h2{font-size:22px;color:var(--ac);margin:4px 0 14px;font-weight:600}h3{font-size:15px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-.cd{background:var(--cd);border-radius:12px;padding:16px}.cd .hd{display:flex;gap:10px;align-items:center;margin-bottom:12px}
-.rk{width:24px;height:24px;border-radius:50%;background:var(--ac);color:#1d2a27;font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
-.pill{background:#f1c97a;color:#4a3510;border-radius:14px;padding:2px 11px;font-size:12px;font-weight:600;margin-left:6px}
-.pill.c{background:var(--ok);color:#10301f}.pill.v{background:var(--bad);color:#3b1212}.pill.a{background:#f1c97a}.pill.m{background:var(--ac);color:#10302a}
-.r{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid #545b6c;font-size:14px}.r span:first-child{color:var(--mut)}
-.pos{color:var(--ok)}.neg{color:var(--bad)}small{color:var(--mut)}
-.ck{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:2px solid var(--mut);font-size:12px;margin-left:8px;vertical-align:middle}.ck.y{background:var(--ac);border-color:var(--ac);color:#10302a}
-.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
-select,input,textarea{background:var(--bg);border:1px solid #5b6275;color:var(--tx);border-radius:8px;padding:9px 10px;font:inherit}
-label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)}
-.box{background:var(--cd);border-radius:12px;padding:16px;margin-bottom:14px}.row{display:flex;gap:14px;flex-wrap:wrap}.row>*{flex:1;min-width:260px}
-.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}.kp div{background:var(--cd);border-radius:12px;padding:12px 14px}.kp small{display:block}.kp b{font-size:20px}
-.teal{background:#aee6dc!important;color:#12322c}.teal small{color:#2f5a52}
-.ev{display:flex;justify-content:space-between;background:var(--cd2);border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:4px solid var(--ac)}
-.chart{display:flex;align-items:flex-end;gap:6px;height:220px;padding-top:24px}.chart div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--mut)}
-.chart i{display:block;width:100%;background:var(--ac);border-radius:4px 4px 0 0;min-height:2px;margin:3px 0}
-.pie{width:190px;height:190px;border-radius:50%;margin:10px auto}
-.lg{display:flex;gap:6px;align-items:center;font-size:13px}.lg i{width:10px;height:10px;border-radius:50%}
-.dy{display:inline-block;border:1px solid #8a92a3;border-radius:8px;padding:4px 10px;font-size:14px;font-weight:600}.dy.up{background:#5bbd9d;border-color:#5bbd9d;color:#0d2a22}
-.w{overflow-x:auto;background:var(--cd);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:980px}th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}th{color:var(--mut);font-weight:600;font-size:13px}tr+tr td{border-top:1px solid #545b6c}
-.exc{outline:2px solid var(--gold)}.alerta{background:#5a4a22;color:#ffe9b0;border-radius:8px;padding:8px 10px;font-size:13px;margin-bottom:8px}
-.lgo{border-radius:14px;background:#fff;object-fit:contain;padding:2px;flex:none}.lgf{display:grid;place-items:center;border-radius:14px;background:var(--cd2);color:var(--ac);font-weight:700;font-size:13px;flex:none}.rkb{position:absolute;left:-7px;top:-7px;width:18px;height:18px;font-size:10px}
-summary.hd{list-style:none;cursor:pointer;margin-bottom:0}summary.hd::-webkit-details-marker{display:none}details[open]>summary.hd{margin-bottom:12px}
-.nm{display:block;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tk{color:var(--mut);font-size:15px}
-body[data-vis=lista] .grid{grid-template-columns:1fr;max-width:760px;gap:2px}body[data-vis=lista] .cd{background:transparent;border-radius:0;border-bottom:1px solid #4a5060;padding:14px 4px}body[data-vis=lista] .cd.exc{background:rgba(224,176,80,.08)}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}body{overflow-x:hidden}
-.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}.cd{min-width:0}
-.cd>summary.hd{margin-bottom:0}.cd[open]>summary.hd{margin-bottom:12px}.cd>summary.hd>div{min-width:0}
-body[data-vis=lista] .grid{grid-template-columns:minmax(0,1fr)}
-body[data-vis=lista] .cd{padding:12px 4px}body[data-vis=lista] .cd.exc{outline:none;border-left:3px solid var(--gold);padding-left:10px;background:rgba(224,176,80,.10)}
-.bar select{flex:1;min-width:150px}
-.ex{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #545b6c}.ex:first-of-type{border-top:0}
-h2{font-size:20px;font-weight:600;letter-spacing:.2px;margin:6px 0 16px}
-.cd,.box{border-radius:14px}.kp div{border:1px solid rgba(255,255,255,.05)}
-.pill{font-size:11px;font-weight:700;letter-spacing:.4px;padding:2px 9px;margin-left:4px}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.chip{background:rgba(255,255,255,.07);border-radius:8px;padding:2px 8px;font-size:12px;color:var(--mut)}
-.chip.pos{color:var(--ok)}.chip.neg{color:var(--bad)}.chip.wn{color:var(--gold)}.chip.gold{background:rgba(224,176,80,.16);color:var(--gold)}.chip.warn{background:rgba(239,138,138,.12);color:#f0b4b4}.wn{color:var(--gold)}
-.why{margin-top:6px;font-size:12.5px;color:var(--mut);line-height:1.35;white-space:normal}
-.sc::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
-.rgw{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #545b6c}.rgw small{white-space:nowrap;color:var(--mut)}
-.rg{position:relative;flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,rgba(111,214,164,.55),rgba(224,176,80,.45),rgba(239,138,138,.55))}
-.rg i{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--bg);transform:translate(-50%,-50%)}
-.src{margin-top:10px;font-size:11.5px;color:var(--mut);line-height:1.4}
-.alerta{background:rgba(224,176,80,.12);border:1px solid rgba(224,176,80,.35);color:var(--tx);border-radius:10px;padding:9px 12px;font-size:13px;margin-bottom:8px}
-.sh{margin:22px 0 10px;font-size:15px;font-weight:600;color:var(--tx)}.sh small{color:var(--mut);font-weight:400}
-.btn.ghost{background:transparent;border:1px solid #6b7389;color:var(--mut);font-weight:600}
-.exc{outline:none}body[data-vis=cards] .cd.exc{box-shadow:inset 0 0 0 1px rgba(224,176,80,.55)}
-.azbar{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.azbar a{min-width:30px;text-align:center;padding:4px 8px;border-radius:8px;background:var(--cd);color:var(--tx);cursor:pointer;font-size:13px}.azbar a.off{opacity:.3;pointer-events:none}
-.hide{display:none}.n{color:var(--mut);font-size:13px}
-</style></head><body>
-<header><div class="top">
-<svg class="logo" viewBox="0 0 32 32" fill="none" stroke="#7dd3c0" stroke-width="2.2"><path d="M16 3 4 7v9c0 7 5 11 12 13 7-2 12-6 12-13V7z"/><path d="M10 17c4 0 6-3 6-7 0 4 2 7 6 7M16 16v8"/></svg>
-<a data-v="top">Investimentos</a><a data-v="rec" class="rec">Recomendação</a><a data-v="cfg">Ajustes</a><span class="sp"></span><button class="btn" id="upd">Atualizar agora</button></div>
-<div class="sub" id="sub"><a data-v="top">Top 20</a><a data-v="set">Por setor</a><a data-v="all">Todas</a><a data-v="cart">Carteira</a><a data-v="renda">Renda</a></div></header>
-<div id="st">Carregando…</div>
-<main id="m"></main>
-<script>
-const DEFTOK="";
-const DEFDB="";
-const APPV="v19";
-const DEF="TAEE11 CMIG4 BBAS3 ISAE4 BBSE3 CPFE3 BBDC4 ITUB4 KLBN4 PETR4 VALE3 TRPL4 CXSE3 SAPR11 EGIE3 ITSA4 VIVT3 CSMG3 CPLE6 ALUP11 FLRY3 SANB11 WEGE3 TIMS3 ABCB4 BRSR6 CMIN3 GOAU4 SUZB3 LEVE3".split(" ");
-const K="radar_v2",$=s=>document.querySelector(s);
-const PLANOS={gratis:{n:"Gratuito",lim:15000,lote:1,atu:"dia anterior"},startup:{n:"Startup",lim:150000,lote:10,atu:"15 min"},pro:{n:"Pro",lim:500000,lote:20,atu:"5 min"}};
-const defS=()=>({v:8,plano:"gratis",plAlvo:10,multDias:30,liqMin:1000000,brLim:15000,detHoras:18,token:"",dbKey:"",brapiDiv:false,useSI:false,siProxy:"",dy:6,desc:20,anos:5,lucro:30,watch:DEF,pos:[],dbLim:190,minAnos:4,rk:"nota",nSet:7,sched:{on:true,times:["08:30"],days:[1,2,3,4,5],divDias:7,gap:1500,conc:1,minManual:2}});
-const old=JSON.parse(localStorage.getItem("radar_v1")||"null");
-let S=Object.assign(defS(),JSON.parse(localStorage.getItem(K)||"null")||old||{});
-const legacy=S.cache,legacyAt=S.upd;delete S.cache;delete S.upd;S.sched=Object.assign(defS().sched,S.sched);
-if(S.useSI===undefined)S.useSI=false;
-if(S.siProxy===undefined)S.siProxy="";
-if(!["nota","margem"].includes(S.rk))S.rk="nota";
-const dbk=()=>S.dbKey||DEFDB;
-const divSrc=()=>Object.keys(C).length>0||S.brapiDiv||!!dbk()||(!!S.useSI&&!!S.siProxy);
-const intradia=()=>(PLANOS[S.plano]||PLANOS.gratis).atu!="dia anterior";
-const hojeBR=()=>new Date(Date.now()-3*36e5).toISOString().slice(0,10);
-let gapMul=1;
-const save=()=>localStorage.setItem(K,JSON.stringify(S));
-const R=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-const P=v=>v==null||isNaN(v)?"-":v.toLocaleString("pt-BR",{maximumFractionDigits:2})+"%";
-const cls=v=>v>=0?"pos":"neg",COL=["#72b5ab","#fadba0","#e0b050","#8fa8e8","#d98fb0","#a6d98f","#c9a2e8","#e89f8f","#8fd9d9","#b0b0b0","#f0e68c"];
-let view="top";
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radar Status Invest</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 20px; }
+    .top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+    input, select { padding: 8px 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #f8fafc; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; font-size: 14px; }
+    th { background: #020617; color: #94a3b8; }
+    .ok { color: #4ade80; font-weight: bold; }
+    .nodata { color: #facc15; }
+    .neterr, .limit { color: #f87171; }
+    a { color: #38bdf8; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Radar — Status Invest</h1>
+  <div id="resumo" style="margin-bottom: 14px; color: #94a3b8;">Carregando dados.json...</div>
 
-let C={},ST={},M={qAt:0,dAt:0,lastTry:0,skip:0,api:{m:"",n:0,dd:"",d0:0},db:{d:"",n:0},gm:{d:"",n:0},si:{n:0,ok:0,skip:0,lastErr:""},err:null,ultimo:null},DB=null,idbOk=false;
-const idb=()=>new Promise((ok,no)=>{const r=indexedDB.open("radar",1);r.onupgradeneeded=()=>r.result.createObjectStore("kv");r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
-const kvGet=k=>new Promise(ok=>{try{const q=DB.transaction("kv").objectStore("kv").get(k);q.onsuccess=()=>ok(q.result);q.onerror=()=>ok()}catch(e){ok()}});
-const kvSet=(k,v)=>new Promise(ok=>{try{const t=DB.transaction("kv","readwrite");t.objectStore("kv").put(v,k);t.oncomplete=ok;t.onerror=ok}catch(e){ok()}});
-let tmr;const persist=()=>{clearTimeout(tmr);tmr=setTimeout(flush,300)};
-async function flush(){if(!idbOk)return;await kvSet("cache",C);await kvSet("meta",{ST,M});
-  await kvSet("analise",{at:Date.now(),items:[...new Set([...S.watch,...S.pos.map(p=>p.t)])].map(calc).filter(Boolean)})}
-const brt=ts=>new Date((ts||Date.now())-3*36e5);
-const fimDeSemana=()=>{const d=brt().getUTCDay();return d==0||d==6};
-function lastClose(){const b=brt();for(let i=0;i<8;i++){const x=new Date(Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()-i)),w=x.getUTCDay();if(w==0||w==6)continue;
-  const ts=Date.UTC(x.getUTCFullYear(),x.getUTCMonth(),x.getUTCDate(),21,0);if(ts<=Date.now())return ts}return 0}
-const fmtDia=ts=>new Date(ts-3*36e5).toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"2-digit",timeZone:"UTC"});
-function fase(){const b=brt(),w=b.getUTCDay(),h=b.getUTCHours()+b.getUTCMinutes()/60;
-  if(w==0||w==6)return"Mercado fechado (fim de semana): dados do fechamento de "+fmtDia(lastClose());
-  if(h<10)return"Antes da abertura: dados do fechamento de "+fmtDia(lastClose());
-  return h<18?"Pregão em andamento":"Pós-fechamento"}
-function diasUteis(){const b=brt(),y=b.getUTCFullYear(),m=b.getUTCMonth(),u=new Date(Date.UTC(y,m+1,0)).getUTCDate();let n=0;
-  for(let d=b.getUTCDate();d<=u;d++){const w=new Date(Date.UTC(y,m,d)).getUTCDay();if(w>0&&w<6)n++}return Math.max(1,n)}
-function cntInit(){const mk=new Date().toISOString().slice(0,7),hj=new Date().toISOString().slice(0,10);
-  if(M.api.m!=mk)M.api={m:mk,n:0,dd:"",d0:0};if(M.api.dd!=hj){M.api.dd=hj;M.api.d0=M.api.n}}
-const cnt=()=>{cntInit();M.api.n++};
-function restanteHoje(){cntInit();const res=Math.ceil(S.brLim*0.1),perm=Math.floor((S.brLim-res-M.api.d0)/diasUteis());return Math.max(0,perm-(M.api.n-M.api.d0))}
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const fmt=ts=>ts?new Date(ts).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"nunca";
+  <div class="top">
+    <input id="busca" type="text" placeholder="Filtrar ticker (ex.: PETR4, MXRF11)..." />
+    <select id="filtroStatus">
+      <option value="all">Todos os status</option>
+      <option value="ok">ok</option>
+      <option value="nodata">nodata</option>
+      <option value="neterr">neterr</option>
+      <option value="limit">limit</option>
+    </select>
+  </div>
 
-class E extends Error{constructor(s,m,h){super(m);this.s=s;this.h=h}}
-async function fetchOne(t,wd,mods){
-  if(!S.token&&!DEFTOK)throw new E("auth","token brapi não configurado",401);
-  cnt();
-  let r;try{r=await fetch(`https://brapi.dev/api/quote/${t}?${wd?"dividends=true&":""}${mods?"modules=defaultKeyStatistics,financialData&":""}token=${S.token||DEFTOK}`)}
-  catch(e){throw new E("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
-  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
-  const msg=(j&&j.message)||"";
-  if(h==429||h==402)throw new E("limit","limite de requisições (HTTP "+h+") "+msg,h);
-  if(h==401||h==403)throw new E("auth","token recusado ou plano sem acesso (HTTP "+h+") "+msg,h);
-  if(h==404)throw new E("nodata","ticker não encontrado na fonte "+msg,h);
-  if(h>=500)throw new E("neterr","erro temporário do servidor (HTTP "+h+")",h);
-  if(!j||typeof j!="object")throw new E("invalid","resposta não é JSON válido (HTTP "+h+")",h);
-  const x=j.results&&j.results[0];
-  if(!x){if(j.error||msg)throw new E(/token|auth|plano|plan/i.test(msg)?"auth":"invalid",msg||"erro na resposta",h);throw new E("nodata","a fonte não devolveu resultados",h)}
-  if(typeof x.regularMarketPrice!="number")throw new E("invalid","cotação ausente na resposta",h);
-  let lo=x.fiftyTwoWeekLow,hi=x.fiftyTwoWeekHigh;
-  if(lo==null&&x.fiftyTwoWeekRange){const m=x.fiftyTwoWeekRange.split("-").map(Number);lo=m[0];hi=m[1]}
-  const o={p:x.regularMarketPrice,ch:x.regularMarketChangePercent,nome:x.shortName||t,lo,hi,pl:Number.isFinite(x.priceEarnings)?x.priceEarnings:null,eps:Number.isFinite(x.earningsPerShare)?x.earningsPerShare:null,logo:x.logourl||null,qt:x.regularMarketTime||null};
-  if(mods){const dk=[].concat(x.defaultKeyStatistics||[])[0]||{},fd=[].concat(x.financialData||[])[0]||{},nz=v=>Number.isFinite(v)?v:null;let re=nz(fd.returnOnEquity);if(re!=null&&Math.abs(re)<=1.5)re*=100;o.roe=re;o.pvp=nz(dk.priceToBook)}
-  if(wd)o.div=((x.dividendsData&&x.dividendsData.cashDividends)||[]).map(d=>({v:d.rate,d:d.paymentDate||d.lastDatePrior||d.approvedOn}));
-  return o}
-async function fetchDet(t){
-  if(S.modOK!==false){try{const r=await fetchOne(t,false,true);if(S.modOK!==true){S.modOK=true;save()}return r}
-    catch(e){if(e.h!=403&&e.h!=400)throw e;const r=await fetchOne(t,false,false);S.modOK=false;save();return r}}
-  return fetchOne(t,false,false)}
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Indicadores extraídos</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="corpo"></tbody>
+  </table>
 
-const parsePtNum=s=>{
-  if(!s)return null;
-  const clean=String(s).replace(/[^\d,.-]/g,"").replace(/\.(?=\d{3}(?:[,.]|$))/g,"").replace(",",".");
-  const n=parseFloat(clean);
-  return Number.isFinite(n)?n:null;
-};
-function parseStatusInvestHtml(html,t){
-  const doc=new DOMParser().parseFromString(html,"text/html");
-  const text=doc.body?doc.body.innerText||doc.body.textContent||"":html;
-  const pick=rx=>{const m=text.match(rx);return m?parsePtNum(m[1]):null};
-  const dy=pick(/(?:DY|Dividend\s*Yield)\s*(?:\(12m\)|12m)?\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%/i);
-  const pl=pick(/\bP\/L\b\s*[:\n\r\s]*(-?\d[\d.,]*)/i);
-  const pvp=pick(/\bP\/VP\b\s*[:\n\r\s]*(-?\d[\d.,]*)/i);
-  const roe=pick(/\bROE\b\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%?/i);
-  const roic=pick(/\bROIC\b\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%?/i);
-  const ml=pick(/Margem\s+L[íi]quida\s*[:\n\r\s]*(-?\d[\d.,]*)\s*%?/i);
-  const dle=pick(/D[íi]v\.?\s*L[íi]q\.?\s*\/\s*EBITDA\s*[:\n\r\s]*(-?\d[\d.,]*)/i);
-  const lpa=pick(/\bLPA\b\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
-  const vpa=pick(/\bVPA\b\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
-  const preco=pick(/(?:Valor\s+atual|Cota[çc][ãa]o)\s*[:\n\r\s]*R?\$?\s*(-?\d[\d.,]*)/i);
-  if(dy==null&&pl==null&&pvp==null&&roe==null&&preco==null&&lpa==null&&vpa==null){
-    throw new E("nodata","raspagem Status Invest sem indicadores parseáveis para "+t,200);
-  }
-  return {t,preco,dy,pl,pvp,roe,roic,ml,dle,lpa,vpa,at:Date.now(),src:"statusinvest"};
-}
-async function fetchStatusInvest(t){
-  if(!S.useSI||!S.siProxy)return null;
-  M.si.n++;
-  const slug=t.toLowerCase();
-  const baseUrl=`https://statusinvest.com.br/acoes/${slug}`;
-  const targetUrl=S.siProxy.replace("{ticker}",slug).replace("{url}",encodeURIComponent(baseUrl));
-  try{
-    const ctrl=new AbortController();
-    const timer=setTimeout(()=>ctrl.abort(),7000);
-    const r=await fetch(targetUrl,{signal:ctrl.signal,headers:{"Accept":"text/html,application/xhtml+xml"}});
-    clearTimeout(timer);
-    if(!r.ok){
-      M.si.skip++;
-      M.si.lastErr=`${t}: HTTP ${r.status}`;
-      return null;
+  <script>
+    let todosItens = [];
+
+    function resumirIndicadores(dataObj) {
+      if (!dataObj || typeof dataObj !== "object") return "-";
+      const chaves = Object.keys(dataObj);
+      if (!chaves.length) return "-";
+      return chaves.slice(0, 5).map(k => `${k}: ${dataObj[k]?.raw ?? "-"}`).join(" | ");
     }
-    const html=await r.text();
-    const parsed=parseStatusInvestHtml(html,t);
-    M.si.ok++;
-    M.si.lastErr="";
-    return parsed;
-  }catch(e){
-    M.si.skip++;
-    M.si.lastErr=`${t}: bloqueio CORS/rede no browser`;
-    return null;
-  }
-}
-function buildSyntheticMtFromSi(a, at){
-  const p = Number.isFinite(a.p) && a.p > 0 ? a.p : null;
-  const pl = Number.isFinite(a.pl) && a.pl > 0 ? a.pl : null;
-  const pvp = Number.isFinite(a.pvp) && a.pvp > 0 ? a.pvp : null;
-  const si = a.si || {};
-  const lpa = Number.isFinite(si.lpa) && si.lpa > 0 ? si.lpa : (p && pl ? +(p / pl).toFixed(4) : null);
-  const vpa = Number.isFinite(si.vpa) && si.vpa > 0 ? si.vpa : (p && pvp ? +(p / pvp).toFixed(4) : null);
-  if(!lpa && !vpa) return null;
-  return {
-    at,
-    pl: pl ? {m: pl, n: 4, q1: null, q3: null} : {m: null, n: 0, q1: null, q3: null},
-    pvp: pvp ? {m: pvp, n: 4} : {m: null, n: 0},
-    ev: {m: null, n: 0},
-    lpa,
-    vpa,
-    acoes: null,
-    dl: null,
-    atip: false,
-    preco: p,
-    dpreco: a.data_cotacao || "",
-    ano: new Date().getFullYear(),
-    src: "snapshot"
-  };
-}
-function applyStatusInvestFallback(t, si){
-  if(!si || !C[t]) return false;
-  const c = C[t];
-  if(si.pl != null) c.pl = si.pl;
-  if(si.pvp != null){ c.pvp = si.pvp; c.pvpB = si.pvp; }
-  if(si.roe != null){ c.roe = si.roe; c.roeB = si.roe; }
-  if(si.dy != null) c.dy12 = si.dy;
-  if(si.ml != null) c.ml = si.ml;
-  if(si.roic != null || si.ml != null || si.dle != null || si.lpa != null || si.vpa != null){
-    c.fu = Object.assign({}, c.fu || {}, {
-      roic: si.roic ?? (c.fu && c.fu.roic),
-      ml: si.ml ?? (c.fu && c.fu.ml),
-      dle: si.dle ?? (c.fu && c.fu.dle),
-      lpa: si.lpa ?? (c.fu && c.fu.lpa),
-      vpa: si.vpa ?? (c.fu && c.fu.vpa)
-    });
-  }
-  c.si = Object.assign({}, c.si || {}, si);
-  c.siAt = Date.now();
-  c.sisrc = "statusinvest";
-  if(!c.mt && c.p > 0){
-    const synMt = buildSyntheticMtFromSi(c, c.siAt);
-    if(synMt) c.mt = synMt;
-  }
-  return true;
-}
 
-const PLAN_CP=["roe","pvp","dy_12m","piotroski","divida_liquida_ebitda","liquidez_corrente","margem_liquida","ebitda","roic"];
-function parsePlan(j,tks,cp){
-  const num=v=>{if(v&&typeof v=="object")v=v.valor??v.value;return typeof v=="number"&&isFinite(v)?v:null};
-  let rows=null;
-  for(const c of [j,j&&j.linhas,j&&j.dados,j&&j.data,j&&j.resultados,j&&j.resultado,j&&j.rows,j&&j.valores]){if(Array.isArray(c)&&c.length){rows=c;break}}
-  if(!rows&&j&&typeof j=="object"){const o=j.dados||j.data||j.resultados||j;if(o&&typeof o=="object"&&tks.some(t=>t in o))rows=tks.map(t=>o[t])}
-  if(!rows)return null;
-  const out={};let got=0;
-  rows.forEach((r,i)=>{let t=tks[i],v=null;
-    if(r&&typeof r=="object"&&/fora da planilha/i.test(String(r.aviso||r.mensagem||r.obs||"")))return;
-    if(Array.isArray(r)){const a=r.length==cp.length+1&&typeof r[0]=="string"?(t=r[0],r.slice(1)):r;v=cp.map((c,k)=>num(a[k]))}
-    else if(r&&typeof r=="object"){t=r.codigo||r.ticker||r.cod||t;const src=r.valores&&typeof r.valores=="object"?r.valores:r;v=cp.map((c,k)=>num(Array.isArray(src)?src[k]:src[c]))}
-    if(t&&v){out[t]=Object.fromEntries(cp.map((c,k)=>[c,v[k]]));if(v.some(x=>x!=null))got++}});
-  return got?out:null}
-async function fetchPlan(tks){
-  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
-  M.db.n+=Math.max(1,Math.ceil(tks.length*PLAN_CP.length/100));
-  const pe=(s,m,h)=>new E(s,"dadosb3 (planilha): "+m,h);
-  let r;try{r=await fetch(`https://dadosb3.com/planilha/dados?codigos=${tks.join(",")}&campo=${PLAN_CP.join(",")}`,{headers:{"X-API-Key":dbk()}})}
-  catch(e){throw pe("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
-  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
-  if(h==429)throw pe("limit","limite diário da chave atingido (HTTP 429)",h);
-  if(h==401||h==403)throw pe("auth","chave ausente ou inválida (HTTP "+h+")",h);
-  if(h>=500)throw pe("neterr","erro temporário (HTTP "+h+")",h);
-  if(h>=400)throw pe("invalid","requisição recusada (HTTP "+h+")",h);
-  const out=parsePlan(j,tks,PLAN_CP);
-  if(!out){M.planRaw=JSON.stringify(j).slice(0,800);throw pe("invalid","formato de resposta não reconhecido",h)}
-  return out}
-async function runPlan(o,now){
-  if(!dbk()||o.only)return;
-  const reps={};Object.keys(C).forEach(t=>{const c=C[t];if(!c.p)return;const e=EMP(t);if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
-  if(M.planErr&&M.planTry&&now-M.planTry<216e5)return;
-  const lim=now-S.sched.divDias*864e5,need=Object.values(reps).filter(t=>!(C[t].planAt>lim)||C[t].planV!==2);
-  if(!need.length)return;
-  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
-  const left=(S.dbLim||190)-M.db.n;if(left<1)return;
-  const tks=need.slice(0,Math.min(300,Math.floor(left*100/PLAN_CP.length)));
-  status(`ROE, P/VP e DY 12 meses de ${tks.length} empresas (Dados B3)…`);M.planTry=now;
-  try{const out=await viaRetry(()=>fetchPlan(tks));let n=0;
-    for(const t of tks){C[t].planAt=Date.now();const v=out[t];if(!v)continue;
-      if(v.roe!=null)C[t].roeB=v.roe*100;if(v.pvp!=null)C[t].pvpB=v.pvp;if(v.dy_12m!=null)C[t].dy12=v.dy_12m*100;C[t].fu={pio:v.piotroski,dle:v.divida_liquida_ebitda,lc:v.liquidez_corrente,ml:v.margem_liquida,ebitda:v.ebitda,roic:v.roic};C[t].planV=2;n++}
-    M.planOk=Date.now();M.planN=n;M.planErr=null;M.planRaw=null}
-  catch(e){M.planErr=e.message;M.err={msg:e.message,src:"dadosb3.com",at:Date.now(),s:e.s}}}
-async function dbGet(path,tag){
-  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
-  const ee=(s,m,h)=>new E(s,"dadosb3 ("+tag+"): "+m,h);
-  let r;try{r=await fetch("https://dadosb3.com"+path,{headers:{"X-API-Key":dbk()}})}catch(e){throw ee("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
-  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
-  if(h==429)throw ee("limit","limite diário da chave atingido (HTTP 429)",h);
-  if(h==401||h==403)throw ee("auth","chave ausente ou inválida (HTTP "+h+")",h);
-  if(h==404)throw ee("nodata","não encontrado",h);
-  if(h>=500)throw ee("neterr","erro temporário (HTTP "+h+")",h);
-  if(h>=400)throw ee("invalid","requisição recusada (HTTP "+h+")",h);
-  if(!j||typeof j!="object")throw ee("invalid","resposta não é JSON válido",h);
-  return j}
-const medN=a=>{a=a.filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
-const qN=(a,q)=>{a=a.filter(Number.isFinite).sort((x,y)=>x-y);if(a.length<2)return null;const i=(a.length-1)*q,l=Math.floor(i);return a[l]+(a[Math.min(a.length-1,l+1)]-a[l])*(i-l)};
-function parseMult(j){
-  if(!Array.isArray(j.anuais)||!j.valuation)throw new E("invalid","dadosb3 (múltiplos): resposta sem 'anuais' ou 'valuation'",200);
-  const an=j.anuais.slice().sort((a,b)=>b.ano-a.ano),tr=(Array.isArray(j.trimestrais)?j.trimestrais:[]).slice().sort((a,b)=>(b.ano*10+b.trimestre)-(a.ano*10+a.trimestre));
-  const pk=(L,k,mx,n)=>L.map(a=>a[k]).filter(v=>Number.isFinite(v)&&v>0&&v<mx).slice(0,n);
-  let pl=pk(tr,"pl_ttm",80,20);if(pl.length<8)pl=pk(an,"pl",80,8);
-  let pv=pk(tr,"pvp",40,20);if(pv.length<8)pv=pk(an,"pvp",40,8);
-  const ev=pk(an,"ev_ebitda",60,8),v=j.valuation,t0=tr.find(x=>Number.isFinite(x.lpa_ttm)),tv=tr.find(x=>Number.isFinite(x.pvp)&&x.pvp>0&&Number.isFinite(x.preco)),aa=j.aviso_lucro_atipico&&j.aviso_lucro_atipico.doze_meses;
-  return{at:Date.now(),pl:{m:medN(pl),n:pl.length,q1:qN(pl,.25),q3:qN(pl,.75)},pvp:{m:medN(pv),n:pv.length},ev:{m:medN(ev),n:ev.length},
-    lpa:t0?t0.lpa_ttm:(Number.isFinite(v.lpa)?v.lpa:null),vpa:tv?tv.preco/tv.pvp:(Number.isFinite(v.vpa)?v.vpa:null),
-    acoes:Number.isFinite(v.acoes)?v.acoes:null,dl:Number.isFinite(v.divida_liquida)?v.divida_liquida:null,
-    atip:!!v.lucro_salto_atipico||!!(aa&&aa.lucro_salto_atipico),preco:v.preco,dpreco:v.data_preco,ano:v.ano}}
-async function runMult(o,now){
-  if(!dbk())return;
-  const lim=S.dbLim||190,cap=Math.floor(lim*0.7),dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};
-  const pri=new Set(S.pos.map(p=>p.t)),only=o.only&&new Set(o.only.map(EMP)),reps={};
-  Object.keys(C).forEach(t=>{const c=C[t];if(!c.p)return;const e=EMP(t);if(only&&!only.has(e))return;if(!reps[e]||(c.vol||0)>(C[reps[e]].vol||0))reps[e]=t});
-  const dias=S.multDias*864e5,need=Object.values(reps).filter(t=>{const x=ST[t]&&ST[t].mtS;if(x&&(x.s=="nodata"||x.s=="invalid")&&now-x.at<7*864e5)return false;return !C[t].mt||now-C[t].mt.at>dias});
-  need.sort((a,b)=>(pri.has(b)-pri.has(a))||(C[b].p*C[b].vol-C[a].p*C[a].vol));
-  let done=0;M.mtLeft=need.length;
-  while(need.length&&M.db.n<lim&&(o.only||M.db.n<cap)){const t=need.shift();status(`Balanços e múltiplos próprios: ${++done} consultados · ${need.length} na fila`);
-    try{C[t].mt=parseMult(await viaRetry(()=>dbGet(`/empresas/${t}/multiplos`,"múltiplos")));ST[t]={...(ST[t]||{}),mtS:{s:"ok",at:Date.now()}}}
-    catch(e){
-      const si=await fetchStatusInvest(t);
-      if(si&&applyStatusInvestFallback(t,si)){ST[t]={...(ST[t]||{}),mtS:{s:"ok",at:Date.now(),fb:"statusinvest"}}}
-      else{const s=e.s||"neterr";ST[t]={...(ST[t]||{}),mtS:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:"dadosb3.com",at:Date.now(),s};if(s=="limit"||s=="auth")break}
+    function renderizar() {
+      const q = document.getElementById("busca").value.trim().toUpperCase();
+      const st = document.getElementById("filtroStatus").value;
+      const corpo = document.getElementById("corpo");
+
+      const filtrados = todosItens.filter(item => {
+        const matchTicker = !q || item.ticker.includes(q);
+        const matchStatus = st === "all" || item.status === st;
+        return matchTicker && matchStatus;
+      });
+
+      corpo.innerHTML = filtrados.map(item => `
+        <tr>
+          <td><strong>${item.ticker}</strong></td>
+          <td>${item.type || "-"}</td>
+          <td class="${item.status || ""}">${item.status || "-"}</td>
+          <td>${resumirIndicadores(item.data)}</td>
+          <td>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">Abrir</a>` : "-"}</td>
+        </tr>
+      `).join("");
     }
-    await sleep(S.sched.gap)}
-  M.mtLeft=need.length}
-async function runVered(o,now){
-  if(!dbk()||o.only)return;const lim=S.dbLim||190;if(M.db.n>=lim)return;
-  const G={};rankAll(true).forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));
-  const cand=new Set([...S.pos.map(p=>p.t).filter(t=>C[t]),...Object.values(G).flatMap(L=>L.slice(0,S.nSet)),...rankAll().slice(0,20).map(x=>x.t)]);
-  const need=[...cand].filter(t=>C[t]&&C[t].mt&&(!C[t].vd||now-C[t].vd.at>30*864e5)&&!(ST[t]&&ST[t].vdS&&(ST[t].vdS.s=="nodata"||ST[t].vdS.s=="invalid")&&now-ST[t].vdS.at<7*864e5));
-  while(need.length&&M.db.n<lim){const t=need.shift();
-    try{const j=await viaRetry(()=>dbGet(`/empresas/${t}/veredito`,"veredito")),b=j.bandeira||{};if(!b.cor)throw new E("invalid","dadosb3 (veredito): resposta sem bandeira",200);
-      C[t].vd={cor:b.cor,tx:b.texto,at:Date.now()};ST[t]={...(ST[t]||{}),vdS:{s:"ok",at:Date.now()}}}
-    catch(e){const s=e.s||"neterr";ST[t]={...(ST[t]||{}),vdS:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:"dadosb3.com",at:Date.now(),s};if(s=="limit"||s=="auth")break}
-    await sleep(S.sched.gap)}}
-async function fetchDivDB(t){
-  const dk=new Date().toISOString().slice(0,10);if(M.db.d!=dk)M.db={d:dk,n:0};M.db.n++;
-  let r;try{r=await fetch(`https://dadosb3.com/empresas/${t}/dividendos`,{headers:{"X-API-Key":dbk()}})}
-  catch(e){throw new E("neterr","dadosb3: falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
-  const h=r.status;let j=null;try{j=await r.json()}catch(e){}
-  if(h==429)throw new E("limit","dadosb3: limite diário da chave atingido (HTTP 429)",h);
-  if(h==401)throw new E("auth","dadosb3: chave ausente ou inválida (HTTP 401)",h);
-  if(h==404)throw new E("nodata","dadosb3: ticker não encontrado",h);
-  if(h>=500)throw new E("neterr","dadosb3: erro temporário (HTTP "+h+")",h);
-  if(!j||!Array.isArray(j.proventos))throw new E("invalid","dadosb3: resposta sem lista de proventos (HTTP "+h+")",h);
-  const cl=/3$/.test(t)?/^ON/i:/[4-8]$/.test(t)?/^PN/i:/11$/.test(t)?/UN/i:null;
-  if(!cl)throw new E("invalid","classe do ticker não identificada",h);
-  if(j.proventos.length&&!j.proventos.some(x=>cl.test(x.tipo_acao||"")))throw new E("invalid","dadosb3: nenhum provento da classe de "+t,h);
-  const ok=/DIVID|JCP|JUROS|REND/i;
-  return j.proventos.filter(x=>cl.test(x.tipo_acao||"")&&x.valor>0&&x.data_com&&ok.test((x.tipo||"")+" "+(x.acao_corporativa||""))).map(x=>({v:x.valor,d:x.data_com}))}
-function merge(t,n){const o=C[t]||{},now=Date.now();
-  C[t]={...o,p:n.p,ch:n.ch,nome:n.nome,lo:n.lo??o.lo,hi:n.hi??o.hi,loAt:n.lo!=null?now:o.loAt,pl:n.pl,eps:n.eps,roe:n.roe??o.roe,pvp:n.pvp??o.pvp,logo:o.logo||n.logo,qt:n.qt||o.qt,detAt:now,qAt:now,src:"brapi"};
-  if(n.div){C[t].div=n.div;C[t].dAt=now;C[t].dsrc="brapi.dev"}}
 
-async function loadRepoDados(){
-  try{
-    const r = await fetch("./dados.json?v=" + Date.now(), {cache: "no-store"});
-    if(!r.ok) return false;
-    const j = await r.json();
-    const lista = Array.isArray(j.ativos) ? j.ativos : (Array.isArray(j.acoes) ? j.acoes : []);
-    if(!lista.length) return false;
-    const now = Date.now();
-    const at = j.gerado_ms || (j.gerado ? Date.parse(j.gerado) : now) || now;
-    let n = 0, comDiv = 0, comSi = 0;
-    for(const a of lista){
-      if(!a || !a.t || !/^[A-Z]{4}([3-8]|11)$/.test(a.t)) continue;
-      if(typeof a.p != "number" || !(a.p > 0)) continue;
-      const prev = C[a.t] || {};
-      const vol = a.liq && a.p ? Math.round(a.liq / a.p) : (prev.vol || 0);
-      const plv = Number.isFinite(a.pl) && a.pl > 0 ? a.pl : (Number.isFinite(prev.pl) && prev.pl > 0 ? prev.pl : null);
-      const pvpv = Number.isFinite(a.pvp) && a.pvp > 0 ? a.pvp : (Number.isFinite(prev.pvp) && prev.pvp > 0 ? prev.pvp : null);
-      const temDiv = Array.isArray(a.div) && a.div.length > 0;
-      if(temDiv) comDiv++;
-      if(a.si_ok || a.si) comSi++;
-      C[a.t] = {
-        ...prev,
-        p: a.p,
-        ch: a.ch ?? prev.ch ?? null,
-        nome: a.nome || prev.nome || a.t,
-        sec: a.setor || prev.sec || "",
-        lo: a.lo ?? prev.lo ?? null,
-        hi: a.hi ?? prev.hi ?? null,
-        vol,
-        pl: plv,
-        roe: a.roe ?? prev.roe ?? null,
-        pvp: pvpv,
-        pvpB: pvpv ?? prev.pvpB ?? null,
-        roeB: a.roe ?? prev.roeB ?? null,
-        ml: a.ml ?? prev.ml ?? null,
-        dy12: a.dy12 ?? a.dy ?? prev.dy12 ?? null,
-        div: temDiv ? a.div : (prev.div || []),
-        fu: Object.assign({}, prev.fu || {}, a.fu || {}),
-        si: a.si || prev.si || null,
-        siAt: (a.si_ok || a.si) ? at : (prev.siAt || 0),
-        sisrc: (a.si_ok || a.si) ? "statusinvest" : (prev.sisrc || ""),
-        detAt: at,
-        qAt: at,
-        dAt: temDiv ? at : (prev.dAt || 0),
-        src: "github-dados.json"
-      };
-      if(!C[a.t].mt || C[a.t].mt.src === "snapshot"){
-        const synMt = buildSyntheticMtFromSi(C[a.t], at);
-        if(synMt) C[a.t].mt = synMt;
-      }
-      ST[a.t] = {...(ST[a.t] || {}), s: "ok", at, err: null};
-      n++;
+    async function carregar() {
+      const res = await fetch(`./dados.json?t=${Date.now()}`);
+      const json = await res.json();
+      const stats = json.stats || {};
+      document.getElementById("resumo").textContent =
+        `Atualizado em: ${json.updatedAt || "-"} | Total: ${stats.total ?? 0} | OK: ${stats.ok ?? 0} | Sem dados: ${stats.nodata ?? 0} | Erro rede: ${stats.neterr ?? 0} | Limite: ${stats.limit ?? 0}`;
+
+      todosItens = Object.values(json.items || {});
+      renderizar();
     }
-    if(n > 0){
-      M.qAt = Math.max(M.qAt || 0, at);
-      if(comDiv) M.dAt = Math.max(M.dAt || 0, at);
-      if(comSi) M.si = {n: comSi, ok: comSi, skip: 0, lastErr: ""};
-      M.ultimo = {ok: n, fail: 0, total: n, restantes: 0, at: now};
-      persist();
-      return true;
-    }
-    return false;
-  }catch(e){
-    return false;
-  }
-}
 
-let run=null;
-function refresh(o={}){
-  if(run)return run;
-  $("#upd").disabled=true;
-  run=doRefresh(o).catch(e=>{M.err={msg:String(e),src:"app",at:Date.now()}}).finally(()=>{run=null;$("#upd").disabled=false;persist();draw();status()});
-  return run}
-function chk(h,j,pre){const m=(j&&j.message)||"";
-  if(h==429||h==402)throw new E("limit",pre+"limite de requisições (HTTP "+h+") "+m,h);
-  if(h==401||h==403)throw new E("auth",pre+"token recusado ou plano sem acesso (HTTP "+h+") "+m,h);
-  if(h==404)throw new E("nodata",pre+"não encontrado "+m,h);
-  if(h>=500)throw new E("neterr",pre+"erro temporário do servidor (HTTP "+h+")",h);
-  if(h>=400)throw new E("invalid",pre+"requisição recusada (HTTP "+h+") "+m,h)}
-async function viaRetry(fn){for(let k=0;;k++){try{return await fn()}catch(e){
-  if(e.s=="neterr"&&k<2){await sleep(1000*3**(k+1));continue}
-  if(e.s=="limit"&&e.h==429&&k<1){await sleep(5000);continue}throw e}}}
-async function listaGet(q){
-  if(!S.token&&!DEFTOK)throw new E("auth","token brapi não configurado",401);
-  cnt();let r;
-  try{r=await fetch("https://brapi.dev/api/quote/list?type=stock"+q+"&token="+(S.token||DEFTOK))}catch(e){throw new E("neterr","falha de rede ou bloqueio CORS ("+(e.message||e)+")")}
-  let j=null;try{j=await r.json()}catch(e){}chk(r.status,j,"lista: ");
-  if(!j||!Array.isArray(j.stocks))throw new E("invalid","lista sem o campo stocks (HTTP "+r.status+")",r.status);return j}
-async function fetchList(){
-  const j=await listaGet("&sortBy=volume&sortOrder=desc"),now=Date.now();let n=0;
-  j.stocks.forEach(x=>{const t=x.stock;if(!/^[A-Z]{4}([3-8]|11)$/.test(t||"")||typeof x.close!="number"||x.close<=0||(x.subType&&x.subType!="stock"&&x.subType!="unit"))return;const o=C[t]||{};
-    C[t]={...o,p:x.close,ch:x.change,nome:o.nome&&o.nome!=t?o.nome:(x.name&&x.name!=t?x.name:t),sec:x.sector||o.sec,lname:x.name,logo:x.logo||o.logo,vol:x.volume||0,qAt:now,src:"brapi"};n++});
-  return n}
-async function runIndiv(ts){let ok=0,fail=0,stop=false;const q=[...ts],again=new Set();gapMul=1;
-  while(q.length&&!stop){const t=q.shift();status(`Detalhes de ${t}… (${ok+fail+1}/${ok+fail+q.length+1})`);
-    try{const det=await viaRetry(()=>fetchDet(t));merge(t,det);
-      if(S.useSI&&S.siProxy&&(!C[t].siAt||Date.now()-C[t].siAt>12*36e5)){const si=await fetchStatusInvest(t);if(si)applyStatusInvestFallback(t,si)}
-      ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null};ok++;gapMul=Math.max(1,gapMul*0.9)}
-    catch(e){
-      const si=await fetchStatusInvest(t);
-      if(si&&C[t]){applyStatusInvestFallback(t,si);ST[t]={...(ST[t]||{}),s:"ok",at:Date.now(),err:null,fb:"statusinvest"};ok++}
-      else{const s=e.s||"neterr";
-        if(s=="limit"&&e.h==429&&!again.has(t)){again.add(t);gapMul=Math.min(8,gapMul*2);q.unshift(t);await sleep(15000);continue}
-        ST[t]={...(ST[t]||{}),s,at:Date.now(),err:e.message};M.err={msg:t+": "+e.message,src:"brapi.dev",at:Date.now(),s};fail++;if(s=="limit"||s=="auth")stop=true}
-    }
-    await sleep(S.sched.gap*gapMul)}
-  return{ok,fail}}
-async function runDiv(o,now){
-  if(!divSrc()||(!S.brapiDiv&&!dbk()&&!(S.useSI&&S.siProxy)))return{ok:0,fail:0,left:0};
-  const sc=S.sched,dv=sc.divDias*864e5,lim=S.dbLim||190,dk=new Date().toISOString().slice(0,10);
-  if(M.db.d!=dk)M.db={d:dk,n:0};
-  const E_={};Object.keys(C).forEach(t=>(E_[EMP(t)]=E_[EMP(t)]||[]).push(t));
-  const pri=new Set(S.pos.map(p=>p.t)),cs=new Set();
-  if(!o.only){const G={};rankAll(true).forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));Object.values(G).forEach(L=>L.slice(0,S.nSet).forEach(t=>cs.add(t)));rankAll().slice(0,20).forEach(x=>cs.add(x.t))}
-  const onlyE=new Set((o.only&&!o.divAll?o.only.filter(t=>pri.has(t)):[...pri,...cs]).map(EMP));if(!onlyE.size)return{ok:0,fail:0,left:0};
-  const sc2=t=>(pri.has(t)?2e12:0)+(C[t].vol||0)+(t.endsWith("4")?0.2:t.endsWith("3")?0.1:0);
-  const need=[];
-  for(const [e,ts] of Object.entries(E_)){
-    if(onlyE&&!onlyE.has(e))continue;
-    if(!o.divAll&&ts.some(t=>C[t].dAt&&now-C[t].dAt<=dv))continue;
-    const rep=ts.slice().sort((a,b)=>sc2(b)-sc2(a))[0],x=ST[rep]&&ST[rep].dv;
-    if(!o.divAll&&x&&(x.s=="nodata"||x.s=="invalid")&&now-x.at<7*864e5)continue;
-    need.push(rep)}
-  need.sort((a,b)=>(pri.has(b)-pri.has(a))||(!!C[a].dAt-!!C[b].dAt)||sc2(b)-sc2(a));
-  let ok=0,fail=0,done=0,stop=false;
-  while(need.length&&!stop&&(S.brapiDiv||(S.dbKey&&M.db.n<lim)||(S.useSI&&S.siProxy))){const t=need.shift();
-    status(`Proventos da carteira: ${++done} consultados · ${ok} obtidos · ${fail} falhas · ${need.length} na fila`);
-    try{
-      if(S.brapiDiv)merge(t,await viaRetry(()=>fetchOne(t,true)));
-      else if(S.dbKey&&M.db.n<lim){const d=await viaRetry(()=>fetchDivDB(t));C[t].div=d;C[t].dAt=Date.now();C[t].dsrc="dadosb3.com"}
-      else if(S.useSI&&S.siProxy){const si=await fetchStatusInvest(t);if(si){applyStatusInvestFallback(t,si);if(si.dy!=null&&!C[t].dy12)C[t].dy12=si.dy}}
-      ST[t]={...(ST[t]||{}),dv:{s:"ok",at:Date.now()}};ok++}
-    catch(e){
-      const si=(S.useSI&&S.siProxy)?await fetchStatusInvest(t):null;
-      if(si&&applyStatusInvestFallback(t,si)){ST[t]={...(ST[t]||{}),dv:{s:"ok",at:Date.now(),fb:"statusinvest"}};ok++}
-      else{const s=e.s||"neterr";ST[t]={...(ST[t]||{}),dv:{s,at:Date.now(),err:e.message}};M.err={msg:t+": "+e.message,src:S.brapiDiv?"brapi.dev":"dadosb3.com",at:Date.now(),s};fail++;if(s=="limit"||s=="auth")stop=true}
-    }
-    await sleep(sc.gap)}
-  if(ok)M.dAt=Date.now();
-  return{ok,fail,left:need.length}}
-function filaDetalhe(o,kind){
-  const now=Date.now(),H=3.6e6,pos=[...new Set(S.pos.map(p=>p.t))].filter(t=>C[t]);
-  const velho=(t,h)=>!C[t].detAt||now-C[t].detAt>h*H;
-  const G={};rankAll().forEach(x=>(G[x.sec]=G[x.sec]||[]).push(x.t));
-  const cand=Object.values(G).flatMap(L=>L.slice(0,S.nSet));
-  const q=[...pos.filter(t=>velho(t,o.force?0:2)),...cand.filter(t=>velho(t,kind=="pregao"?2:12))];
-  if(kind!="pregao"){const rest=Object.keys(C).filter(t=>velho(t,S.detHoras));
-    rest.sort((a,b)=>((C[a].detAt||0)-(C[b].detAt||0))||((C[b].vol||0)-(C[a].vol||0)));q.push(...rest)}
-  return[...new Set(q)]}
-async function doRefresh(o){
-  if(o.listOnly){try{await viaRetry(fetchList);ST.__lista={s:"ok",at:Date.now()}}catch(e){M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s}}return}
-  const now=Date.now(),sc=S.sched,kind=o.kind||"full",pos=[...new Set(S.pos.map(p=>p.t))];
-  if(!o.only&&!o.divOnly){
-    status("Sincronizando dados publicados no GitHub (dados.json)…");
-    const okRepo=await loadRepoDados();
-    if(okRepo&&Object.keys(C).length>0&&!o.force){
-      await runPlan(o,now);await runMult(o,now);await runVered(o,now);await runDiv(o,now);
-      return;
-    }
-  }
-  if(!o.divOnly&&!o.only&&fimDeSemana()&&M.qAt>=lastClose()){status("Mercado fechado: a B3 não opera no fim de semana. Exibindo o fechamento de "+fmtDia(lastClose())+".");await sleep(2000);return}
-  if(o.manual&&!o.only&&now-M.lastTry<sc.minManual*60000){status(`Aguarde ${Math.ceil((sc.minManual*60000-(now-M.lastTry))/1000)}s: intervalo mínimo entre atualizações manuais.`);await sleep(2000);return}
-  const skipBr=!o.divOnly&&!o.only&&!intradia()&&M.qDia===hojeBR()&&Object.keys(C).length>0;
-  if(skipBr){M.qAt=now;M.skip=0}
-  let ok=0,fail=0,listFail=false,fila=[],feitas=0;
-  if(!o.divOnly&&!o.only&&!skipBr){M.lastTry=now;status("Buscando a lista e as cotações do mercado…");
-    try{await viaRetry(fetchList);ok++;ST.__lista={s:"ok",at:Date.now()};M.qAt=Date.now()}
-    catch(e){ST.__lista={s:e.s||"neterr",at:Date.now(),err:e.message};M.err={msg:"lista do mercado: "+e.message,src:"brapi.dev",at:Date.now(),s:e.s};fail++;listFail=true}}
-  if(o.only||(listFail&&(S.token||DEFTOK))){const r=await runIndiv(o.only||[...new Set([...pos,...S.watch])]);ok+=r.ok;fail+=r.fail;if(r.ok&&!o.only)M.qAt=Date.now()}
-  await runPlan(o,now);await runMult(o,now);
-  const d=await runDiv(o,now);ok+=d.ok;fail+=d.fail;
-  if(!o.divOnly&&!o.only&&!listFail&&!skipBr&&(S.token||DEFTOK)){fila=filaDetalhe(o,kind);const r=await runIndiv(fila.slice(0,restanteHoje()));ok+=r.ok;fail+=r.fail;feitas=r.ok+r.fail}
-  if(!o.divOnly&&!o.only){await runPlan(o,now);await runMult(o,now);await runVered(o,now);const d2=await runDiv(o,now);ok+=d2.ok;fail+=d2.fail}
-  if(!o.divOnly&&!o.only)M.skip=ok==0&&fail>0?(nextSlot()||0):0;
-  if(!o.divOnly&&!o.only&&!listFail&&!skipBr&&feitas>=fila.length)M.qDia=hojeBR();
-  M.ultimo={ok,fail,total:ok+fail,restantes:Math.max(0,fila.length-feitas),at:Date.now()};
-}
-function status(m){const st=$("#st"),u=M.ultimo,nx=S.sched.on&&nextSlot();
-  st.className=!m&&u&&u.ok==0&&u.fail?"off":"";
-  st.textContent=m||`${fase()} · Cotações atualizadas ${ago(M.qAt)} (${fmt(M.qAt)}) · Próxima: ${nx?fmt(nx):"automático desligado"}${u?` · Última rodada: ${u.ok} ok, ${u.fail} falhas${u.restantes?`, ${u.restantes} ativos aguardando análise`:""}`:""}${u&&u.ok==0&&u.fail&&M.err?" · "+M.err.msg:""}${Object.keys(C).length||run?"":" · Sem dados salvos."}`}
-
-function slotList(from){const out=[],b=new Date(from-3*36e5);
-  for(let d=-8;d<=8;d++){const x=new Date(Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()+d));
-    if(!S.sched.days.includes(x.getUTCDay())||x.getUTCDay()%6==0)continue;
-    for(const tm of S.sched.times){const [h,m]=tm.split(":").map(Number);out.push(Date.UTC(x.getUTCFullYear(),x.getUTCMonth(),x.getUTCDate(),h+3,m||0))}}
-  return out.sort((a,b)=>a-b)}
-const lastDue=()=>slotList(Date.now()).filter(s=>s<=Date.now()).pop()||0;
-const nextSlot=()=>slotList(Date.now()).find(s=>s>Date.now());
-function check(){
-  if(run||!S.sched.on)return;const ld=lastDue();
-  if(ld&&M.qAt<ld&&Date.now()>=(M.skip||0)&&Date.now()-M.lastTry>60000)refresh({sched:true,kind:brt(ld).getUTCHours()>=18?"pos":"pregao"})}
-
-function diagInfo(){const E_={};Object.keys(C).forEach(t=>(E_[EMP(t)]=E_[EMP(t)]||[]).push(t));
-  const d={n:Object.keys(C).length,emp:Object.keys(E_).length,fund:0,analisadas:0,aguard:0,rank:0,prej:0,liq:0,desat:0,nodata:0,invalid:0,neterr:0,limit:0,auth:0},lim=Date.now()-2*864e5;
-  for(const ts of Object.values(E_)){const x=ts.map(calc).filter(Boolean).sort((a,b)=>b.vol-a.vol)[0];if(!x)continue;
-    const ex=x.ex=="dados incompletos"&&x.liq<S.liqMin?"baixa liquidez":x.ex;if(C[x.t].mt)d.fund++;
-    if(ex=="dados incompletos"||ex=="aguardando dados fundamentalistas")d.aguard++;else{d.analisadas++;if(ex=="lucro negativo")d.prej++;else if(ex=="baixa liquidez")d.liq++;else d.rank++;if(C[x.t].detAt&&C[x.t].detAt<lim)d.desat++}}
-  Object.values(ST).forEach(x=>{if(x.s&&x.s!="ok"&&x.s in d)d[x.s]++});return d}
-function diagBox(){const d=diagInfo(),e=M.err,bad=Object.entries(ST).filter(([t,x])=>(x.s&&x.s!="ok"&&x.s!="pending")||(x.dv&&x.dv.s!="ok")),rest=restanteHoje();
-  const N={analisadas:"Empresas analisadas",aguard:"Aguardando análise",rank:"No ranking",prej:"Fora: lucro negativo",liq:"Fora: baixa liquidez",desat:"Análises com mais de 2 dias",nodata:"Sem dados publicados",invalid:"Resposta inválida",neterr:"Falha de rede",limit:"Limite de API",auth:"Erro de autenticação"};
-  return`<div class="box"><h3>Diagnóstico</h3><div class="kp"><div><small>Ativos na lista do mercado</small><b>${d.n}</b></div><div><small>Empresas (1 por empresa)</small><b>${d.emp}</b></div>${Object.keys(N).map(k=>`<div><small>${N[k]}</small><b>${d[k]}</b></div>`).join("")}</div>
-  <p class="n">Chamadas brapi hoje: ${M.api.n-M.api.d0} (restam ${rest} no orçamento de hoje) · no mês: ${M.api.n} de ${S.brLim} · Dados B3 hoje: ${M.db&&M.db.d==new Date().toISOString().slice(0,10)?M.db.n:0} de ${S.dbLim} · Status Invest: ${M.si.ok} ok, ${M.si.skip} ignorados (${M.si.lastErr||"sem bloqueios"})</p>
-  <p class="n">Última atualização válida: ${fmt(M.qAt)} · Armazenamento: ${idbOk?"IndexedDB ativo":"IndexedDB indisponível"} · Versão: ${APPV}</p>
-  <p class="n">Último erro: ${e?`${e.msg} (origem: ${e.src}, ${fmt(e.at)})`:"nenhum"}</p>
-  ${bad.length?`<details><summary>Ativos com falha (${bad.length})</summary>${bad.slice(0,80).map(([t,x])=>`<div class="r"><span>${t=="__lista"?"Lista do mercado":t}</span><span>${x.s&&x.s!="ok"?x.s+": "+(x.err||""):""} ${x.dv&&x.dv.s!="ok"?"proventos "+x.dv.s+": "+(x.dv.err||""):""}</span></div>`).join("")}</details>`:""}
-  <button class="btn" id="dc" style="background:#5b6275;color:#fff;margin-top:10px">Copiar diagnóstico</button></div>`}
-function brBox(){return`<div class="box"><h3>Orçamento de chamadas e filtros</h3>
-  <label>Plano da brapi<select id="b2">${Object.entries(PLANOS).map(([k,v])=>`<option value="${k}" ${S.plano==k?"selected":""}>${v.n}: ${v.lim.toLocaleString("pt-BR")} chamadas/mês, ${v.lote} ticker${v.lote>1?"s":""} por chamada, preços ${v.atu=="dia anterior"?"do dia anterior":"a cada "+v.atu}</option>`).join("")}</select></label>
-  <div class="bar"><label>Cota mensal da brapi<input id="b0" type="number" min="100" value="${S.brLim}" style="width:140px"></label><label>Liquidez mínima por dia (R$)<input id="b1" type="number" min="0" step="100000" value="${S.liqMin}" style="width:170px"></label></div></div>`}
-function divBox(){return`<div class="box"><h3>Proventos da carteira e fallback opcional</h3>
-  <p class="n">O Radar lê o <code>dados.json</code> gerado pelo GitHub Actions. Chaves/proxies externos no navegador são opcionais.</p>
-  <label>Chave do Dados B3 (opcional)<input id="d0" type="password" value="${S.dbKey}" placeholder="vazio = usa dados.json" autocomplete="off"></label>
-  <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d1" style="width:auto" ${S.brapiDiv?"checked":""}> Meu plano da brapi inclui dividendos (Startup ou superior)</label>
-  <label style="flex-direction:row;align-items:center;gap:8px;margin-top:10px"><input type="checkbox" id="d3" style="width:auto" ${S.useSI?"checked":""}> Ativar fallback Status Invest via proxy no navegador</label>
-  <div class="bar" style="margin-top:10px"><label>Proxy opcional (use {ticker} ou {url})<input id="d4" value="${S.siProxy||""}" placeholder="vazio = desativado" style="flex:1;min-width:260px"></label><label>Consultas diárias ao Dados B3<input id="d2" type="number" min="1" value="${S.dbLim}" style="width:140px"></label></div></div>`}
-function schedBox(){const s=S.sched,D=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
-  return`<div class="box"><h3>Atualização automática</h3>
-  <label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="s0" style="width:auto" ${s.on?"checked":""}> Ativar (funciona com o Radar aberto)</label>
-  <div class="bar" style="margin-top:10px"><label>Horários (Brasília): pregão e pós-fechamento<input id="s1" value="${s.times.join(" ")}" style="width:190px"></label>
-  <label>Validade dos dividendos (dias)<input id="s2" type="number" min="1" value="${s.divDias}" style="width:110px"></label>
-  <label>Intervalo entre chamadas (ms)<input id="s3" type="number" min="200" step="100" value="${s.gap}" style="width:120px"></label>
-  <label>Chamadas simultâneas<select id="s4"><option>1</option><option>2</option></select></label></div>
-  <div class="bar">${D.map((d,i)=>`<label style="flex-direction:row;align-items:center;gap:4px"><input type="checkbox" class="sd" data-i="${i}" style="width:auto" ${s.days.includes(i)?"checked":""}>${d}</label>`).join("")}</div>
-  <p class="n" id="si"></p><div class="bar"><button class="btn" id="sn">Atualizar agora</button><button class="btn" style="background:#5b6275;color:#fff" id="sf">Forçar dividendos de todos</button></div></div>`}
-function bindSched(){const s=S.sched,info=()=>{$("#si").innerHTML=`Última atualização de cotações: ${fmt(M.qAt)} · dividendos: ${fmt(M.dAt)}<br>Próxima prevista: ${s.on&&nextSlot()?fmt(nextSlot()):"desativada"}`};
-  const u=()=>{s.on=$("#s0").checked;s.times=$("#s1").value.split(/[\s,;]+/).filter(x=>/^\d{1,2}:\d{2}$/.test(x));s.divDias=+$("#s2").value||7;s.gap=Math.max(200,+$("#s3").value||600);s.conc=+$("#s4").value;
-    s.days=[...document.querySelectorAll(".sd")].filter(c=>c.checked).map(c=>+c.dataset.i);save();info();status()};
-  ["#s0","#s1","#s2","#s3","#s4",".sd"].forEach(q=>document.querySelectorAll(q).forEach(e=>e.onchange=u));
-  $("#s4").value=s.conc;info();$("#sn").onclick=()=>refresh({manual:true,force:true});$("#sf").onclick=()=>refresh({manual:true,force:true,divAll:true});
-  $("#dc").onclick=()=>{const t=JSON.stringify({diag:diagInfo(),M,ST},null,1);navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>status("Diagnóstico copiado."),()=>{})}}
-
-const EMP=t=>t.slice(0,4);
-const SEC={"Finance":"Financeiro","Energy Minerals":"Petróleo, gás e carvão","Non-Energy Minerals":"Mineração e siderurgia","Utilities":"Utilidade pública","Communications":"Comunicações","Consumer Non-Durables":"Consumo não durável","Consumer Durables":"Consumo durável","Consumer Services":"Serviços ao consumidor","Distribution Services":"Distribuição","Electronic Technology":"Tecnologia eletrônica","Health Services":"Serviços de saúde","Health Technology":"Tecnologia em saúde","Industrial Services":"Serviços industriais","Miscellaneous":"Diversos","Process Industries":"Indústrias de processo","Producer Manufacturing":"Indústria e bens de capital","Retail Trade":"Varejo","Technology Services":"Serviços de tecnologia","Transportation":"Transporte","Commercial Services":"Serviços comerciais"};
-const sp=x=>SEC[x]||x||"Sem classificação";
-const dpaOf=ds=>{const l=new Date();l.setFullYear(l.getFullYear()-S.anos);return(ds||[]).filter(d=>d.d&&new Date(d.d)>=l).reduce((a,d)=>a+(d.v||0),0)/S.anos};
-const bi=v=>v==null?"-":"R$ "+(Math.abs(v)>=1e9?(v/1e9).toLocaleString("pt-BR",{maximumFractionDigits:1})+" bi":(v/1e6).toLocaleString("pt-BR",{maximumFractionDigits:0})+" mi");
-let EREP={};
-function calc(t){
-  const c=C[t];if(!c||!c.p)return null;
-  const lo=c.lo,hi=c.hi,liq=c.p*(c.vol||0),m=c.mt,fu=c.fu||{},fin=c.sec=="Finance",now=Date.now();let ex="";
-  if(!c.detAt||!(lo>0)||!(hi>lo))ex="dados incompletos";
-  else if(!m&&EREP[EMP(t)]&&EREP[EMP(t)]!=t)ex="mesma empresa: análise na classe "+EREP[EMP(t)];
-  else if(!m)ex="aguardando dados fundamentalistas";
-  else if(now-c.detAt>10*864e5)ex="dados desatualizados";
-  else if(now-m.at>(S.multDias+15)*864e5)ex="fundamentos desatualizados";
-  else if(!(m.lpa>0))ex="lucro negativo";
-  else if(m.preco>0&&Math.abs(now-Date.parse(m.dpreco||0))<6*864e5&&Math.abs(m.preco/c.p-1)>0.15)ex="preços divergem entre as fontes";
-  const MT=[];
-  if(!ex){
-    if(!m.atip&&m.pl.n>=4&&m.pl.m>0)MT.push({k:"pl",n:"P/L próprio",v:m.lpa*m.pl.m,d:`mediana de ${fp(m.pl.m)} em ${m.pl.n} balanços da própria empresa × lucro por ação (12 meses) de ${R(m.lpa)}`});
-    if(fin&&m.pvp.n>=4&&m.vpa>0)MT.push({k:"pvp",n:"P/VP próprio",v:m.vpa*m.pvp.m,d:`mediana de ${fp(m.pvp.m)} em ${m.pvp.n} balanços × valor patrimonial por ação de ${R(m.vpa)}`});
-    if(!fin&&m.ev.n>=4&&fu.ebitda>0&&m.acoes>0&&m.dl!=null){const v=(fu.ebitda*m.ev.m-m.dl)/m.acoes;if(v>0)MT.push({k:"ev",n:"EV/EBITDA próprio",v,d:`mediana de ${fp(m.ev.m)} em ${m.ev.n} anos × EBITDA de ${bi(fu.ebitda)}, menos dívida líquida de ${bi(m.dl)}, dividido pelas ações`})}
-    if(!fin&&m.vpa>0&&m.lpa/m.vpa<=0.30)MT.push({k:"gr",n:"Graham",v:Math.sqrt(22.5*m.lpa*m.vpa),d:`√(22,5 × lucro por ação ${R(m.lpa)} × patrimônio por ação ${R(m.vpa)}); só vale com ROE de até 30%`});
-    if(!MT.length)ex="dados insuficientes para o valor justo";
-  }
-  const vals=MT.map(x=>x.v),vj=ex?null:medN(vals),disp=vals.length>1?Math.max(...vals)/Math.min(...vals)-1:0;
-  const cv=m&&m.pl&&m.pl.m>0&&m.pl.q1!=null&&m.pl.q3!=null?(m.pl.q3-m.pl.q1)/(2*m.pl.m):0.3,piso=S.desc/100,req=Math.min(0.45,Math.max(piso,piso+0.5*disp+0.5*cv));
-  const teto=vj||0,ideal=teto*(1-req),margem=teto?(teto/c.p-1)*100:null,pos=hi>lo?Math.min(1,Math.max(0,(c.p-lo)/(hi-lo))):null;
-  const roe=c.roe??c.roeB,fal=[];
-  if(!ex){if(liq<S.liqMin)fal.push(`liquidez diária de ${R(liq)} abaixo do mínimo de ${R(S.liqMin)}`);if(!fin){if(fu.pio!=null&&fu.pio<5)fal.push(`Piotroski ${fu.pio} (mínimo 5)`);if(fu.dle!=null&&fu.ebitda>0&&fu.dle>3.5)fal.push(`dívida líquida/EBITDA ${fp(fu.dle)} (máximo 3,5)`);if(fu.lc!=null&&fu.lc<0.8)fal.push(`liquidez corrente ${fp(fu.lc)} (mínimo 0,8)`)}
-    if(roe!=null&&roe<=0)fal.push("ROE negativo");if(fu.ml!=null&&fu.ml<=0&&!(m&&m.lpa>0))fal.push("margem líquida negativa")}
-  const bd=c.vd&&c.vd.cor,conf=ex?null:(vals.length>=2&&disp<=0.25&&cv<=0.35&&bd=="verde"?"Alta":vals.length>=2&&disp<=0.5&&bd!="vermelho"?"Média":"Baixa");
-  const qual=ex?0:(fal.length?0.25:(fin?Math.min(1,Math.max(0,(roe||0)/20)):(fu.pio!=null?fu.pio/9:0.5)));
-  const nota=ex?null:100*(0.5*Math.min(1,Math.max(0,margem/60))+0.3*qual+0.2*(conf=="Alta"?1:conf=="Média"?0.6:0.2));
-  const s=ex?"x":c.p>teto?"v":(c.p<=ideal&&conf!="Baixa"&&!fal.length&&!m.atip)?"c":"a",dpa=c.dAt?dpaOf(c.div):null;
-  return{t,qt:c.qt,sec:c.sec,nome:c.nome,p:c.p,ch:c.ch,vol:c.vol||0,liq,min:lo,max:hi,pl:Number.isFinite(c.pl)?c.pl:(m&&m.lpa>0?c.p/m.lpa:null),roe:c.roe??c.roeB,pvp:c.pvp??c.pvpB,dy12:c.dy12,eps:m?m.lpa:null,
-    teto,ideal,margem,pos,nota,ex,sd:!!ex,s,vj,req,disp,cv,conf,metodos:MT,falhas:fal,bd,fin,mt:m,
-    liqB:!ex&&liq<S.liqMin*3,dt:c.detAt,dd:c.dAt,dp:c.planAt,dsi:c.siAt,exc:false,exc0:!ex&&conf=="Alta"&&c.p<=ideal&&margem>=40&&!fal.length&&!m.atip,atip:!ex&&!!m.atip,dpa,dym:dpa==null?null:dpa/c.p*100}}
-
-let SEC_MED={};
-const med=a=>{a=a.filter(v=>Number.isFinite(v)).sort((x,y)=>x-y);return a.length>=3?a[a.length>>1]:null};
-function rankAll(all){
-  EREP={};Object.keys(C).forEach(t=>{if(C[t].mt)EREP[EMP(t)]=t});const best={};
-  for(const t in C){const x=calc(t);if(!x||x.ex)continue;const e=EMP(t);if(!best[e]||x.vol>best[e].vol)best[e]=x}
-  const A=Object.values(best),lim=Math.max(3,Math.ceil(A.length*0.03));
-  {const now=Date.now();A.forEach(x=>{const c=C[x.t],l=c.last;if(!l||now-l.at>36e5||l.s!=x.s||Math.abs(l.teto-x.teto)>0.005){c.last={at:now,teto:x.teto,ideal:x.ideal,margem:x.margem,nota:x.nota,s:x.s,conf:x.conf};persist()}})}
-  SEC_MED={};{const g={};A.forEach(x=>(g[x.sec]=g[x.sec]||[]).push(x));for(const k in g)SEC_MED[k]={pl:med(g[k].map(x=>x.pl)),dy:med(g[k].map(x=>x.dy12)),n:g[k].length}}
-  A.filter(x=>x.exc0&&!x.atip).sort((a,b)=>b.nota-a.nota).slice(0,lim).forEach(x=>x.exc=true);
-  return A.filter(x=>all||x.margem>0).sort((a,b)=>b[S.rk]-a[S.rk])}
-
-const TX={c:"COMPRAR",a:"AGUARDAR",v:"CARO",x:"SEM ANÁLISE"};
-const row=(a,b)=>`<div class="r"><span>${a}</span><span>${b}</span></div>`;
-const fp=v=>v==null?"-":v.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1});
-const nm=t=>{const c=C[t]||{};let n=String(c.nome&&c.nome!=t?c.nome:(c.lname||t)).replace(/\s+/g," ").trim().toUpperCase();
-  if(n!=t&&!/\b(ON|PN[AB]?|UNT|UNIT)\b/.test(n)){const k=t.endsWith("11")?"UNT":t.endsWith("3")?"ON":t.endsWith("4")?"PN":t.endsWith("5")?"PNA":t.endsWith("6")?"PNB":"";if(k)n+=" "+k}return n};
-const ago=ts=>{if(!ts)return"nunca";const m=Math.round((Date.now()-ts)/6e4);return m<1?"agora":m<60?`há ${m} min`:m<1440?`há ${Math.floor(m/60)} h`:`há ${Math.floor(m/1440)} d`};
-const logo=(t,z)=>{const u=C[t]&&C[t].logo,f=`<span class="lgf" style="width:${z}px;height:${z}px;${u?"display:none":""}">${t.slice(0,2)}</span>`;
-  return(u?`<img class="lgo" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" style="width:${z}px;height:${z}px" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:"")+f};
-const mc=m=>m==null?"":m>=50?"pos":m>=0?"wn":"neg";
-const secCor=k=>{let h=0;for(const ch of String(k||""))h=(h*31+ch.charCodeAt(0))%360;return h};
-const secChip=k=>`<span class="sc" style="--c:hsl(${secCor(sp(k))} 45% 62%)">${sp(k)}</span>`;
-const nmShort=t=>{const n=nm(t),m=n.match(/^(.*?)(\s+(?:ON|PN[AB]?|UNT|UNIT)(?:\s+(?:NM|N1|N2|MA|MB))?)$/);let h=(m?m[1]:n).replace(/\s+S[\.\/]?A\.?(?=\s|$)/g,"").replace(/\s+/g," ").trim();const tl=m?m[2]:"";if(h.length>22)h=h.slice(0,22).replace(/\s+\S*$/,"")+"…";return h+tl};
-const motivo=x=>{if(x.ex)return"Sem análise: "+x.ex+".";const d=(1-x.p/x.ideal)*100,cf=x.conf.toLowerCase();
-  if(x.s=="c")return`Preço ${P(Math.abs(d))} abaixo do ideal (${R(x.ideal)}); confiança ${cf}, ${x.metodos.length} métodos da própria empresa.`;
-  if(x.s=="v")return`Preço ${P((x.p/x.teto-1)*100)} acima do valor justo (${R(x.teto)}).`;
-  if(x.p<=x.ideal)return x.falhas.length?`No preço ideal, mas não atende: ${x.falhas[0]}.`:x.atip?"No preço ideal, mas o lucro recente é atípico: o P/L foi desconsiderado.":`No preço ideal, mas a confiança é ${cf}: ${x.metodos.length<2?"só um método se aplica":"os métodos divergem"}.`;
-  if(x.margem>=0)return`Abaixo do valor justo (margem até o teto de ${P(x.margem)}), mas acima do ideal de ${R(x.ideal)}, que exige ${P(x.req*100)} de margem para esta empresa.`;
-  return`Acima do valor justo (deságio negativo de ${P(x.margem)} até o teto de ${R(x.teto)}) e acima do ideal de ${R(x.ideal)}.`};
-const cfCls=c=>c=="Alta"?"pos":c=="Média"?"wn":"neg";
-const valBlock=x=>x.ex||!x.metodos.length?"":`<div class="vb"><div class="r"><span><b>Valor justo</b> (mediana de ${x.metodos.length} método${x.metodos.length>1?"s":""} da própria empresa)</span><b>${R(x.vj)}</b></div>${x.metodos.map(m=>`<div class="r"><span>${m.n}</span><span>${R(m.v)}</span></div><div class="src" style="margin:0 0 8px">${m.d}</div>`).join("")}${row("Margem exigida (cautela)",P(x.req*100))}<div class="src" style="margin:0 0 6px">Mínimo de ${S.desc}% mais metade da divergência entre os métodos (${P(x.disp*100)}) e metade da variação histórica do P/L (${P(x.cv*100)}), no máximo 45%.</div>${row("Confiança",`<b class="${cfCls(x.conf)}">${x.conf}</b>`)}${row("Bandeira dos dados (Dados B3)",x.bd?x.bd:"não consultada")}${x.falhas.length?`<div class="alerta">Critérios de qualidade não atendidos: ${x.falhas.join("; ")}.</div>`:""}</div>`;
-const motivoCart=(x,pc)=>{if(!x)return"Sem cotação disponível.";if(x.sd)return"Sem análise: "+x.ex+".";
-  if(x.p>x.teto)return`Cotação ${P((x.p/x.teto-1)*100)} acima do teto (${R(x.teto)}): a regra indica vender.`;
-  if(S.lucro&&pc>=S.lucro)return`Ganho de ${P(pc)} passou da sua meta de ${S.lucro}%${x.margem>0?`; ainda há ${P(x.margem)} de margem até o teto`:""}.`;
-  if(x.p<=x.ideal)return`Abaixo do preço ideal (${R(x.ideal)}): espaço para comprar mais.`;
-  return`Entre o ideal (${R(x.ideal)}) e o teto (${R(x.teto)}): manter.`};
-const rangeBar=x=>x.pos==null?"":`<div class="rgw"><small>Mín. ${R(x.min)}</small><div class="rg"><i style="left:${(x.pos*100).toFixed(1)}%"></i></div><small>Máx. ${R(x.max)}</small></div>`;
-const chips=x=>`<div class="chips">${x.ex?`<span class="chip">${x.ex}</span>`:`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span><span class="chip">P/L ${fp(x.pl)}</span><span class="chip ${cfCls(x.conf)}">Confiança ${x.conf}</span>${(x.dym??x.dy12)!=null?`<span class="chip">DY ${P(x.dym??x.dy12)}</span>`:""}`}${x.exc?`<span class="chip gold">★ Oportunidade</span>`:""}${x.atip?`<span class="chip warn">Lucro atípico</span>`:""}${x.liqB?`<span class="chip warn">Liquidez baixa</span>`:""}</div>`;
-const medRows=x=>{const m=SEC_MED[x.sec];return(m&&m.pl!=null?row("P/L do setor (mediana)",fp(m.pl)):"")+(m&&m.dy!=null?row("DY 12m do setor (mediana)",P(m.dy)):"")};
-const qd=v=>{if(!v)return"";const t=typeof v=="number"?(v<1e12?v*1000:v):Date.parse(v);return isNaN(t)?"":fmtDia(t)};
-const srcLn=x=>`<div class="src">Fontes: cotação e fundamentos (dados.json / GitHub Actions, ${fmt(x.dt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""})${x.dp?` · Dados B3 (${fmt(x.dp)})`:""}${x.dd?` · proventos (${fmt(x.dd)})`:""}${x.dsi?` · Status Invest (${fmt(x.dsi)})`:""}.</div>`;
-const indRows=x=>row("Dividend Yield médio",x.dym==null?`<small>${divSrc()?"sem histórico":"sem fonte"}</small>`:`${P(x.dym)}<span class="ck ${x.dym>=S.dy?"y":""}">${x.dym>=S.dy?"✓":""}</span>`)+(x.dy12!=null?row("DY 12 meses",P(x.dy12)):"")+row("DPA médio",x.dpa==null?"-":R(x.dpa))+row("ROE · P/L · P/VP",`${x.roe==null?"-":P(x.roe)} · ${fp(x.pl)} · ${x.pvp==null?"-":fp(x.pvp)}`);
-function cardEmp(x,i){
-  return`<details class="cd${x.exc?" exc":""}" ${S.vis=="cards"?"open":""}><summary class="hd"><div style="position:relative;flex:none">${logo(x.t,56)}<span class="rk rkb">${i}</span></div><div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill ${x.s}">${TX[x.s]}</span>${chips(x)}<div class="why">${motivo(x)}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
-  ${x.exc?`<div class="alerta"><b>Oportunidade excepcional</b> · margem de ${P(x.margem)}, preço a ${P(x.pos*100)} da faixa entre a mínima e a máxima de 52 semanas, P/L ${fp(x.pl)}.</div>`:""}${x.atip?`<div class="alerta">Atenção: P/L muito baixo; o lucro pode ser atípico (venda de ativo ou ganho extraordinário). Confira antes de comprar.</div>`:""}
-  ${row("Empresa",nm(x.t))}${row("Setor",secChip(x.sec))}
-  ${row("Cotação",`${R(x.p)} <small class="${cls(x.ch)}">${x.ch==null?"":P(x.ch)}</small>`)}${row("Valor justo (teto)",R(x.teto))}${row("Preço ideal de compra",R(x.ideal))}${valBlock(x)}
-  ${rangeBar(x)}
-  ${row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)}${indRows(x)}
-  ${row("P/L · lucro por ação",`${fp(x.pl)} · ${R(x.eps)}`)}${medRows(x)}${row("Liquidez diária",R(x.liq))}${row("Nota (0 a 100)",`<b>${x.nota.toFixed(0)}</b>`)}
-  ${srcLn(x)}</details>`}
-function covBox(){const d=diagInfo();
-  return`<p class="n">${fase()} · ${d.n} tickers de ${d.emp} empresas, ${d.analisadas} analisadas, ${d.fund} com fundamentos carregados${d.aguard?` (${d.aguard} aguardando)`:""}.</p>
-  <details class="n" style="margin-bottom:14px"><summary style="cursor:pointer;color:var(--ac)">Como a análise é calculada</summary><p>O valor justo é calculado a partir dos fundamentos disponíveis e da margem de segurança exigida (mínimo ${S.desc}%, máximo 45%). COMPRAR exige preço no ideal, confiança Média ou Alta e critérios de qualidade.</p></details>`}
-const rkSel=()=>`<select id="vs"><option value="lista">Visual: lista</option><option value="cards">Visual: cards abertos</option><option value="tabela">Visual: tabela (só em Todas)</option></select><select id="rk"><option value="nota">Ordenar por nota</option><option value="margem">Ordenar por margem de segurança</option></select>`;
-function bindRk(f){const v=$("#vs");v.value=S.vis||"lista";v.onchange=()=>{S.vis=v.value;save();draw()};const e=$("#rk");e.value=S.rk;e.onchange=()=>{S.rk=e.value;save();f()}}
-const VAZIO=()=>`<div class="cd">${Object.keys(C).length?"Ainda sem ações analisadas.":"Sem dados ainda. Toque em Atualizar agora."}</div>`;
-function drawTop(){const A=rankAll(),L=A.slice(0,20),D=[...A].filter(x=>x.s=="c").sort((a,b)=>b.nota-a.nota).slice(0,10),N=[...A].filter(x=>x.s=="a").sort((a,b)=>b.nota-a.nota).slice(0,5);
-  const li=x=>`<div class="ex">${logo(x.t,34)}<div style="min-width:0;flex:1"><b>${x.exc?"★ ":""}${x.t}</b> <small>${nmShort(x.t)}</small><br><small>${sp(x.sec)} · nota ${x.nota.toFixed(0)}</small></div><div style="text-align:right"><b>${R(x.p)}</b><br><small class="${mc(x.margem)}">margem ${P(x.margem)}</small></div></div>`;
-  $("#m").innerHTML=`<h2>As 20 melhores do mercado</h2><div class="bar">${rkSel()}</div>${covBox()}<div class="box" style="border:1px solid var(--gold)"><h3>Melhores oportunidades do dia <small>(dados de ${fmtDia(lastClose())})</small></h3>${D.length?`<p class="n" style="margin:0 0 6px">Ações com sinal COMPRAR agora, pela maior nota. ★ marca as excepcionais (3% melhores notas, confiança Alta).</p>${D.map(li).join("")}`:`<p class="n" style="margin:0 0 6px">Nenhuma ação passou em todos os critérios de COMPRAR hoje. As mais próximas (sinal AGUARDAR):</p>${N.map(li).join("")||"<small>Ainda sem ações analisadas.</small>"}`}</div><div class="grid">${L.map((x,i)=>cardEmp(x,i+1)).join("")||VAZIO()}</div>`;bindRk(drawTop)}
-
-function drawSet(){const G={},T={};
-  for(const t in C){const k=sp(C[t].sec);(T[k]=T[k]||new Set()).add(EMP(t))}
-  rankAll(true).forEach(x=>(G[sp(x.sec)]=G[sp(x.sec)]||[]).push(x));
-  const AL={};listAll().forEach(x=>(AL[sp(x.sec)]=AL[sp(x.sec)]||[]).push(x));Object.values(AL).forEach(L=>L.sort((a,b)=>a.t.localeCompare(b.t)));
-  const secs=Object.keys(T).sort((a,b)=>((G[b]||[])[0]?.[S.rk]??-1)-((G[a]||[])[0]?.[S.rk]??-1));
-  $("#m").innerHTML=`<h2>Melhores por setor</h2><div class="bar">${rkSel()}<select id="ns">${[3,5,7,10].map(n=>`<option value="${n}">Top ${n} por setor</option>`).join("")}</select></div>${covBox()}`+
-    (secs.map(n=>`<h3 class="sh">${secChip(n)} <small>(${(G[n]||[]).length} no ranking · ${T[n].size} empresas)</small></h3><div class="grid">${(G[n]||[]).slice(0,S.nSet).map((x,i)=>cardEmp(x,i+1)).join("")||`<div class="cd">Aguardando a análise das ações deste setor.</div>`}</div><details class="n" style="margin:8px 0 4px"><summary style="cursor:pointer;color:var(--ac)">Ver as ${(AL[n]||[]).length} ações do setor (com a situação de cada uma)</summary><div class="grid" style="margin-top:8px">${(AL[n]||[]).map((x,i)=>cardAny(x,i+1)).join("")}</div></details>`).join("")||VAZIO());
-  bindRk(drawSet);$("#ns").value=S.nSet;$("#ns").onchange=e=>{S.nSet=+e.target.value;save();drawSet()}}
-function listAll(){const by=new Map(rankAll(true).map(x=>[x.t,x])),out=[];for(const t in C){const x=by.get(t)||calc(t);if(x)out.push(x)}return out}
-const cardBase=x=>{const c=C[x.t]||{},ls=c.last;
-  return`<details class="cd" ${S.vis=="cards"?"open":""}><summary class="hd">${logo(x.t,56)}<div style="min-width:0;flex:1"><b class="nm">${nmShort(x.t)}</b><span class="tk">${x.t}</span> <span class="pill a">Sem análise</span><div class="chips"><span class="chip">${x.ex}</span>${ls?`<span class="chip">Última análise: ${TX[ls.s]||""} · margem ${P(ls.margem)}</span>`:""}</div></div><div style="text-align:right;flex:none"><b>${R(x.p)}</b><br><small class="${cls(x.ch)}">${x.ch==null?"":(x.ch>=0?"▲ ":"▼ ")+P(Math.abs(x.ch))}</small></div></summary>
-  ${row("Empresa",nm(x.t))}${row("Setor",secChip(x.sec))}${row("Cotação",R(x.p))}${x.pos!=null?rangeBar(x):""}
-  ${ls?row("Última análise válida",fmtDia(ls.at))+row("Valor justo (teto)",R(ls.teto))+row("Preço ideal",R(ls.ideal))+row("Margem",`<b class="${mc(ls.margem)}">${P(ls.margem)}</b>`)+row("Sinal",TX[ls.s]||"-"):""}
-  <div class="src">Cotação coletada em ${fmt(x.dt||c.qAt)}${x.qt&&qd(x.qt)?`; preço de ${qd(x.qt)}`:""}. Motivo sem análise: ${x.ex}.</div></details>`};
-const cardAny=(x,i)=>x.ex?cardBase(x):cardEmp(x,i);
-let fSec="",fQ="",fSit="",fOrd="az";
-function drawAll(){const L0=listAll(),secs=[...new Set(L0.map(x=>sp(x.sec)))].sort(),nA=L0.filter(x=>!x.ex).length;
-  $("#m").innerHTML=`<h2>Todas as ações da B3</h2><div class="bar">${rkSel()}<select id="fs"><option value="">Todos os setores</option>${secs.map(n=>`<option>${n}</option>`).join("")}</select><select id="fo"><option value="az">Ordem alfabética (A–Z)</option><option value="rk">Melhores primeiro</option></select><select id="fst"><option value="">Todas as situações</option><option value="an">Analisadas</option><option value="c">Só COMPRAR</option><option value="sem">Sem análise (com o motivo)</option></select><input id="fq" placeholder="Buscar ticker ou nome" style="flex:1;min-width:160px"></div>${covBox()}<p class="n">${L0.length} tickers · ${nA} analisadas · ${L0.length-nA} sem análise agora.</p><div id="az" class="azbar"></div>${S.vis=="tabela"?`<div class="w"><table id="tb"></table></div>`:`<div id="tb"></div>`}`;
-  const t=()=>{const q=fQ.toUpperCase();let L=L0.filter(x=>(!fSec||sp(x.sec)==fSec)&&(!q||x.t.includes(q)||(x.nome||"").toUpperCase().includes(q))&&(!fSit||(fSit=="an"?!x.ex:fSit=="c"?x.s=="c":!!x.ex)));
-    if(fOrd=="az")L.sort((a,b)=>a.t.localeCompare(b.t));else L.sort((a,b)=>(!!a.ex-!!b.ex)||((b[S.rk]??-1)-(a[S.rk]??-1))||a.t.localeCompare(b.t));
-    const letras="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),cont={};L.forEach(x=>cont[x.t[0]]=(cont[x.t[0]]||0)+1);
-    $("#az").innerHTML=fOrd=="az"?letras.map(l=>`<a data-l="${l}" class="${cont[l]?"":"off"}">${l}</a>`).join(""):"";
-    document.querySelectorAll("#az a").forEach(a=>a.onclick=()=>{const e=document.getElementById("L_"+a.dataset.l);if(e)e.scrollIntoView({behavior:"smooth",block:"start"})});
-    if(S.vis=="tabela"){$("#tb").innerHTML=`<tr><th>#</th><th>Ativo</th><th>Setor</th><th>Cotação</th><th>Teto</th><th>Ideal</th><th>Mínimo 52s</th><th>Margem</th><th>P/L</th><th>DY médio</th><th>ROE</th><th>P/VP</th><th>Nota</th><th>Sinal</th></tr>`+
-      (L.map((x,i)=>`<tr><td>${i+1}</td><td><div style="display:flex;gap:10px;align-items:center">${logo(x.t,40)}<div><b style="text-transform:uppercase">${x.exc?"★ ":""}${nm(x.t)}</b><br><small>${x.t}</small></div></div></td><td>${sp(x.sec)}</td><td>${R(x.p)}</td>${x.ex?`<td colspan=10><small>Sem análise: ${x.ex}</small></td>`:`<td>${R(x.teto)}</td><td>${R(x.ideal)}</td><td>${R(x.min)}</td><td class="${mc(x.margem)}">${P(x.margem)}</td><td>${fp(x.pl)}</td><td>${x.dym!=null?P(x.dym):x.dy12!=null?P(x.dy12)+" (12m)":"-"}</td><td>${x.roe==null?"-":P(x.roe)}</td><td>${x.pvp==null?"-":fp(x.pvp)}</td><td>${x.nota.toFixed(0)}</td><td><span class="pill ${x.s}">${TX[x.s]}</span></td>`}</tr>`).join("")||`<tr><td colspan=14>Nada encontrado.</td></tr>`);return}
-    let h="",cur="",i=0;
-    for(const x of L){if(fOrd=="az"&&x.t[0]!=cur){if(cur)h+="</div>";cur=x.t[0];h+=`<h3 class="sh" id="L_${cur}">${cur} <small>(${cont[cur]})</small></h3><div class="grid">`}else if(fOrd!="az"&&!cur){cur="*";h+='<div class="grid">'}h+=cardAny(x,++i)}
-    $("#tb").innerHTML=(h?h+"</div>":"")||`<div class="cd">Nada encontrado.</div>`};
-  bindRk(drawAll);$("#fs").value=fSec;$("#fo").value=fOrd;$("#fst").value=fSit;$("#fq").value=fQ;
-  $("#fs").onchange=e=>{fSec=e.target.value;t()};$("#fo").onchange=e=>{fOrd=e.target.value;t()};$("#fst").onchange=e=>{fSit=e.target.value;t()};$("#fq").oninput=e=>{fQ=e.target.value;t()};t()}
-const dBR=d=>d?new Date(d+"T12:00:00").toLocaleDateString("pt-BR"):"informe a data";
-const hoje=()=>new Date().toISOString().slice(0,10);
-function recebido(q){const c=C[q.t];if(!c||!c.div||!q.d)return null;
-  return c.div.filter(x=>x.d&&String(x.d).slice(0,10)>=q.d&&String(x.d).slice(0,10)<=hoje()).reduce((a,x)=>a+x.v*q.q,0)}
-function drawCart(){
-  rankAll(true);let inv=0,atu=0,rec=0;
-  const cards=S.pos.map((q,i)=>{const x=calc(q.t),p=x?x.p:null,v=p?p*q.q:null,c=q.q*q.pm,g=v==null?null:v-c,r=recebido(q);
-    inv+=c;if(v)atu+=v;if(r)rec+=r;
-    let s="m",txt="Manter";
-    if(x&&!x.sd){if(x.p>x.teto){s="v";txt="Vender: acima do teto"}else if(S.lucro&&g/c*100>=S.lucro){s="a";txt="Realizar lucro"}else if(x.p<=x.ideal){s="c";txt="Comprar mais"}}
-    const pc=g==null?null:g/c*100;
-    return`<details class="cd" ${S.vis=="cards"?"open":""}><summary class="hd">${logo(q.t,56)}<div style="min-width:0;flex:1"><b class="nm">${nmShort(q.t)}</b><span class="tk">${q.t}</span> <span class="pill ${s}">${txt}</span><div class="chips"><span class="chip ${cls(g)}">Ganho ${pc==null?"-":P(pc)}</span>${r==null?"":`<span class="chip">Proventos ${R(r)}</span>`}${x&&!x.sd?`<span class="chip ${mc(x.margem)}">Margem ${P(x.margem)}</span>`:""}</div><div class="why">${motivoCart(x,pc)}</div></div><div style="text-align:right;flex:none"><b>${R(v)}</b><br><small class="${cls(g)}">${pc==null?"":(pc>=0?"▲ ":"▼ ")+P(Math.abs(pc))}</small></div></summary>
-    ${row("Compra em",dBR(q.d))}${row("Quantidade",q.q)}${row("Preço pago",R(q.pm))}${row("Cotação",R(p))}${row("Valor atual",R(v))}
-    ${row("Ganho de capital",`<b class="${cls(g)}">${R(g)} ${pc==null?"":`(${P(pc)})`}</b>`)}
-    ${row("Proventos desde a compra",r==null?"-":R(r))}
-    ${row("Retorno total",g==null||r==null?"-":`<b class="${cls(g+r)}">${R(g+r)} (${P((g+r)/c*100)})</b>`)}
-    ${row("Preço teto",x&&!x.sd?R(x.teto):"-")}${row("Preço ideal",x&&!x.sd?R(x.ideal):"-")}${x&&!x.sd?valBlock(x):""}${x&&!x.sd?row("Margem de segurança",`<b class="${mc(x.margem)}">${P(x.margem)}</b>`)+rangeBar(x):""}${x?indRows(x)+medRows(x):""}${x?srcLn(x):""}
-    <div style="margin-top:12px"><button class="btn ghost" data-d="${i}">Remover esta compra</button></div></details>`}).join("");
-  const g=atu-inv;
-  $("#m").innerHTML=`<h2>Minha carteira</h2>
-  <div class="kp"><div><small>Investido</small><b>${R(inv)}</b></div><div><small>Valor atual</small><b>${R(atu)}</b></div><div><small>Ganho de capital</small><b class="${cls(g)}">${R(g)}</b><small>${inv?P(g/inv*100):""}</small></div><div><small>Proventos desde as compras</small><b>${R(rec)}</b></div><div><small>Retorno total</small><b class="${cls(g+rec)}">${R(g+rec)}</b><small>${inv?P((g+rec)/inv*100):""}</small></div></div>
-  <div class="box"><h3>Cadastrar compra</h3><form id="f" class="bar" style="margin:0"><label>Ticker<input id="ft" placeholder="KLBN4" required style="width:100px"></label><label>Quantidade<input id="fq" type="number" min="1" required style="width:100px"></label><label>Preço pago (R$)<input id="fp" type="number" step="0.01" min="0" required style="width:120px"></label><label>Data da compra<input id="fd" type="date" max="${hoje()}" required></label><button class="btn" style="align-self:end">Adicionar</button></form>
-  <p class="n">Cada compra é um lote. Os proventos contam a partir da data da compra, pela data-com (valor bruto).</p></div>
-  <h3>Minhas compras</h3><div class="grid">${cards||`<div class="cd">Cadastre as ações que você comprou, com a data, para acompanhar ganhos e a renda.</div>`}</div>`;
-  $("#f").onsubmit=async e=>{e.preventDefault();const t=$("#ft").value.trim().toUpperCase();
-    S.pos.push({t,q:+$("#fq").value,pm:+$("#fp").value,d:$("#fd").value});save();draw();await refresh({only:[t]})};
-  document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{if(confirm("Remover esta compra?")){S.pos.splice(+b.dataset.d,1);save();draw()}});
-}
-
-function drawRenda(){
-  const now=new Date(),lots=S.pos.filter(q=>q.d),sem=S.pos.length-lots.length;
-  if(!lots.length){$("#m").innerHTML=`<h2>Fluxo de renda</h2><div class="box">Cadastre suas compras com a data na aba Carteira. A renda é calculada a partir da data de cada compra.${sem?` (${sem} compra(s) sem data não entram aqui.)`:""}</div>`;return}
-  const first=lots.map(q=>q.d).sort()[0],fd=new Date(first+"T12:00:00");
-  const meses=Math.max(1,(now.getFullYear()-fd.getFullYear())*12+now.getMonth()-fd.getMonth()+1),nm=Math.min(Math.max(meses,6),36);
-  const Mo=[];for(let i=nm-1;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);Mo.push({k:d.getFullYear()*12+d.getMonth(),n:d.toLocaleDateString("pt-BR",{month:"short"}),v:0})}
-  const lim12=new Date(now.getFullYear(),now.getMonth()-11,1);let tot=0,t12=0,inv=0,atu=0;const por={};
-  lots.forEach(q=>{inv+=q.q*q.pm;const x=calc(q.t);if(x)atu+=x.p*q.q;
-    ((C[q.t]||{}).div||[]).forEach(y=>{const ds=String(y.d||"").slice(0,10);if(!ds||ds<q.d||ds>hoje())return;const dt=new Date(ds+"T12:00:00"),v=y.v*q.q;
-      tot+=v;if(dt>=lim12)t12+=v;por[q.t]=(por[q.t]||0)+v;const m=Mo.find(m=>m.k==dt.getFullYear()*12+dt.getMonth());if(m)m.v+=v})});
-  const mx=Math.max(1,...Mo.map(m=>m.v)),g=atu-inv;
-  $("#m").innerHTML=`<h2>Fluxo de renda</h2><div class="kp"><div><small>Recebido desde as compras</small><b>${R(tot)}</b></div><div><small>Média mensal (desde ${dBR(first)})</small><b>${R(tot/meses)}</b></div><div><small>Últimos 12 meses</small><b>${R(t12)}</b></div><div><small>Yield sobre o custo</small><b>${inv?P(tot/inv*100):"-"}</b></div><div><small>Resultado total (capital + proventos)</small><b class="${cls(g+tot)}">${R(g+tot)}</b></div></div>
-  <div class="row"><div class="box" style="flex:2"><h3>Proventos por mês</h3><div class="chart">${Mo.map(m=>`<div>${m.v?R(m.v).replace("R$ ",""):""}<i style="height:${m.v/mx*80}%"></i>${m.n}</div>`).join("")}</div></div>
-  <div class="box"><h3>Por ativo</h3>${Object.entries(por).sort((a,b)=>b[1]-a[1]).map(([t,v])=>row(t,R(v))).join("")||"<small>Nenhum provento com data-com depois das suas compras.</small>"}</div></div>
-  <p class="n">Considera a quantidade de cada compra e só proventos com data-com a partir da data dela.</p>`;
-}
-
-function pie(it){let a=0;const g=it.map((x,i)=>{const s=a;a+=x.w*100;return`${COL[i%COL.length]} ${s}% ${a}%`}).join(",");
-  return`<div class="pie" style="background:conic-gradient(${g||"#555 0 100%"})"></div><div style="display:flex;gap:6px 14px;flex-wrap:wrap;justify-content:center">${it.map((x,i)=>`<span class="lg"><i style="background:${COL[i%COL.length]}"></i>${x.t}: ${P(x.w*100)}</span>`).join("")}</div>`}
-function drawRec(){
-  const ag={};S.pos.forEach(q=>{const x=calc(q.t);if(x&&!x.sd)ag[q.t]={t:q.t,val:(ag[q.t]?ag[q.t].val:0)+x.p*q.q,nota:x.nota,margem:x.margem}});
-  const pos=Object.values(ag),tv=pos.reduce((a,b)=>a+b.val,0),A=pos.map(p=>({t:p.t,w:p.val/tv,nota:p.nota,margem:p.margem}));
-  const Rc=rankAll().filter(x=>x.s=="c").slice(0,10),wr=Rc.length?1/Rc.length:0,B=Rc.map(x=>({t:x.t,w:wr,nota:x.nota,margem:x.margem}));
-  const med=(L,k)=>L.reduce((a,x)=>a+x.w*x[k],0),out=A.filter(a=>!Rc.find(r=>r.t==a.t)).map(a=>a.t),inn=Rc.filter(r=>!A.find(a=>a.t==r.t)).map(r=>r.t);
-  $("#m").innerHTML=`<h2>Carteira atual x recomendada</h2><p class="n">Recomendada: até 10 ações com sinal COMPRAR e maior nota, pesos iguais.</p>
-  <div class="row"><div class="box"><h3>Carteira atual</h3><span class="dy">${tv?`Nota média ${med(A,"nota").toFixed(0)} · margem ${P(med(A,"margem"))}`:"-"}</span>${tv?pie(A):`<p class="n">Cadastre compras na aba Carteira.</p>`}</div>
-  <div class="box"><h3>Carteira recomendada</h3><span class="dy up">${Rc.length?`Nota média ${med(B,"nota").toFixed(0)} · margem ${P(med(B,"margem"))}`:"Sem ações com sinal COMPRAR agora"}</span>${pie(B)}</div></div>
-  <div class="box"><h3>Ajustes sugeridos</h3><p>Entrar: ${inn.join(", ")||"nenhuma"}</p><p>Reavaliar ou reduzir: ${out.join(", ")||"nenhuma"}</p><p class="n">Antes de comprar ou vender, avalie cada empresa e decida conforme seu perfil. Não é recomendação de investimento.</p></div>`;
-}
-function drawCfg(){
-  $("#m").innerHTML=`<h2>Ajustes</h2><div class="box"><h3>Fonte de dados</h3><label>Token brapi (opcional)<input id="c0" value="${S.token}" placeholder="vazio = usa dados.json"></label></div>
-  <div class="box"><h3>Critérios de cálculo</h3><div class="bar"><label>Margem de segurança mínima (%)<input id="c2" type="number" value="${S.desc}"></label><label>Anos de histórico de proventos<input id="c3" type="number" min="1" max="10" value="${S.anos}"></label><label>Meta de lucro p/ vender (%)<input id="c4" type="number" value="${S.lucro}"></label></div></div>
-  <div class="box"><h3>Ações prioritárias</h3><textarea id="c5" style="width:100%;min-height:90px">${S.watch.join(" ")}</textarea></div>
-  ${brBox()}${divBox()}${schedBox()}${diagBox()}<div class="bar"><button class="btn" id="sv">Salvar e atualizar</button><button class="btn" style="background:#5b6275;color:#fff" id="ex">Exportar backup</button><button class="btn" style="background:#5b6275;color:#fff" id="im">Importar backup</button></div>`;
-  bindSched();$("#d0").onchange=()=>{S.dbKey=$("#d0").value.trim();save();status("Chave salva.")};
-  $("#sv").onclick=()=>{S.token=$("#c0").value.trim();S.dbKey=$("#d0").value.trim();S.dbLim=+$("#d2").value||190;{const np=$("#b2").value;if(np!=S.plano){S.plano=np;S.brLim=PLANOS[np].lim}else S.brLim=+$("#b0").value||PLANOS[S.plano].lim}S.liqMin=+$("#b1").value||0;S.brapiDiv=$("#d1").checked;S.useSI=$("#d3").checked;S.siProxy=$("#d4").value.trim();S.desc=+$("#c2").value||0;S.anos=+$("#c3").value||5;S.lucro=+$("#c4").value||0;
-    S.watch=[...new Set($("#c5").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))];save();refresh({force:true})};
-  $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="radar-backup.json";a.click()};
-  $("#im").onclick=()=>{const i=document.createElement("input");i.type="file";i.onchange=async()=>{try{S=Object.assign(defS(),JSON.parse(await i.files[0].text()));delete S.cache;save();draw()}catch(e){alert("Arquivo inválido")}};i.click()};
-}
-const V={top:drawTop,set:drawSet,all:drawAll,cart:drawCart,renda:drawRenda,rec:drawRec,cfg:drawCfg};
-function draw(){document.body.dataset.vis=S.vis=="cards"?"cards":"lista";V[view]();
-  document.querySelectorAll("[data-v]").forEach(a=>{const v=a.dataset.v,inv=["top","set","all","cart","renda"].includes(view);
-    a.classList.toggle("on",a.closest("#sub")?v==view:(v==view||(v=="top"&&inv)))});
-  $("#sub").classList.toggle("hide",!["top","set","all","cart","renda"].includes(view))}
-document.querySelectorAll("[data-v]").forEach(a=>a.onclick=()=>{view=a.dataset.v;draw();scrollTo(0,0)});
-$("#upd").onclick=()=>refresh({manual:true});
-(async()=>{
-  try{DB=await idb();idbOk=true}catch(e){}
-  if(idbOk){const c=await kvGet("cache"),m=await kvGet("meta");if(c){C=c;for(const t in C)if(C[t].sec=="Outros")delete C[t].sec}if(m){ST=m.ST||{};M=Object.assign(M,m.M)}}
-  if(!Object.keys(C).length&&legacy){for(const t in legacy){C[t]={...legacy[t],qAt:legacyAt,dAt:legacyAt};ST[t]={s:"ok",at:legacyAt}}M.qAt=M.dAt=legacyAt||0;persist()}
-  draw();status();
-  try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-  const loadedRepo=await loadRepoDados();
-  if(loadedRepo){draw();status()}
-  if(!Object.keys(C).length&&!loadedRepo)refresh({first:true});
-  else check();
-  setInterval(check,30000);
-  document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
-  addEventListener("online",check);
-})();
-</script></body></html>
+    document.getElementById("busca").addEventListener("input", renderizar);
+    document.getElementById("filtroStatus").addEventListener("change", renderizar);
+    carregar();
+  </script>
+</body>
+</html>
