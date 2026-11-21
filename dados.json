@@ -1,11 +1,11 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-21T19:44:22.911744+00:00",
+  "updatedAt": "2026-11-21T19:51:31.636022+00:00",
   "stats": {
-    "total": 15,
+    "total": 273,
     "ok": 0,
     "nodata": 0,
-    "neterr": 15,
+    "neterr": 273,
     "limit": 0
   },
   "items": {
@@ -15,7 +15,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/rrrp3",
-      "updatedAt": "2026-11-21T19:44:14.041348+00:00",
+      "updatedAt": "2026-11-21T19:51:22.695911+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -25,7 +25,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/alos3",
-      "updatedAt": "2026-11-21T19:44:14.619762+00:00",
+      "updatedAt": "2026-11-21T19:51:23.290727+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -35,7 +35,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/alpa4",
-      "updatedAt": "2026-11-21T19:44:15.220889+00:00",
+      "updatedAt": "2026-11-21T19:51:23.895901+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -45,7 +45,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/abev3",
-      "updatedAt": "2026-11-21T19:44:15.836173+00:00",
+      "updatedAt": "2026-11-21T19:51:24.489974+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -55,7 +55,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/arzz3",
-      "updatedAt": "2026-11-21T19:44:16.427675+00:00",
+      "updatedAt": "2026-11-21T19:51:25.084921+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -65,7 +65,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/asai3",
-      "updatedAt": "2026-11-21T19:44:17.011688+00:00",
+      "updatedAt": "2026-11-21T19:51:25.691320+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -75,7 +75,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/aure3",
-      "updatedAt": "2026-11-21T19:44:17.604430+00:00",
+      "updatedAt": "2026-11-21T19:51:26.286440+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -85,7 +85,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/azul4",
-      "updatedAt": "2026-11-21T19:44:18.197414+00:00",
+      "updatedAt": "2026-11-21T19:51:26.880920+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -95,7 +95,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/azza3",
-      "updatedAt": "2026-11-21T19:44:18.821737+00:00",
+      "updatedAt": "2026-11-21T19:51:27.472182+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -105,7 +105,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/b3sa3",
-      "updatedAt": "2026-11-21T19:44:19.401827+00:00",
+      "updatedAt": "2026-11-21T19:51:28.070955+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -115,7 +115,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbse3",
-      "updatedAt": "2026-11-21T19:44:19.980025+00:00",
+      "updatedAt": "2026-11-21T19:51:28.670348+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -125,7 +125,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbdc3",
-      "updatedAt": "2026-11-21T19:44:20.565048+00:00",
+      "updatedAt": "2026-11-21T19:51:29.264562+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -135,7 +135,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbdc4",
-      "updatedAt": "2026-11-21T19:44:21.165509+00:00",
+      "updatedAt": "2026-11-21T19:51:29.878096+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -145,7 +145,7 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/brap4",
-      "updatedAt": "2026-11-21T19:44:21.768172+00:00",
+      "updatedAt": "2026-11-21T19:51:30.476831+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -155,7 +155,2587 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbas3",
-      "updatedAt": "2026-11-21T19:44:22.361087+00:00",
+      "updatedAt": "2026-11-21T19:51:31.084085+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BRKM5": {
+      "ticker": "BRKM5",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/brkm5",
+      "updatedAt": "2026-11-21T19:48:46.529766+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BRFS3": {
+      "ticker": "BRFS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/brfs3",
+      "updatedAt": "2026-11-21T19:48:47.146345+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BPAC11": {
+      "ticker": "BPAC11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/bpac11",
+      "updatedAt": "2026-11-21T19:48:47.758736+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CRFB3": {
+      "ticker": "CRFB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/crfb3",
+      "updatedAt": "2026-11-21T19:48:48.351423+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CCRO3": {
+      "ticker": "CCRO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ccro3",
+      "updatedAt": "2026-11-21T19:48:48.969921+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CMPY3": {
+      "ticker": "CMPY3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cmpy3",
+      "updatedAt": "2026-11-21T19:48:49.580560+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CMIG4": {
+      "ticker": "CMIG4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cmig4",
+      "updatedAt": "2026-11-21T19:48:50.185915+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CIEL3": {
+      "ticker": "CIEL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ciel3",
+      "updatedAt": "2026-11-21T19:48:50.793973+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "COGN3": {
+      "ticker": "COGN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cogn3",
+      "updatedAt": "2026-11-21T19:48:51.389417+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CPFE3": {
+      "ticker": "CPFE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cpfe3",
+      "updatedAt": "2026-11-21T19:48:51.999678+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CMIN3": {
+      "ticker": "CMIN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cmin3",
+      "updatedAt": "2026-11-21T19:48:52.610067+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CSAN3": {
+      "ticker": "CSAN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/csan3",
+      "updatedAt": "2026-11-21T19:48:53.219331+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CPLE6": {
+      "ticker": "CPLE6",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cple6",
+      "updatedAt": "2026-11-21T19:48:53.809383+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CSNA3": {
+      "ticker": "CSNA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/csna3",
+      "updatedAt": "2026-11-21T19:48:54.424190+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CURY3": {
+      "ticker": "CURY3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cury3",
+      "updatedAt": "2026-11-21T19:48:55.037057+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CYRE3": {
+      "ticker": "CYRE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cyre3",
+      "updatedAt": "2026-11-21T19:48:55.636589+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DXCO3": {
+      "ticker": "DXCO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/dxco3",
+      "updatedAt": "2026-11-21T19:48:56.231921+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DIRR3": {
+      "ticker": "DIRR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/dirr3",
+      "updatedAt": "2026-11-21T19:48:56.842626+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ECOR3": {
+      "ticker": "ECOR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ecor3",
+      "updatedAt": "2026-11-21T19:48:57.453081+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ELET3": {
+      "ticker": "ELET3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/elet3",
+      "updatedAt": "2026-11-21T19:48:58.045078+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ELET6": {
+      "ticker": "ELET6",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/elet6",
+      "updatedAt": "2026-11-21T19:48:58.649898+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "EMBR3": {
+      "ticker": "EMBR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/embr3",
+      "updatedAt": "2026-11-21T19:48:59.266666+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ENGI11": {
+      "ticker": "ENGI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/engi11",
+      "updatedAt": "2026-11-21T19:48:59.882099+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ENEV3": {
+      "ticker": "ENEV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/enev3",
+      "updatedAt": "2026-11-21T19:49:00.481892+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "EGIE3": {
+      "ticker": "EGIE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/egie3",
+      "updatedAt": "2026-11-21T19:49:01.092500+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "EQTL3": {
+      "ticker": "EQTL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/eqtl3",
+      "updatedAt": "2026-11-21T19:49:01.710363+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "EZTC3": {
+      "ticker": "EZTC3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/eztc3",
+      "updatedAt": "2026-11-21T19:49:02.316472+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "FLRY3": {
+      "ticker": "FLRY3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/flry3",
+      "updatedAt": "2026-11-21T19:49:02.929656+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GGBR4": {
+      "ticker": "GGBR4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ggbr4",
+      "updatedAt": "2026-11-21T19:49:03.523339+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GOAU4": {
+      "ticker": "GOAU4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/goau4",
+      "updatedAt": "2026-11-21T19:49:04.135481+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GOLL4": {
+      "ticker": "GOLL4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/goll4",
+      "updatedAt": "2026-11-21T19:49:04.747968+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GMAT3": {
+      "ticker": "GMAT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/gmat3",
+      "updatedAt": "2026-11-21T19:49:05.364262+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "NTCO3": {
+      "ticker": "NTCO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ntco3",
+      "updatedAt": "2026-11-21T19:49:05.960852+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SOMA3": {
+      "ticker": "SOMA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/soma3",
+      "updatedAt": "2026-11-21T19:49:06.570969+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HAPV3": {
+      "ticker": "HAPV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/hapv3",
+      "updatedAt": "2026-11-21T19:49:07.185793+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HYPE3": {
+      "ticker": "HYPE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/hype3",
+      "updatedAt": "2026-11-21T19:49:07.804005+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "IGTI11": {
+      "ticker": "IGTI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/igti11",
+      "updatedAt": "2026-11-21T19:49:08.420717+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "IRBR3": {
+      "ticker": "IRBR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/irbr3",
+      "updatedAt": "2026-11-21T19:49:09.028261+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ITSA4": {
+      "ticker": "ITSA4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/itsa4",
+      "updatedAt": "2026-11-21T19:49:09.634792+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ITUB3": {
+      "ticker": "ITUB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/itub3",
+      "updatedAt": "2026-11-21T19:49:10.257627+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ITUB4": {
+      "ticker": "ITUB4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/itub4",
+      "updatedAt": "2026-11-21T19:49:10.853999+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JBSS3": {
+      "ticker": "JBSS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/jbss3",
+      "updatedAt": "2026-11-21T19:49:11.454984+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JHSF3": {
+      "ticker": "JHSF3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/jhsf3",
+      "updatedAt": "2026-11-21T19:49:12.068348+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KLBN11": {
+      "ticker": "KLBN11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/klbn11",
+      "updatedAt": "2026-11-21T19:49:12.680075+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RENT3": {
+      "ticker": "RENT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rent3",
+      "updatedAt": "2026-11-21T19:49:13.288160+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LWSA3": {
+      "ticker": "LWSA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/lwsa3",
+      "updatedAt": "2026-11-21T19:49:13.898222+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LREN3": {
+      "ticker": "LREN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/lren3",
+      "updatedAt": "2026-11-21T19:49:14.508247+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MGLU3": {
+      "ticker": "MGLU3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mglu3",
+      "updatedAt": "2026-11-21T19:49:15.127914+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "POMO4": {
+      "ticker": "POMO4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pomo4",
+      "updatedAt": "2026-11-21T19:49:15.716150+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MRFG3": {
+      "ticker": "MRFG3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mrfg3",
+      "updatedAt": "2026-11-21T19:49:16.335855+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MRVE3": {
+      "ticker": "MRVE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mrve3",
+      "updatedAt": "2026-11-21T19:49:16.935878+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MULT3": {
+      "ticker": "MULT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mult3",
+      "updatedAt": "2026-11-21T19:49:17.553536+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PCAR3": {
+      "ticker": "PCAR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pcar3",
+      "updatedAt": "2026-11-21T19:49:18.162766+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PETR3": {
+      "ticker": "PETR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/petr3",
+      "updatedAt": "2026-11-21T19:49:18.774012+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PETR4": {
+      "ticker": "PETR4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/petr4",
+      "updatedAt": "2026-11-21T19:49:19.373479+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PRIO3": {
+      "ticker": "PRIO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/prio3",
+      "updatedAt": "2026-11-21T19:49:19.983041+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PETZ3": {
+      "ticker": "PETZ3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/petz3",
+      "updatedAt": "2026-11-21T19:49:20.580306+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PSSA3": {
+      "ticker": "PSSA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pssa3",
+      "updatedAt": "2026-11-21T19:49:21.187371+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RADL3": {
+      "ticker": "RADL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/radl3",
+      "updatedAt": "2026-11-21T19:49:21.786681+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RAIZ4": {
+      "ticker": "RAIZ4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/raiz4",
+      "updatedAt": "2026-11-21T19:49:22.401014+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RDOR3": {
+      "ticker": "RDOR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rdor3",
+      "updatedAt": "2026-11-21T19:49:23.035675+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RECV3": {
+      "ticker": "RECV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/recv3",
+      "updatedAt": "2026-11-21T19:49:23.624816+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SANB11": {
+      "ticker": "SANB11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/sanb11",
+      "updatedAt": "2026-11-21T19:49:24.220164+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "STBP3": {
+      "ticker": "STBP3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/stbp3",
+      "updatedAt": "2026-11-21T19:49:24.833628+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SMTO3": {
+      "ticker": "SMTO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/smto3",
+      "updatedAt": "2026-11-21T19:49:25.444318+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CSMG3": {
+      "ticker": "CSMG3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/csmg3",
+      "updatedAt": "2026-11-21T19:49:26.052832+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SLCE3": {
+      "ticker": "SLCE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/slce3",
+      "updatedAt": "2026-11-21T19:49:26.646761+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SMFT3": {
+      "ticker": "SMFT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/smft3",
+      "updatedAt": "2026-11-21T19:49:27.261474+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SUZB3": {
+      "ticker": "SUZB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/suzb3",
+      "updatedAt": "2026-11-21T19:49:27.863709+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TAEE11": {
+      "ticker": "TAEE11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/taee11",
+      "updatedAt": "2026-11-21T19:49:28.470910+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VIVT3": {
+      "ticker": "VIVT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vivt3",
+      "updatedAt": "2026-11-21T19:49:29.072638+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TIMS3": {
+      "ticker": "TIMS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tims3",
+      "updatedAt": "2026-11-21T19:49:29.692689+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TOTS3": {
+      "ticker": "TOTS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tots3",
+      "updatedAt": "2026-11-21T19:49:30.299606+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TRPL4": {
+      "ticker": "TRPL4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/trpl4",
+      "updatedAt": "2026-11-21T19:49:30.900959+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "UGPA3": {
+      "ticker": "UGPA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ugpa3",
+      "updatedAt": "2026-11-21T19:49:31.492443+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "USIM5": {
+      "ticker": "USIM5",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/usim5",
+      "updatedAt": "2026-11-21T19:49:32.104103+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VALE3": {
+      "ticker": "VALE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vale3",
+      "updatedAt": "2026-11-21T19:49:32.705705+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VAMO3": {
+      "ticker": "VAMO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vamo3",
+      "updatedAt": "2026-11-21T19:49:33.316820+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VBBR3": {
+      "ticker": "VBBR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vbbr3",
+      "updatedAt": "2026-11-21T19:49:33.914387+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VIVA3": {
+      "ticker": "VIVA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/viva3",
+      "updatedAt": "2026-11-21T19:49:34.509886+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "WEGE3": {
+      "ticker": "WEGE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/wege3",
+      "updatedAt": "2026-11-21T19:49:35.104509+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "YDUQ3": {
+      "ticker": "YDUQ3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/yduq3",
+      "updatedAt": "2026-11-21T19:49:35.715242+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ABCB4": {
+      "ticker": "ABCB4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/abcb4",
+      "updatedAt": "2026-11-21T19:49:36.321716+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AGRO3": {
+      "ticker": "AGRO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/agro3",
+      "updatedAt": "2026-11-21T19:49:36.934982+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ALLD3": {
+      "ticker": "ALLD3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/alld3",
+      "updatedAt": "2026-11-21T19:49:37.552896+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ALPK3": {
+      "ticker": "ALPK3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/alpk3",
+      "updatedAt": "2026-11-21T19:49:38.153128+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AMAR3": {
+      "ticker": "AMAR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/amar3",
+      "updatedAt": "2026-11-21T19:49:38.754004+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ANIM3": {
+      "ticker": "ANIM3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/anim3",
+      "updatedAt": "2026-11-21T19:49:39.367112+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ARML3": {
+      "ticker": "ARML3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/arml3",
+      "updatedAt": "2026-11-21T19:49:39.969840+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AUAU3": {
+      "ticker": "AUAU3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/auau3",
+      "updatedAt": "2026-11-21T19:49:40.578634+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AVLL3": {
+      "ticker": "AVLL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/avll3",
+      "updatedAt": "2026-11-21T19:49:41.180419+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BMGB4": {
+      "ticker": "BMGB4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/bmgb4",
+      "updatedAt": "2026-11-21T19:49:41.789531+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BMOB3": {
+      "ticker": "BMOB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/bmob3",
+      "updatedAt": "2026-11-21T19:49:42.402448+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BOAS3": {
+      "ticker": "BOAS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/boas3",
+      "updatedAt": "2026-11-21T19:49:43.002112+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BPAN4": {
+      "ticker": "BPAN4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/bpan4",
+      "updatedAt": "2026-11-21T19:49:43.614119+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BRSR6": {
+      "ticker": "BRSR6",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/brsr6",
+      "updatedAt": "2026-11-21T19:49:44.213079+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CAML3": {
+      "ticker": "CAML3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/caml3",
+      "updatedAt": "2026-11-21T19:49:44.842429+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CBAV3": {
+      "ticker": "CBAV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cbav3",
+      "updatedAt": "2026-11-21T19:49:45.434620+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CEAB3": {
+      "ticker": "CEAB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ceab3",
+      "updatedAt": "2026-11-21T19:49:46.051952+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CGRA4": {
+      "ticker": "CGRA4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/cgra4",
+      "updatedAt": "2026-11-21T19:49:46.672547+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CLSC4": {
+      "ticker": "CLSC4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/clsc4",
+      "updatedAt": "2026-11-21T19:49:47.266294+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CSED3": {
+      "ticker": "CSED3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/csed3",
+      "updatedAt": "2026-11-21T19:49:47.863226+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DESK3": {
+      "ticker": "DESK3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/desk3",
+      "updatedAt": "2026-11-21T19:49:48.479997+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DEXP3": {
+      "ticker": "DEXP3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/dexp3",
+      "updatedAt": "2026-11-21T19:49:49.076849+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DOTZ3": {
+      "ticker": "DOTZ3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/dotz3",
+      "updatedAt": "2026-11-21T19:49:49.697866+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ENJU3": {
+      "ticker": "ENJU3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/enju3",
+      "updatedAt": "2026-11-21T19:49:50.293599+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "EVEN3": {
+      "ticker": "EVEN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/even3",
+      "updatedAt": "2026-11-21T19:49:50.897789+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "FESA4": {
+      "ticker": "FESA4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/fesa4",
+      "updatedAt": "2026-11-21T19:49:51.513618+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "FIQE3": {
+      "ticker": "FIQE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/fiqe3",
+      "updatedAt": "2026-11-21T19:49:52.110424+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "FRAS3": {
+      "ticker": "FRAS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/fras3",
+      "updatedAt": "2026-11-21T19:49:52.702688+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GRND3": {
+      "ticker": "GRND3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/grnd3",
+      "updatedAt": "2026-11-21T19:49:53.320804+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GUAR3": {
+      "ticker": "GUAR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/guar3",
+      "updatedAt": "2026-11-21T19:49:53.911492+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HBOR3": {
+      "ticker": "HBOR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/hbor3",
+      "updatedAt": "2026-11-21T19:49:54.503055+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HBRE3": {
+      "ticker": "HBRE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/hbre3",
+      "updatedAt": "2026-11-21T19:49:55.098723+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HBSA3": {
+      "ticker": "HBSA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/hbsa3",
+      "updatedAt": "2026-11-21T19:49:55.711567+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HAGA4": {
+      "ticker": "HAGA4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/haga4",
+      "updatedAt": "2026-11-21T19:49:56.326381+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "INTB3": {
+      "ticker": "INTB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/intb3",
+      "updatedAt": "2026-11-21T19:49:56.936438+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ISAE4": {
+      "ticker": "ISAE4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/isae4",
+      "updatedAt": "2026-11-21T19:49:57.558917+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JALL3": {
+      "ticker": "JALL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/jall3",
+      "updatedAt": "2026-11-21T19:49:58.171074+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JSLG3": {
+      "ticker": "JSLG3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/jslg3",
+      "updatedAt": "2026-11-21T19:49:58.765816+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KEPL3": {
+      "ticker": "KEPL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/kepl3",
+      "updatedAt": "2026-11-21T19:49:59.373686+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LAND3": {
+      "ticker": "LAND3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/land3",
+      "updatedAt": "2026-11-21T19:49:59.977574+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LAVV3": {
+      "ticker": "LAVV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/lavv3",
+      "updatedAt": "2026-11-21T19:50:00.583661+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LEVE3": {
+      "ticker": "LEVE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/leve3",
+      "updatedAt": "2026-11-21T19:50:01.175852+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LIGT3": {
+      "ticker": "LIGT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ligt3",
+      "updatedAt": "2026-11-21T19:50:01.779020+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LOGG3": {
+      "ticker": "LOGG3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/logg3",
+      "updatedAt": "2026-11-21T19:50:02.396639+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LOGN3": {
+      "ticker": "LOGN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/logn3",
+      "updatedAt": "2026-11-21T19:50:02.989100+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MATD3": {
+      "ticker": "MATD3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/matd3",
+      "updatedAt": "2026-11-21T19:50:03.586232+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MDIA3": {
+      "ticker": "MDIA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mdia3",
+      "updatedAt": "2026-11-21T19:50:04.181988+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MELK3": {
+      "ticker": "MELK3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/melk3",
+      "updatedAt": "2026-11-21T19:50:04.793959+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MILS3": {
+      "ticker": "MILS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mils3",
+      "updatedAt": "2026-11-21T19:50:05.400445+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MLAS3": {
+      "ticker": "MLAS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mlas3",
+      "updatedAt": "2026-11-21T19:50:05.995719+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MOTV3": {
+      "ticker": "MOTV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/motv3",
+      "updatedAt": "2026-11-21T19:50:06.600702+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MOVI3": {
+      "ticker": "MOVI3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/movi3",
+      "updatedAt": "2026-11-21T19:50:07.209688+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MTRE3": {
+      "ticker": "MTRE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mtre3",
+      "updatedAt": "2026-11-21T19:50:07.815255+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MYPK3": {
+      "ticker": "MYPK3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/mypk3",
+      "updatedAt": "2026-11-21T19:50:08.426875+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ODPV3": {
+      "ticker": "ODPV3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/odpv3",
+      "updatedAt": "2026-11-21T19:50:09.042774+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ONCO3": {
+      "ticker": "ONCO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/onco3",
+      "updatedAt": "2026-11-21T19:50:09.669413+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "OPCT3": {
+      "ticker": "OPCT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/opct3",
+      "updatedAt": "2026-11-21T19:50:10.272247+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ORVR3": {
+      "ticker": "ORVR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/orvr3",
+      "updatedAt": "2026-11-21T19:50:10.863208+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PASS3": {
+      "ticker": "PASS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pass3",
+      "updatedAt": "2026-11-21T19:50:11.461164+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PGMN3": {
+      "ticker": "PGMN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pgmn3",
+      "updatedAt": "2026-11-21T19:50:12.077585+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PINE4": {
+      "ticker": "PINE4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pine4",
+      "updatedAt": "2026-11-21T19:50:12.669865+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PLPL3": {
+      "ticker": "PLPL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/plpl3",
+      "updatedAt": "2026-11-21T19:50:13.275482+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PMAM3": {
+      "ticker": "PMAM3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pmam3",
+      "updatedAt": "2026-11-21T19:50:13.884250+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PNVL3": {
+      "ticker": "PNVL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/pnvl3",
+      "updatedAt": "2026-11-21T19:50:14.478003+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "POSI3": {
+      "ticker": "POSI3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/posi3",
+      "updatedAt": "2026-11-21T19:50:15.078752+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PRNR3": {
+      "ticker": "PRNR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/prnr3",
+      "updatedAt": "2026-11-21T19:50:15.676802+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PTBL3": {
+      "ticker": "PTBL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/ptbl3",
+      "updatedAt": "2026-11-21T19:50:16.272942+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "QUAL3": {
+      "ticker": "QUAL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/qual3",
+      "updatedAt": "2026-11-21T19:50:16.883545+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RANI3": {
+      "ticker": "RANI3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rani3",
+      "updatedAt": "2026-11-21T19:50:17.488059+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RAPT4": {
+      "ticker": "RAPT4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rapt4",
+      "updatedAt": "2026-11-21T19:50:18.076302+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RCSL4": {
+      "ticker": "RCSL4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rcsl4",
+      "updatedAt": "2026-11-21T19:50:18.675304+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "REDE3": {
+      "ticker": "REDE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/rede3",
+      "updatedAt": "2026-11-21T19:50:19.288969+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RIAA3": {
+      "ticker": "RIAA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/riaa3",
+      "updatedAt": "2026-11-21T19:50:19.905900+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ROMI3": {
+      "ticker": "ROMI3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/romi3",
+      "updatedAt": "2026-11-21T19:50:20.515579+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SANB3": {
+      "ticker": "SANB3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/sanb3",
+      "updatedAt": "2026-11-21T19:50:21.107940+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SANB4": {
+      "ticker": "SANB4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/sanb4",
+      "updatedAt": "2026-11-21T19:50:21.707332+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SAPR11": {
+      "ticker": "SAPR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/sapr11",
+      "updatedAt": "2026-11-21T19:50:22.305396+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SAPR3": {
+      "ticker": "SAPR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/sapr3",
+      "updatedAt": "2026-11-21T19:50:22.924938+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SAPR4": {
+      "ticker": "SAPR4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/sapr4",
+      "updatedAt": "2026-11-21T19:50:23.524317+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SAUD3": {
+      "ticker": "SAUD3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/saud3",
+      "updatedAt": "2026-11-21T19:50:24.145969+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SBFG3": {
+      "ticker": "SBFG3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/sbfg3",
+      "updatedAt": "2026-11-21T19:50:24.764677+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SCAR3": {
+      "ticker": "SCAR3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/scar3",
+      "updatedAt": "2026-11-21T19:50:25.379955+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SEER3": {
+      "ticker": "SEER3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/seer3",
+      "updatedAt": "2026-11-21T19:50:25.987885+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SHUL4": {
+      "ticker": "SHUL4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/shul4",
+      "updatedAt": "2026-11-21T19:50:26.596257+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SIMH3": {
+      "ticker": "SIMH3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/simh3",
+      "updatedAt": "2026-11-21T19:50:27.189183+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SOJA3": {
+      "ticker": "SOJA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/soja3",
+      "updatedAt": "2026-11-21T19:50:27.790974+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "SYNE3": {
+      "ticker": "SYNE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/syne3",
+      "updatedAt": "2026-11-21T19:50:28.393101+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TASA4": {
+      "ticker": "TASA4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tasa4",
+      "updatedAt": "2026-11-21T19:50:29.008155+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TECN3": {
+      "ticker": "TECN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tecn3",
+      "updatedAt": "2026-11-21T19:50:29.616491+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TFCO4": {
+      "ticker": "TFCO4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tfco4",
+      "updatedAt": "2026-11-21T19:50:30.212918+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TGMA3": {
+      "ticker": "TGMA3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tgma3",
+      "updatedAt": "2026-11-21T19:50:30.805418+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TPIS3": {
+      "ticker": "TPIS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tpis3",
+      "updatedAt": "2026-11-21T19:50:31.424383+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TRIS3": {
+      "ticker": "TRIS3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tris3",
+      "updatedAt": "2026-11-21T19:50:32.029512+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TTEN3": {
+      "ticker": "TTEN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tten3",
+      "updatedAt": "2026-11-21T19:50:32.625640+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TUPY3": {
+      "ticker": "TUPY3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/tupy3",
+      "updatedAt": "2026-11-21T19:50:33.238250+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "UNIP6": {
+      "ticker": "UNIP6",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/unip6",
+      "updatedAt": "2026-11-21T19:50:33.835020+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "USIM3": {
+      "ticker": "USIM3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/usim3",
+      "updatedAt": "2026-11-21T19:50:34.423373+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VITT3": {
+      "ticker": "VITT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vitt3",
+      "updatedAt": "2026-11-21T19:50:35.038147+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VLID3": {
+      "ticker": "VLID3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vlid3",
+      "updatedAt": "2026-11-21T19:50:35.635819+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VTRU3": {
+      "ticker": "VTRU3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vtru3",
+      "updatedAt": "2026-11-21T19:50:36.231877+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VULC3": {
+      "ticker": "VULC3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/vulc3",
+      "updatedAt": "2026-11-21T19:50:36.833203+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "WHRL4": {
+      "ticker": "WHRL4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/whrl4",
+      "updatedAt": "2026-11-21T19:50:37.432189+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "WIZC3": {
+      "ticker": "WIZC3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/wizc3",
+      "updatedAt": "2026-11-21T19:50:38.024924+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ZAMP3": {
+      "ticker": "ZAMP3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/zamp3",
+      "updatedAt": "2026-11-21T19:50:38.621961+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MXRF11": {
+      "ticker": "MXRF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
+      "updatedAt": "2026-11-21T19:50:39.229060+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HGLG11": {
+      "ticker": "HGLG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
+      "updatedAt": "2026-11-21T19:50:39.834051+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "XPML11": {
+      "ticker": "XPML11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
+      "updatedAt": "2026-11-21T19:50:40.452198+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNCR11": {
+      "ticker": "KNCR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
+      "updatedAt": "2026-11-21T19:50:41.050790+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNRI11": {
+      "ticker": "KNRI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/knri11",
+      "updatedAt": "2026-11-21T19:50:41.662387+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "XPLG11": {
+      "ticker": "XPLG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/xplg11",
+      "updatedAt": "2026-11-21T19:50:42.252152+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VISC11": {
+      "ticker": "VISC11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/visc11",
+      "updatedAt": "2026-11-21T19:50:42.845081+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "IRDM11": {
+      "ticker": "IRDM11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/irdm11",
+      "updatedAt": "2026-11-21T19:50:43.446008+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BCFF11": {
+      "ticker": "BCFF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/bcff11",
+      "updatedAt": "2026-11-21T19:50:44.062014+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HGBS11": {
+      "ticker": "HGBS11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hgbs11",
+      "updatedAt": "2026-11-21T19:50:44.676392+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CPTS11": {
+      "ticker": "CPTS11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/cpts11",
+      "updatedAt": "2026-11-21T19:50:45.292880+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TGAR11": {
+      "ticker": "TGAR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/tgar11",
+      "updatedAt": "2026-11-21T19:50:45.882412+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VGHF11": {
+      "ticker": "VGHF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/vghf11",
+      "updatedAt": "2026-11-21T19:50:46.486516+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VGIR11": {
+      "ticker": "VGIR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/vgir11",
+      "updatedAt": "2026-11-21T19:50:47.100192+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HCTR11": {
+      "ticker": "HCTR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hctr11",
+      "updatedAt": "2026-11-21T19:50:47.698324+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DEVA11": {
+      "ticker": "DEVA11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/deva11",
+      "updatedAt": "2026-11-21T19:50:48.314419+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RECR11": {
+      "ticker": "RECR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/recr11",
+      "updatedAt": "2026-11-21T19:50:48.910628+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MCCI11": {
+      "ticker": "MCCI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/mcci11",
+      "updatedAt": "2026-11-21T19:50:49.509033+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RBRF11": {
+      "ticker": "RBRF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbrf11",
+      "updatedAt": "2026-11-21T19:50:50.099712+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RBRR11": {
+      "ticker": "RBRR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbrr11",
+      "updatedAt": "2026-11-21T19:50:50.702597+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RBRY11": {
+      "ticker": "RBRY11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbry11",
+      "updatedAt": "2026-11-21T19:50:51.302967+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BTLG11": {
+      "ticker": "BTLG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/btlg11",
+      "updatedAt": "2026-11-21T19:50:51.906982+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VILG11": {
+      "ticker": "VILG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/vilg11",
+      "updatedAt": "2026-11-21T19:50:52.518051+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HSML11": {
+      "ticker": "HSML11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hsml11",
+      "updatedAt": "2026-11-21T19:50:53.116926+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GGRC11": {
+      "ticker": "GGRC11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/ggrc11",
+      "updatedAt": "2026-11-21T19:50:53.722792+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "LVBI11": {
+      "ticker": "LVBI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/lvbi11",
+      "updatedAt": "2026-11-21T19:50:54.340968+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PVBI11": {
+      "ticker": "PVBI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/pvbi11",
+      "updatedAt": "2026-11-21T19:50:54.939376+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BRCO11": {
+      "ticker": "BRCO11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/brco11",
+      "updatedAt": "2026-11-21T19:50:55.541068+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RECT11": {
+      "ticker": "RECT11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/rect11",
+      "updatedAt": "2026-11-21T19:50:56.166744+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HFOF11": {
+      "ticker": "HFOF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hfof11",
+      "updatedAt": "2026-11-21T19:50:56.759067+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JSRE11": {
+      "ticker": "JSRE11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/jsre11",
+      "updatedAt": "2026-11-21T19:50:57.377010+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNSC11": {
+      "ticker": "KNSC11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/knsc11",
+      "updatedAt": "2026-11-21T19:50:57.982547+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNHF11": {
+      "ticker": "KNHF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/knhf11",
+      "updatedAt": "2026-11-21T19:50:58.577058+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "VRTA11": {
+      "ticker": "VRTA11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/vrta11",
+      "updatedAt": "2026-11-21T19:50:59.210406+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CVBI11": {
+      "ticker": "CVBI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/cvbi11",
+      "updatedAt": "2026-11-21T19:50:59.805166+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HGCR11": {
+      "ticker": "HGCR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hgcr11",
+      "updatedAt": "2026-11-21T19:51:00.398326+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "XPCI11": {
+      "ticker": "XPCI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/xpci11",
+      "updatedAt": "2026-11-21T19:51:01.014454+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AFHI11": {
+      "ticker": "AFHI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/afhi11",
+      "updatedAt": "2026-11-21T19:51:01.612067+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GAME11": {
+      "ticker": "GAME11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/game11",
+      "updatedAt": "2026-11-21T19:51:02.210872+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HABT11": {
+      "ticker": "HABT11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/habt11",
+      "updatedAt": "2026-11-21T19:51:02.804024+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HSLG11": {
+      "ticker": "HSLG11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/hslg11",
+      "updatedAt": "2026-11-21T19:51:03.403413+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MALL11": {
+      "ticker": "MALL11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/mall11",
+      "updatedAt": "2026-11-21T19:51:04.002621+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TRXF11": {
+      "ticker": "TRXF11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/trxf11",
+      "updatedAt": "2026-11-21T19:51:04.610235+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ALZR11": {
+      "ticker": "ALZR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/alzr11",
+      "updatedAt": "2026-11-21T19:51:05.198886+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "RZTR11": {
+      "ticker": "RZTR11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/rztr11",
+      "updatedAt": "2026-11-21T19:51:05.793792+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KNIP11": {
+      "ticker": "KNIP11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/knip11",
+      "updatedAt": "2026-11-21T19:51:06.413127+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ICRI11": {
+      "ticker": "ICRI11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/icri11",
+      "updatedAt": "2026-11-21T19:51:07.008879+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BTAL11": {
+      "ticker": "BTAL11",
+      "type": "fund",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/fundos-imobiliarios/btal11",
+      "updatedAt": "2026-11-21T19:51:07.610011+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "NVDC34": {
+      "ticker": "NVDC34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/nvdc34",
+      "updatedAt": "2026-11-21T19:51:08.208060+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AAPL34": {
+      "ticker": "AAPL34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/aapl34",
+      "updatedAt": "2026-11-21T19:51:08.821122+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MSFT34": {
+      "ticker": "MSFT34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/msft34",
+      "updatedAt": "2026-11-21T19:51:09.425144+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "AMZO34": {
+      "ticker": "AMZO34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/amzo34",
+      "updatedAt": "2026-11-21T19:51:10.020717+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "GOOGL34": {
+      "ticker": "GOOGL34",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/acoes/googl34",
+      "updatedAt": "2026-11-21T19:51:10.617813+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "META34": {
+      "ticker": "META34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/meta34",
+      "updatedAt": "2026-11-21T19:51:11.226321+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "TSLA34": {
+      "ticker": "TSLA34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/tsla34",
+      "updatedAt": "2026-11-21T19:51:11.845291+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MELI34": {
+      "ticker": "MELI34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/meli34",
+      "updatedAt": "2026-11-21T19:51:12.441446+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "NFLX34": {
+      "ticker": "NFLX34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/nflx34",
+      "updatedAt": "2026-11-21T19:51:13.052831+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "DISB34": {
+      "ticker": "DISB34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/disb34",
+      "updatedAt": "2026-11-21T19:51:13.649891+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "KOEC34": {
+      "ticker": "KOEC34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/koec34",
+      "updatedAt": "2026-11-21T19:51:14.253194+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PEPB34": {
+      "ticker": "PEPB34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/pepb34",
+      "updatedAt": "2026-11-21T19:51:14.848839+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JPMB34": {
+      "ticker": "JPMB34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/jpmb34",
+      "updatedAt": "2026-11-21T19:51:15.446958+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BOAC34": {
+      "ticker": "BOAC34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/boac34",
+      "updatedAt": "2026-11-21T19:51:16.050152+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "WMTB34": {
+      "ticker": "WMTB34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/wmtb34",
+      "updatedAt": "2026-11-21T19:51:16.646217+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ROXO34": {
+      "ticker": "ROXO34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/roxo34",
+      "updatedAt": "2026-11-21T19:51:17.259714+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "BERK34": {
+      "ticker": "BERK34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/berk34",
+      "updatedAt": "2026-11-21T19:51:17.856566+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "PGCO34": {
+      "ticker": "PGCO34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/pgco34",
+      "updatedAt": "2026-11-21T19:51:18.457248+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "JNJN34": {
+      "ticker": "JNJN34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/jnjn34",
+      "updatedAt": "2026-11-21T19:51:19.073465+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "XOMM34": {
+      "ticker": "XOMM34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/xomm34",
+      "updatedAt": "2026-11-21T19:51:19.663929+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "CVSH34": {
+      "ticker": "CVSH34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/cvsh34",
+      "updatedAt": "2026-11-21T19:51:20.287191+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "ABTT34": {
+      "ticker": "ABTT34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/abtt34",
+      "updatedAt": "2026-11-21T19:51:20.891353+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "HDDR34": {
+      "ticker": "HDDR34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/hddr34",
+      "updatedAt": "2026-11-21T19:51:21.482489+00:00",
+      "error": "HTTP 403",
+      "data": {}
+    },
+    "MCDZ34": {
+      "ticker": "MCDZ34",
+      "type": "bdr",
+      "source": "statusinvest",
+      "status": "neterr",
+      "url": "https://statusinvest.com.br/bdrs/mcdz34",
+      "updatedAt": "2026-11-21T19:51:22.088226+00:00",
       "error": "HTTP 403",
       "data": {}
     }
