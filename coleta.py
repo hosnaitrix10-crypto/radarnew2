@@ -11,6 +11,8 @@ import requests
 CATALOGO_PATH = Path("catalogo_ativos.json")
 DADOS_PATH = Path("dados.json")
 
+TAMANHO_BLOCO = 10
+
 USER_AGENTS = [
     (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -168,7 +170,6 @@ def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
     margem_teto_pct = None
     if cot is not None and cot > 0 and dy is not None and dy > 0:
         preco_teto = round(cot * (dy / piso_dy), 2)
-        # Margem positiva = preço atual está ABAIXO do preço teto
         margem_teto_pct = round(((preco_teto - cot) / preco_teto) * 100.0, 1)
         if margem_teto_pct >= 15.0:
             score += 2
@@ -223,14 +224,14 @@ def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int 
                 allow_redirects=True,
             )
             if resp.status_code == 429:
-                time.sleep(random.uniform(10.0, 16.0) * tentativa)
+                time.sleep(random.uniform(12.0, 18.0) * tentativa)
                 if tentativa < tentativas:
                     continue
                 return "limit", None, "HTTP 429"
             if resp.status_code == 404:
                 return "nodata", None, "HTTP 404"
             if resp.status_code in {403, 503} or resp.status_code >= 500:
-                time.sleep(random.uniform(6.0, 10.0) * tentativa)
+                time.sleep(random.uniform(7.0, 11.0) * tentativa)
                 if tentativa < tentativas:
                     continue
                 return "neterr", None, f"HTTP {resp.status_code}"
@@ -346,7 +347,7 @@ def salvar_dados(base: dict, items: dict):
 def main():
     raw_batch = (os.getenv("BATCH_SIZE") or "").strip().lower()
     if not raw_batch:
-        batch_size = 25
+        batch_size = TAMANHO_BLOCO
     elif raw_batch in {"0", "all", "todos", "full"}:
         batch_size = 0
     else:
@@ -372,62 +373,64 @@ def main():
     ordenada = sorted(catalogo, key=prioridade)
     fila = ordenada if batch_size == 0 else ordenada[:batch_size]
 
-    print(f"Catalogo: {len(catalogo)} | Lote: {len(fila)}")
+    blocos = [fila[i : i + TAMANHO_BLOCO] for i in range(0, len(fila), TAMANHO_BLOCO)]
+    print(f"Catalogo: {len(catalogo)} | Total na fila: {len(fila)} | Blocos de 10: {len(blocos)}")
 
-    session = requests.Session()
-    try:
-        for idx, (ticker, tipo_norm) in enumerate(fila, start=1):
-            if idx > 1 and (idx - 1) % 10 == 0:
-                session.close()
-                session = requests.Session()
-                pausa_bloco = random.uniform(12.0, 22.0)
-                print(f"  [Nova sessão + pausa] {pausa_bloco:.1f}s")
-                time.sleep(pausa_bloco)
+    for num_bloco, bloco in enumerate(blocos, start=1):
+        print(f"--- Iniciando bloco {num_bloco}/{len(blocos)} ({len(bloco)} ativos) ---")
+        session = requests.Session()
+        try:
+            for ticker, tipo_norm in bloco:
+                url = montar_url(ticker, tipo_norm)
+                st_req, html, err = requisitar_com_backoff(session, url)
 
-            url = montar_url(ticker, tipo_norm)
-            st_req, html, err = requisitar_com_backoff(session, url)
+                if st_req == "ok" and html:
+                    indicadores = extrair_dados_status_invest(html)
+                    status_final = "ok" if indicadores else "nodata"
+                    analise = (
+                        analisar_matematica(indicadores, tipo_norm)
+                        if status_final == "ok"
+                        else analisar_matematica({}, tipo_norm)
+                    )
+                    items[ticker] = {
+                        "ticker": ticker,
+                        "type": tipo_norm,
+                        "source": "statusinvest",
+                        "status": status_final,
+                        "sinal": analise["sinal"],
+                        "analise": analise,
+                        "url": url,
+                        "updatedAt": agora_iso(),
+                        "error": None if status_final == "ok" else "Sem indicadores no HTML",
+                        "data": indicadores,
+                    }
+                else:
+                    anterior = items.get(ticker) or {}
+                    items[ticker] = {
+                        "ticker": ticker,
+                        "type": tipo_norm,
+                        "source": "statusinvest",
+                        "status": st_req,
+                        "sinal": anterior.get("sinal") or "Sem dados",
+                        "analise": anterior.get("analise") or analisar_matematica({}, tipo_norm),
+                        "url": url,
+                        "updatedAt": agora_iso(),
+                        "error": err,
+                        "data": anterior.get("data", {}),
+                    }
 
-            if st_req == "ok" and html:
-                indicadores = extrair_dados_status_invest(html)
-                status_final = "ok" if indicadores else "nodata"
-                analise = analisar_matematica(indicadores, tipo_norm) if status_final == "ok" else analisar_matematica({}, tipo_norm)
-                items[ticker] = {
-                    "ticker": ticker,
-                    "type": tipo_norm,
-                    "source": "statusinvest",
-                    "status": status_final,
-                    "sinal": analise["sinal"],
-                    "analise": analise,
-                    "url": url,
-                    "updatedAt": agora_iso(),
-                    "error": None if status_final == "ok" else "Sem indicadores no HTML",
-                    "data": indicadores,
-                }
-            else:
-                anterior = items.get(ticker) or {}
-                items[ticker] = {
-                    "ticker": ticker,
-                    "type": tipo_norm,
-                    "source": "statusinvest",
-                    "status": st_req,
-                    "sinal": anterior.get("sinal") or "Sem dados",
-                    "analise": anterior.get("analise") or analisar_matematica({}, tipo_norm),
-                    "url": url,
-                    "updatedAt": agora_iso(),
-                    "error": err,
-                    "data": anterior.get("data", {}),
-                }
+                print(f"  {ticker}: {items[ticker]['status']} | {items[ticker]['sinal']}")
+                time.sleep(random.uniform(2.5, 4.5))
+        finally:
+            session.close()
 
-            if idx % 5 == 0 or idx == len(fila):
-                salvar_dados(base, items)
-                print(f"  {idx}/{len(fila)} -> {ticker}: {items[ticker]['status']} | {items[ticker]['sinal']}")
+        salvar_dados(base, items)
+        print(f"--- Fim do bloco {num_bloco}/{len(blocos)} | Resumo: {base['stats']} ---")
 
-            time.sleep(random.uniform(3.5, 6.8))
-    finally:
-        session.close()
-
-    salvar_dados(base, items)
-    print("Resumo:", base["stats"])
+        if num_bloco < len(blocos):
+            parada = random.uniform(20.0, 35.0)
+            print(f"  [Parada entre blocos de 10] Aguardando {parada:.1f}s...")
+            time.sleep(parada)
 
 
 if __name__ == "__main__":
