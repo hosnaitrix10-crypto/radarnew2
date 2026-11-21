@@ -50,13 +50,14 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 680px;
+      min-width: 760px;
     }
     th, td {
       padding: 10px 12px;
       border-bottom: 1px solid #334155;
       text-align: left;
       font-size: 14px;
+      vertical-align: top;
     }
     th { background: #020617; color: #94a3b8; }
     tr:last-child td { border-bottom: none; }
@@ -68,6 +69,12 @@
     .sinal-caro { color: #facc15; font-weight: 700; }
     .sinal-vender { color: #f87171; font-weight: 700; }
     .sinal-sem { color: #94a3b8; }
+    .sub-math {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
     a { color: #38bdf8; text-decoration: none; }
     .vazio { text-align: center; padding: 24px; color: #94a3b8; }
   </style>
@@ -103,7 +110,7 @@
           <th>Tipo</th>
           <th>Status</th>
           <th>Indicação</th>
-          <th>Indicadores</th>
+          <th>Base matemática & indicadores</th>
           <th>Link</th>
         </tr>
       </thead>
@@ -132,14 +139,28 @@
       return "sinal-sem";
     }
 
-    function resumir(dataObj) {
-      if (!dataObj || typeof dataObj !== "object") return "-";
-      const chaves = Object.keys(dataObj);
-      if (!chaves.length) return "-";
-      return chaves
-        .slice(0, 5)
-        .map((k) => `${esc(k)}: ${esc(dataObj[k]?.raw ?? "-")}`)
-        .join(" | ");
+    function formatarAnalise(item) {
+      const an = item.analise || {};
+      const partes = [];
+      if (an.score !== undefined && an.score !== null) {
+        partes.push(`Score: ${an.score}`);
+      }
+      if (an.pos_52s_pct !== undefined && an.pos_52s_pct !== null) {
+        partes.push(`Faixa 52s: ${an.pos_52s_pct}%`);
+      }
+      if (an.preco_teto !== undefined && an.preco_teto !== null) {
+        partes.push(`Teto: R$ ${Number(an.preco_teto).toFixed(2)}`);
+      }
+      const linhaMath = partes.length ? `<strong>${esc(partes.join(" · "))}</strong>` : "";
+      const linhaMotivo = an.motivo ? `<span class="sub-math">${esc(an.motivo)}</span>` : "";
+
+      const d = item.data || {};
+      const chaves = Object.keys(d).slice(0, 4);
+      const linhaInd = chaves.length
+        ? `<span class="sub-math">${chaves.map((k) => `${esc(k)}: ${esc(d[k]?.raw ?? "-")}`).join(" | ")}</span>`
+        : "";
+
+      return `${linhaMath}${linhaMotivo}${linhaInd}` || "-";
     }
 
     function renderizar() {
@@ -173,7 +194,7 @@
             <td>${esc(item.type || "-")}</td>
             <td class="${esc(item.status || "")}">${esc(item.status || "-")}</td>
             <td class="${classeSinal(s)}">${esc(s)}</td>
-            <td>${resumir(item.data)}</td>
+            <td>${formatarAnalise(item)}</td>
             <td>${link}</td>
           </tr>
         `;
