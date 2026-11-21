@@ -10,16 +10,31 @@ import requests
 CATALOGO_PATH = Path("catalogo_ativos.json")
 DADOS_PATH = Path("dados.json")
 
+TICKERS_RESERVA = [
+    ("PETR4", "stock"),
+    ("VALE3", "stock"),
+    ("ITUB4", "stock"),
+    ("BBAS3", "stock"),
+    ("WEGE3", "stock"),
+    ("MXRF11", "fund"),
+    ("HGLG11", "fund"),
+    ("XPML11", "fund"),
+    ("KNCR11", "fund"),
+    ("NVDC34", "bdr"),
+]
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/126.0.0.0 Safari/537.36"
+        "Chrome/127.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
     "Referer": "https://statusinvest.com.br/",
-    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
 }
 
 
@@ -70,12 +85,12 @@ def extrair_dados_status_invest(html: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     indicadores = {}
 
-    # Blocos principais de cotação / DY / P/VP / indicadores do Status Invest
     seletores_bloco = [
         ".top-info .info",
         ".info-area .info",
         ".indicators .item",
         ".card .info",
+        ".company-description ~ div .info",
     ]
 
     for seletor in seletores_bloco:
@@ -96,7 +111,6 @@ def extrair_dados_status_invest(html: str) -> dict:
                     "num": parse_numero_br(valor_bruto),
                 }
 
-    # Fallback para pares título/valor estruturados com atributo title
     for el in soup.select("[title]"):
         titulo = limpar_chave(el.get("title", ""))
         if not titulo or len(titulo) > 80:
@@ -110,16 +124,24 @@ def extrair_dados_status_invest(html: str) -> dict:
                     "num": parse_numero_br(val_txt),
                 }
 
+    # Garante pelo menos cotação/título se a página abriu mas os seletores mudaram
+    if not indicadores:
+        h1 = soup.select_one("h1")
+        if h1:
+            txt_h1 = limpar_chave(h1.get_text(" ", strip=True))
+            if txt_h1:
+                indicadores["Ativo"] = {"raw": txt_h1, "num": None}
+
     return indicadores
 
 
-def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 3):
+def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 2):
     for tentativa in range(1, tentativas + 1):
         try:
-            resp = session.get(url, headers=HEADERS, timeout=15)
+            resp = session.get(url, headers=HEADERS, timeout=15, allow_redirects=True)
             if resp.status_code == 429:
                 if tentativa < tentativas:
-                    time.sleep(2.5 * tentativa)
+                    time.sleep(2.0 * tentativa)
                     continue
                 return "limit", None, "HTTP 429"
             if resp.status_code == 404:
@@ -133,8 +155,8 @@ def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 
                 return "neterr", None, f"HTTP {resp.status_code}"
 
             html = resp.text or ""
-            if len(html) < 1200 or "status invest" not in html.lower():
-                return "nodata", None, "Conteudo vazio ou invalido"
+            if len(html) < 800:
+                return "nodata", None, f"HTML curto ({len(html)} bytes)"
 
             return "ok", html, None
         except requests.RequestException as exc:
@@ -146,53 +168,82 @@ def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 
     return "neterr", None, "Falha desconhecida"
 
 
-def carregar_catalogo() -> list[tuple[str, str]]:
-    if not CATALOGO_PATH.exists():
-        return []
-    raw = json.loads(CATALOGO_PATH.read_text(encoding="utf-8"))
-    lista = raw if isinstance(raw, list) else raw.get("ativos") or raw.get("items") or []
-
+def extrair_lista_catalogo(raw) -> list[tuple[str, str]]:
     saida = []
     vistos = set()
-    for item in lista:
-        if isinstance(item, str):
-            ticker, tipo = item.strip().upper(), "stock"
-        elif isinstance(item, dict):
-            ticker = str(item.get("ticker") or item.get("code") or item.get("symbol") or "").strip().upper()
-            tipo = str(item.get("type") or item.get("tipo") or item.get("category") or "stock").strip()
-        else:
-            continue
 
-        if not ticker or ticker in vistos:
-            continue
-        vistos.add(ticker)
-        saida.append((ticker, normalizar_tipo(tipo, ticker)))
+    def adicionar(tk_raw, tipo_raw="stock"):
+        tk = str(tk_raw or "").strip().upper()
+        if not tk or tk in vistos:
+            return
+        vistos.add(tk)
+        saida.append((tk, normalizar_tipo(str(tipo_raw or "stock"), tk)))
+
+    if isinstance(raw, list):
+        for item in raw:
+            if isinstance(item, str):
+                adicionar(item, "stock")
+            elif isinstance(item, dict):
+                tk = item.get("ticker") or item.get("code") or item.get("symbol") or item.get("ativo")
+                tp = item.get("type") or item.get("tipo") or item.get("category") or "stock"
+                adicionar(tk, tp)
+    elif isinstance(raw, dict):
+        for chave_lista in ["ativos", "items", "tickers", "catalog", "data", "stocks", "funds", "bdrs"]:
+            sub = raw.get(chave_lista)
+            if isinstance(sub, list) and sub:
+                return extrair_lista_catalogo(sub)
+
+        # Caso seja um mapa {"PETR4": {...}, "VALE3": {...}}
+        for k, v in raw.items():
+            if str(k).upper() in {"META", "STATS", "UPDATEDAT", "SOURCE"}:
+                continue
+            if isinstance(v, dict):
+                tp = v.get("type") or v.get("tipo") or "stock"
+                adicionar(k, tp)
+            else:
+                adicionar(k, "stock")
+
     return saida
 
 
+def carregar_catalogo() -> list[tuple[str, str]]:
+    if not CATALOGO_PATH.exists():
+        print("Aviso: catalogo_ativos.json nao encontrado; a usar lista de reserva.")
+        return TICKERS_RESERVA
+
+    try:
+        raw = json.loads(CATALOGO_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"Aviso: falha ao ler catalogo_ativos.json ({exc}); a usar lista de reserva.")
+        return TICKERS_RESERVA
+
+    lista = extrair_lista_catalogo(raw)
+    if not lista:
+        print("Aviso: catalogo_ativos.json sem itens validos; a usar lista de reserva.")
+        return TICKERS_RESERVA
+
+    return lista
+
+
 def carregar_dados_atuais() -> dict:
+    padrao = {
+        "source": "statusinvest",
+        "updatedAt": None,
+        "stats": {},
+        "items": {},
+    }
     if not DADOS_PATH.exists():
-        return {
-            "source": "statusinvest",
-            "updatedAt": None,
-            "stats": {},
-            "items": {},
-        }
+        return padrao
     try:
         data = json.loads(DADOS_PATH.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
-            raise ValueError("JSON raiz invalido")
+            return padrao
         data["source"] = "statusinvest"
         if not isinstance(data.get("items"), dict):
             data["items"] = {}
         return data
     except Exception:
-        return {
-            "source": "statusinvest",
-            "updatedAt": None,
-            "stats": {},
-            "items": {},
-        }
+        return padrao
 
 
 def calcular_stats(items: dict) -> dict:
@@ -205,12 +256,11 @@ def calcular_stats(items: dict) -> dict:
 
 
 def main():
-    batch_size = int(os.getenv("BATCH_SIZE", "120"))
+    batch_size = int(os.getenv("BATCH_SIZE", "40"))
     catalogo = carregar_catalogo()
     base = carregar_dados_atuais()
     items = base["items"]
 
-    # Prioriza ativos ainda não coletados ou com erro de rede anterior; depois os mais antigos
     def prioridade(par):
         ticker, _ = par
         atual = items.get(ticker)
@@ -221,6 +271,7 @@ def main():
         return (2, atual.get("updatedAt") or "")
 
     fila = sorted(catalogo, key=prioridade)[:batch_size]
+    print(f"Catalogo: {len(catalogo)} ativos | Lote atual: {len(fila)}")
 
     session = requests.Session()
     try:
@@ -238,7 +289,7 @@ def main():
                     "status": status_final,
                     "url": url,
                     "updatedAt": agora_iso(),
-                    "error": None if status_final == "ok" else "Sem indicadores encontrados no HTML",
+                    "error": None if status_final == "ok" else "Sem indicadores no HTML",
                     "data": indicadores,
                 }
             else:
@@ -253,7 +304,8 @@ def main():
                     "data": (items.get(ticker) or {}).get("data", {}),
                 }
 
-            time.sleep(0.9)
+            print(f"  {ticker} ({tipo_norm}) -> {items[ticker]['status']} ({err or 'ok'})")
+            time.sleep(0.7)
     finally:
         session.close()
 
@@ -265,6 +317,7 @@ def main():
         json.dumps(base, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+    print("Resumo final:", base["stats"])
 
 
 if __name__ == "__main__":
