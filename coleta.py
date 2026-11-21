@@ -53,7 +53,6 @@ def construir_headers() -> dict:
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
         "Referer": "https://statusinvest.com.br/",
-        "DNT": "1",
         "Upgrade-Insecure-Requests": "1",
     }
 
@@ -100,13 +99,7 @@ def extrair_dados_status_invest(html: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     indicadores = {}
 
-    seletores = [
-        ".top-info .info",
-        ".info-area .info",
-        ".indicators .item",
-        ".card .info",
-    ]
-    for seletor in seletores:
+    for seletor in [".top-info .info", ".info-area .info", ".indicators .item", ".card .info"]:
         for bloco in soup.select(seletor):
             titulo_el = bloco.select_one(".title, .name, h3, h2, span.d-block")
             valor_el = bloco.select_one(".value, strong, .number")
@@ -134,13 +127,6 @@ def achar_num(data_obj: dict, termos: list[str]):
 
 
 def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
-    """
-    Calcula métricas reais e indicação matemática baseada em:
-    1) Posição na amplitude de 52 semanas: p = (cot - min52) / (max52 - min52)
-    2) Preço teto (piso de DY de 6% a.a. para ações/BDRs ou 7.5% a.a. para FIIs):
-       preco_teto = cotacao * (dy_pct / piso_dy_pct)
-    3) Momentum de 12 meses (var12m)
-    """
     if not data_obj:
         return {
             "sinal": "Sem dados",
@@ -182,19 +168,20 @@ def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
     margem_teto_pct = None
     if cot is not None and cot > 0 and dy is not None and dy > 0:
         preco_teto = round(cot * (dy / piso_dy), 2)
-        margem_teto_pct = round(((preco_teto - cot) / cot) * 100.0, 1)
+        # Margem positiva = preço atual está ABAIXO do preço teto
+        margem_teto_pct = round(((preco_teto - cot) / preco_teto) * 100.0, 1)
         if margem_teto_pct >= 15.0:
             score += 2
-            motivos.append(f"acima do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
+            motivos.append(f"abaixo do teto (+{margem_teto_pct:.1f}% até R$ {preco_teto:.2f})")
         elif margem_teto_pct >= 0.0:
             score += 1
-            motivos.append(f"dentro do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
+            motivos.append(f"abaixo do teto (+{margem_teto_pct:.1f}% até R$ {preco_teto:.2f})")
         elif margem_teto_pct <= -25.0:
             score -= 2
-            motivos.append(f"distante do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
+            motivos.append(f"acima do teto ({margem_teto_pct:.1f}% vs R$ {preco_teto:.2f})")
         else:
             score -= 1
-            motivos.append(f"abaixo do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
+            motivos.append(f"acima do teto ({margem_teto_pct:.1f}% vs R$ {preco_teto:.2f})")
     elif dy is not None and dy == 0:
         score -= 1
         motivos.append("DY zerado")
@@ -226,7 +213,7 @@ def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
     }
 
 
-def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int = 3):
+def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int = 2):
     for tentativa in range(1, tentativas + 1):
         try:
             resp = session.get(
@@ -236,33 +223,27 @@ def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int 
                 allow_redirects=True,
             )
             if resp.status_code == 429:
-                espera = random.uniform(8.0, 14.0) * tentativa
-                print(f"    [429] {url} -> aguardando {espera:.1f}s (tentativa {tentativa}/{tentativas})")
-                time.sleep(espera)
-                continue
-
+                time.sleep(random.uniform(10.0, 16.0) * tentativa)
+                if tentativa < tentativas:
+                    continue
+                return "limit", None, "HTTP 429"
             if resp.status_code == 404:
                 return "nodata", None, "HTTP 404"
-
             if resp.status_code in {403, 503} or resp.status_code >= 500:
-                espera = random.uniform(5.0, 9.0) * tentativa
-                print(f"    [HTTP {resp.status_code}] {url} -> aguardando {espera:.1f}s (tentativa {tentativa}/{tentativas})")
-                time.sleep(espera)
-                continue
-
+                time.sleep(random.uniform(6.0, 10.0) * tentativa)
+                if tentativa < tentativas:
+                    continue
+                return "neterr", None, f"HTTP {resp.status_code}"
             if resp.status_code != 200:
                 return "neterr", None, f"HTTP {resp.status_code}"
 
             html = resp.text or ""
             if len(html) < 1000:
                 return "nodata", None, f"HTML curto ({len(html)} bytes)"
-
             return "ok", html, None
-
         except requests.RequestException as exc:
-            espera = random.uniform(4.0, 8.0) * tentativa
             if tentativa < tentativas:
-                time.sleep(espera)
+                time.sleep(random.uniform(5.0, 9.0) * tentativa)
                 continue
             return "neterr", None, f"{type(exc).__name__}: {str(exc)[:120]}"
 
@@ -365,7 +346,7 @@ def salvar_dados(base: dict, items: dict):
 def main():
     raw_batch = (os.getenv("BATCH_SIZE") or "").strip().lower()
     if not raw_batch:
-        batch_size = 50
+        batch_size = 25
     elif raw_batch in {"0", "all", "todos", "full"}:
         batch_size = 0
     else:
@@ -375,7 +356,6 @@ def main():
     base = carregar_dados()
     items = base["items"]
 
-    # 0 = nunca coletado; 1 = ok antigo; 2 = nodata; 3 = neterr/limit
     def prioridade(par):
         ticker, _ = par
         atual = items.get(ticker)
@@ -395,14 +375,19 @@ def main():
     print(f"Catalogo: {len(catalogo)} | Lote: {len(fila)}")
 
     session = requests.Session()
-    erros_consecutivos = 0
     try:
         for idx, (ticker, tipo_norm) in enumerate(fila, start=1):
+            if idx > 1 and (idx - 1) % 10 == 0:
+                session.close()
+                session = requests.Session()
+                pausa_bloco = random.uniform(12.0, 22.0)
+                print(f"  [Nova sessão + pausa] {pausa_bloco:.1f}s")
+                time.sleep(pausa_bloco)
+
             url = montar_url(ticker, tipo_norm)
             st_req, html, err = requisitar_com_backoff(session, url)
 
             if st_req == "ok" and html:
-                erros_consecutivos = 0
                 indicadores = extrair_dados_status_invest(html)
                 status_final = "ok" if indicadores else "nodata"
                 analise = analisar_matematica(indicadores, tipo_norm) if status_final == "ok" else analisar_matematica({}, tipo_norm)
@@ -419,7 +404,6 @@ def main():
                     "data": indicadores,
                 }
             else:
-                erros_consecutivos += 1
                 anterior = items.get(ticker) or {}
                 items[ticker] = {
                     "ticker": ticker,
@@ -434,20 +418,11 @@ def main():
                     "data": anterior.get("data", {}),
                 }
 
-            if idx % 10 == 0 or idx == len(fila):
+            if idx % 5 == 0 or idx == len(fila):
                 salvar_dados(base, items)
                 print(f"  {idx}/{len(fila)} -> {ticker}: {items[ticker]['status']} | {items[ticker]['sinal']}")
 
-            # Pausa anti-bloqueio aleatória + respiro extra em caso de bloqueios seguidos
-            pausa = random.uniform(2.8, 6.2)
-            if erros_consecutivos >= 4:
-                pausa += random.uniform(10.0, 18.0)
-                print(f"  [Respiro anti-bloqueio] +{pausa:.1f}s após {erros_consecutivos} falhas seguidas")
-                erros_consecutivos = 0
-            if idx % 25 == 0:
-                pausa += random.uniform(6.0, 12.0)
-
-            time.sleep(pausa)
+            time.sleep(random.uniform(3.5, 6.8))
     finally:
         session.close()
 
