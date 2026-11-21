@@ -1,9 +1,9 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-21T19:56:25.657330+00:00",
+  "updatedAt": "2026-11-21T20:09:17.205196+00:00",
   "stats": {
-    "total": 273,
-    "ok": 0,
+    "total": 283,
+    "ok": 10,
     "nodata": 0,
     "neterr": 273,
     "limit": 0
@@ -2738,6 +2738,2376 @@
       "updatedAt": "2026-11-21T19:51:22.088226+00:00",
       "error": "HTTP 403",
       "data": {}
+    },
+    "WLMM4": {
+      "ticker": "WLMM4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/wlmm4",
+      "updatedAt": "2026-11-21T20:09:07.346159+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "14,99",
+          "num": 14.99
+        },
+        "Min. 52 semanas": {
+          "raw": "14,01",
+          "num": 14.01
+        },
+        "Máx. 52 semanas": {
+          "raw": "26,64",
+          "num": 26.64
+        },
+        "Dividend Yield": {
+          "raw": "10,42",
+          "num": 10.42
+        },
+        "Valorização (12m)": {
+          "raw": "-19,06%",
+          "num": -19.06
+        },
+        "Tipo": {
+          "raw": "PN",
+          "num": "PN"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "DOADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "200",
+          "num": 200.0
+        },
+        "VOLUME (dia)": {
+          "raw": "4.740",
+          "num": 4740.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "2",
+          "num": 2.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,5873",
+          "num": 0.5873
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "1,2175",
+          "num": 1.2175
+        },
+        "Comparação": {
+          "raw": "107,32%",
+          "num": 107.32
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "107,32%",
+          "num": 107.32
+        },
+        "Ativos": {
+          "raw": "1.836.064.000",
+          "num": 1836064000.0
+        },
+        "Ativo circulante": {
+          "raw": "1.075.460.000",
+          "num": 1075460000.0
+        },
+        "Dívida bruta": {
+          "raw": "520.139.000",
+          "num": 520139000.0
+        },
+        "Disponibilidade": {
+          "raw": "59.473.000",
+          "num": 59473000.0
+        },
+        "Dívida líquida": {
+          "raw": "460.666.000",
+          "num": 460666000.0
+        },
+        "Valor de mercado": {
+          "raw": "567.398.489",
+          "num": 567398489.0
+        },
+        "Valor de firma": {
+          "raw": "1.028.064.489",
+          "num": 1028064489.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 16.571.220 PN 19.843.450": {
+          "raw": "36.414.670",
+          "num": 36414670.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 5.115.365 Total de cada tipo de papel: ON 5,46% 905.045 PN 21,22% 4.210.320": {
+          "raw": "14,05%",
+          "num": 14.05
+        },
+        "D.Y": {
+          "raw": "10,42%",
+          "num": 10.42
+        },
+        "P/L": {
+          "raw": "6,30",
+          "num": 6.3
+        },
+        "PEG Ratio": {
+          "raw": "-0,24",
+          "num": -0.24
+        },
+        "P/VP": {
+          "raw": "0,65",
+          "num": 0.65
+        },
+        "EV/EBITDA": {
+          "raw": "5,07",
+          "num": 5.07
+        },
+        "EV/EBIT": {
+          "raw": "6,16",
+          "num": 6.16
+        },
+        "P/EBITDA": {
+          "raw": "2,69",
+          "num": 2.69
+        },
+        "P/EBIT": {
+          "raw": "3,27",
+          "num": 3.27
+        },
+        "VPA": {
+          "raw": "22,96",
+          "num": 22.96
+        },
+        "P/Ativo": {
+          "raw": "0,30",
+          "num": 0.3
+        },
+        "LPA": {
+          "raw": "2,38",
+          "num": 2.38
+        },
+        "P/SR": {
+          "raw": "0,18",
+          "num": 0.18
+        },
+        "P/Cap. Giro": {
+          "raw": "1,20",
+          "num": 1.2
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,72",
+          "num": -0.72
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,55",
+          "num": 0.55
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "2,27",
+          "num": 2.27
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,76",
+          "num": 2.76
+        },
+        "PL/Ativos": {
+          "raw": "0,46",
+          "num": 0.46
+        },
+        "Passivos/Ativos": {
+          "raw": "0,55",
+          "num": 0.55
+        },
+        "Liq. corrente": {
+          "raw": "1,73",
+          "num": 1.73
+        },
+        "M. Bruta": {
+          "raw": "14,09%",
+          "num": 14.09
+        },
+        "M. EBITDA": {
+          "raw": "6,81%",
+          "num": 6.81
+        },
+        "M. EBIT": {
+          "raw": "5,61%",
+          "num": 5.61
+        },
+        "M. Líquida": {
+          "raw": "2,91%",
+          "num": 2.91
+        },
+        "ROE": {
+          "raw": "10,37%",
+          "num": 10.37
+        },
+        "ROA": {
+          "raw": "4,72%",
+          "num": 4.72
+        },
+        "ROIC": {
+          "raw": "8,77%",
+          "num": 8.77
+        },
+        "Giro ativos": {
+          "raw": "1,62",
+          "num": 1.62
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "24,89%",
+          "num": 24.89
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "9,77%",
+          "num": 9.77
+        }
+      }
+    },
+    "WLMM3": {
+      "ticker": "WLMM3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/wlmm3",
+      "updatedAt": "2026-11-21T20:09:08.243238+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "16,29",
+          "num": 16.29
+        },
+        "Min. 52 semanas": {
+          "raw": "15,78",
+          "num": 15.78
+        },
+        "Máx. 52 semanas": {
+          "raw": "23,55",
+          "num": 23.55
+        },
+        "Dividend Yield": {
+          "raw": "8,71",
+          "num": 8.71
+        },
+        "Valorização (12m)": {
+          "raw": "-19,63%",
+          "num": -19.63
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "DOADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "17",
+          "num": 17.0
+        },
+        "VOLUME (dia)": {
+          "raw": "408",
+          "num": 408.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "1",
+          "num": 1.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,5339",
+          "num": 0.5339
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "1,1068",
+          "num": 1.1068
+        },
+        "Comparação": {
+          "raw": "107,32%",
+          "num": 107.32
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "107,32%",
+          "num": 107.32
+        },
+        "Ativos": {
+          "raw": "1.836.064.000",
+          "num": 1836064000.0
+        },
+        "Ativo circulante": {
+          "raw": "1.075.460.000",
+          "num": 1075460000.0
+        },
+        "Dívida bruta": {
+          "raw": "520.139.000",
+          "num": 520139000.0
+        },
+        "Disponibilidade": {
+          "raw": "59.473.000",
+          "num": 59473000.0
+        },
+        "Dívida líquida": {
+          "raw": "460.666.000",
+          "num": 460666000.0
+        },
+        "Valor de mercado": {
+          "raw": "567.398.489",
+          "num": 567398489.0
+        },
+        "Valor de firma": {
+          "raw": "1.028.064.489",
+          "num": 1028064489.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 16.571.220 PN 19.843.450": {
+          "raw": "36.414.670",
+          "num": 36414670.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 5.115.365 Total de cada tipo de papel: ON 5,46% 905.045 PN 21,22% 4.210.320": {
+          "raw": "14,05%",
+          "num": 14.05
+        },
+        "D.Y": {
+          "raw": "8,71%",
+          "num": 8.71
+        },
+        "P/L": {
+          "raw": "6,84",
+          "num": 6.84
+        },
+        "PEG Ratio": {
+          "raw": "-0,26",
+          "num": -0.26
+        },
+        "P/VP": {
+          "raw": "0,71",
+          "num": 0.71
+        },
+        "EV/EBITDA": {
+          "raw": "5,07",
+          "num": 5.07
+        },
+        "EV/EBIT": {
+          "raw": "6,16",
+          "num": 6.16
+        },
+        "P/EBITDA": {
+          "raw": "2,93",
+          "num": 2.93
+        },
+        "P/EBIT": {
+          "raw": "3,55",
+          "num": 3.55
+        },
+        "VPA": {
+          "raw": "22,96",
+          "num": 22.96
+        },
+        "P/Ativo": {
+          "raw": "0,32",
+          "num": 0.32
+        },
+        "LPA": {
+          "raw": "2,38",
+          "num": 2.38
+        },
+        "P/SR": {
+          "raw": "0,20",
+          "num": 0.2
+        },
+        "P/Cap. Giro": {
+          "raw": "1,30",
+          "num": 1.3
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,78",
+          "num": -0.78
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,55",
+          "num": 0.55
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "2,27",
+          "num": 2.27
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,76",
+          "num": 2.76
+        },
+        "PL/Ativos": {
+          "raw": "0,46",
+          "num": 0.46
+        },
+        "Passivos/Ativos": {
+          "raw": "0,55",
+          "num": 0.55
+        },
+        "Liq. corrente": {
+          "raw": "1,73",
+          "num": 1.73
+        },
+        "M. Bruta": {
+          "raw": "14,09%",
+          "num": 14.09
+        },
+        "M. EBITDA": {
+          "raw": "6,81%",
+          "num": 6.81
+        },
+        "M. EBIT": {
+          "raw": "5,61%",
+          "num": 5.61
+        },
+        "M. Líquida": {
+          "raw": "2,91%",
+          "num": 2.91
+        },
+        "ROE": {
+          "raw": "10,37%",
+          "num": 10.37
+        },
+        "ROA": {
+          "raw": "4,72%",
+          "num": 4.72
+        },
+        "ROIC": {
+          "raw": "8,77%",
+          "num": 8.77
+        },
+        "Giro ativos": {
+          "raw": "1,62",
+          "num": 1.62
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "24,89%",
+          "num": 24.89
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "9,77%",
+          "num": 9.77
+        }
+      }
+    },
+    "WHRL3": {
+      "ticker": "WHRL3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/whrl3",
+      "updatedAt": "2026-11-21T20:09:09.111719+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "2,99",
+          "num": 2.99
+        },
+        "Min. 52 semanas": {
+          "raw": "2,98",
+          "num": 2.98
+        },
+        "Máx. 52 semanas": {
+          "raw": "4,47",
+          "num": 4.47
+        },
+        "Dividend Yield": {
+          "raw": "3,73",
+          "num": 3.73
+        },
+        "Valorização (12m)": {
+          "raw": "-27,43%",
+          "num": -27.43
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "DOADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "48",
+          "num": 48.0
+        },
+        "VOLUME (dia)": {
+          "raw": "217",
+          "num": 217.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "1",
+          "num": 1.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,4225",
+          "num": 0.4225
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,0387",
+          "num": 0.0387
+        },
+        "Comparação": {
+          "raw": "90,84%",
+          "num": 90.84
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "90,84%",
+          "num": 90.84
+        },
+        "Ativos": {
+          "raw": "9.781.421.000",
+          "num": 9781421000.0
+        },
+        "Ativo circulante": {
+          "raw": "5.654.971.000",
+          "num": 5654971000.0
+        },
+        "Dívida bruta": {
+          "raw": "1.730.741.000",
+          "num": 1730741000.0
+        },
+        "Disponibilidade": {
+          "raw": "854.645.000",
+          "num": 854645000.0
+        },
+        "Dívida líquida": {
+          "raw": "876.096.000",
+          "num": 876096000.0
+        },
+        "Valor de mercado": {
+          "raw": "4.493.330.152",
+          "num": 4493330152.0
+        },
+        "Valor de firma": {
+          "raw": "5.369.426.152",
+          "num": 5369426152.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 1.028.700.891 PN 474.085.113": {
+          "raw": "1.502.786.004",
+          "num": 1502786004.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 1.502.786.004 Total de cada tipo de papel: ON 100,00% 1.028.700.891 PN 100,00% 474.085.113": {
+          "raw": "100,00%",
+          "num": 100.0
+        },
+        "D.Y": {
+          "raw": "3,73%",
+          "num": 3.73
+        },
+        "P/L": {
+          "raw": "35,90",
+          "num": 35.9
+        },
+        "PEG Ratio": {
+          "raw": "-0,44",
+          "num": -0.44
+        },
+        "P/VP": {
+          "raw": "2,31",
+          "num": 2.31
+        },
+        "EV/EBITDA": {
+          "raw": "8,48",
+          "num": 8.48
+        },
+        "EV/EBIT": {
+          "raw": "10,63",
+          "num": 10.63
+        },
+        "P/EBITDA": {
+          "raw": "7,10",
+          "num": 7.1
+        },
+        "P/EBIT": {
+          "raw": "8,90",
+          "num": 8.9
+        },
+        "VPA": {
+          "raw": "1,29",
+          "num": 1.29
+        },
+        "P/Ativo": {
+          "raw": "0,46",
+          "num": 0.46
+        },
+        "LPA": {
+          "raw": "0,08",
+          "num": 0.08
+        },
+        "P/SR": {
+          "raw": "0,37",
+          "num": 0.37
+        },
+        "P/Cap. Giro": {
+          "raw": "-4,13",
+          "num": -4.13
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-1,09",
+          "num": -1.09
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,45",
+          "num": 0.45
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "1,38",
+          "num": 1.38
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "1,73",
+          "num": 1.73
+        },
+        "PL/Ativos": {
+          "raw": "0,20",
+          "num": 0.2
+        },
+        "Passivos/Ativos": {
+          "raw": "0,80",
+          "num": 0.8
+        },
+        "Liq. corrente": {
+          "raw": "0,84",
+          "num": 0.84
+        },
+        "M. Bruta": {
+          "raw": "16,56%",
+          "num": 16.56
+        },
+        "M. EBITDA": {
+          "raw": "5,18%",
+          "num": 5.18
+        },
+        "M. EBIT": {
+          "raw": "4,13%",
+          "num": 4.13
+        },
+        "M. Líquida": {
+          "raw": "1,02%",
+          "num": 1.02
+        },
+        "ROE": {
+          "raw": "6,43%",
+          "num": 6.43
+        },
+        "ROA": {
+          "raw": "1,28%",
+          "num": 1.28
+        },
+        "ROIC": {
+          "raw": "2,15%",
+          "num": 2.15
+        },
+        "Giro ativos": {
+          "raw": "1,25",
+          "num": 1.25
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "6,29%",
+          "num": 6.29
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-29,38%",
+          "num": -29.38
+        }
+      }
+    },
+    "WEST3": {
+      "ticker": "WEST3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/west3",
+      "updatedAt": "2026-11-21T20:09:10.026726+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "3,55",
+          "num": 3.55
+        },
+        "Min. 52 semanas": {
+          "raw": "2,13",
+          "num": 2.13
+        },
+        "Máx. 52 semanas": {
+          "raw": "5,50",
+          "num": 5.5
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "54,35%",
+          "num": 54.35
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,04",
+          "num": 5.04
+        },
+        "DOADOR (média)": {
+          "raw": "5,04",
+          "num": 5.04
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "54",
+          "num": 54.0
+        },
+        "VOLUME (dia)": {
+          "raw": "68",
+          "num": 68.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "4",
+          "num": 4.0
+        },
+        "Comparação": {
+          "raw": "%",
+          "num": null
+        },
+        "Comparação + Provisionado": {
+          "raw": "%",
+          "num": null
+        },
+        "Ativos": {
+          "raw": "212.499.000",
+          "num": 212499000.0
+        },
+        "Ativo circulante": {
+          "raw": "97.644.000",
+          "num": 97644000.0
+        },
+        "Dívida bruta": {
+          "raw": "10.301.000",
+          "num": 10301000.0
+        },
+        "Disponibilidade": {
+          "raw": "40.750.000",
+          "num": 40750000.0
+        },
+        "Dívida líquida": {
+          "raw": "-30.449.000",
+          "num": -30449000.0
+        },
+        "Valor de mercado": {
+          "raw": "39.477.743",
+          "num": 39477743.0
+        },
+        "Valor de firma": {
+          "raw": "9.028.743",
+          "num": 9028743.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 11.120.491 PN 0": {
+          "raw": "11.120.491",
+          "num": 11120491.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 11.120.491 Total de cada tipo de papel: ON 100,00% 11.120.491 PN --% --": {
+          "raw": "100,00%",
+          "num": 100.0
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "-2,69",
+          "num": -2.69
+        },
+        "PEG Ratio": {
+          "raw": "-0,10",
+          "num": -0.1
+        },
+        "P/VP": {
+          "raw": "0,28",
+          "num": 0.28
+        },
+        "EV/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "EV/EBIT": {
+          "raw": "-0,29",
+          "num": -0.29
+        },
+        "P/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "P/EBIT": {
+          "raw": "-1,28",
+          "num": -1.28
+        },
+        "VPA": {
+          "raw": "12,80",
+          "num": 12.8
+        },
+        "P/Ativo": {
+          "raw": "0,19",
+          "num": 0.19
+        },
+        "LPA": {
+          "raw": "-1,32",
+          "num": -1.32
+        },
+        "P/SR": {
+          "raw": "0,27",
+          "num": 0.27
+        },
+        "P/Cap. Giro": {
+          "raw": "0,85",
+          "num": 0.85
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,34",
+          "num": -0.34
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,21",
+          "num": -0.21
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "0,99",
+          "num": 0.99
+        },
+        "PL/Ativos": {
+          "raw": "0,67",
+          "num": 0.67
+        },
+        "Passivos/Ativos": {
+          "raw": "0,33",
+          "num": 0.33
+        },
+        "Liq. corrente": {
+          "raw": "1,91",
+          "num": 1.91
+        },
+        "M. Bruta": {
+          "raw": "40,10%",
+          "num": 40.1
+        },
+        "M. EBITDA": {
+          "raw": "-%",
+          "num": null
+        },
+        "M. EBIT": {
+          "raw": "-21,02%",
+          "num": -21.02
+        },
+        "M. Líquida": {
+          "raw": "-10,05%",
+          "num": -10.05
+        },
+        "ROE": {
+          "raw": "-10,32%",
+          "num": -10.32
+        },
+        "ROA": {
+          "raw": "-6,92%",
+          "num": -6.92
+        },
+        "ROIC": {
+          "raw": "-20,57%",
+          "num": -20.57
+        },
+        "Giro ativos": {
+          "raw": "0,69",
+          "num": 0.69
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "-9,25%",
+          "num": -9.25
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "WDCN3": {
+      "ticker": "WDCN3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/wdcn3",
+      "updatedAt": "2026-11-21T20:09:10.970352+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "2,55",
+          "num": 2.55
+        },
+        "Min. 52 semanas": {
+          "raw": "2,09",
+          "num": 2.09
+        },
+        "Máx. 52 semanas": {
+          "raw": "3,17",
+          "num": 3.17
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "-12,67%",
+          "num": -12.67
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,48",
+          "num": 5.48
+        },
+        "DOADOR (média)": {
+          "raw": "5,48",
+          "num": 5.48
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "200",
+          "num": 200.0
+        },
+        "VOLUME (dia)": {
+          "raw": "760",
+          "num": 760.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "2",
+          "num": 2.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,1900",
+          "num": 0.19
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação": {
+          "raw": "100,00%",
+          "num": 100.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "100,00%",
+          "num": 100.0
+        },
+        "Ativos": {
+          "raw": "1.285.122.000",
+          "num": 1285122000.0
+        },
+        "Ativo circulante": {
+          "raw": "800.268.000",
+          "num": 800268000.0
+        },
+        "Dívida bruta": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Disponibilidade": {
+          "raw": "246.386.000",
+          "num": 246386000.0
+        },
+        "Dívida líquida": {
+          "raw": "-246.386.000",
+          "num": -246386000.0
+        },
+        "Valor de mercado": {
+          "raw": "161.826.731",
+          "num": 161826731.0
+        },
+        "Valor de firma": {
+          "raw": "-84.559.269",
+          "num": -84559269.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 63.461.463 PN 0": {
+          "raw": "63.461.463",
+          "num": 63461463.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 27.633.621 Total de cada tipo de papel: ON 43,54% 27.633.621 PN --% --": {
+          "raw": "43,54%",
+          "num": 43.54
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "-0,98",
+          "num": -0.98
+        },
+        "PEG Ratio": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "P/VP": {
+          "raw": "0,33",
+          "num": 0.33
+        },
+        "EV/EBITDA": {
+          "raw": "-0,30",
+          "num": -0.3
+        },
+        "EV/EBIT": {
+          "raw": "0,69",
+          "num": 0.69
+        },
+        "P/EBITDA": {
+          "raw": "0,58",
+          "num": 0.58
+        },
+        "P/EBIT": {
+          "raw": "-1,33",
+          "num": -1.33
+        },
+        "VPA": {
+          "raw": "7,63",
+          "num": 7.63
+        },
+        "P/Ativo": {
+          "raw": "0,13",
+          "num": 0.13
+        },
+        "LPA": {
+          "raw": "-2,60",
+          "num": -2.6
+        },
+        "P/SR": {
+          "raw": "0,20",
+          "num": 0.2
+        },
+        "P/Cap. Giro": {
+          "raw": "0,45",
+          "num": 0.45
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,33",
+          "num": -0.33
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,51",
+          "num": -0.51
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-0,89",
+          "num": -0.89
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,02",
+          "num": 2.02
+        },
+        "PL/Ativos": {
+          "raw": "0,38",
+          "num": 0.38
+        },
+        "Passivos/Ativos": {
+          "raw": "0,62",
+          "num": 0.62
+        },
+        "Liq. corrente": {
+          "raw": "1,80",
+          "num": 1.8
+        },
+        "M. Bruta": {
+          "raw": "23,87%",
+          "num": 23.87
+        },
+        "M. EBITDA": {
+          "raw": "35,10%",
+          "num": 35.1
+        },
+        "M. EBIT": {
+          "raw": "-15,38%",
+          "num": -15.38
+        },
+        "M. Líquida": {
+          "raw": "-20,84%",
+          "num": -20.84
+        },
+        "ROE": {
+          "raw": "-34,08%",
+          "num": -34.08
+        },
+        "ROA": {
+          "raw": "-12,83%",
+          "num": -12.83
+        },
+        "ROIC": {
+          "raw": "-33,33%",
+          "num": -33.33
+        },
+        "Giro ativos": {
+          "raw": "0,62",
+          "num": 0.62
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "3,96%",
+          "num": 3.96
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "VVEO3": {
+      "ticker": "VVEO3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/vveo3",
+      "updatedAt": "2026-11-21T20:09:11.790726+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "0,50",
+          "num": 0.5
+        },
+        "Min. 52 semanas": {
+          "raw": "0,50",
+          "num": 0.5
+        },
+        "Máx. 52 semanas": {
+          "raw": "1,84",
+          "num": 1.84
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "-64,03%",
+          "num": -64.03
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "3,85",
+          "num": 3.85
+        },
+        "DOADOR (média)": {
+          "raw": "3,85",
+          "num": 3.85
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "1.977.699",
+          "num": 1977699.0
+        },
+        "VOLUME (dia)": {
+          "raw": "12.756.159",
+          "num": 12756159.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "121",
+          "num": 121.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Ativos": {
+          "raw": "8.662.127.000",
+          "num": 8662127000.0
+        },
+        "Ativo circulante": {
+          "raw": "4.469.742.000",
+          "num": 4469742000.0
+        },
+        "Dívida bruta": {
+          "raw": "2.639.555.000",
+          "num": 2639555000.0
+        },
+        "Disponibilidade": {
+          "raw": "395.693.000",
+          "num": 395693000.0
+        },
+        "Dívida líquida": {
+          "raw": "2.243.862.000",
+          "num": 2243862000.0
+        },
+        "Valor de mercado": {
+          "raw": "643.162.065",
+          "num": 643162065.0
+        },
+        "Valor de firma": {
+          "raw": "2.887.024.065",
+          "num": 2887024065.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 1.286.324.129 PN 0": {
+          "raw": "1.286.324.129",
+          "num": 1286324129.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 677.634.622 Total de cada tipo de papel: ON 52,68% 677.634.622 PN --% --": {
+          "raw": "52,68%",
+          "num": 52.68
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "-2,42",
+          "num": -2.42
+        },
+        "PEG Ratio": {
+          "raw": "0,03",
+          "num": 0.03
+        },
+        "P/VP": {
+          "raw": "0,27",
+          "num": 0.27
+        },
+        "EV/EBITDA": {
+          "raw": "2,68",
+          "num": 2.68
+        },
+        "EV/EBIT": {
+          "raw": "6,43",
+          "num": 6.43
+        },
+        "P/EBITDA": {
+          "raw": "0,60",
+          "num": 0.6
+        },
+        "P/EBIT": {
+          "raw": "1,43",
+          "num": 1.43
+        },
+        "VPA": {
+          "raw": "1,82",
+          "num": 1.82
+        },
+        "P/Ativo": {
+          "raw": "0,07",
+          "num": 0.07
+        },
+        "LPA": {
+          "raw": "-0,21",
+          "num": -0.21
+        },
+        "P/SR": {
+          "raw": "0,05",
+          "num": 0.05
+        },
+        "P/Cap. Giro": {
+          "raw": "0,35",
+          "num": 0.35
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,15",
+          "num": -0.15
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,96",
+          "num": 0.96
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "2,09",
+          "num": 2.09
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "PL/Ativos": {
+          "raw": "0,27",
+          "num": 0.27
+        },
+        "Passivos/Ativos": {
+          "raw": "0,73",
+          "num": 0.73
+        },
+        "Liq. corrente": {
+          "raw": "1,70",
+          "num": 1.7
+        },
+        "M. Bruta": {
+          "raw": "15,29%",
+          "num": 15.29
+        },
+        "M. EBITDA": {
+          "raw": "9,01%",
+          "num": 9.01
+        },
+        "M. EBIT": {
+          "raw": "3,76%",
+          "num": 3.76
+        },
+        "M. Líquida": {
+          "raw": "-2,22%",
+          "num": -2.22
+        },
+        "ROE": {
+          "raw": "-11,32%",
+          "num": -11.32
+        },
+        "ROA": {
+          "raw": "-3,06%",
+          "num": -3.06
+        },
+        "ROIC": {
+          "raw": "8,32%",
+          "num": 8.32
+        },
+        "Giro ativos": {
+          "raw": "1,38",
+          "num": 1.38
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "21,25%",
+          "num": 21.25
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "VSTE3": {
+      "ticker": "VSTE3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/vste3",
+      "updatedAt": "2026-11-21T20:09:12.702802+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "2,56",
+          "num": 2.56
+        },
+        "Min. 52 semanas": {
+          "raw": "2,11",
+          "num": 2.11
+        },
+        "Máx. 52 semanas": {
+          "raw": "4,41",
+          "num": 4.41
+        },
+        "Dividend Yield": {
+          "raw": "1,98",
+          "num": 1.98
+        },
+        "Valorização (12m)": {
+          "raw": "-41,69%",
+          "num": -41.69
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "DOADOR (média)": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "9.165",
+          "num": 9165.0
+        },
+        "VOLUME (dia)": {
+          "raw": "151.223",
+          "num": 151223.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "12",
+          "num": 12.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,0507",
+          "num": 0.0507
+        },
+        "Comparação": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Ativos": {
+          "raw": "1.720.565.000",
+          "num": 1720565000.0
+        },
+        "Ativo circulante": {
+          "raw": "553.418.000",
+          "num": 553418000.0
+        },
+        "Dívida bruta": {
+          "raw": "299.730.000",
+          "num": 299730000.0
+        },
+        "Disponibilidade": {
+          "raw": "23.876.000",
+          "num": 23876000.0
+        },
+        "Dívida líquida": {
+          "raw": "275.854.000",
+          "num": 275854000.0
+        },
+        "Valor de mercado": {
+          "raw": "293.121.306",
+          "num": 293121306.0
+        },
+        "Valor de firma": {
+          "raw": "568.975.306",
+          "num": 568975306.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 114.500.510 PN 0": {
+          "raw": "114.500.510",
+          "num": 114500510.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 113.570.972 Total de cada tipo de papel: ON 99,19% 113.570.972 PN --% --": {
+          "raw": "99,19%",
+          "num": 99.19
+        },
+        "D.Y": {
+          "raw": "1,98%",
+          "num": 1.98
+        },
+        "P/L": {
+          "raw": "5,48",
+          "num": 5.48
+        },
+        "PEG Ratio": {
+          "raw": "0,03",
+          "num": 0.03
+        },
+        "P/VP": {
+          "raw": "0,27",
+          "num": 0.27
+        },
+        "EV/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "EV/EBIT": {
+          "raw": "4,78",
+          "num": 4.78
+        },
+        "P/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "P/EBIT": {
+          "raw": "2,46",
+          "num": 2.46
+        },
+        "VPA": {
+          "raw": "9,63",
+          "num": 9.63
+        },
+        "P/Ativo": {
+          "raw": "0,17",
+          "num": 0.17
+        },
+        "LPA": {
+          "raw": "0,47",
+          "num": 0.47
+        },
+        "P/SR": {
+          "raw": "0,22",
+          "num": 0.22
+        },
+        "P/Cap. Giro": {
+          "raw": "1,50",
+          "num": 1.5
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,25",
+          "num": -0.25
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,25",
+          "num": 0.25
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,32",
+          "num": 2.32
+        },
+        "PL/Ativos": {
+          "raw": "0,64",
+          "num": 0.64
+        },
+        "Passivos/Ativos": {
+          "raw": "0,36",
+          "num": 0.36
+        },
+        "Liq. corrente": {
+          "raw": "1,54",
+          "num": 1.54
+        },
+        "M. Bruta": {
+          "raw": "65,48%",
+          "num": 65.48
+        },
+        "M. EBITDA": {
+          "raw": "-%",
+          "num": null
+        },
+        "M. EBIT": {
+          "raw": "9,05%",
+          "num": 9.05
+        },
+        "M. Líquida": {
+          "raw": "4,07%",
+          "num": 4.07
+        },
+        "ROE": {
+          "raw": "4,85%",
+          "num": 4.85
+        },
+        "ROA": {
+          "raw": "3,11%",
+          "num": 3.11
+        },
+        "ROIC": {
+          "raw": "8,42%",
+          "num": 8.42
+        },
+        "Giro ativos": {
+          "raw": "0,76",
+          "num": 0.76
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "15,50%",
+          "num": 15.5
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "VSPT4": {
+      "ticker": "VSPT4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/vspt4",
+      "updatedAt": "2026-11-21T20:09:14.460845+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "Min. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Máx. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "-%",
+          "num": null
+        },
+        "Tipo": {
+          "raw": "PN",
+          "num": "PN"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "DOADOR (média)": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "VOLUME (dia)": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Comparação": {
+          "raw": "%",
+          "num": null
+        },
+        "Comparação + Provisionado": {
+          "raw": "%",
+          "num": null
+        },
+        "Ativos": {
+          "raw": "7.347.617.000",
+          "num": 7347617000.0
+        },
+        "Ativo circulante": {
+          "raw": "910.385.000",
+          "num": 910385000.0
+        },
+        "Dívida bruta": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Disponibilidade": {
+          "raw": "231.554.000",
+          "num": 231554000.0
+        },
+        "Dívida líquida": {
+          "raw": "-231.554.000",
+          "num": -231554000.0
+        },
+        "Valor de mercado": {
+          "raw": "2.569.294.560",
+          "num": 2569294560.0
+        },
+        "Valor de firma": {
+          "raw": "2.337.740.560",
+          "num": 2337740560.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 513.858.912 PN 19": {
+          "raw": "513.858.931",
+          "num": 513858931.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 66 Total de cada tipo de papel: ON 0,00% 63 PN 15,79% 3": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "PEG Ratio": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "P/VP": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "EV/EBITDA": {
+          "raw": "3,61",
+          "num": 3.61
+        },
+        "EV/EBIT": {
+          "raw": "-13,58",
+          "num": -13.58
+        },
+        "P/EBITDA": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "P/EBIT": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "VPA": {
+          "raw": "9,95",
+          "num": 9.95
+        },
+        "P/Ativo": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "LPA": {
+          "raw": "-0,34",
+          "num": -0.34
+        },
+        "P/SR": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "P/Cap. Giro": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,05",
+          "num": -0.05
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-0,36",
+          "num": -0.36
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "1,35",
+          "num": 1.35
+        },
+        "PL/Ativos": {
+          "raw": "0,70",
+          "num": 0.7
+        },
+        "Passivos/Ativos": {
+          "raw": "0,30",
+          "num": 0.3
+        },
+        "Liq. corrente": {
+          "raw": "1,10",
+          "num": 1.1
+        },
+        "M. Bruta": {
+          "raw": "7,34%",
+          "num": 7.34
+        },
+        "M. EBITDA": {
+          "raw": "20,64%",
+          "num": 20.64
+        },
+        "M. EBIT": {
+          "raw": "-5,49%",
+          "num": -5.49
+        },
+        "M. Líquida": {
+          "raw": "-5,59%",
+          "num": -5.59
+        },
+        "ROE": {
+          "raw": "-3,43%",
+          "num": -3.43
+        },
+        "ROA": {
+          "raw": "-2,39%",
+          "num": -2.39
+        },
+        "ROIC": {
+          "raw": "-3,37%",
+          "num": -3.37
+        },
+        "Giro ativos": {
+          "raw": "0,43",
+          "num": 0.43
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "6,04%",
+          "num": 6.04
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "VSPT3": {
+      "ticker": "VSPT3",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/vspt3",
+      "updatedAt": "2026-11-21T20:09:15.751516+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "5,00",
+          "num": 5.0
+        },
+        "Min. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Máx. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "-%",
+          "num": null
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "DOADOR (média)": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "VOLUME (dia)": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Comparação": {
+          "raw": "%",
+          "num": null
+        },
+        "Comparação + Provisionado": {
+          "raw": "%",
+          "num": null
+        },
+        "Ativos": {
+          "raw": "7.347.617.000",
+          "num": 7347617000.0
+        },
+        "Ativo circulante": {
+          "raw": "910.385.000",
+          "num": 910385000.0
+        },
+        "Dívida bruta": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Disponibilidade": {
+          "raw": "231.554.000",
+          "num": 231554000.0
+        },
+        "Dívida líquida": {
+          "raw": "-231.554.000",
+          "num": -231554000.0
+        },
+        "Valor de mercado": {
+          "raw": "2.569.294.560",
+          "num": 2569294560.0
+        },
+        "Valor de firma": {
+          "raw": "2.337.740.560",
+          "num": 2337740560.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 513.858.912 PN 19": {
+          "raw": "513.858.931",
+          "num": 513858931.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 66 Total de cada tipo de papel: ON 0,00% 63 PN 15,79% 3": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "-14,64",
+          "num": -14.64
+        },
+        "PEG Ratio": {
+          "raw": "0,10",
+          "num": 0.1
+        },
+        "P/VP": {
+          "raw": "0,50",
+          "num": 0.5
+        },
+        "EV/EBITDA": {
+          "raw": "3,61",
+          "num": 3.61
+        },
+        "EV/EBIT": {
+          "raw": "-13,58",
+          "num": -13.58
+        },
+        "P/EBITDA": {
+          "raw": "3,97",
+          "num": 3.97
+        },
+        "P/EBIT": {
+          "raw": "-14,93",
+          "num": -14.93
+        },
+        "VPA": {
+          "raw": "9,95",
+          "num": 9.95
+        },
+        "P/Ativo": {
+          "raw": "0,35",
+          "num": 0.35
+        },
+        "LPA": {
+          "raw": "-0,34",
+          "num": -0.34
+        },
+        "P/SR": {
+          "raw": "0,82",
+          "num": 0.82
+        },
+        "P/Cap. Giro": {
+          "raw": "30,72",
+          "num": 30.72
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,40",
+          "num": -0.4
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,05",
+          "num": -0.05
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-0,36",
+          "num": -0.36
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "1,35",
+          "num": 1.35
+        },
+        "PL/Ativos": {
+          "raw": "0,70",
+          "num": 0.7
+        },
+        "Passivos/Ativos": {
+          "raw": "0,30",
+          "num": 0.3
+        },
+        "Liq. corrente": {
+          "raw": "1,10",
+          "num": 1.1
+        },
+        "M. Bruta": {
+          "raw": "7,34%",
+          "num": 7.34
+        },
+        "M. EBITDA": {
+          "raw": "20,64%",
+          "num": 20.64
+        },
+        "M. EBIT": {
+          "raw": "-5,49%",
+          "num": -5.49
+        },
+        "M. Líquida": {
+          "raw": "-5,59%",
+          "num": -5.59
+        },
+        "ROE": {
+          "raw": "-3,43%",
+          "num": -3.43
+        },
+        "ROA": {
+          "raw": "-2,39%",
+          "num": -2.39
+        },
+        "ROIC": {
+          "raw": "-3,37%",
+          "num": -3.37
+        },
+        "Giro ativos": {
+          "raw": "0,43",
+          "num": 0.43
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "6,04%",
+          "num": 6.04
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
+    },
+    "VIVT4": {
+      "ticker": "VIVT4",
+      "type": "stock",
+      "source": "statusinvest",
+      "status": "ok",
+      "url": "https://statusinvest.com.br/acoes/vivt4",
+      "updatedAt": "2026-11-21T20:09:16.651873+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "45,34",
+          "num": 45.34
+        },
+        "Min. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Máx. 52 semanas": {
+          "raw": "-",
+          "num": null
+        },
+        "Dividend Yield": {
+          "raw": "0,24",
+          "num": 0.24
+        },
+        "Valorização (12m)": {
+          "raw": "-%",
+          "num": null
+        },
+        "Tipo": {
+          "raw": "PN",
+          "num": "PN"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,49",
+          "num": 0.49
+        },
+        "DOADOR (média)": {
+          "raw": "0,49",
+          "num": 0.49
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "2.204.318",
+          "num": 2204318.0
+        },
+        "VOLUME (dia)": {
+          "raw": "0",
+          "num": 0.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "97",
+          "num": 97.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,1095",
+          "num": 0.1095
+        },
+        "Comparação": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Ativos": {
+          "raw": "129.001.026.000",
+          "num": 129001026000.0
+        },
+        "Ativo circulante": {
+          "raw": "27.435.956.000",
+          "num": 27435956000.0
+        },
+        "Dívida bruta": {
+          "raw": "20.998.689.000",
+          "num": 20998689000.0
+        },
+        "Disponibilidade": {
+          "raw": "7.086.198.000",
+          "num": 7086198000.0
+        },
+        "Dívida líquida": {
+          "raw": "13.912.491.000",
+          "num": 13912491000.0
+        },
+        "Valor de mercado": {
+          "raw": "113.638.972.027",
+          "num": 113638972027.0
+        },
+        "Valor de firma": {
+          "raw": "127.551.463.027",
+          "num": 127551463027.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 3.226.546.622 PN 0": {
+          "raw": "3.226.546.622",
+          "num": 3226546622.0
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 707.098.992 Total de cada tipo de papel: ON 21,92% 707.098.992 PN --% --": {
+          "raw": "21,92%",
+          "num": 21.92
+        },
+        "D.Y": {
+          "raw": "0,24%",
+          "num": 0.24
+        },
+        "P/L": {
+          "raw": "20,41",
+          "num": 20.41
+        },
+        "PEG Ratio": {
+          "raw": "1,11",
+          "num": 1.11
+        },
+        "P/VP": {
+          "raw": "2,19",
+          "num": 2.19
+        },
+        "EV/EBITDA": {
+          "raw": "2,98",
+          "num": 2.98
+        },
+        "EV/EBIT": {
+          "raw": "11,28",
+          "num": 11.28
+        },
+        "P/EBITDA": {
+          "raw": "3,42",
+          "num": 3.42
+        },
+        "P/EBIT": {
+          "raw": "12,94",
+          "num": 12.94
+        },
+        "VPA": {
+          "raw": "20,69",
+          "num": 20.69
+        },
+        "P/Ativo": {
+          "raw": "1,13",
+          "num": 1.13
+        },
+        "LPA": {
+          "raw": "2,22",
+          "num": 2.22
+        },
+        "P/SR": {
+          "raw": "2,33",
+          "num": 2.33
+        },
+        "P/Cap. Giro": {
+          "raw": "-90,72",
+          "num": -90.72
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-1,44",
+          "num": -1.44
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,21",
+          "num": 0.21
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "0,32",
+          "num": 0.32
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "1,23",
+          "num": 1.23
+        },
+        "PL/Ativos": {
+          "raw": "0,52",
+          "num": 0.52
+        },
+        "Passivos/Ativos": {
+          "raw": "0,48",
+          "num": 0.48
+        },
+        "Liq. corrente": {
+          "raw": "0,94",
+          "num": 0.94
+        },
+        "M. Bruta": {
+          "raw": "45,68%",
+          "num": 45.68
+        },
+        "M. EBITDA": {
+          "raw": "68,14%",
+          "num": 68.14
+        },
+        "M. EBIT": {
+          "raw": "17,99%",
+          "num": 17.99
+        },
+        "M. Líquida": {
+          "raw": "11,40%",
+          "num": 11.4
+        },
+        "ROE": {
+          "raw": "10,74%",
+          "num": 10.74
+        },
+        "ROA": {
+          "raw": "5,56%",
+          "num": 5.56
+        },
+        "ROIC": {
+          "raw": "10,09%",
+          "num": 10.09
+        },
+        "Giro ativos": {
+          "raw": "0,49",
+          "num": 0.49
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "6,68%",
+          "num": 6.68
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "8,48%",
+          "num": 8.48
+        }
+      }
     }
   }
 }
