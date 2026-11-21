@@ -1,15 +1,11 @@
 {
   "source": "statusinvest",
-<<<<<<< Updated upstream
-  "updatedAt": "2026-11-21T20:09:17.205196+00:00",
-=======
-  "updatedAt": "2026-11-21T20:10:08.580695+00:00",
->>>>>>> Stashed changes
+  "updatedAt": "2026-11-21T20:26:02.202112+00:00",
   "stats": {
-    "total": 283,
-    "ok": 10,
+    "total": 60,
+    "ok": 0,
     "nodata": 0,
-    "neterr": 273,
+    "neterr": 60,
     "limit": 0
   },
   "items": {
@@ -18,8 +14,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/rrrp3",
-      "updatedAt": "2026-11-21T19:51:22.695911+00:00",
+      "updatedAt": "2026-11-21T20:20:59.032974+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -28,8 +25,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/alos3",
-      "updatedAt": "2026-11-21T19:51:23.290727+00:00",
+      "updatedAt": "2026-11-21T20:21:03.732712+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -38,8 +36,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/alpa4",
-      "updatedAt": "2026-11-21T19:51:23.895901+00:00",
+      "updatedAt": "2026-11-21T20:21:09.329327+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -48,8 +47,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/abev3",
-      "updatedAt": "2026-11-21T19:51:24.489974+00:00",
+      "updatedAt": "2026-11-21T20:21:13.935813+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -58,8 +58,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/arzz3",
-      "updatedAt": "2026-11-21T19:51:25.084921+00:00",
+      "updatedAt": "2026-11-21T20:21:18.910595+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -68,8 +69,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/asai3",
-      "updatedAt": "2026-11-21T19:51:25.691320+00:00",
+      "updatedAt": "2026-11-21T20:21:24.674901+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -78,8 +80,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/aure3",
-      "updatedAt": "2026-11-21T19:51:26.286440+00:00",
+      "updatedAt": "2026-11-21T20:21:29.754638+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -88,8 +91,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/azul4",
-      "updatedAt": "2026-11-21T19:51:26.880920+00:00",
+      "updatedAt": "2026-11-21T20:21:35.197018+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -98,8 +102,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/azza3",
-      "updatedAt": "2026-11-21T19:51:27.472182+00:00",
+      "updatedAt": "2026-11-21T20:21:40.996517+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -108,8 +113,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/b3sa3",
-      "updatedAt": "2026-11-21T19:51:28.070955+00:00",
+      "updatedAt": "2026-11-21T20:21:45.729947+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -118,8 +124,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/bbse3",
-      "updatedAt": "2026-11-21T19:51:28.670348+00:00",
+      "updatedAt": "2026-11-21T20:21:50.909064+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -128,8 +135,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/bbdc3",
-      "updatedAt": "2026-11-21T19:51:29.264562+00:00",
+      "updatedAt": "2026-11-21T20:21:55.333529+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -138,8 +146,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/bbdc4",
-      "updatedAt": "2026-11-21T19:51:29.878096+00:00",
+      "updatedAt": "2026-11-21T20:22:00.971660+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -148,8 +157,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/brap4",
-      "updatedAt": "2026-11-21T19:51:30.476831+00:00",
+      "updatedAt": "2026-11-21T20:22:05.835662+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -158,8 +168,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/bbas3",
-      "updatedAt": "2026-11-21T19:51:31.084085+00:00",
+      "updatedAt": "2026-11-21T20:22:10.649239+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -168,8 +179,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/brkm5",
-      "updatedAt": "2026-11-21T19:56:19.396658+00:00",
+      "updatedAt": "2026-11-21T20:22:15.114759+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -178,8 +190,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/brfs3",
-      "updatedAt": "2026-11-21T19:56:20.035740+00:00",
+      "updatedAt": "2026-11-21T20:22:19.939221+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -188,8 +201,9 @@
       "type": "fund",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/bpac11",
-      "updatedAt": "2026-11-21T19:56:20.666994+00:00",
+      "updatedAt": "2026-11-21T20:22:25.458769+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -198,8 +212,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/crfb3",
-      "updatedAt": "2026-11-21T19:56:21.313343+00:00",
+      "updatedAt": "2026-11-21T20:22:29.931197+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -208,8 +223,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/ccro3",
-      "updatedAt": "2026-11-21T19:56:21.945823+00:00",
+      "updatedAt": "2026-11-21T20:22:35.028693+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -218,8 +234,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cmpy3",
-      "updatedAt": "2026-11-21T19:56:22.588119+00:00",
+      "updatedAt": "2026-11-21T20:22:40.175708+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -228,8 +245,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cmig4",
-      "updatedAt": "2026-11-21T19:56:23.229929+00:00",
+      "updatedAt": "2026-11-21T20:22:44.677367+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -238,8 +256,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/ciel3",
-      "updatedAt": "2026-11-21T19:56:23.859955+00:00",
+      "updatedAt": "2026-11-21T20:22:49.483186+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -248,8 +267,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cogn3",
-      "updatedAt": "2026-11-21T19:56:24.485565+00:00",
+      "updatedAt": "2026-11-21T20:22:54.110328+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -258,8 +278,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cpfe3",
-      "updatedAt": "2026-11-21T19:56:25.104459+00:00",
+      "updatedAt": "2026-11-21T20:22:59.788585+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -268,8 +289,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cmin3",
-      "updatedAt": "2026-11-21T20:10:02.337015+00:00",
+      "updatedAt": "2026-11-21T20:23:05.390151+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -278,8 +300,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/csan3",
-      "updatedAt": "2026-11-21T20:10:02.970004+00:00",
+      "updatedAt": "2026-11-21T20:23:10.997201+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -288,8 +311,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cple6",
-      "updatedAt": "2026-11-21T20:10:03.597458+00:00",
+      "updatedAt": "2026-11-21T20:23:16.600356+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -298,8 +322,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/csna3",
-      "updatedAt": "2026-11-21T20:10:04.225503+00:00",
+      "updatedAt": "2026-11-21T20:23:21.057831+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -308,8 +333,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cury3",
-      "updatedAt": "2026-11-21T20:10:04.855574+00:00",
+      "updatedAt": "2026-11-21T20:23:25.745359+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -318,8 +344,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/cyre3",
-      "updatedAt": "2026-11-21T20:10:05.492119+00:00",
+      "updatedAt": "2026-11-21T20:23:31.339111+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -328,8 +355,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/dxco3",
-      "updatedAt": "2026-11-21T20:10:06.125639+00:00",
+      "updatedAt": "2026-11-21T20:23:35.819226+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -338,8 +366,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/dirr3",
-      "updatedAt": "2026-11-21T20:10:06.756411+00:00",
+      "updatedAt": "2026-11-21T20:23:40.605622+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -348,8 +377,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/ecor3",
-      "updatedAt": "2026-11-21T20:10:07.399470+00:00",
+      "updatedAt": "2026-11-21T20:23:45.530258+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -358,8 +388,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/elet3",
-      "updatedAt": "2026-11-21T20:10:08.028328+00:00",
+      "updatedAt": "2026-11-21T20:23:50.976091+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -368,8 +399,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/elet6",
-      "updatedAt": "2026-11-21T19:48:58.649898+00:00",
+      "updatedAt": "2026-11-21T20:23:55.445710+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -378,8 +410,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/embr3",
-      "updatedAt": "2026-11-21T19:48:59.266666+00:00",
+      "updatedAt": "2026-11-21T20:24:00.774583+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -388,8 +421,9 @@
       "type": "fund",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/engi11",
-      "updatedAt": "2026-11-21T19:48:59.882099+00:00",
+      "updatedAt": "2026-11-21T20:24:06.517756+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -398,8 +432,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/enev3",
-      "updatedAt": "2026-11-21T19:49:00.481892+00:00",
+      "updatedAt": "2026-11-21T20:24:11.328060+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -408,8 +443,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/egie3",
-      "updatedAt": "2026-11-21T19:49:01.092500+00:00",
+      "updatedAt": "2026-11-21T20:24:15.816702+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -418,8 +454,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/eqtl3",
-      "updatedAt": "2026-11-21T19:49:01.710363+00:00",
+      "updatedAt": "2026-11-21T20:24:21.137085+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -428,8 +465,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/eztc3",
-      "updatedAt": "2026-11-21T19:49:02.316472+00:00",
+      "updatedAt": "2026-11-21T20:24:26.304486+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -438,8 +476,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/flry3",
-      "updatedAt": "2026-11-21T19:49:02.929656+00:00",
+      "updatedAt": "2026-11-21T20:24:31.514678+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -448,8 +487,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/ggbr4",
-      "updatedAt": "2026-11-21T19:49:03.523339+00:00",
+      "updatedAt": "2026-11-21T20:24:36.544738+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -458,8 +498,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/goau4",
-      "updatedAt": "2026-11-21T19:49:04.135481+00:00",
+      "updatedAt": "2026-11-21T20:24:42.299853+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -468,8 +509,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/goll4",
-      "updatedAt": "2026-11-21T19:49:04.747968+00:00",
+      "updatedAt": "2026-11-21T20:24:47.452128+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -478,8 +520,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/gmat3",
-      "updatedAt": "2026-11-21T19:49:05.364262+00:00",
+      "updatedAt": "2026-11-21T20:24:52.927399+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -488,8 +531,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/ntco3",
-      "updatedAt": "2026-11-21T19:49:05.960852+00:00",
+      "updatedAt": "2026-11-21T20:24:57.359630+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -498,8 +542,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/soma3",
-      "updatedAt": "2026-11-21T19:49:06.570969+00:00",
+      "updatedAt": "2026-11-21T20:25:02.969532+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -508,8 +553,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/hapv3",
-      "updatedAt": "2026-11-21T19:49:07.185793+00:00",
+      "updatedAt": "2026-11-21T20:25:08.647570+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -518,8 +564,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/hype3",
-      "updatedAt": "2026-11-21T19:49:07.804005+00:00",
+      "updatedAt": "2026-11-21T20:25:14.370505+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -528,8 +575,9 @@
       "type": "fund",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/igti11",
-      "updatedAt": "2026-11-21T19:49:08.420717+00:00",
+      "updatedAt": "2026-11-21T20:25:18.836798+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -538,8 +586,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/irbr3",
-      "updatedAt": "2026-11-21T19:49:09.028261+00:00",
+      "updatedAt": "2026-11-21T20:25:23.298817+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -548,8 +597,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/itsa4",
-      "updatedAt": "2026-11-21T19:49:09.634792+00:00",
+      "updatedAt": "2026-11-21T20:25:27.942074+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -558,8 +608,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/itub3",
-      "updatedAt": "2026-11-21T19:49:10.257627+00:00",
+      "updatedAt": "2026-11-21T20:25:33.129207+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -568,8 +619,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/itub4",
-      "updatedAt": "2026-11-21T19:49:10.853999+00:00",
+      "updatedAt": "2026-11-21T20:25:38.523545+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -578,8 +630,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/jbss3",
-      "updatedAt": "2026-11-21T19:49:11.454984+00:00",
+      "updatedAt": "2026-11-21T20:25:43.689281+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -588,8 +641,9 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/jhsf3",
-      "updatedAt": "2026-11-21T19:49:12.068348+00:00",
+      "updatedAt": "2026-11-21T20:25:48.596954+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -598,8 +652,9 @@
       "type": "fund",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/klbn11",
-      "updatedAt": "2026-11-21T19:49:12.680075+00:00",
+      "updatedAt": "2026-11-21T20:25:54.350302+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -608,4510 +663,11 @@
       "type": "stock",
       "source": "statusinvest",
       "status": "neterr",
+      "sinal": "Sem dados",
       "url": "https://statusinvest.com.br/acoes/rent3",
-      "updatedAt": "2026-11-21T19:49:13.288160+00:00",
+      "updatedAt": "2026-11-21T20:26:00.096040+00:00",
       "error": "HTTP 403",
       "data": {}
-    },
-    "LWSA3": {
-      "ticker": "LWSA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/lwsa3",
-      "updatedAt": "2026-11-21T19:49:13.898222+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LREN3": {
-      "ticker": "LREN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/lren3",
-      "updatedAt": "2026-11-21T19:49:14.508247+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MGLU3": {
-      "ticker": "MGLU3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mglu3",
-      "updatedAt": "2026-11-21T19:49:15.127914+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "POMO4": {
-      "ticker": "POMO4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pomo4",
-      "updatedAt": "2026-11-21T19:49:15.716150+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MRFG3": {
-      "ticker": "MRFG3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mrfg3",
-      "updatedAt": "2026-11-21T19:49:16.335855+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MRVE3": {
-      "ticker": "MRVE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mrve3",
-      "updatedAt": "2026-11-21T19:49:16.935878+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MULT3": {
-      "ticker": "MULT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mult3",
-      "updatedAt": "2026-11-21T19:49:17.553536+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PCAR3": {
-      "ticker": "PCAR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pcar3",
-      "updatedAt": "2026-11-21T19:49:18.162766+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PETR3": {
-      "ticker": "PETR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/petr3",
-      "updatedAt": "2026-11-21T19:49:18.774012+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PETR4": {
-      "ticker": "PETR4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/petr4",
-      "updatedAt": "2026-11-21T19:49:19.373479+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PRIO3": {
-      "ticker": "PRIO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/prio3",
-      "updatedAt": "2026-11-21T19:49:19.983041+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PETZ3": {
-      "ticker": "PETZ3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/petz3",
-      "updatedAt": "2026-11-21T19:49:20.580306+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PSSA3": {
-      "ticker": "PSSA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pssa3",
-      "updatedAt": "2026-11-21T19:49:21.187371+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RADL3": {
-      "ticker": "RADL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/radl3",
-      "updatedAt": "2026-11-21T19:49:21.786681+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RAIZ4": {
-      "ticker": "RAIZ4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/raiz4",
-      "updatedAt": "2026-11-21T19:49:22.401014+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RDOR3": {
-      "ticker": "RDOR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/rdor3",
-      "updatedAt": "2026-11-21T19:49:23.035675+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RECV3": {
-      "ticker": "RECV3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/recv3",
-      "updatedAt": "2026-11-21T19:49:23.624816+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SANB11": {
-      "ticker": "SANB11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/sanb11",
-      "updatedAt": "2026-11-21T19:49:24.220164+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "STBP3": {
-      "ticker": "STBP3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/stbp3",
-      "updatedAt": "2026-11-21T19:49:24.833628+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SMTO3": {
-      "ticker": "SMTO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/smto3",
-      "updatedAt": "2026-11-21T19:49:25.444318+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CSMG3": {
-      "ticker": "CSMG3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/csmg3",
-      "updatedAt": "2026-11-21T19:49:26.052832+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SLCE3": {
-      "ticker": "SLCE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/slce3",
-      "updatedAt": "2026-11-21T19:49:26.646761+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SMFT3": {
-      "ticker": "SMFT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/smft3",
-      "updatedAt": "2026-11-21T19:49:27.261474+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SUZB3": {
-      "ticker": "SUZB3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/suzb3",
-      "updatedAt": "2026-11-21T19:49:27.863709+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TAEE11": {
-      "ticker": "TAEE11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/taee11",
-      "updatedAt": "2026-11-21T19:49:28.470910+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VIVT3": {
-      "ticker": "VIVT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vivt3",
-      "updatedAt": "2026-11-21T19:49:29.072638+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TIMS3": {
-      "ticker": "TIMS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tims3",
-      "updatedAt": "2026-11-21T19:49:29.692689+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TOTS3": {
-      "ticker": "TOTS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tots3",
-      "updatedAt": "2026-11-21T19:49:30.299606+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TRPL4": {
-      "ticker": "TRPL4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/trpl4",
-      "updatedAt": "2026-11-21T19:49:30.900959+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "UGPA3": {
-      "ticker": "UGPA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/ugpa3",
-      "updatedAt": "2026-11-21T19:49:31.492443+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "USIM5": {
-      "ticker": "USIM5",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/usim5",
-      "updatedAt": "2026-11-21T19:49:32.104103+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VALE3": {
-      "ticker": "VALE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vale3",
-      "updatedAt": "2026-11-21T19:49:32.705705+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VAMO3": {
-      "ticker": "VAMO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vamo3",
-      "updatedAt": "2026-11-21T19:49:33.316820+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VBBR3": {
-      "ticker": "VBBR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vbbr3",
-      "updatedAt": "2026-11-21T19:49:33.914387+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VIVA3": {
-      "ticker": "VIVA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/viva3",
-      "updatedAt": "2026-11-21T19:49:34.509886+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "WEGE3": {
-      "ticker": "WEGE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/wege3",
-      "updatedAt": "2026-11-21T19:49:35.104509+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "YDUQ3": {
-      "ticker": "YDUQ3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/yduq3",
-      "updatedAt": "2026-11-21T19:49:35.715242+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ABCB4": {
-      "ticker": "ABCB4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/abcb4",
-      "updatedAt": "2026-11-21T19:49:36.321716+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AGRO3": {
-      "ticker": "AGRO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/agro3",
-      "updatedAt": "2026-11-21T19:49:36.934982+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ALLD3": {
-      "ticker": "ALLD3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/alld3",
-      "updatedAt": "2026-11-21T19:49:37.552896+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ALPK3": {
-      "ticker": "ALPK3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/alpk3",
-      "updatedAt": "2026-11-21T19:49:38.153128+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AMAR3": {
-      "ticker": "AMAR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/amar3",
-      "updatedAt": "2026-11-21T19:49:38.754004+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ANIM3": {
-      "ticker": "ANIM3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/anim3",
-      "updatedAt": "2026-11-21T19:49:39.367112+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ARML3": {
-      "ticker": "ARML3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/arml3",
-      "updatedAt": "2026-11-21T19:49:39.969840+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AUAU3": {
-      "ticker": "AUAU3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/auau3",
-      "updatedAt": "2026-11-21T19:49:40.578634+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AVLL3": {
-      "ticker": "AVLL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/avll3",
-      "updatedAt": "2026-11-21T19:49:41.180419+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BMGB4": {
-      "ticker": "BMGB4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/bmgb4",
-      "updatedAt": "2026-11-21T19:49:41.789531+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BMOB3": {
-      "ticker": "BMOB3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/bmob3",
-      "updatedAt": "2026-11-21T19:49:42.402448+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BOAS3": {
-      "ticker": "BOAS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/boas3",
-      "updatedAt": "2026-11-21T19:49:43.002112+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BPAN4": {
-      "ticker": "BPAN4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/bpan4",
-      "updatedAt": "2026-11-21T19:49:43.614119+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BRSR6": {
-      "ticker": "BRSR6",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/brsr6",
-      "updatedAt": "2026-11-21T19:49:44.213079+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CAML3": {
-      "ticker": "CAML3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/caml3",
-      "updatedAt": "2026-11-21T19:49:44.842429+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CBAV3": {
-      "ticker": "CBAV3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/cbav3",
-      "updatedAt": "2026-11-21T19:49:45.434620+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CEAB3": {
-      "ticker": "CEAB3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/ceab3",
-      "updatedAt": "2026-11-21T19:49:46.051952+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CGRA4": {
-      "ticker": "CGRA4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/cgra4",
-      "updatedAt": "2026-11-21T19:49:46.672547+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CLSC4": {
-      "ticker": "CLSC4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/clsc4",
-      "updatedAt": "2026-11-21T19:49:47.266294+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CSED3": {
-      "ticker": "CSED3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/csed3",
-      "updatedAt": "2026-11-21T19:49:47.863226+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "DESK3": {
-      "ticker": "DESK3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/desk3",
-      "updatedAt": "2026-11-21T19:49:48.479997+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "DEXP3": {
-      "ticker": "DEXP3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/dexp3",
-      "updatedAt": "2026-11-21T19:49:49.076849+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "DOTZ3": {
-      "ticker": "DOTZ3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/dotz3",
-      "updatedAt": "2026-11-21T19:49:49.697866+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ENJU3": {
-      "ticker": "ENJU3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/enju3",
-      "updatedAt": "2026-11-21T19:49:50.293599+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "EVEN3": {
-      "ticker": "EVEN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/even3",
-      "updatedAt": "2026-11-21T19:49:50.897789+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "FESA4": {
-      "ticker": "FESA4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/fesa4",
-      "updatedAt": "2026-11-21T19:49:51.513618+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "FIQE3": {
-      "ticker": "FIQE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/fiqe3",
-      "updatedAt": "2026-11-21T19:49:52.110424+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "FRAS3": {
-      "ticker": "FRAS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/fras3",
-      "updatedAt": "2026-11-21T19:49:52.702688+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "GRND3": {
-      "ticker": "GRND3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/grnd3",
-      "updatedAt": "2026-11-21T19:49:53.320804+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "GUAR3": {
-      "ticker": "GUAR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/guar3",
-      "updatedAt": "2026-11-21T19:49:53.911492+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HBOR3": {
-      "ticker": "HBOR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/hbor3",
-      "updatedAt": "2026-11-21T19:49:54.503055+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HBRE3": {
-      "ticker": "HBRE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/hbre3",
-      "updatedAt": "2026-11-21T19:49:55.098723+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HBSA3": {
-      "ticker": "HBSA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/hbsa3",
-      "updatedAt": "2026-11-21T19:49:55.711567+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HAGA4": {
-      "ticker": "HAGA4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/haga4",
-      "updatedAt": "2026-11-21T19:49:56.326381+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "INTB3": {
-      "ticker": "INTB3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/intb3",
-      "updatedAt": "2026-11-21T19:49:56.936438+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ISAE4": {
-      "ticker": "ISAE4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/isae4",
-      "updatedAt": "2026-11-21T19:49:57.558917+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "JALL3": {
-      "ticker": "JALL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/jall3",
-      "updatedAt": "2026-11-21T19:49:58.171074+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "JSLG3": {
-      "ticker": "JSLG3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/jslg3",
-      "updatedAt": "2026-11-21T19:49:58.765816+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KEPL3": {
-      "ticker": "KEPL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/kepl3",
-      "updatedAt": "2026-11-21T19:49:59.373686+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LAND3": {
-      "ticker": "LAND3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/land3",
-      "updatedAt": "2026-11-21T19:49:59.977574+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LAVV3": {
-      "ticker": "LAVV3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/lavv3",
-      "updatedAt": "2026-11-21T19:50:00.583661+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LEVE3": {
-      "ticker": "LEVE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/leve3",
-      "updatedAt": "2026-11-21T19:50:01.175852+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LIGT3": {
-      "ticker": "LIGT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/ligt3",
-      "updatedAt": "2026-11-21T19:50:01.779020+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LOGG3": {
-      "ticker": "LOGG3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/logg3",
-      "updatedAt": "2026-11-21T19:50:02.396639+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LOGN3": {
-      "ticker": "LOGN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/logn3",
-      "updatedAt": "2026-11-21T19:50:02.989100+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MATD3": {
-      "ticker": "MATD3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/matd3",
-      "updatedAt": "2026-11-21T19:50:03.586232+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MDIA3": {
-      "ticker": "MDIA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mdia3",
-      "updatedAt": "2026-11-21T19:50:04.181988+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MELK3": {
-      "ticker": "MELK3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/melk3",
-      "updatedAt": "2026-11-21T19:50:04.793959+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MILS3": {
-      "ticker": "MILS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mils3",
-      "updatedAt": "2026-11-21T19:50:05.400445+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MLAS3": {
-      "ticker": "MLAS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mlas3",
-      "updatedAt": "2026-11-21T19:50:05.995719+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MOTV3": {
-      "ticker": "MOTV3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/motv3",
-      "updatedAt": "2026-11-21T19:50:06.600702+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MOVI3": {
-      "ticker": "MOVI3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/movi3",
-      "updatedAt": "2026-11-21T19:50:07.209688+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MTRE3": {
-      "ticker": "MTRE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mtre3",
-      "updatedAt": "2026-11-21T19:50:07.815255+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MYPK3": {
-      "ticker": "MYPK3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/mypk3",
-      "updatedAt": "2026-11-21T19:50:08.426875+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ODPV3": {
-      "ticker": "ODPV3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/odpv3",
-      "updatedAt": "2026-11-21T19:50:09.042774+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ONCO3": {
-      "ticker": "ONCO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/onco3",
-      "updatedAt": "2026-11-21T19:50:09.669413+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "OPCT3": {
-      "ticker": "OPCT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/opct3",
-      "updatedAt": "2026-11-21T19:50:10.272247+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ORVR3": {
-      "ticker": "ORVR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/orvr3",
-      "updatedAt": "2026-11-21T19:50:10.863208+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PASS3": {
-      "ticker": "PASS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pass3",
-      "updatedAt": "2026-11-21T19:50:11.461164+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PGMN3": {
-      "ticker": "PGMN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pgmn3",
-      "updatedAt": "2026-11-21T19:50:12.077585+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PINE4": {
-      "ticker": "PINE4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pine4",
-      "updatedAt": "2026-11-21T19:50:12.669865+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PLPL3": {
-      "ticker": "PLPL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/plpl3",
-      "updatedAt": "2026-11-21T19:50:13.275482+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PMAM3": {
-      "ticker": "PMAM3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pmam3",
-      "updatedAt": "2026-11-21T19:50:13.884250+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PNVL3": {
-      "ticker": "PNVL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/pnvl3",
-      "updatedAt": "2026-11-21T19:50:14.478003+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "POSI3": {
-      "ticker": "POSI3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/posi3",
-      "updatedAt": "2026-11-21T19:50:15.078752+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PRNR3": {
-      "ticker": "PRNR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/prnr3",
-      "updatedAt": "2026-11-21T19:50:15.676802+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PTBL3": {
-      "ticker": "PTBL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/ptbl3",
-      "updatedAt": "2026-11-21T19:50:16.272942+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "QUAL3": {
-      "ticker": "QUAL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/qual3",
-      "updatedAt": "2026-11-21T19:50:16.883545+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RANI3": {
-      "ticker": "RANI3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/rani3",
-      "updatedAt": "2026-11-21T19:50:17.488059+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RAPT4": {
-      "ticker": "RAPT4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/rapt4",
-      "updatedAt": "2026-11-21T19:50:18.076302+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RCSL4": {
-      "ticker": "RCSL4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/rcsl4",
-      "updatedAt": "2026-11-21T19:50:18.675304+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "REDE3": {
-      "ticker": "REDE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/rede3",
-      "updatedAt": "2026-11-21T19:50:19.288969+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RIAA3": {
-      "ticker": "RIAA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/riaa3",
-      "updatedAt": "2026-11-21T19:50:19.905900+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ROMI3": {
-      "ticker": "ROMI3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/romi3",
-      "updatedAt": "2026-11-21T19:50:20.515579+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SANB3": {
-      "ticker": "SANB3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/sanb3",
-      "updatedAt": "2026-11-21T19:50:21.107940+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SANB4": {
-      "ticker": "SANB4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/sanb4",
-      "updatedAt": "2026-11-21T19:50:21.707332+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SAPR11": {
-      "ticker": "SAPR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/sapr11",
-      "updatedAt": "2026-11-21T19:50:22.305396+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SAPR3": {
-      "ticker": "SAPR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/sapr3",
-      "updatedAt": "2026-11-21T19:50:22.924938+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SAPR4": {
-      "ticker": "SAPR4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/sapr4",
-      "updatedAt": "2026-11-21T19:50:23.524317+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SAUD3": {
-      "ticker": "SAUD3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/saud3",
-      "updatedAt": "2026-11-21T19:50:24.145969+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SBFG3": {
-      "ticker": "SBFG3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/sbfg3",
-      "updatedAt": "2026-11-21T19:50:24.764677+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SCAR3": {
-      "ticker": "SCAR3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/scar3",
-      "updatedAt": "2026-11-21T19:50:25.379955+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SEER3": {
-      "ticker": "SEER3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/seer3",
-      "updatedAt": "2026-11-21T19:50:25.987885+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SHUL4": {
-      "ticker": "SHUL4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/shul4",
-      "updatedAt": "2026-11-21T19:50:26.596257+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SIMH3": {
-      "ticker": "SIMH3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/simh3",
-      "updatedAt": "2026-11-21T19:50:27.189183+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SOJA3": {
-      "ticker": "SOJA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/soja3",
-      "updatedAt": "2026-11-21T19:50:27.790974+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "SYNE3": {
-      "ticker": "SYNE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/syne3",
-      "updatedAt": "2026-11-21T19:50:28.393101+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TASA4": {
-      "ticker": "TASA4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tasa4",
-      "updatedAt": "2026-11-21T19:50:29.008155+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TECN3": {
-      "ticker": "TECN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tecn3",
-      "updatedAt": "2026-11-21T19:50:29.616491+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TFCO4": {
-      "ticker": "TFCO4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tfco4",
-      "updatedAt": "2026-11-21T19:50:30.212918+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TGMA3": {
-      "ticker": "TGMA3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tgma3",
-      "updatedAt": "2026-11-21T19:50:30.805418+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TPIS3": {
-      "ticker": "TPIS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tpis3",
-      "updatedAt": "2026-11-21T19:50:31.424383+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TRIS3": {
-      "ticker": "TRIS3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tris3",
-      "updatedAt": "2026-11-21T19:50:32.029512+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TTEN3": {
-      "ticker": "TTEN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tten3",
-      "updatedAt": "2026-11-21T19:50:32.625640+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TUPY3": {
-      "ticker": "TUPY3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/tupy3",
-      "updatedAt": "2026-11-21T19:50:33.238250+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "UNIP6": {
-      "ticker": "UNIP6",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/unip6",
-      "updatedAt": "2026-11-21T19:50:33.835020+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "USIM3": {
-      "ticker": "USIM3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/usim3",
-      "updatedAt": "2026-11-21T19:50:34.423373+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VITT3": {
-      "ticker": "VITT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vitt3",
-      "updatedAt": "2026-11-21T19:50:35.038147+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VLID3": {
-      "ticker": "VLID3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vlid3",
-      "updatedAt": "2026-11-21T19:50:35.635819+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VTRU3": {
-      "ticker": "VTRU3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vtru3",
-      "updatedAt": "2026-11-21T19:50:36.231877+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VULC3": {
-      "ticker": "VULC3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/vulc3",
-      "updatedAt": "2026-11-21T19:50:36.833203+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "WHRL4": {
-      "ticker": "WHRL4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/whrl4",
-      "updatedAt": "2026-11-21T19:50:37.432189+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "WIZC3": {
-      "ticker": "WIZC3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/wizc3",
-      "updatedAt": "2026-11-21T19:50:38.024924+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ZAMP3": {
-      "ticker": "ZAMP3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/zamp3",
-      "updatedAt": "2026-11-21T19:50:38.621961+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MXRF11": {
-      "ticker": "MXRF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
-      "updatedAt": "2026-11-21T19:50:39.229060+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HGLG11": {
-      "ticker": "HGLG11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
-      "updatedAt": "2026-11-21T19:50:39.834051+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "XPML11": {
-      "ticker": "XPML11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
-      "updatedAt": "2026-11-21T19:50:40.452198+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KNCR11": {
-      "ticker": "KNCR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
-      "updatedAt": "2026-11-21T19:50:41.050790+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KNRI11": {
-      "ticker": "KNRI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/knri11",
-      "updatedAt": "2026-11-21T19:50:41.662387+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "XPLG11": {
-      "ticker": "XPLG11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/xplg11",
-      "updatedAt": "2026-11-21T19:50:42.252152+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VISC11": {
-      "ticker": "VISC11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/visc11",
-      "updatedAt": "2026-11-21T19:50:42.845081+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "IRDM11": {
-      "ticker": "IRDM11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/irdm11",
-      "updatedAt": "2026-11-21T19:50:43.446008+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BCFF11": {
-      "ticker": "BCFF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/bcff11",
-      "updatedAt": "2026-11-21T19:50:44.062014+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HGBS11": {
-      "ticker": "HGBS11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hgbs11",
-      "updatedAt": "2026-11-21T19:50:44.676392+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CPTS11": {
-      "ticker": "CPTS11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/cpts11",
-      "updatedAt": "2026-11-21T19:50:45.292880+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TGAR11": {
-      "ticker": "TGAR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/tgar11",
-      "updatedAt": "2026-11-21T19:50:45.882412+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VGHF11": {
-      "ticker": "VGHF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/vghf11",
-      "updatedAt": "2026-11-21T19:50:46.486516+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VGIR11": {
-      "ticker": "VGIR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/vgir11",
-      "updatedAt": "2026-11-21T19:50:47.100192+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HCTR11": {
-      "ticker": "HCTR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hctr11",
-      "updatedAt": "2026-11-21T19:50:47.698324+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "DEVA11": {
-      "ticker": "DEVA11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/deva11",
-      "updatedAt": "2026-11-21T19:50:48.314419+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RECR11": {
-      "ticker": "RECR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/recr11",
-      "updatedAt": "2026-11-21T19:50:48.910628+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MCCI11": {
-      "ticker": "MCCI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/mcci11",
-      "updatedAt": "2026-11-21T19:50:49.509033+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RBRF11": {
-      "ticker": "RBRF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbrf11",
-      "updatedAt": "2026-11-21T19:50:50.099712+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RBRR11": {
-      "ticker": "RBRR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbrr11",
-      "updatedAt": "2026-11-21T19:50:50.702597+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RBRY11": {
-      "ticker": "RBRY11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/rbry11",
-      "updatedAt": "2026-11-21T19:50:51.302967+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BTLG11": {
-      "ticker": "BTLG11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/btlg11",
-      "updatedAt": "2026-11-21T19:50:51.906982+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VILG11": {
-      "ticker": "VILG11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/vilg11",
-      "updatedAt": "2026-11-21T19:50:52.518051+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HSML11": {
-      "ticker": "HSML11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hsml11",
-      "updatedAt": "2026-11-21T19:50:53.116926+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "GGRC11": {
-      "ticker": "GGRC11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/ggrc11",
-      "updatedAt": "2026-11-21T19:50:53.722792+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "LVBI11": {
-      "ticker": "LVBI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/lvbi11",
-      "updatedAt": "2026-11-21T19:50:54.340968+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PVBI11": {
-      "ticker": "PVBI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/pvbi11",
-      "updatedAt": "2026-11-21T19:50:54.939376+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BRCO11": {
-      "ticker": "BRCO11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/brco11",
-      "updatedAt": "2026-11-21T19:50:55.541068+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RECT11": {
-      "ticker": "RECT11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/rect11",
-      "updatedAt": "2026-11-21T19:50:56.166744+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HFOF11": {
-      "ticker": "HFOF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hfof11",
-      "updatedAt": "2026-11-21T19:50:56.759067+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "JSRE11": {
-      "ticker": "JSRE11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/jsre11",
-      "updatedAt": "2026-11-21T19:50:57.377010+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KNSC11": {
-      "ticker": "KNSC11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/knsc11",
-      "updatedAt": "2026-11-21T19:50:57.982547+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KNHF11": {
-      "ticker": "KNHF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/knhf11",
-      "updatedAt": "2026-11-21T19:50:58.577058+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "VRTA11": {
-      "ticker": "VRTA11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/vrta11",
-      "updatedAt": "2026-11-21T19:50:59.210406+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CVBI11": {
-      "ticker": "CVBI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/cvbi11",
-      "updatedAt": "2026-11-21T19:50:59.805166+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HGCR11": {
-      "ticker": "HGCR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hgcr11",
-      "updatedAt": "2026-11-21T19:51:00.398326+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "XPCI11": {
-      "ticker": "XPCI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/xpci11",
-      "updatedAt": "2026-11-21T19:51:01.014454+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AFHI11": {
-      "ticker": "AFHI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/afhi11",
-      "updatedAt": "2026-11-21T19:51:01.612067+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "GAME11": {
-      "ticker": "GAME11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/game11",
-      "updatedAt": "2026-11-21T19:51:02.210872+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HABT11": {
-      "ticker": "HABT11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/habt11",
-      "updatedAt": "2026-11-21T19:51:02.804024+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HSLG11": {
-      "ticker": "HSLG11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/hslg11",
-      "updatedAt": "2026-11-21T19:51:03.403413+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MALL11": {
-      "ticker": "MALL11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/mall11",
-      "updatedAt": "2026-11-21T19:51:04.002621+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TRXF11": {
-      "ticker": "TRXF11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/trxf11",
-      "updatedAt": "2026-11-21T19:51:04.610235+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ALZR11": {
-      "ticker": "ALZR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/alzr11",
-      "updatedAt": "2026-11-21T19:51:05.198886+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "RZTR11": {
-      "ticker": "RZTR11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/rztr11",
-      "updatedAt": "2026-11-21T19:51:05.793792+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KNIP11": {
-      "ticker": "KNIP11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/knip11",
-      "updatedAt": "2026-11-21T19:51:06.413127+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ICRI11": {
-      "ticker": "ICRI11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/icri11",
-      "updatedAt": "2026-11-21T19:51:07.008879+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BTAL11": {
-      "ticker": "BTAL11",
-      "type": "fund",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/fundos-imobiliarios/btal11",
-      "updatedAt": "2026-11-21T19:51:07.610011+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "NVDC34": {
-      "ticker": "NVDC34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/nvdc34",
-      "updatedAt": "2026-11-21T19:51:08.208060+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AAPL34": {
-      "ticker": "AAPL34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/aapl34",
-      "updatedAt": "2026-11-21T19:51:08.821122+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MSFT34": {
-      "ticker": "MSFT34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/msft34",
-      "updatedAt": "2026-11-21T19:51:09.425144+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "AMZO34": {
-      "ticker": "AMZO34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/amzo34",
-      "updatedAt": "2026-11-21T19:51:10.020717+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "GOOGL34": {
-      "ticker": "GOOGL34",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/acoes/googl34",
-      "updatedAt": "2026-11-21T19:51:10.617813+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "META34": {
-      "ticker": "META34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/meta34",
-      "updatedAt": "2026-11-21T19:51:11.226321+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "TSLA34": {
-      "ticker": "TSLA34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/tsla34",
-      "updatedAt": "2026-11-21T19:51:11.845291+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MELI34": {
-      "ticker": "MELI34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/meli34",
-      "updatedAt": "2026-11-21T19:51:12.441446+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "NFLX34": {
-      "ticker": "NFLX34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/nflx34",
-      "updatedAt": "2026-11-21T19:51:13.052831+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "DISB34": {
-      "ticker": "DISB34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/disb34",
-      "updatedAt": "2026-11-21T19:51:13.649891+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "KOEC34": {
-      "ticker": "KOEC34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/koec34",
-      "updatedAt": "2026-11-21T19:51:14.253194+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PEPB34": {
-      "ticker": "PEPB34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/pepb34",
-      "updatedAt": "2026-11-21T19:51:14.848839+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "JPMB34": {
-      "ticker": "JPMB34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/jpmb34",
-      "updatedAt": "2026-11-21T19:51:15.446958+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BOAC34": {
-      "ticker": "BOAC34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/boac34",
-      "updatedAt": "2026-11-21T19:51:16.050152+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "WMTB34": {
-      "ticker": "WMTB34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/wmtb34",
-      "updatedAt": "2026-11-21T19:51:16.646217+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ROXO34": {
-      "ticker": "ROXO34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/roxo34",
-      "updatedAt": "2026-11-21T19:51:17.259714+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "BERK34": {
-      "ticker": "BERK34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/berk34",
-      "updatedAt": "2026-11-21T19:51:17.856566+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "PGCO34": {
-      "ticker": "PGCO34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/pgco34",
-      "updatedAt": "2026-11-21T19:51:18.457248+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "JNJN34": {
-      "ticker": "JNJN34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/jnjn34",
-      "updatedAt": "2026-11-21T19:51:19.073465+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "XOMM34": {
-      "ticker": "XOMM34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/xomm34",
-      "updatedAt": "2026-11-21T19:51:19.663929+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "CVSH34": {
-      "ticker": "CVSH34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/cvsh34",
-      "updatedAt": "2026-11-21T19:51:20.287191+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "ABTT34": {
-      "ticker": "ABTT34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/abtt34",
-      "updatedAt": "2026-11-21T19:51:20.891353+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "HDDR34": {
-      "ticker": "HDDR34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/hddr34",
-      "updatedAt": "2026-11-21T19:51:21.482489+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "MCDZ34": {
-      "ticker": "MCDZ34",
-      "type": "bdr",
-      "source": "statusinvest",
-      "status": "neterr",
-      "url": "https://statusinvest.com.br/bdrs/mcdz34",
-      "updatedAt": "2026-11-21T19:51:22.088226+00:00",
-      "error": "HTTP 403",
-      "data": {}
-    },
-    "WLMM4": {
-      "ticker": "WLMM4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/wlmm4",
-      "updatedAt": "2026-11-21T20:09:07.346159+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "14,99",
-          "num": 14.99
-        },
-        "Min. 52 semanas": {
-          "raw": "14,01",
-          "num": 14.01
-        },
-        "Máx. 52 semanas": {
-          "raw": "26,64",
-          "num": 26.64
-        },
-        "Dividend Yield": {
-          "raw": "10,42",
-          "num": 10.42
-        },
-        "Valorização (12m)": {
-          "raw": "-19,06%",
-          "num": -19.06
-        },
-        "Tipo": {
-          "raw": "PN",
-          "num": "PN"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "DOADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "200",
-          "num": 200.0
-        },
-        "VOLUME (dia)": {
-          "raw": "4.740",
-          "num": 4740.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "2",
-          "num": 2.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,5873",
-          "num": 0.5873
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "1,2175",
-          "num": 1.2175
-        },
-        "Comparação": {
-          "raw": "107,32%",
-          "num": 107.32
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "107,32%",
-          "num": 107.32
-        },
-        "Ativos": {
-          "raw": "1.836.064.000",
-          "num": 1836064000.0
-        },
-        "Ativo circulante": {
-          "raw": "1.075.460.000",
-          "num": 1075460000.0
-        },
-        "Dívida bruta": {
-          "raw": "520.139.000",
-          "num": 520139000.0
-        },
-        "Disponibilidade": {
-          "raw": "59.473.000",
-          "num": 59473000.0
-        },
-        "Dívida líquida": {
-          "raw": "460.666.000",
-          "num": 460666000.0
-        },
-        "Valor de mercado": {
-          "raw": "567.398.489",
-          "num": 567398489.0
-        },
-        "Valor de firma": {
-          "raw": "1.028.064.489",
-          "num": 1028064489.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 16.571.220 PN 19.843.450": {
-          "raw": "36.414.670",
-          "num": 36414670.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 5.115.365 Total de cada tipo de papel: ON 5,46% 905.045 PN 21,22% 4.210.320": {
-          "raw": "14,05%",
-          "num": 14.05
-        },
-        "D.Y": {
-          "raw": "10,42%",
-          "num": 10.42
-        },
-        "P/L": {
-          "raw": "6,30",
-          "num": 6.3
-        },
-        "PEG Ratio": {
-          "raw": "-0,24",
-          "num": -0.24
-        },
-        "P/VP": {
-          "raw": "0,65",
-          "num": 0.65
-        },
-        "EV/EBITDA": {
-          "raw": "5,07",
-          "num": 5.07
-        },
-        "EV/EBIT": {
-          "raw": "6,16",
-          "num": 6.16
-        },
-        "P/EBITDA": {
-          "raw": "2,69",
-          "num": 2.69
-        },
-        "P/EBIT": {
-          "raw": "3,27",
-          "num": 3.27
-        },
-        "VPA": {
-          "raw": "22,96",
-          "num": 22.96
-        },
-        "P/Ativo": {
-          "raw": "0,30",
-          "num": 0.3
-        },
-        "LPA": {
-          "raw": "2,38",
-          "num": 2.38
-        },
-        "P/SR": {
-          "raw": "0,18",
-          "num": 0.18
-        },
-        "P/Cap. Giro": {
-          "raw": "1,20",
-          "num": 1.2
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,72",
-          "num": -0.72
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,55",
-          "num": 0.55
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "2,27",
-          "num": 2.27
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "2,76",
-          "num": 2.76
-        },
-        "PL/Ativos": {
-          "raw": "0,46",
-          "num": 0.46
-        },
-        "Passivos/Ativos": {
-          "raw": "0,55",
-          "num": 0.55
-        },
-        "Liq. corrente": {
-          "raw": "1,73",
-          "num": 1.73
-        },
-        "M. Bruta": {
-          "raw": "14,09%",
-          "num": 14.09
-        },
-        "M. EBITDA": {
-          "raw": "6,81%",
-          "num": 6.81
-        },
-        "M. EBIT": {
-          "raw": "5,61%",
-          "num": 5.61
-        },
-        "M. Líquida": {
-          "raw": "2,91%",
-          "num": 2.91
-        },
-        "ROE": {
-          "raw": "10,37%",
-          "num": 10.37
-        },
-        "ROA": {
-          "raw": "4,72%",
-          "num": 4.72
-        },
-        "ROIC": {
-          "raw": "8,77%",
-          "num": 8.77
-        },
-        "Giro ativos": {
-          "raw": "1,62",
-          "num": 1.62
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "24,89%",
-          "num": 24.89
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "9,77%",
-          "num": 9.77
-        }
-      }
-    },
-    "WLMM3": {
-      "ticker": "WLMM3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/wlmm3",
-      "updatedAt": "2026-11-21T20:09:08.243238+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "16,29",
-          "num": 16.29
-        },
-        "Min. 52 semanas": {
-          "raw": "15,78",
-          "num": 15.78
-        },
-        "Máx. 52 semanas": {
-          "raw": "23,55",
-          "num": 23.55
-        },
-        "Dividend Yield": {
-          "raw": "8,71",
-          "num": 8.71
-        },
-        "Valorização (12m)": {
-          "raw": "-19,63%",
-          "num": -19.63
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "DOADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "17",
-          "num": 17.0
-        },
-        "VOLUME (dia)": {
-          "raw": "408",
-          "num": 408.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "1",
-          "num": 1.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,5339",
-          "num": 0.5339
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "1,1068",
-          "num": 1.1068
-        },
-        "Comparação": {
-          "raw": "107,32%",
-          "num": 107.32
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "107,32%",
-          "num": 107.32
-        },
-        "Ativos": {
-          "raw": "1.836.064.000",
-          "num": 1836064000.0
-        },
-        "Ativo circulante": {
-          "raw": "1.075.460.000",
-          "num": 1075460000.0
-        },
-        "Dívida bruta": {
-          "raw": "520.139.000",
-          "num": 520139000.0
-        },
-        "Disponibilidade": {
-          "raw": "59.473.000",
-          "num": 59473000.0
-        },
-        "Dívida líquida": {
-          "raw": "460.666.000",
-          "num": 460666000.0
-        },
-        "Valor de mercado": {
-          "raw": "567.398.489",
-          "num": 567398489.0
-        },
-        "Valor de firma": {
-          "raw": "1.028.064.489",
-          "num": 1028064489.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 16.571.220 PN 19.843.450": {
-          "raw": "36.414.670",
-          "num": 36414670.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 5.115.365 Total de cada tipo de papel: ON 5,46% 905.045 PN 21,22% 4.210.320": {
-          "raw": "14,05%",
-          "num": 14.05
-        },
-        "D.Y": {
-          "raw": "8,71%",
-          "num": 8.71
-        },
-        "P/L": {
-          "raw": "6,84",
-          "num": 6.84
-        },
-        "PEG Ratio": {
-          "raw": "-0,26",
-          "num": -0.26
-        },
-        "P/VP": {
-          "raw": "0,71",
-          "num": 0.71
-        },
-        "EV/EBITDA": {
-          "raw": "5,07",
-          "num": 5.07
-        },
-        "EV/EBIT": {
-          "raw": "6,16",
-          "num": 6.16
-        },
-        "P/EBITDA": {
-          "raw": "2,93",
-          "num": 2.93
-        },
-        "P/EBIT": {
-          "raw": "3,55",
-          "num": 3.55
-        },
-        "VPA": {
-          "raw": "22,96",
-          "num": 22.96
-        },
-        "P/Ativo": {
-          "raw": "0,32",
-          "num": 0.32
-        },
-        "LPA": {
-          "raw": "2,38",
-          "num": 2.38
-        },
-        "P/SR": {
-          "raw": "0,20",
-          "num": 0.2
-        },
-        "P/Cap. Giro": {
-          "raw": "1,30",
-          "num": 1.3
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,78",
-          "num": -0.78
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,55",
-          "num": 0.55
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "2,27",
-          "num": 2.27
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "2,76",
-          "num": 2.76
-        },
-        "PL/Ativos": {
-          "raw": "0,46",
-          "num": 0.46
-        },
-        "Passivos/Ativos": {
-          "raw": "0,55",
-          "num": 0.55
-        },
-        "Liq. corrente": {
-          "raw": "1,73",
-          "num": 1.73
-        },
-        "M. Bruta": {
-          "raw": "14,09%",
-          "num": 14.09
-        },
-        "M. EBITDA": {
-          "raw": "6,81%",
-          "num": 6.81
-        },
-        "M. EBIT": {
-          "raw": "5,61%",
-          "num": 5.61
-        },
-        "M. Líquida": {
-          "raw": "2,91%",
-          "num": 2.91
-        },
-        "ROE": {
-          "raw": "10,37%",
-          "num": 10.37
-        },
-        "ROA": {
-          "raw": "4,72%",
-          "num": 4.72
-        },
-        "ROIC": {
-          "raw": "8,77%",
-          "num": 8.77
-        },
-        "Giro ativos": {
-          "raw": "1,62",
-          "num": 1.62
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "24,89%",
-          "num": 24.89
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "9,77%",
-          "num": 9.77
-        }
-      }
-    },
-    "WHRL3": {
-      "ticker": "WHRL3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/whrl3",
-      "updatedAt": "2026-11-21T20:09:09.111719+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "2,99",
-          "num": 2.99
-        },
-        "Min. 52 semanas": {
-          "raw": "2,98",
-          "num": 2.98
-        },
-        "Máx. 52 semanas": {
-          "raw": "4,47",
-          "num": 4.47
-        },
-        "Dividend Yield": {
-          "raw": "3,73",
-          "num": 3.73
-        },
-        "Valorização (12m)": {
-          "raw": "-27,43%",
-          "num": -27.43
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "DOADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "48",
-          "num": 48.0
-        },
-        "VOLUME (dia)": {
-          "raw": "217",
-          "num": 217.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "1",
-          "num": 1.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,4225",
-          "num": 0.4225
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "0,0387",
-          "num": 0.0387
-        },
-        "Comparação": {
-          "raw": "90,84%",
-          "num": 90.84
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "90,84%",
-          "num": 90.84
-        },
-        "Ativos": {
-          "raw": "9.781.421.000",
-          "num": 9781421000.0
-        },
-        "Ativo circulante": {
-          "raw": "5.654.971.000",
-          "num": 5654971000.0
-        },
-        "Dívida bruta": {
-          "raw": "1.730.741.000",
-          "num": 1730741000.0
-        },
-        "Disponibilidade": {
-          "raw": "854.645.000",
-          "num": 854645000.0
-        },
-        "Dívida líquida": {
-          "raw": "876.096.000",
-          "num": 876096000.0
-        },
-        "Valor de mercado": {
-          "raw": "4.493.330.152",
-          "num": 4493330152.0
-        },
-        "Valor de firma": {
-          "raw": "5.369.426.152",
-          "num": 5369426152.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 1.028.700.891 PN 474.085.113": {
-          "raw": "1.502.786.004",
-          "num": 1502786004.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 1.502.786.004 Total de cada tipo de papel: ON 100,00% 1.028.700.891 PN 100,00% 474.085.113": {
-          "raw": "100,00%",
-          "num": 100.0
-        },
-        "D.Y": {
-          "raw": "3,73%",
-          "num": 3.73
-        },
-        "P/L": {
-          "raw": "35,90",
-          "num": 35.9
-        },
-        "PEG Ratio": {
-          "raw": "-0,44",
-          "num": -0.44
-        },
-        "P/VP": {
-          "raw": "2,31",
-          "num": 2.31
-        },
-        "EV/EBITDA": {
-          "raw": "8,48",
-          "num": 8.48
-        },
-        "EV/EBIT": {
-          "raw": "10,63",
-          "num": 10.63
-        },
-        "P/EBITDA": {
-          "raw": "7,10",
-          "num": 7.1
-        },
-        "P/EBIT": {
-          "raw": "8,90",
-          "num": 8.9
-        },
-        "VPA": {
-          "raw": "1,29",
-          "num": 1.29
-        },
-        "P/Ativo": {
-          "raw": "0,46",
-          "num": 0.46
-        },
-        "LPA": {
-          "raw": "0,08",
-          "num": 0.08
-        },
-        "P/SR": {
-          "raw": "0,37",
-          "num": 0.37
-        },
-        "P/Cap. Giro": {
-          "raw": "-4,13",
-          "num": -4.13
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-1,09",
-          "num": -1.09
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,45",
-          "num": 0.45
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "1,38",
-          "num": 1.38
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "1,73",
-          "num": 1.73
-        },
-        "PL/Ativos": {
-          "raw": "0,20",
-          "num": 0.2
-        },
-        "Passivos/Ativos": {
-          "raw": "0,80",
-          "num": 0.8
-        },
-        "Liq. corrente": {
-          "raw": "0,84",
-          "num": 0.84
-        },
-        "M. Bruta": {
-          "raw": "16,56%",
-          "num": 16.56
-        },
-        "M. EBITDA": {
-          "raw": "5,18%",
-          "num": 5.18
-        },
-        "M. EBIT": {
-          "raw": "4,13%",
-          "num": 4.13
-        },
-        "M. Líquida": {
-          "raw": "1,02%",
-          "num": 1.02
-        },
-        "ROE": {
-          "raw": "6,43%",
-          "num": 6.43
-        },
-        "ROA": {
-          "raw": "1,28%",
-          "num": 1.28
-        },
-        "ROIC": {
-          "raw": "2,15%",
-          "num": 2.15
-        },
-        "Giro ativos": {
-          "raw": "1,25",
-          "num": 1.25
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "6,29%",
-          "num": 6.29
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-29,38%",
-          "num": -29.38
-        }
-      }
-    },
-    "WEST3": {
-      "ticker": "WEST3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/west3",
-      "updatedAt": "2026-11-21T20:09:10.026726+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "3,55",
-          "num": 3.55
-        },
-        "Min. 52 semanas": {
-          "raw": "2,13",
-          "num": 2.13
-        },
-        "Máx. 52 semanas": {
-          "raw": "5,50",
-          "num": 5.5
-        },
-        "Dividend Yield": {
-          "raw": "-",
-          "num": null
-        },
-        "Valorização (12m)": {
-          "raw": "54,35%",
-          "num": 54.35
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,04",
-          "num": 5.04
-        },
-        "DOADOR (média)": {
-          "raw": "5,04",
-          "num": 5.04
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "54",
-          "num": 54.0
-        },
-        "VOLUME (dia)": {
-          "raw": "68",
-          "num": 68.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "4",
-          "num": 4.0
-        },
-        "Comparação": {
-          "raw": "%",
-          "num": null
-        },
-        "Comparação + Provisionado": {
-          "raw": "%",
-          "num": null
-        },
-        "Ativos": {
-          "raw": "212.499.000",
-          "num": 212499000.0
-        },
-        "Ativo circulante": {
-          "raw": "97.644.000",
-          "num": 97644000.0
-        },
-        "Dívida bruta": {
-          "raw": "10.301.000",
-          "num": 10301000.0
-        },
-        "Disponibilidade": {
-          "raw": "40.750.000",
-          "num": 40750000.0
-        },
-        "Dívida líquida": {
-          "raw": "-30.449.000",
-          "num": -30449000.0
-        },
-        "Valor de mercado": {
-          "raw": "39.477.743",
-          "num": 39477743.0
-        },
-        "Valor de firma": {
-          "raw": "9.028.743",
-          "num": 9028743.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 11.120.491 PN 0": {
-          "raw": "11.120.491",
-          "num": 11120491.0
-        },
-        "Segmento de listagem": {
-          "raw": "Novo Mercado",
-          "num": "Novo Mercado"
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 11.120.491 Total de cada tipo de papel: ON 100,00% 11.120.491 PN --% --": {
-          "raw": "100,00%",
-          "num": 100.0
-        },
-        "D.Y": {
-          "raw": "-%",
-          "num": null
-        },
-        "P/L": {
-          "raw": "-2,69",
-          "num": -2.69
-        },
-        "PEG Ratio": {
-          "raw": "-0,10",
-          "num": -0.1
-        },
-        "P/VP": {
-          "raw": "0,28",
-          "num": 0.28
-        },
-        "EV/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "EV/EBIT": {
-          "raw": "-0,29",
-          "num": -0.29
-        },
-        "P/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "P/EBIT": {
-          "raw": "-1,28",
-          "num": -1.28
-        },
-        "VPA": {
-          "raw": "12,80",
-          "num": 12.8
-        },
-        "P/Ativo": {
-          "raw": "0,19",
-          "num": 0.19
-        },
-        "LPA": {
-          "raw": "-1,32",
-          "num": -1.32
-        },
-        "P/SR": {
-          "raw": "0,27",
-          "num": 0.27
-        },
-        "P/Cap. Giro": {
-          "raw": "0,85",
-          "num": 0.85
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,34",
-          "num": -0.34
-        },
-        "Dív. líquida/PL": {
-          "raw": "-0,21",
-          "num": -0.21
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "0,99",
-          "num": 0.99
-        },
-        "PL/Ativos": {
-          "raw": "0,67",
-          "num": 0.67
-        },
-        "Passivos/Ativos": {
-          "raw": "0,33",
-          "num": 0.33
-        },
-        "Liq. corrente": {
-          "raw": "1,91",
-          "num": 1.91
-        },
-        "M. Bruta": {
-          "raw": "40,10%",
-          "num": 40.1
-        },
-        "M. EBITDA": {
-          "raw": "-%",
-          "num": null
-        },
-        "M. EBIT": {
-          "raw": "-21,02%",
-          "num": -21.02
-        },
-        "M. Líquida": {
-          "raw": "-10,05%",
-          "num": -10.05
-        },
-        "ROE": {
-          "raw": "-10,32%",
-          "num": -10.32
-        },
-        "ROA": {
-          "raw": "-6,92%",
-          "num": -6.92
-        },
-        "ROIC": {
-          "raw": "-20,57%",
-          "num": -20.57
-        },
-        "Giro ativos": {
-          "raw": "0,69",
-          "num": 0.69
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "-9,25%",
-          "num": -9.25
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "WDCN3": {
-      "ticker": "WDCN3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/wdcn3",
-      "updatedAt": "2026-11-21T20:09:10.970352+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "2,55",
-          "num": 2.55
-        },
-        "Min. 52 semanas": {
-          "raw": "2,09",
-          "num": 2.09
-        },
-        "Máx. 52 semanas": {
-          "raw": "3,17",
-          "num": 3.17
-        },
-        "Dividend Yield": {
-          "raw": "-",
-          "num": null
-        },
-        "Valorização (12m)": {
-          "raw": "-12,67%",
-          "num": -12.67
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,48",
-          "num": 5.48
-        },
-        "DOADOR (média)": {
-          "raw": "5,48",
-          "num": 5.48
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "200",
-          "num": 200.0
-        },
-        "VOLUME (dia)": {
-          "raw": "760",
-          "num": 760.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "2",
-          "num": 2.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,1900",
-          "num": 0.19
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação": {
-          "raw": "100,00%",
-          "num": 100.0
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "100,00%",
-          "num": 100.0
-        },
-        "Ativos": {
-          "raw": "1.285.122.000",
-          "num": 1285122000.0
-        },
-        "Ativo circulante": {
-          "raw": "800.268.000",
-          "num": 800268000.0
-        },
-        "Dívida bruta": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Disponibilidade": {
-          "raw": "246.386.000",
-          "num": 246386000.0
-        },
-        "Dívida líquida": {
-          "raw": "-246.386.000",
-          "num": -246386000.0
-        },
-        "Valor de mercado": {
-          "raw": "161.826.731",
-          "num": 161826731.0
-        },
-        "Valor de firma": {
-          "raw": "-84.559.269",
-          "num": -84559269.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 63.461.463 PN 0": {
-          "raw": "63.461.463",
-          "num": 63461463.0
-        },
-        "Segmento de listagem": {
-          "raw": "Novo Mercado",
-          "num": "Novo Mercado"
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 27.633.621 Total de cada tipo de papel: ON 43,54% 27.633.621 PN --% --": {
-          "raw": "43,54%",
-          "num": 43.54
-        },
-        "D.Y": {
-          "raw": "-%",
-          "num": null
-        },
-        "P/L": {
-          "raw": "-0,98",
-          "num": -0.98
-        },
-        "PEG Ratio": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "P/VP": {
-          "raw": "0,33",
-          "num": 0.33
-        },
-        "EV/EBITDA": {
-          "raw": "-0,30",
-          "num": -0.3
-        },
-        "EV/EBIT": {
-          "raw": "0,69",
-          "num": 0.69
-        },
-        "P/EBITDA": {
-          "raw": "0,58",
-          "num": 0.58
-        },
-        "P/EBIT": {
-          "raw": "-1,33",
-          "num": -1.33
-        },
-        "VPA": {
-          "raw": "7,63",
-          "num": 7.63
-        },
-        "P/Ativo": {
-          "raw": "0,13",
-          "num": 0.13
-        },
-        "LPA": {
-          "raw": "-2,60",
-          "num": -2.6
-        },
-        "P/SR": {
-          "raw": "0,20",
-          "num": 0.2
-        },
-        "P/Cap. Giro": {
-          "raw": "0,45",
-          "num": 0.45
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,33",
-          "num": -0.33
-        },
-        "Dív. líquida/PL": {
-          "raw": "-0,51",
-          "num": -0.51
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "-0,89",
-          "num": -0.89
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "2,02",
-          "num": 2.02
-        },
-        "PL/Ativos": {
-          "raw": "0,38",
-          "num": 0.38
-        },
-        "Passivos/Ativos": {
-          "raw": "0,62",
-          "num": 0.62
-        },
-        "Liq. corrente": {
-          "raw": "1,80",
-          "num": 1.8
-        },
-        "M. Bruta": {
-          "raw": "23,87%",
-          "num": 23.87
-        },
-        "M. EBITDA": {
-          "raw": "35,10%",
-          "num": 35.1
-        },
-        "M. EBIT": {
-          "raw": "-15,38%",
-          "num": -15.38
-        },
-        "M. Líquida": {
-          "raw": "-20,84%",
-          "num": -20.84
-        },
-        "ROE": {
-          "raw": "-34,08%",
-          "num": -34.08
-        },
-        "ROA": {
-          "raw": "-12,83%",
-          "num": -12.83
-        },
-        "ROIC": {
-          "raw": "-33,33%",
-          "num": -33.33
-        },
-        "Giro ativos": {
-          "raw": "0,62",
-          "num": 0.62
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "3,96%",
-          "num": 3.96
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "VVEO3": {
-      "ticker": "VVEO3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/vveo3",
-      "updatedAt": "2026-11-21T20:09:11.790726+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "0,50",
-          "num": 0.5
-        },
-        "Min. 52 semanas": {
-          "raw": "0,50",
-          "num": 0.5
-        },
-        "Máx. 52 semanas": {
-          "raw": "1,84",
-          "num": 1.84
-        },
-        "Dividend Yield": {
-          "raw": "-",
-          "num": null
-        },
-        "Valorização (12m)": {
-          "raw": "-64,03%",
-          "num": -64.03
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "3,85",
-          "num": 3.85
-        },
-        "DOADOR (média)": {
-          "raw": "3,85",
-          "num": 3.85
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "1.977.699",
-          "num": 1977699.0
-        },
-        "VOLUME (dia)": {
-          "raw": "12.756.159",
-          "num": 12756159.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "121",
-          "num": 121.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Ativos": {
-          "raw": "8.662.127.000",
-          "num": 8662127000.0
-        },
-        "Ativo circulante": {
-          "raw": "4.469.742.000",
-          "num": 4469742000.0
-        },
-        "Dívida bruta": {
-          "raw": "2.639.555.000",
-          "num": 2639555000.0
-        },
-        "Disponibilidade": {
-          "raw": "395.693.000",
-          "num": 395693000.0
-        },
-        "Dívida líquida": {
-          "raw": "2.243.862.000",
-          "num": 2243862000.0
-        },
-        "Valor de mercado": {
-          "raw": "643.162.065",
-          "num": 643162065.0
-        },
-        "Valor de firma": {
-          "raw": "2.887.024.065",
-          "num": 2887024065.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 1.286.324.129 PN 0": {
-          "raw": "1.286.324.129",
-          "num": 1286324129.0
-        },
-        "Segmento de listagem": {
-          "raw": "Novo Mercado",
-          "num": "Novo Mercado"
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 677.634.622 Total de cada tipo de papel: ON 52,68% 677.634.622 PN --% --": {
-          "raw": "52,68%",
-          "num": 52.68
-        },
-        "D.Y": {
-          "raw": "-%",
-          "num": null
-        },
-        "P/L": {
-          "raw": "-2,42",
-          "num": -2.42
-        },
-        "PEG Ratio": {
-          "raw": "0,03",
-          "num": 0.03
-        },
-        "P/VP": {
-          "raw": "0,27",
-          "num": 0.27
-        },
-        "EV/EBITDA": {
-          "raw": "2,68",
-          "num": 2.68
-        },
-        "EV/EBIT": {
-          "raw": "6,43",
-          "num": 6.43
-        },
-        "P/EBITDA": {
-          "raw": "0,60",
-          "num": 0.6
-        },
-        "P/EBIT": {
-          "raw": "1,43",
-          "num": 1.43
-        },
-        "VPA": {
-          "raw": "1,82",
-          "num": 1.82
-        },
-        "P/Ativo": {
-          "raw": "0,07",
-          "num": 0.07
-        },
-        "LPA": {
-          "raw": "-0,21",
-          "num": -0.21
-        },
-        "P/SR": {
-          "raw": "0,05",
-          "num": 0.05
-        },
-        "P/Cap. Giro": {
-          "raw": "0,35",
-          "num": 0.35
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,15",
-          "num": -0.15
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,96",
-          "num": 0.96
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "2,09",
-          "num": 2.09
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "PL/Ativos": {
-          "raw": "0,27",
-          "num": 0.27
-        },
-        "Passivos/Ativos": {
-          "raw": "0,73",
-          "num": 0.73
-        },
-        "Liq. corrente": {
-          "raw": "1,70",
-          "num": 1.7
-        },
-        "M. Bruta": {
-          "raw": "15,29%",
-          "num": 15.29
-        },
-        "M. EBITDA": {
-          "raw": "9,01%",
-          "num": 9.01
-        },
-        "M. EBIT": {
-          "raw": "3,76%",
-          "num": 3.76
-        },
-        "M. Líquida": {
-          "raw": "-2,22%",
-          "num": -2.22
-        },
-        "ROE": {
-          "raw": "-11,32%",
-          "num": -11.32
-        },
-        "ROA": {
-          "raw": "-3,06%",
-          "num": -3.06
-        },
-        "ROIC": {
-          "raw": "8,32%",
-          "num": 8.32
-        },
-        "Giro ativos": {
-          "raw": "1,38",
-          "num": 1.38
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "21,25%",
-          "num": 21.25
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "VSTE3": {
-      "ticker": "VSTE3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/vste3",
-      "updatedAt": "2026-11-21T20:09:12.702802+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "2,56",
-          "num": 2.56
-        },
-        "Min. 52 semanas": {
-          "raw": "2,11",
-          "num": 2.11
-        },
-        "Máx. 52 semanas": {
-          "raw": "4,41",
-          "num": 4.41
-        },
-        "Dividend Yield": {
-          "raw": "1,98",
-          "num": 1.98
-        },
-        "Valorização (12m)": {
-          "raw": "-41,69%",
-          "num": -41.69
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "DOADOR (média)": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "9.165",
-          "num": 9165.0
-        },
-        "VOLUME (dia)": {
-          "raw": "151.223",
-          "num": 151223.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "12",
-          "num": 12.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "0,0507",
-          "num": 0.0507
-        },
-        "Comparação": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Ativos": {
-          "raw": "1.720.565.000",
-          "num": 1720565000.0
-        },
-        "Ativo circulante": {
-          "raw": "553.418.000",
-          "num": 553418000.0
-        },
-        "Dívida bruta": {
-          "raw": "299.730.000",
-          "num": 299730000.0
-        },
-        "Disponibilidade": {
-          "raw": "23.876.000",
-          "num": 23876000.0
-        },
-        "Dívida líquida": {
-          "raw": "275.854.000",
-          "num": 275854000.0
-        },
-        "Valor de mercado": {
-          "raw": "293.121.306",
-          "num": 293121306.0
-        },
-        "Valor de firma": {
-          "raw": "568.975.306",
-          "num": 568975306.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 114.500.510 PN 0": {
-          "raw": "114.500.510",
-          "num": 114500510.0
-        },
-        "Segmento de listagem": {
-          "raw": "Novo Mercado",
-          "num": "Novo Mercado"
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 113.570.972 Total de cada tipo de papel: ON 99,19% 113.570.972 PN --% --": {
-          "raw": "99,19%",
-          "num": 99.19
-        },
-        "D.Y": {
-          "raw": "1,98%",
-          "num": 1.98
-        },
-        "P/L": {
-          "raw": "5,48",
-          "num": 5.48
-        },
-        "PEG Ratio": {
-          "raw": "0,03",
-          "num": 0.03
-        },
-        "P/VP": {
-          "raw": "0,27",
-          "num": 0.27
-        },
-        "EV/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "EV/EBIT": {
-          "raw": "4,78",
-          "num": 4.78
-        },
-        "P/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "P/EBIT": {
-          "raw": "2,46",
-          "num": 2.46
-        },
-        "VPA": {
-          "raw": "9,63",
-          "num": 9.63
-        },
-        "P/Ativo": {
-          "raw": "0,17",
-          "num": 0.17
-        },
-        "LPA": {
-          "raw": "0,47",
-          "num": 0.47
-        },
-        "P/SR": {
-          "raw": "0,22",
-          "num": 0.22
-        },
-        "P/Cap. Giro": {
-          "raw": "1,50",
-          "num": 1.5
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,25",
-          "num": -0.25
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,25",
-          "num": 0.25
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "-",
-          "num": null
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "2,32",
-          "num": 2.32
-        },
-        "PL/Ativos": {
-          "raw": "0,64",
-          "num": 0.64
-        },
-        "Passivos/Ativos": {
-          "raw": "0,36",
-          "num": 0.36
-        },
-        "Liq. corrente": {
-          "raw": "1,54",
-          "num": 1.54
-        },
-        "M. Bruta": {
-          "raw": "65,48%",
-          "num": 65.48
-        },
-        "M. EBITDA": {
-          "raw": "-%",
-          "num": null
-        },
-        "M. EBIT": {
-          "raw": "9,05%",
-          "num": 9.05
-        },
-        "M. Líquida": {
-          "raw": "4,07%",
-          "num": 4.07
-        },
-        "ROE": {
-          "raw": "4,85%",
-          "num": 4.85
-        },
-        "ROA": {
-          "raw": "3,11%",
-          "num": 3.11
-        },
-        "ROIC": {
-          "raw": "8,42%",
-          "num": 8.42
-        },
-        "Giro ativos": {
-          "raw": "0,76",
-          "num": 0.76
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "15,50%",
-          "num": 15.5
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "VSPT4": {
-      "ticker": "VSPT4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/vspt4",
-      "updatedAt": "2026-11-21T20:09:14.460845+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "Min. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Máx. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Dividend Yield": {
-          "raw": "-",
-          "num": null
-        },
-        "Valorização (12m)": {
-          "raw": "-%",
-          "num": null
-        },
-        "Tipo": {
-          "raw": "PN",
-          "num": "PN"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "DOADOR (média)": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "VOLUME (dia)": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Comparação": {
-          "raw": "%",
-          "num": null
-        },
-        "Comparação + Provisionado": {
-          "raw": "%",
-          "num": null
-        },
-        "Ativos": {
-          "raw": "7.347.617.000",
-          "num": 7347617000.0
-        },
-        "Ativo circulante": {
-          "raw": "910.385.000",
-          "num": 910385000.0
-        },
-        "Dívida bruta": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Disponibilidade": {
-          "raw": "231.554.000",
-          "num": 231554000.0
-        },
-        "Dívida líquida": {
-          "raw": "-231.554.000",
-          "num": -231554000.0
-        },
-        "Valor de mercado": {
-          "raw": "2.569.294.560",
-          "num": 2569294560.0
-        },
-        "Valor de firma": {
-          "raw": "2.337.740.560",
-          "num": 2337740560.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 513.858.912 PN 19": {
-          "raw": "513.858.931",
-          "num": 513858931.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 66 Total de cada tipo de papel: ON 0,00% 63 PN 15,79% 3": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "D.Y": {
-          "raw": "-%",
-          "num": null
-        },
-        "P/L": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "PEG Ratio": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "P/VP": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "EV/EBITDA": {
-          "raw": "3,61",
-          "num": 3.61
-        },
-        "EV/EBIT": {
-          "raw": "-13,58",
-          "num": -13.58
-        },
-        "P/EBITDA": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "P/EBIT": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "VPA": {
-          "raw": "9,95",
-          "num": 9.95
-        },
-        "P/Ativo": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "LPA": {
-          "raw": "-0,34",
-          "num": -0.34
-        },
-        "P/SR": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "P/Cap. Giro": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "Dív. líquida/PL": {
-          "raw": "-0,05",
-          "num": -0.05
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "-0,36",
-          "num": -0.36
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "1,35",
-          "num": 1.35
-        },
-        "PL/Ativos": {
-          "raw": "0,70",
-          "num": 0.7
-        },
-        "Passivos/Ativos": {
-          "raw": "0,30",
-          "num": 0.3
-        },
-        "Liq. corrente": {
-          "raw": "1,10",
-          "num": 1.1
-        },
-        "M. Bruta": {
-          "raw": "7,34%",
-          "num": 7.34
-        },
-        "M. EBITDA": {
-          "raw": "20,64%",
-          "num": 20.64
-        },
-        "M. EBIT": {
-          "raw": "-5,49%",
-          "num": -5.49
-        },
-        "M. Líquida": {
-          "raw": "-5,59%",
-          "num": -5.59
-        },
-        "ROE": {
-          "raw": "-3,43%",
-          "num": -3.43
-        },
-        "ROA": {
-          "raw": "-2,39%",
-          "num": -2.39
-        },
-        "ROIC": {
-          "raw": "-3,37%",
-          "num": -3.37
-        },
-        "Giro ativos": {
-          "raw": "0,43",
-          "num": 0.43
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "6,04%",
-          "num": 6.04
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "VSPT3": {
-      "ticker": "VSPT3",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/vspt3",
-      "updatedAt": "2026-11-21T20:09:15.751516+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "5,00",
-          "num": 5.0
-        },
-        "Min. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Máx. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Dividend Yield": {
-          "raw": "-",
-          "num": null
-        },
-        "Valorização (12m)": {
-          "raw": "-%",
-          "num": null
-        },
-        "Tipo": {
-          "raw": "ON",
-          "num": "ON"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "DOADOR (média)": {
-          "raw": "0,00",
-          "num": 0.0
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "VOLUME (dia)": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Comparação": {
-          "raw": "%",
-          "num": null
-        },
-        "Comparação + Provisionado": {
-          "raw": "%",
-          "num": null
-        },
-        "Ativos": {
-          "raw": "7.347.617.000",
-          "num": 7347617000.0
-        },
-        "Ativo circulante": {
-          "raw": "910.385.000",
-          "num": 910385000.0
-        },
-        "Dívida bruta": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Disponibilidade": {
-          "raw": "231.554.000",
-          "num": 231554000.0
-        },
-        "Dívida líquida": {
-          "raw": "-231.554.000",
-          "num": -231554000.0
-        },
-        "Valor de mercado": {
-          "raw": "2.569.294.560",
-          "num": 2569294560.0
-        },
-        "Valor de firma": {
-          "raw": "2.337.740.560",
-          "num": 2337740560.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 513.858.912 PN 19": {
-          "raw": "513.858.931",
-          "num": 513858931.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 66 Total de cada tipo de papel: ON 0,00% 63 PN 15,79% 3": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "D.Y": {
-          "raw": "-%",
-          "num": null
-        },
-        "P/L": {
-          "raw": "-14,64",
-          "num": -14.64
-        },
-        "PEG Ratio": {
-          "raw": "0,10",
-          "num": 0.1
-        },
-        "P/VP": {
-          "raw": "0,50",
-          "num": 0.5
-        },
-        "EV/EBITDA": {
-          "raw": "3,61",
-          "num": 3.61
-        },
-        "EV/EBIT": {
-          "raw": "-13,58",
-          "num": -13.58
-        },
-        "P/EBITDA": {
-          "raw": "3,97",
-          "num": 3.97
-        },
-        "P/EBIT": {
-          "raw": "-14,93",
-          "num": -14.93
-        },
-        "VPA": {
-          "raw": "9,95",
-          "num": 9.95
-        },
-        "P/Ativo": {
-          "raw": "0,35",
-          "num": 0.35
-        },
-        "LPA": {
-          "raw": "-0,34",
-          "num": -0.34
-        },
-        "P/SR": {
-          "raw": "0,82",
-          "num": 0.82
-        },
-        "P/Cap. Giro": {
-          "raw": "30,72",
-          "num": 30.72
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-0,40",
-          "num": -0.4
-        },
-        "Dív. líquida/PL": {
-          "raw": "-0,05",
-          "num": -0.05
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "-0,36",
-          "num": -0.36
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "1,35",
-          "num": 1.35
-        },
-        "PL/Ativos": {
-          "raw": "0,70",
-          "num": 0.7
-        },
-        "Passivos/Ativos": {
-          "raw": "0,30",
-          "num": 0.3
-        },
-        "Liq. corrente": {
-          "raw": "1,10",
-          "num": 1.1
-        },
-        "M. Bruta": {
-          "raw": "7,34%",
-          "num": 7.34
-        },
-        "M. EBITDA": {
-          "raw": "20,64%",
-          "num": 20.64
-        },
-        "M. EBIT": {
-          "raw": "-5,49%",
-          "num": -5.49
-        },
-        "M. Líquida": {
-          "raw": "-5,59%",
-          "num": -5.59
-        },
-        "ROE": {
-          "raw": "-3,43%",
-          "num": -3.43
-        },
-        "ROA": {
-          "raw": "-2,39%",
-          "num": -2.39
-        },
-        "ROIC": {
-          "raw": "-3,37%",
-          "num": -3.37
-        },
-        "Giro ativos": {
-          "raw": "0,43",
-          "num": 0.43
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "6,04%",
-          "num": 6.04
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "-%",
-          "num": null
-        }
-      }
-    },
-    "VIVT4": {
-      "ticker": "VIVT4",
-      "type": "stock",
-      "source": "statusinvest",
-      "status": "ok",
-      "url": "https://statusinvest.com.br/acoes/vivt4",
-      "updatedAt": "2026-11-21T20:09:16.651873+00:00",
-      "error": null,
-      "data": {
-        "Valor atual": {
-          "raw": "45,34",
-          "num": 45.34
-        },
-        "Min. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Máx. 52 semanas": {
-          "raw": "-",
-          "num": null
-        },
-        "Dividend Yield": {
-          "raw": "0,24",
-          "num": 0.24
-        },
-        "Valorização (12m)": {
-          "raw": "-%",
-          "num": null
-        },
-        "Tipo": {
-          "raw": "PN",
-          "num": "PN"
-        },
-        "PART. IBOV": {
-          "raw": "IBOV",
-          "num": "IBOV"
-        },
-        "MERCADO DE OPÇÕES": {
-          "raw": "OPÇÕES",
-          "num": "OPÇÕES"
-        },
-        "TOMADOR (média)": {
-          "raw": "0,49",
-          "num": 0.49
-        },
-        "DOADOR (média)": {
-          "raw": "0,49",
-          "num": 0.49
-        },
-        "Nº DE AÇÕES ALUGADAS (dia)": {
-          "raw": "2.204.318",
-          "num": 2204318.0
-        },
-        "VOLUME (dia)": {
-          "raw": "0",
-          "num": 0.0
-        },
-        "Nº DE CONTRATOS": {
-          "raw": "97",
-          "num": 97.0
-        },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
-          "raw": "0,1095",
-          "num": 0.1095
-        },
-        "Comparação": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
-          "raw": "0,0000",
-          "num": 0.0
-        },
-        "Comparação + Provisionado": {
-          "raw": "0,00%",
-          "num": 0.0
-        },
-        "Ativos": {
-          "raw": "129.001.026.000",
-          "num": 129001026000.0
-        },
-        "Ativo circulante": {
-          "raw": "27.435.956.000",
-          "num": 27435956000.0
-        },
-        "Dívida bruta": {
-          "raw": "20.998.689.000",
-          "num": 20998689000.0
-        },
-        "Disponibilidade": {
-          "raw": "7.086.198.000",
-          "num": 7086198000.0
-        },
-        "Dívida líquida": {
-          "raw": "13.912.491.000",
-          "num": 13912491000.0
-        },
-        "Valor de mercado": {
-          "raw": "113.638.972.027",
-          "num": 113638972027.0
-        },
-        "Valor de firma": {
-          "raw": "127.551.463.027",
-          "num": 127551463027.0
-        },
-        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 3.226.546.622 PN 0": {
-          "raw": "3.226.546.622",
-          "num": 3226546622.0
-        },
-        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 707.098.992 Total de cada tipo de papel: ON 21,92% 707.098.992 PN --% --": {
-          "raw": "21,92%",
-          "num": 21.92
-        },
-        "D.Y": {
-          "raw": "0,24%",
-          "num": 0.24
-        },
-        "P/L": {
-          "raw": "20,41",
-          "num": 20.41
-        },
-        "PEG Ratio": {
-          "raw": "1,11",
-          "num": 1.11
-        },
-        "P/VP": {
-          "raw": "2,19",
-          "num": 2.19
-        },
-        "EV/EBITDA": {
-          "raw": "2,98",
-          "num": 2.98
-        },
-        "EV/EBIT": {
-          "raw": "11,28",
-          "num": 11.28
-        },
-        "P/EBITDA": {
-          "raw": "3,42",
-          "num": 3.42
-        },
-        "P/EBIT": {
-          "raw": "12,94",
-          "num": 12.94
-        },
-        "VPA": {
-          "raw": "20,69",
-          "num": 20.69
-        },
-        "P/Ativo": {
-          "raw": "1,13",
-          "num": 1.13
-        },
-        "LPA": {
-          "raw": "2,22",
-          "num": 2.22
-        },
-        "P/SR": {
-          "raw": "2,33",
-          "num": 2.33
-        },
-        "P/Cap. Giro": {
-          "raw": "-90,72",
-          "num": -90.72
-        },
-        "P/Ativo Circ. Liq.": {
-          "raw": "-1,44",
-          "num": -1.44
-        },
-        "Dív. líquida/PL": {
-          "raw": "0,21",
-          "num": 0.21
-        },
-        "Dív. líquida/EBITDA": {
-          "raw": "0,32",
-          "num": 0.32
-        },
-        "Dív. líquida/EBIT": {
-          "raw": "1,23",
-          "num": 1.23
-        },
-        "PL/Ativos": {
-          "raw": "0,52",
-          "num": 0.52
-        },
-        "Passivos/Ativos": {
-          "raw": "0,48",
-          "num": 0.48
-        },
-        "Liq. corrente": {
-          "raw": "0,94",
-          "num": 0.94
-        },
-        "M. Bruta": {
-          "raw": "45,68%",
-          "num": 45.68
-        },
-        "M. EBITDA": {
-          "raw": "68,14%",
-          "num": 68.14
-        },
-        "M. EBIT": {
-          "raw": "17,99%",
-          "num": 17.99
-        },
-        "M. Líquida": {
-          "raw": "11,40%",
-          "num": 11.4
-        },
-        "ROE": {
-          "raw": "10,74%",
-          "num": 10.74
-        },
-        "ROA": {
-          "raw": "5,56%",
-          "num": 5.56
-        },
-        "ROIC": {
-          "raw": "10,09%",
-          "num": 10.09
-        },
-        "Giro ativos": {
-          "raw": "0,49",
-          "num": 0.49
-        },
-        "CAGR Receitas 5 anos": {
-          "raw": "6,68%",
-          "num": 6.68
-        },
-        "CAGR Lucros 5 anos": {
-          "raw": "8,48%",
-          "num": 8.48
-        }
-      }
     }
   }
 }
