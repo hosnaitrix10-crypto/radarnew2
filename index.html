@@ -1,257 +1,462 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radar — Status Invest</title>
+  <title>Radar B3 — Status Invest</title>
   <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-2: #1e293b;
+      --border: #293548;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-btn: #2563eb;
+      --ok: #4ade80;
+      --warn: #facc15;
+      --err: #f87171;
+    }
     * { box-sizing: border-box; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
       margin: 0;
       padding: 20px;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 18px;
     }
     h1 {
-      margin: 0 0 8px 0;
-      font-size: 24px;
+      margin: 0;
+      font-size: 26px;
       color: #f8fafc;
     }
-    .resumo {
-      margin-bottom: 16px;
-      color: #94a3b8;
-      font-size: 14px;
-      line-height: 1.5;
-      word-break: break-word;
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
     }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .card-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .card-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .card-val.ok { color: var(--ok); }
+    .card-val.warn { color: var(--warn); }
+    .card-val.err { color: var(--err); }
+
     .controles {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 16px;
+      background: var(--panel);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
     }
     input, select, button {
       padding: 9px 12px;
-      border-radius: 6px;
-      border: 1px solid #334155;
-      background: #1e293b;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
       color: #f8fafc;
       font-size: 14px;
     }
+    input { min-width: 220px; flex: 1; }
     button {
       cursor: pointer;
-      background: #1d4ed8;
-      border-color: #2563eb;
+      background: var(--accent-btn);
+      border-color: #3b82f6;
       font-weight: 600;
     }
-    button:hover {
-      background: #2563eb;
+    button:hover { background: #1d4ed8; }
+    button.sec {
+      background: var(--panel-2);
+      border-color: var(--border);
     }
+
     .tabela-wrap {
       width: 100%;
       overflow-x: auto;
-      background: #1e293b;
-      border-radius: 8px;
-      border: 1px solid #334155;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 560px;
+      min-width: 820px;
     }
     th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #334155;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
       text-align: left;
       font-size: 14px;
-      vertical-align: top;
     }
     th {
-      background: #020617;
-      color: #94a3b8;
-      font-weight: 600;
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    .ok { color: #4ade80; font-weight: 700; }
-    .nodata { color: #facc15; font-weight: 600; }
-    .neterr, .limit { color: #f87171; font-weight: 600; }
-    .erro-txt {
-      display: block;
-      color: #fca5a5;
+      background: #090e1a;
+      color: var(--muted);
       font-size: 12px;
-      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      user-select: none;
     }
-    a {
-      color: #38bdf8;
-      text-decoration: none;
+    th:hover { color: #f8fafc; }
+    tr:hover td { background: rgba(56, 189, 248, 0.04); }
+    tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
     }
-    a:hover {
-      text-decoration: underline;
+    .badge.ok { background: rgba(74, 222, 128, 0.14); color: var(--ok); }
+    .badge.nodata { background: rgba(250, 204, 21, 0.14); color: var(--warn); }
+    .badge.neterr, .badge.limit { background: rgba(248, 113, 113, 0.14); color: var(--err); }
+
+    .tipo-tag {
+      font-size: 12px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--panel-2);
+      color: #cbd5e1;
     }
-    .vazio {
-      text-align: center;
-      padding: 24px;
-      color: #94a3b8;
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
     }
+    .modal-backdrop.aberto { display: flex; }
+    .modal {
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .modal-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .grid-detalhes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .det-box {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .det-k { font-size: 12px; color: var(--muted); }
+    .det-v { font-size: 15px; font-weight: 700; margin-top: 4px; color: #f8fafc; }
+    .vazio { text-align: center; padding: 28px; color: var(--muted); }
   </style>
 </head>
 <body>
-  <h1>Radar — Status Invest</h1>
-  <div id="resumo" class="resumo">A carregar dados.json...</div>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>Radar B3 — Status Invest</h1>
+        <div id="atualizacao" class="sub">Carregando dados.json...</div>
+      </div>
+      <button id="btnAtualizar" type="button">Atualizar painel</button>
+    </div>
 
-  <div class="controles">
-    <input id="busca" type="text" placeholder="Filtrar ticker (ex.: PETR4, MXRF11)..." />
-    <select id="filtroTipo">
-      <option value="all">Todos os tipos</option>
-      <option value="stock">Ações (stock)</option>
-      <option value="fund">Fundos / FIIs (fund)</option>
-      <option value="bdr">BDRs (bdr)</option>
-    </select>
-    <select id="filtroStatus">
-      <option value="all">Todos os status</option>
-      <option value="ok">ok</option>
-      <option value="nodata">nodata</option>
-      <option value="neterr">neterr</option>
-      <option value="limit">limit</option>
-    </select>
-    <button id="btnAtualizar" type="button">Recarregar</button>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Total analisado</div>
+        <div id="mTotal" class="card-val">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Com dados (OK)</div>
+        <div id="mOk" class="card-val ok">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Sem dados</div>
+        <div id="mNoData" class="card-val warn">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Erro rede / Limite</div>
+        <div id="mErr" class="card-val err">0</div>
+      </div>
+    </div>
+
+    <div class="controles">
+      <input id="busca" type="text" placeholder="Buscar ticker ou indicador (ex.: PETR4, MXRF11, DY)..." />
+      <select id="filtroTipo">
+        <option value="all">Todos os tipos</option>
+        <option value="stock">Ações / Units</option>
+        <option value="fund">Fundos / FIIs</option>
+        <option value="bdr">BDRs</option>
+      </select>
+      <select id="filtroStatus">
+        <option value="all">Todos os status</option>
+        <option value="ok">ok</option>
+        <option value="nodata">nodata</option>
+        <option value="neterr">neterr</option>
+        <option value="limit">limit</option>
+      </select>
+      <select id="ordenarPor">
+        <option value="ticker_asc">Ticker (A → Z)</option>
+        <option value="valor_desc">Valor atual (maior → menor)</option>
+        <option value="dy_desc">Dividend Yield (maior → menor)</option>
+        <option value="var12m_desc">Valorização 12m (maior → menor)</option>
+      </select>
+    </div>
+
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Tipo</th>
+            <th>Status</th>
+            <th>Valor atual</th>
+            <th>DY</th>
+            <th>Var. 12m</th>
+            <th>Mín / Máx 52s</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody id="corpo">
+          <tr><td colspan="8" class="vazio">Carregando ativos...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="tabela-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Ticker</th>
-          <th>Tipo</th>
-          <th>Status</th>
-          <th>Indicadores extraídos</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody id="corpo">
-        <tr><td colspan="5" class="vazio">A carregar...</td></tr>
-      </tbody>
-    </table>
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-topo">
+        <h2 id="modalTitulo" style="margin: 0; font-size: 20px;">Detalhes</h2>
+        <button id="btnFecharModal" type="button" class="sec">Fechar</button>
+      </div>
+      <div id="modalSub" class="sub" style="margin-bottom: 14px;"></div>
+      <div id="modalGrid" class="grid-detalhes"></div>
+    </div>
   </div>
 
   <script>
-    let todosItens = [];
+    let itensBrutos = [];
 
-    function escaparHtml(str) {
-      return String(str ?? "")
+    function esc(v) {
+      return String(v ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
     }
 
-    function resumirIndicadores(dataObj) {
-      if (!dataObj || typeof dataObj !== "object") return "-";
-      const chaves = Object.keys(dataObj);
-      if (!chaves.length) return "-";
-      return chaves
-        .slice(0, 6)
-        .map((k) => {
-          const val = dataObj[k]?.raw ?? dataObj[k]?.num ?? "-";
-          return `${escaparHtml(k)}: ${escaparHtml(val)}`;
-        })
-        .join(" | ");
+    function acharIndicador(dataObj, termos) {
+      if (!dataObj || typeof dataObj !== "object") return { raw: "-", num: null };
+      const entradas = Object.entries(dataObj);
+      for (const termo of termos) {
+        const alvo = termo.toLowerCase();
+        for (const [chave, val] of entradas) {
+          if (chave.toLowerCase().includes(alvo)) {
+            return {
+              raw: val?.raw ?? (val?.num != null ? String(val.num) : "-"),
+              num: typeof val?.num === "number" && !Number.isNaN(val.num) ? val.num : null,
+            };
+          }
+        }
+      }
+      return { raw: "-", num: null };
+    }
+
+    function enriquecerItem(chave, valor) {
+      const base = valor && typeof valor === "object" ? valor : {};
+      const d = base.data || {};
+      const cotacao = acharIndicador(d, ["valor atual", "cotação", "cotacao", "preço", "preco"]);
+      const dy = acharIndicador(d, ["dividend yield", "dy"]);
+      const var12m = acharIndicador(d, ["valorização (12m)", "valorizacao (12m)", "12m"]);
+      const min52 = acharIndicador(d, ["min. 52 semanas", "mín. 52 semanas", "min 52"]);
+      const max52 = acharIndicador(d, ["máx. 52 semanas", "max. 52 semanas", "max 52"]);
+
+      return {
+        ticker: (base.ticker || chave || "").toUpperCase(),
+        type: base.type || "stock",
+        status: base.status || "nodata",
+        url: base.url || "",
+        error: base.error || "",
+        updatedAt: base.updatedAt || "",
+        data: d,
+        cotacao,
+        dy,
+        var12m,
+        minMax52: `${min52.raw} / ${max52.raw}`,
+      };
     }
 
     function renderizar() {
       const q = document.getElementById("busca").value.trim().toUpperCase();
       const tipo = document.getElementById("filtroTipo").value;
       const st = document.getElementById("filtroStatus").value;
+      const ordem = document.getElementById("ordenarPor").value;
       const corpo = document.getElementById("corpo");
 
-      const filtrados = todosItens.filter((item) => {
-        const tk = String(item.ticker || "").toUpperCase();
-        const matchTicker = !q || tk.includes(q);
-        const matchTipo = tipo === "all" || (item.type || "stock") === tipo;
+      let lista = itensBrutos.filter((item) => {
+        const matchTipo = tipo === "all" || item.type === tipo;
         const matchStatus = st === "all" || item.status === st;
-        return matchTicker && matchTipo && matchStatus;
+        const textoIndicadores = JSON.stringify(item.data || {}).toUpperCase();
+        const matchBusca = !q || item.ticker.includes(q) || textoIndicadores.includes(q);
+        return matchTipo && matchStatus && matchBusca;
       });
 
-      if (!filtrados.length) {
-        corpo.innerHTML = `<tr><td colspan="5" class="vazio">Nenhum registo encontrado com os filtros atuais.</td></tr>`;
+      lista.sort((a, b) => {
+        if (ordem === "valor_desc") return (b.cotacao.num ?? -Infinity) - (a.cotacao.num ?? -Infinity);
+        if (ordem === "dy_desc") return (b.dy.num ?? -Infinity) - (a.dy.num ?? -Infinity);
+        if (ordem === "var12m_desc") return (b.var12m.num ?? -Infinity) - (a.var12m.num ?? -Infinity);
+        return a.ticker.localeCompare(b.ticker);
+      });
+
+      if (!lista.length) {
+        corpo.innerHTML = `<tr><td colspan="8" class="vazio">Nenhum ativo encontrado com os filtros atuais.</td></tr>`;
         return;
       }
 
-      corpo.innerHTML = filtrados
-        .map((item) => {
-          const tk = escaparHtml(item.ticker || "-");
-          const tp = escaparHtml(item.type || "-");
-          const status = escaparHtml(item.status || "-");
-          const detalheErro = item.error && item.status !== "ok"
-            ? `<span class="erro-txt">${escaparHtml(item.error)}</span>`
-            : "";
-          const urlSegura = item.url && /^https?:\/\//i.test(item.url)
-            ? `<a href="${escaparHtml(item.url)}" target="_blank" rel="noopener noreferrer">Abrir</a>`
-            : "-";
+      corpo.innerHTML = lista.map((item) => {
+        const linkHtml = item.url && /^https?:\/\//i.test(item.url)
+          ? `<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">Status Invest</a>`
+          : "-";
 
-          return `
-            <tr>
-              <td><strong>${tk}</strong></td>
-              <td>${tp}</td>
-              <td>
-                <span class="${status}">${status}</span>
-                ${detalheErro}
-              </td>
-              <td>${resumirIndicadores(item.data)}</td>
-              <td>${urlSegura}</td>
-            </tr>
-          `;
-        })
-        .join("");
+        return `
+          <tr>
+            <td><strong>${esc(item.ticker)}</strong></td>
+            <td><span class="tipo-tag">${esc(item.type)}</span></td>
+            <td><span class="badge ${esc(item.status)}">${esc(item.status)}</span></td>
+            <td>${esc(item.cotacao.raw)}</td>
+            <td>${esc(item.dy.raw)}</td>
+            <td>${esc(item.var12m.raw)}</td>
+            <td>${esc(item.minMax52)}</td>
+            <td>
+              <button type="button" class="sec" onclick="abrirDetalhes('${esc(item.ticker)}')">Ver tudo</button>
+              ${linkHtml !== "-" ? ` · ${linkHtml}` : ""}
+            </td>
+          </tr>
+        `;
+      }).join("");
     }
 
-    async function carregar() {
-      const resumoEl = document.getElementById("resumo");
+    function abrirDetalhes(ticker) {
+      const item = itensBrutos.find((x) => x.ticker === ticker);
+      if (!item) return;
+
+      document.getElementById("modalTitulo").textContent = `${item.ticker} (${item.type})`;
+      document.getElementById("modalSub").textContent =
+        `Status: ${item.status} | Atualizado: ${item.updatedAt || "-"}${item.error ? ` | Obs: ${item.error}` : ""}`;
+
+      const entries = Object.entries(item.data || {});
+      const grid = document.getElementById("modalGrid");
+
+      if (!entries.length) {
+        grid.innerHTML = `<div class="vazio" style="grid-column: 1 / -1;">Sem indicadores detalhados salvos para este ativo.</div>`;
+      } else {
+        grid.innerHTML = entries.map(([k, v]) => `
+          <div class="det-box">
+            <div class="det-k">${esc(k)}</div>
+            <div class="det-v">${esc(v?.raw ?? v?.num ?? "-")}</div>
+          </div>
+        `).join("");
+      }
+
+      document.getElementById("modalBackdrop").classList.add("aberto");
+    }
+
+    function fecharModal() {
+      document.getElementById("modalBackdrop").classList.remove("aberto");
+    }
+
+    async function carregarDados() {
       try {
         const res = await fetch(`./dados.json?t=${Date.now()}`, { cache: "no-store" });
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status}`);
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        const itemsObj = json && typeof json.items === "object" && json.items !== null
-          ? json.items
-          : {};
 
-        todosItens = Object.entries(itemsObj).map(([chave, valor]) => ({
-          ticker: (valor && valor.ticker) || chave,
-          ...(valor && typeof valor === "object" ? valor : {}),
-        }));
+        const itemsObj = json && typeof json.items === "object" && json.items !== null ? json.items : {};
+        itensBrutos = Object.entries(itemsObj).map(([k, v]) => enriquecerItem(k, v));
 
-        const stats = json.stats || {
-          total: todosItens.length,
-          ok: todosItens.filter((i) => i.status === "ok").length,
-          nodata: todosItens.filter((i) => i.status === "nodata").length,
-          neterr: todosItens.filter((i) => i.status === "neterr").length,
-          limit: todosItens.filter((i) => i.status === "limit").length,
-        };
+        const stats = json.stats || {};
+        const total = stats.total ?? itensBrutos.length;
+        const ok = stats.ok ?? itensBrutos.filter((i) => i.status === "ok").length;
+        const nodata = stats.nodata ?? itensBrutos.filter((i) => i.status === "nodata").length;
+        const neterr = stats.neterr ?? itensBrutos.filter((i) => i.status === "neterr").length;
+        const limit = stats.limit ?? itensBrutos.filter((i) => i.status === "limit").length;
 
-        resumoEl.textContent =
-          `Atualizado em: ${json.updatedAt || "-"} | Total: ${stats.total ?? 0} | ` +
-          `OK: ${stats.ok ?? 0} | Sem dados: ${stats.nodata ?? 0} | ` +
-          `Erro rede: ${stats.neterr ?? 0} | Limite: ${stats.limit ?? 0}`;
+        document.getElementById("mTotal").textContent = total;
+        document.getElementById("mOk").textContent = ok;
+        document.getElementById("mNoData").textContent = nodata;
+        document.getElementById("mErr").textContent = neterr + limit;
+        document.getElementById("atualizacao").textContent =
+          `Fonte: Status Invest | Última atualização: ${json.updatedAt || "-"}`;
 
         renderizar();
       } catch (err) {
-        resumoEl.textContent = `Falha ao carregar dados.json: ${err.message || err}`;
+        document.getElementById("atualizacao").textContent = `Erro ao ler dados.json: ${err.message || err}`;
         document.getElementById("corpo").innerHTML =
-          `<tr><td colspan="5" class="vazio">Não foi possível ler dados.json.</td></tr>`;
+          `<tr><td colspan="8" class="vazio">Não foi possível carregar dados.json.</td></tr>`;
       }
     }
 
     document.getElementById("busca").addEventListener("input", renderizar);
     document.getElementById("filtroTipo").addEventListener("change", renderizar);
     document.getElementById("filtroStatus").addEventListener("change", renderizar);
-    document.getElementById("btnAtualizar").addEventListener("click", carregar);
+    document.getElementById("ordenarPor").addEventListener("change", renderizar);
+    document.getElementById("btnAtualizar").addEventListener("click", carregarDados);
+    document.getElementById("btnFecharModal").addEventListener("click", fecharModal);
+    document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+      if (e.target.id === "modalBackdrop") fecharModal();
+    });
 
-    carregar();
+    carregarDados();
   </script>
 </body>
 </html>
