@@ -2,7 +2,7 @@
 """Coleta catálogo multiclasse e dados de mercado para o Radar.
 
 Catálogo de descoberta: diretório público CotaLab (ações, FIIs, ETFs e BDRs).
-Fundamentos: Fundamentus (ações e FIIs) + enriquecimento forçado Status Invest.
+Fundamentos: Fundamentus (ações e FIIs) + enriquecimento Status Invest.
 Histórico de preços/proventos: Yahoo Finance via yfinance.
 """
 from __future__ import annotations
@@ -39,14 +39,57 @@ TIMEOUT = 35
 HISTORICO_ANOS = 3
 BATCH_COTACOES = 50
 MAX_PAGINAS = 60
-MAX_SI_ENRICH = 600  # Máximo de ativos consultados no Status Invest por execução
-MAX_SI_WORKERS = 6   # Concorrência controlada para maximizar chamadas sem derrubar o host
+MAX_SI_ENRICH = 600
+MAX_SI_WORKERS = 6
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
 TICKER_ACAO_RE = re.compile(r"^[A-Z]{4}(3|4|5|6|11)$")
 TICKER_FII_RE = re.compile(r"^[A-Z]{4}11$")
+
+SETOR_MAP = {
+    "finance": "Finance",
+    "financeiro": "Finance",
+    "bancos": "Finance",
+    "seguros": "Finance",
+    "energy minerals": "Energy Minerals",
+    "petroleo": "Energy Minerals",
+    "petróleo": "Energy Minerals",
+    "non-energy minerals": "Non-Energy Minerals",
+    "mineracao": "Non-Energy Minerals",
+    "mineração": "Non-Energy Minerals",
+    "siderurgia": "Non-Energy Minerals",
+    "utilities": "Utilities",
+    "utilidade publica": "Utilities",
+    "utilidade pública": "Utilities",
+    "energia eletrica": "Utilities",
+    "energia elétrica": "Utilities",
+    "saneamento": "Utilities",
+    "consumer non-durables": "Consumer Non-Durables",
+    "consumo nao duravel": "Consumer Non-Durables",
+    "consumo não durável": "Consumer Non-Durables",
+    "alimentos": "Consumer Non-Durables",
+    "bebidas": "Consumer Non-Durables",
+    "technology services": "Technology Services",
+    "servicos de tecnologia": "Technology Services",
+    "serviços de tecnologia": "Technology Services",
+}
+
+
+def normalizar_setor(raw: str | None) -> str:
+    if not raw:
+        return ""
+    limpo = re.sub(r"\s+", " ", str(raw).strip())
+    if not limpo or limpo.lower() in {"-", "--", "n/d", "none", "nan", "outros", "sem classificação"}:
+        return ""
+    chave = limpo.lower()
+    if chave in SETOR_MAP:
+        return SETOR_MAP[chave]
+    for k, v in SETOR_MAP.items():
+        if k in chave:
+            return v
+    return limpo
 
 
 def numero(v):
@@ -123,9 +166,17 @@ def parse_catalog_table(table):
                     if not re.fullmatch(r"[A-Z]{2,4}", v.strip()):
                         nome = v
                         break
-        setor = vals[-1] if len(vals) > 2 else ""
-        if setor.lower() in {"acoes", "ações", "fiis", "etfs", "bdrs"}:
-            setor = ""
+        setor = ""
+        for v in reversed(vals):
+            if v == ticker_cell or v == nome:
+                continue
+            if v.lower() in {"acoes", "ações", "fiis", "etfs", "bdrs"}:
+                continue
+            if numero(v) is not None:
+                continue
+            setor = normalizar_setor(v)
+            if setor:
+                break
         out.append({
             "t": ticker,
             "nome": nome or ticker,
@@ -290,14 +341,12 @@ def carregar_fundamentos(url, cat):
 
 
 def _extrair_blocos_lxml(html_str: str) -> dict[str, float]:
-    """Extrai pares rótulo -> valor numérico de cards/boxes do Status Invest via lxml."""
     encontrados: dict[str, float] = {}
     try:
         tree = lxml_html.fromstring(html_str)
     except Exception:
         return encontrados
 
-    # Procura containers típicos de indicadores (div/li/tr com título e valor)
     for node in tree.xpath("//*[self::div or self::li or self::tr]"):
         txt_parts = [re.sub(r"\s+", " ", x).strip() for x in node.xpath(".//text()") if x and x.strip()]
         if len(txt_parts) < 2:
@@ -305,7 +354,6 @@ def _extrair_blocos_lxml(html_str: str) -> dict[str, float]:
         joined = " ".join(txt_parts)
         if len(joined) > 160:
             continue
-        # Tenta casar rótulo curto no início e valor numérico próximo
         rotulo = " ".join(txt_parts[:-1]).lower()
         valor = numero(txt_parts[-1])
         if valor is None and len(txt_parts) >= 3:
@@ -316,7 +364,6 @@ def _extrair_blocos_lxml(html_str: str) -> dict[str, float]:
 
 
 def raspar_status_invest(ticker: str, cat: str = "acao") -> dict | None:
-    """Extrai indicadores do Status Invest para ação ou FII."""
     rota = "fiis" if cat == "fii" else "acoes"
     url = f"https://statusinvest.com.br/{rota}/{ticker.lower()}"
     try:
@@ -401,7 +448,6 @@ def raspar_status_invest(ticker: str, cat: str = "acao") -> dict | None:
 
 
 def _aplicar_si_no_ativo(a: dict, dados: dict) -> None:
-    # Força atualização quando o Status Invest traz valor válido
     if dados.get("pl") is not None:
         a["pl"] = dados["pl"]
     if dados.get("pvp") is not None:
@@ -424,7 +470,6 @@ def _aplicar_si_no_ativo(a: dict, dados: dict) -> None:
 
 
 def enriquecer_status_invest(ativos: list[dict]):
-    """Força coleta em massa do Status Invest para ações e FIIs."""
     alvos = [
         a
         for a in ativos
@@ -554,12 +599,13 @@ def main():
     catalogo = carregar_catalogo()
     print(f"[CATÁLOGO] {len(catalogo)} instrumentos únicos.", flush=True)
 
-    print("[2/5] Carregando fundamentos e forçando Status Invest...", flush=True)
+    print("[2/5] Carregando fundamentos e Status Invest...", flush=True)
     fund = {}
     fund.update(carregar_fundamentos("https://www.fundamentus.com.br/resultado.php", "acao"))
     fund.update(carregar_fundamentos("https://www.fundamentus.com.br/fii_resultado.php", "fii"))
 
     for a in catalogo:
+        a["setor"] = normalizar_setor(a.get("setor"))
         f = fund.get(a["t"], {})
         a.update({k: v for k, v in f.items() if k not in {"t", "cat"}})
         a.setdefault("p", None)
@@ -612,9 +658,9 @@ def main():
         "gerado": gerado,
         "gerado_ms": now_ms,
         "fonte": [
-            "CotaLab (catálogo secundário)",
-            "Status Invest (fundamentos primários/forçados)",
-            "Fundamentus (fundamentos complementares)",
+            "CotaLab (catálogo)",
+            "Status Invest (fundamentos)",
+            "Fundamentus (fundamentos)",
             "Yahoo Finance/yfinance (cotações e proventos)",
         ],
         "historico_anos": HISTORICO_ANOS,
