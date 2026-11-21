@@ -99339,7 +99339,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/rrrp3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:16.176986+00:00",
+=======
+      "updatedAt": "2026-11-21T19:39:59.727606+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99349,7 +99353,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/alos3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:16.795076+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:00.334473+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99359,7 +99367,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/alpa4",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:17.380032+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:00.916555+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99369,7 +99381,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/abev3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:17.976244+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:01.510326+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99379,7 +99395,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/arzz3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:18.581270+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:02.109840+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99389,7 +99409,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/asai3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:19.189275+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:02.693614+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99399,7 +99423,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/aure3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:19.815257+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:03.294791+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99409,7 +99437,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/azul4",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:20.413004+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:03.892391+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99419,7 +99451,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/azza3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:21.004256+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:04.490567+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99429,7 +99465,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/b3sa3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:21.590687+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:05.091874+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99439,7 +99479,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbse3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:22.170140+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:05.684212+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99449,7 +99493,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbdc3",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:22.785795+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:06.282179+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99459,7 +99507,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/bbdc4",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:23.369266+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:06.881794+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99469,7 +99521,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/brap4",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:23.965079+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:07.492107+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -99479,7 +99535,11 @@
       "source": "statusinvest",
       "status": "neterr",
       "url": "https://statusinvest.com.br/acoes/brkm5",
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-21T19:39:24.547209+00:00",
+=======
+      "updatedAt": "2026-11-21T19:40:08.090093+00:00",
+>>>>>>> Stashed changes
       "error": "HTTP 403",
       "data": {}
     },
@@ -104334,7 +104394,11 @@
       }
     }
   },
+<<<<<<< Updated upstream
   "updatedAt": "2026-11-21T19:39:25.178280+00:00",
+=======
+  "updatedAt": "2026-11-21T19:40:08.725618+00:00",
+>>>>>>> Stashed changes
   "stats": {
     "total": 283,
     "ok": 10,
