@@ -9,6 +9,7 @@ import requests
 
 CATALOGO_PATH = Path("catalogo_ativos.json")
 DADOS_PATH = Path("dados.json")
+PROXY_URL = os.getenv("STATUSINVEST_PROXY", "").strip()
 
 TICKERS_RESERVA = [
     ("PETR4", "stock"),
@@ -29,12 +30,9 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/127.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Cache-Control": "no-cache",
-    "Pragma": "no-cache",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7",
     "Referer": "https://statusinvest.com.br/",
-    "Upgrade-Insecure-Requests": "1",
 }
 
 
@@ -90,7 +88,6 @@ def extrair_dados_status_invest(html: str) -> dict:
         ".info-area .info",
         ".indicators .item",
         ".card .info",
-        ".company-description ~ div .info",
     ]
 
     for seletor in seletores_bloco:
@@ -102,29 +99,12 @@ def extrair_dados_status_invest(html: str) -> dict:
 
             chave = limpar_chave(titulo_el.get_text(" ", strip=True))
             valor_bruto = valor_el.get_text(" ", strip=True)
-            if not chave or not valor_bruto:
-                continue
-
-            if chave not in indicadores:
+            if chave and valor_bruto and chave not in indicadores:
                 indicadores[chave] = {
                     "raw": valor_bruto,
                     "num": parse_numero_br(valor_bruto),
                 }
 
-    for el in soup.select("[title]"):
-        titulo = limpar_chave(el.get("title", ""))
-        if not titulo or len(titulo) > 80:
-            continue
-        prox = el.find_next_sibling(["strong", "b", "span"])
-        if prox:
-            val_txt = prox.get_text(" ", strip=True)
-            if val_txt and titulo not in indicadores:
-                indicadores[titulo] = {
-                    "raw": val_txt,
-                    "num": parse_numero_br(val_txt),
-                }
-
-    # Garante pelo menos cotação/título se a página abriu mas os seletores mudaram
     if not indicadores:
         h1 = soup.select_one("h1")
         if h1:
@@ -136,21 +116,21 @@ def extrair_dados_status_invest(html: str) -> dict:
 
 
 def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 2):
+    proxies = {"http": PROXY_URL, "https": PROXY_URL} if PROXY_URL else None
+
     for tentativa in range(1, tentativas + 1):
         try:
-            resp = session.get(url, headers=HEADERS, timeout=15, allow_redirects=True)
+            resp = session.get(
+                url,
+                headers=HEADERS,
+                proxies=proxies,
+                timeout=15,
+                allow_redirects=True,
+            )
             if resp.status_code == 429:
-                if tentativa < tentativas:
-                    time.sleep(2.0 * tentativa)
-                    continue
                 return "limit", None, "HTTP 429"
             if resp.status_code == 404:
                 return "nodata", None, "HTTP 404"
-            if resp.status_code >= 500:
-                if tentativa < tentativas:
-                    time.sleep(1.5 * tentativa)
-                    continue
-                return "neterr", None, f"HTTP {resp.status_code}"
             if resp.status_code != 200:
                 return "neterr", None, f"HTTP {resp.status_code}"
 
@@ -163,7 +143,7 @@ def requisitar_com_retry(session: requests.Session, url: str, tentativas: int = 
             if tentativa < tentativas:
                 time.sleep(1.5 * tentativa)
                 continue
-            return "neterr", None, str(exc)
+            return "neterr", None, f"{type(exc).__name__}: {str(exc)[:140]}"
 
     return "neterr", None, "Falha desconhecida"
 
@@ -193,13 +173,11 @@ def extrair_lista_catalogo(raw) -> list[tuple[str, str]]:
             if isinstance(sub, list) and sub:
                 return extrair_lista_catalogo(sub)
 
-        # Caso seja um mapa {"PETR4": {...}, "VALE3": {...}}
         for k, v in raw.items():
             if str(k).upper() in {"META", "STATS", "UPDATEDAT", "SOURCE"}:
                 continue
             if isinstance(v, dict):
-                tp = v.get("type") or v.get("tipo") or "stock"
-                adicionar(k, tp)
+                adicionar(k, v.get("type") or v.get("tipo") or "stock")
             else:
                 adicionar(k, "stock")
 
@@ -208,42 +186,32 @@ def extrair_lista_catalogo(raw) -> list[tuple[str, str]]:
 
 def carregar_catalogo() -> list[tuple[str, str]]:
     if not CATALOGO_PATH.exists():
-        print("Aviso: catalogo_ativos.json nao encontrado; a usar lista de reserva.")
+        print("Aviso: catalogo_ativos.json ausente; a usar lista de reserva.")
         return TICKERS_RESERVA
-
     try:
         raw = json.loads(CATALOGO_PATH.read_text(encoding="utf-8"))
+        lista = extrair_lista_catalogo(raw)
+        if lista:
+            return lista
     except Exception as exc:
-        print(f"Aviso: falha ao ler catalogo_ativos.json ({exc}); a usar lista de reserva.")
-        return TICKERS_RESERVA
-
-    lista = extrair_lista_catalogo(raw)
-    if not lista:
-        print("Aviso: catalogo_ativos.json sem itens validos; a usar lista de reserva.")
-        return TICKERS_RESERVA
-
-    return lista
+        print(f"Aviso: erro em catalogo_ativos.json ({exc}); a usar lista de reserva.")
+    return TICKERS_RESERVA
 
 
 def carregar_dados_atuais() -> dict:
-    padrao = {
-        "source": "statusinvest",
-        "updatedAt": None,
-        "stats": {},
-        "items": {},
-    }
+    padrao = {"source": "statusinvest", "updatedAt": None, "stats": {}, "items": {}}
     if not DADOS_PATH.exists():
         return padrao
     try:
         data = json.loads(DADOS_PATH.read_text(encoding="utf-8"))
-        if not isinstance(data, dict):
-            return padrao
-        data["source"] = "statusinvest"
-        if not isinstance(data.get("items"), dict):
-            data["items"] = {}
-        return data
+        if isinstance(data, dict):
+            data["source"] = "statusinvest"
+            if not isinstance(data.get("items"), dict):
+                data["items"] = {}
+            return data
     except Exception:
-        return padrao
+        pass
+    return padrao
 
 
 def calcular_stats(items: dict) -> dict:
@@ -271,7 +239,7 @@ def main():
         return (2, atual.get("updatedAt") or "")
 
     fila = sorted(catalogo, key=prioridade)[:batch_size]
-    print(f"Catalogo: {len(catalogo)} ativos | Lote atual: {len(fila)}")
+    print(f"Ativos na fila: {len(fila)} | Proxy ativo: {'sim' if PROXY_URL else 'nao'}")
 
     session = requests.Session()
     try:
@@ -304,7 +272,7 @@ def main():
                     "data": (items.get(ticker) or {}).get("data", {}),
                 }
 
-            print(f"  {ticker} ({tipo_norm}) -> {items[ticker]['status']} ({err or 'ok'})")
+            print(f"  {ticker}: {items[ticker]['status']} -> {err or 'ok'}")
             time.sleep(0.7)
     finally:
         session.close()
@@ -317,7 +285,7 @@ def main():
         json.dumps(base, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    print("Resumo final:", base["stats"])
+    print("Resumo:", base["stats"])
 
 
 if __name__ == "__main__":
