@@ -97459,109 +97459,2383 @@
       "ticker": "PETR4",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/acoes/petr4",
-      "updatedAt": "2026-11-21T19:05:04.899713+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:41.860898+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "42,67",
+          "num": 42.67
+        },
+        "Min. 52 semanas": {
+          "raw": "28,12",
+          "num": 28.12
+        },
+        "Máx. 52 semanas": {
+          "raw": "59,68",
+          "num": 59.68
+        },
+        "Dividend Yield": {
+          "raw": "8,59",
+          "num": 8.59
+        },
+        "Valorização (12m)": {
+          "raw": "42,14%",
+          "num": 42.14
+        },
+        "Tipo": {
+          "raw": "PN",
+          "num": "PN"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,04",
+          "num": 0.04
+        },
+        "DOADOR (média)": {
+          "raw": "0,04",
+          "num": 0.04
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "14.738.243",
+          "num": 14738243.0
+        },
+        "VOLUME (dia)": {
+          "raw": "538.682.782",
+          "num": 538682782.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "3.384",
+          "num": 3384.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "1,9744",
+          "num": 1.9744
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "2,7050",
+          "num": 2.705
+        },
+        "Comparação": {
+          "raw": "37,00%",
+          "num": 37.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "1,1873",
+          "num": 1.1873
+        },
+        "Comparação + Provisionado": {
+          "raw": "97,13%",
+          "num": 97.13
+        },
+        "Ativos": {
+          "raw": "1.326.467.000.000",
+          "num": 1326467000000.0
+        },
+        "Ativo circulante": {
+          "raw": "181.761.000.000",
+          "num": 181761000000.0
+        },
+        "Dívida bruta": {
+          "raw": "362.505.000.000",
+          "num": 362505000000.0
+        },
+        "Disponibilidade": {
+          "raw": "62.636.000.000",
+          "num": 62636000000.0
+        },
+        "Dívida líquida": {
+          "raw": "299.869.000.000",
+          "num": 299869000000.0
+        },
+        "Valor de mercado": {
+          "raw": "594.317.925.949",
+          "num": 594317925949.0
+        },
+        "Valor de firma": {
+          "raw": "894.186.925.949",
+          "num": 894186925949.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 7.442.231.382 PN 5.446.501.379": {
+          "raw": "12.888.732.761",
+          "num": 12888732761.0
+        },
+        "Segmento de listagem": {
+          "raw": "Nível 2",
+          "num": "Nível 2"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 7.889.437.525 Total de cada tipo de papel: ON 46,74% 3.478.479.815 PN 80,99% 4.410.957.710": {
+          "raw": "61,21%",
+          "num": 61.21
+        },
+        "D.Y": {
+          "raw": "8,59%",
+          "num": 8.59
+        },
+        "P/L": {
+          "raw": "3,92",
+          "num": 3.92
+        },
+        "PEG Ratio": {
+          "raw": "0,05",
+          "num": 0.05
+        },
+        "P/VP": {
+          "raw": "1,09",
+          "num": 1.09
+        },
+        "EV/EBITDA": {
+          "raw": "2,08",
+          "num": 2.08
+        },
+        "EV/EBIT": {
+          "raw": "4,44",
+          "num": 4.44
+        },
+        "P/EBITDA": {
+          "raw": "1,28",
+          "num": 1.28
+        },
+        "P/EBIT": {
+          "raw": "2,73",
+          "num": 2.73
+        },
+        "VPA": {
+          "raw": "39,16",
+          "num": 39.16
+        },
+        "P/Ativo": {
+          "raw": "0,41",
+          "num": 0.41
+        },
+        "LPA": {
+          "raw": "10,89",
+          "num": 10.89
+        },
+        "P/SR": {
+          "raw": "0,93",
+          "num": 0.93
+        },
+        "P/Cap. Giro": {
+          "raw": "-26,66",
+          "num": -26.66
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,48",
+          "num": -0.48
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,59",
+          "num": 0.59
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "0,70",
+          "num": 0.7
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "1,49",
+          "num": 1.49
+        },
+        "PL/Ativos": {
+          "raw": "0,38",
+          "num": 0.38
+        },
+        "Passivos/Ativos": {
+          "raw": "0,62",
+          "num": 0.62
+        },
+        "Liq. corrente": {
+          "raw": "0,90",
+          "num": 0.9
+        },
+        "M. Bruta": {
+          "raw": "52,09%",
+          "num": 52.09
+        },
+        "M. EBITDA": {
+          "raw": "72,70%",
+          "num": 72.7
+        },
+        "M. EBIT": {
+          "raw": "34,17%",
+          "num": 34.17
+        },
+        "M. Líquida": {
+          "raw": "23,80%",
+          "num": 23.8
+        },
+        "ROE": {
+          "raw": "27,82%",
+          "num": 27.82
+        },
+        "ROA": {
+          "raw": "10,59%",
+          "num": 10.59
+        },
+        "ROIC": {
+          "raw": "11,74%",
+          "num": 11.74
+        },
+        "Giro ativos": {
+          "raw": "0,44",
+          "num": 0.44
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "12,83%",
+          "num": 12.83
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "81,61%",
+          "num": 81.61
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "Artigo detalhando Patrimônio líquido": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida bruta": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida líquida": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de mercado": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de firma": {
+          "raw": "R$",
+          "num": null
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "VALE3": {
       "ticker": "VALE3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/acoes/vale3",
-      "updatedAt": "2026-11-21T19:05:05.669844+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:42.969704+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "58,48",
+          "num": 58.48
+        },
+        "Min. 52 semanas": {
+          "raw": "58,48",
+          "num": 58.48
+        },
+        "Máx. 52 semanas": {
+          "raw": "87,96",
+          "num": 87.96
+        },
+        "Dividend Yield": {
+          "raw": "9,60",
+          "num": 9.6
+        },
+        "Valorização (12m)": {
+          "raw": "-3,48%",
+          "num": -3.48
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,06",
+          "num": 0.06
+        },
+        "DOADOR (média)": {
+          "raw": "0,06",
+          "num": 0.06
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "6.890.736",
+          "num": 6890736.0
+        },
+        "VOLUME (dia)": {
+          "raw": "417.578.602",
+          "num": 417578602.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "609",
+          "num": 609.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "4,0372",
+          "num": 4.0372
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "2,0307",
+          "num": 2.0307
+        },
+        "Comparação": {
+          "raw": "49,70%",
+          "num": 49.7
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "49,70%",
+          "num": 49.7
+        },
+        "Ativos": {
+          "raw": "458.197.000.000",
+          "num": 458197000000.0
+        },
+        "Ativo circulante": {
+          "raw": "87.794.000.000",
+          "num": 87794000000.0
+        },
+        "Dívida bruta": {
+          "raw": "93.944.000.000",
+          "num": 93944000000.0
+        },
+        "Disponibilidade": {
+          "raw": "26.094.000.000",
+          "num": 26094000000.0
+        },
+        "Dívida líquida": {
+          "raw": "67.850.000.000",
+          "num": 67850000000.0
+        },
+        "Valor de mercado": {
+          "raw": "259.602.062.999",
+          "num": 259602062999.0
+        },
+        "Valor de firma": {
+          "raw": "327.452.062.999",
+          "num": 327452062999.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 4.439.159.752 PN 12": {
+          "raw": "4.439.159.764",
+          "num": 4439159764.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 4.262.140.830 Total de cada tipo de papel: ON 96,01% 4.262.140.818 PN 100,00% 12": {
+          "raw": "96,01%",
+          "num": 96.01
+        },
+        "D.Y": {
+          "raw": "9,60%",
+          "num": 9.6
+        },
+        "P/L": {
+          "raw": "118,65",
+          "num": 118.65
+        },
+        "PEG Ratio": {
+          "raw": "-1,28",
+          "num": -1.28
+        },
+        "P/VP": {
+          "raw": "1,33",
+          "num": 1.33
+        },
+        "EV/EBITDA": {
+          "raw": "4,49",
+          "num": 4.49
+        },
+        "EV/EBIT": {
+          "raw": "12,99",
+          "num": 12.99
+        },
+        "P/EBITDA": {
+          "raw": "3,56",
+          "num": 3.56
+        },
+        "P/EBIT": {
+          "raw": "10,30",
+          "num": 10.3
+        },
+        "VPA": {
+          "raw": "43,87",
+          "num": 43.87
+        },
+        "P/Ativo": {
+          "raw": "0,57",
+          "num": 0.57
+        },
+        "LPA": {
+          "raw": "0,49",
+          "num": 0.49
+        },
+        "P/SR": {
+          "raw": "1,20",
+          "num": 1.2
+        },
+        "P/Cap. Giro": {
+          "raw": "31,79",
+          "num": 31.79
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,70",
+          "num": -0.7
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,35",
+          "num": 0.35
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "0,93",
+          "num": 0.93
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,69",
+          "num": 2.69
+        },
+        "PL/Ativos": {
+          "raw": "0,43",
+          "num": 0.43
+        },
+        "Passivos/Ativos": {
+          "raw": "0,56",
+          "num": 0.56
+        },
+        "Liq. corrente": {
+          "raw": "1,10",
+          "num": 1.1
+        },
+        "M. Bruta": {
+          "raw": "32,06%",
+          "num": 32.06
+        },
+        "M. EBITDA": {
+          "raw": "33,79%",
+          "num": 33.79
+        },
+        "M. EBIT": {
+          "raw": "11,68%",
+          "num": 11.68
+        },
+        "M. Líquida": {
+          "raw": "1,01%",
+          "num": 1.01
+        },
+        "ROE": {
+          "raw": "1,12%",
+          "num": 1.12
+        },
+        "ROA": {
+          "raw": "0,48%",
+          "num": 0.48
+        },
+        "ROIC": {
+          "raw": "-2,67%",
+          "num": -2.67
+        },
+        "Giro ativos": {
+          "raw": "0,47",
+          "num": 0.47
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "0,72%",
+          "num": 0.72
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-39,37%",
+          "num": -39.37
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "Artigo detalhando Patrimônio líquido": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida bruta": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida líquida": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de mercado": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de firma": {
+          "raw": "R$",
+          "num": null
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "ITUB4": {
       "ticker": "ITUB4",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/acoes/itub4",
-      "updatedAt": "2026-11-21T19:05:06.429818+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:44.182786+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "40,07",
+          "num": 40.07
+        },
+        "Min. 52 semanas": {
+          "raw": "35,97",
+          "num": 35.97
+        },
+        "Máx. 52 semanas": {
+          "raw": "50,47",
+          "num": 50.47
+        },
+        "Dividend Yield": {
+          "raw": "7,80",
+          "num": 7.8
+        },
+        "Valorização (12m)": {
+          "raw": "11,40%",
+          "num": 11.4
+        },
+        "Tipo": {
+          "raw": "PN",
+          "num": "PN"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,06",
+          "num": 0.06
+        },
+        "DOADOR (média)": {
+          "raw": "0,06",
+          "num": 0.06
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "9.739.627",
+          "num": 9739627.0
+        },
+        "VOLUME (dia)": {
+          "raw": "336.796.302",
+          "num": 336796302.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "4.619",
+          "num": 4619.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "2,4701",
+          "num": 2.4701
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,8441",
+          "num": 0.8441
+        },
+        "Comparação": {
+          "raw": "65,83%",
+          "num": 65.83
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0182",
+          "num": 0.0182
+        },
+        "Comparação + Provisionado": {
+          "raw": "65,09%",
+          "num": 65.09
+        },
+        "Ativos": {
+          "raw": "3.323.991.000.000",
+          "num": 3323991000000.0
+        },
+        "Ativo circulante": {
+          "raw": "34.263.000.000",
+          "num": 34263000000.0
+        },
+        "Dívida bruta": {
+          "raw": "-",
+          "num": null
+        },
+        "Disponibilidade": {
+          "raw": "15.670.000.000",
+          "num": 15670000000.0
+        },
+        "Dívida líquida": {
+          "raw": "-",
+          "num": null
+        },
+        "Valor de mercado": {
+          "raw": "466.283.830.473",
+          "num": 466283830473.0
+        },
+        "Valor de firma": {
+          "raw": "466.283.830.473",
+          "num": 466283830473.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 5.617.742.977 PN 5.409.126.215": {
+          "raw": "11.026.869.192",
+          "num": 11026869192.0
+        },
+        "Segmento de listagem": {
+          "raw": "Nível 1",
+          "num": "Nível 1"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 5.794.029.158 Total de cada tipo de papel: ON 8,12% 456.130.473 PN 98,68% 5.337.898.685": {
+          "raw": "52,54%",
+          "num": 52.54
+        },
+        "D.Y": {
+          "raw": "7,80%",
+          "num": 7.8
+        },
+        "P/L": {
+          "raw": "9,25",
+          "num": 9.25
+        },
+        "PEG Ratio": {
+          "raw": "1,02",
+          "num": 1.02
+        },
+        "P/VP": {
+          "raw": "1,93",
+          "num": 1.93
+        },
+        "EV/EBITDA": {
+          "raw": "7,44",
+          "num": 7.44
+        },
+        "EV/EBIT": {
+          "raw": "8,44",
+          "num": 8.44
+        },
+        "P/EBITDA": {
+          "raw": "7,05",
+          "num": 7.05
+        },
+        "P/EBIT": {
+          "raw": "8,00",
+          "num": 8.0
+        },
+        "VPA": {
+          "raw": "20,79",
+          "num": 20.79
+        },
+        "P/Ativo": {
+          "raw": "0,13",
+          "num": 0.13
+        },
+        "LPA": {
+          "raw": "4,33",
+          "num": 4.33
+        },
+        "P/SR": {
+          "raw": "1,11",
+          "num": 1.11
+        },
+        "P/Cap. Giro": {
+          "raw": "-1,86",
+          "num": -1.86
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,13",
+          "num": -0.13
+        },
+        "Dív. líquida/PL": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "-",
+          "num": null
+        },
+        "PL/Ativos": {
+          "raw": "0,07",
+          "num": 0.07
+        },
+        "Passivos/Ativos": {
+          "raw": "0,93",
+          "num": 0.93
+        },
+        "Liq. corrente": {
+          "raw": "0,13",
+          "num": 0.13
+        },
+        "M. Bruta": {
+          "raw": "36,88%",
+          "num": 36.88
+        },
+        "M. EBITDA": {
+          "raw": "15,72%",
+          "num": 15.72
+        },
+        "M. EBIT": {
+          "raw": "13,85%",
+          "num": 13.85
+        },
+        "M. Líquida": {
+          "raw": "11,97%",
+          "num": 11.97
+        },
+        "ROE": {
+          "raw": "20,83%",
+          "num": 20.83
+        },
+        "ROA": {
+          "raw": "1,44%",
+          "num": 1.44
+        },
+        "ROIC": {
+          "raw": "-%",
+          "num": null
+        },
+        "Giro ativos": {
+          "raw": "0,12",
+          "num": 0.12
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "17,38%",
+          "num": 17.38
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "20,37%",
+          "num": 20.37
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "Artigo detalhando Patrimônio líquido": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida bruta": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida líquida": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de mercado": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de firma": {
+          "raw": "R$",
+          "num": null
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "BBAS3": {
       "ticker": "BBAS3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/acoes/bbas3",
-      "updatedAt": "2026-11-21T19:05:07.190597+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:45.289942+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "14,30",
+          "num": 14.3
+        },
+        "Min. 52 semanas": {
+          "raw": "14,12",
+          "num": 14.12
+        },
+        "Máx. 52 semanas": {
+          "raw": "27,36",
+          "num": 27.36
+        },
+        "Dividend Yield": {
+          "raw": "4,83",
+          "num": 4.83
+        },
+        "Valorização (12m)": {
+          "raw": "-33,21%",
+          "num": -33.21
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,19",
+          "num": 0.19
+        },
+        "DOADOR (média)": {
+          "raw": "0,19",
+          "num": 0.19
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "1.614.653",
+          "num": 1614653.0
+        },
+        "VOLUME (dia)": {
+          "raw": "90.372.128",
+          "num": 90372128.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "318",
+          "num": 318.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "1,0651",
+          "num": 1.0651
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,5727",
+          "num": 0.5727
+        },
+        "Comparação": {
+          "raw": "46,23%",
+          "num": 46.23
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "46,23%",
+          "num": 46.23
+        },
+        "Ativos": {
+          "raw": "2.552.481.433.000",
+          "num": 2552481433000.0
+        },
+        "Ativo circulante": {
+          "raw": "62.581.940.000",
+          "num": 62581940000.0
+        },
+        "Dívida bruta": {
+          "raw": "-",
+          "num": null
+        },
+        "Disponibilidade": {
+          "raw": "62.581.940.000",
+          "num": 62581940000.0
+        },
+        "Dívida líquida": {
+          "raw": "-",
+          "num": null
+        },
+        "Valor de mercado": {
+          "raw": "81.950.926.772",
+          "num": 81950926772.0
+        },
+        "Valor de firma": {
+          "raw": "81.950.926.772",
+          "num": 81950926772.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 5.730.834.040 PN 0": {
+          "raw": "5.730.834.040",
+          "num": 5730834040.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 2.842.760.965 Total de cada tipo de papel: ON 49,60% 2.842.760.965 PN --% --": {
+          "raw": "49,60%",
+          "num": 49.6
+        },
+        "D.Y": {
+          "raw": "4,83%",
+          "num": 4.83
+        },
+        "P/L": {
+          "raw": "5,79",
+          "num": 5.79
+        },
+        "PEG Ratio": {
+          "raw": "-0,52",
+          "num": -0.52
+        },
+        "P/VP": {
+          "raw": "0,44",
+          "num": 0.44
+        },
+        "EV/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "EV/EBIT": {
+          "raw": "22,65",
+          "num": 22.65
+        },
+        "P/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "P/EBIT": {
+          "raw": "22,65",
+          "num": 22.65
+        },
+        "VPA": {
+          "raw": "32,48",
+          "num": 32.48
+        },
+        "P/Ativo": {
+          "raw": "0,03",
+          "num": 0.03
+        },
+        "LPA": {
+          "raw": "2,47",
+          "num": 2.47
+        },
+        "P/SR": {
+          "raw": "0,25",
+          "num": 0.25
+        },
+        "P/Cap. Giro": {
+          "raw": "1,48",
+          "num": 1.48
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,03",
+          "num": -0.03
+        },
+        "Dív. líquida/PL": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-",
+          "num": null
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "-",
+          "num": null
+        },
+        "PL/Ativos": {
+          "raw": "0,07",
+          "num": 0.07
+        },
+        "Passivos/Ativos": {
+          "raw": "0,92",
+          "num": 0.92
+        },
+        "Liq. corrente": {
+          "raw": "8,80",
+          "num": 8.8
+        },
+        "M. Bruta": {
+          "raw": "31,09%",
+          "num": 31.09
+        },
+        "M. EBITDA": {
+          "raw": "-%",
+          "num": null
+        },
+        "M. EBIT": {
+          "raw": "1,10%",
+          "num": 1.1
+        },
+        "M. Líquida": {
+          "raw": "4,32%",
+          "num": 4.32
+        },
+        "ROE": {
+          "raw": "7,60%",
+          "num": 7.6
+        },
+        "ROA": {
+          "raw": "0,55%",
+          "num": 0.55
+        },
+        "ROIC": {
+          "raw": "-%",
+          "num": null
+        },
+        "Giro ativos": {
+          "raw": "0,13",
+          "num": 0.13
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "26,49%",
+          "num": 26.49
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "1,26%",
+          "num": 1.26
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "Artigo detalhando Patrimônio líquido": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida bruta": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida líquida": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de mercado": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de firma": {
+          "raw": "R$",
+          "num": null
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "WEGE3": {
       "ticker": "WEGE3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/acoes/wege3",
-      "updatedAt": "2026-11-21T19:05:07.935483+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:46.466214+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "51,13",
+          "num": 51.13
+        },
+        "Min. 52 semanas": {
+          "raw": "41,34",
+          "num": 41.34
+        },
+        "Máx. 52 semanas": {
+          "raw": "53,83",
+          "num": 53.83
+        },
+        "Dividend Yield": {
+          "raw": "2,30",
+          "num": 2.3
+        },
+        "Valorização (12m)": {
+          "raw": "23,03%",
+          "num": 23.03
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,12",
+          "num": 0.12
+        },
+        "DOADOR (média)": {
+          "raw": "0,12",
+          "num": 0.12
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "9.804.278",
+          "num": 9804278.0
+        },
+        "VOLUME (dia)": {
+          "raw": "377.954.917",
+          "num": 377954917.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "315",
+          "num": 315.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,7591",
+          "num": 0.7591
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,3118",
+          "num": 0.3118
+        },
+        "Comparação": {
+          "raw": "58,93%",
+          "num": 58.93
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "58,93%",
+          "num": 58.93
+        },
+        "Ativos": {
+          "raw": "45.635.446.000",
+          "num": 45635446000.0
+        },
+        "Ativo circulante": {
+          "raw": "28.416.086.000",
+          "num": 28416086000.0
+        },
+        "Dívida bruta": {
+          "raw": "3.754.445.000",
+          "num": 3754445000.0
+        },
+        "Disponibilidade": {
+          "raw": "6.339.447.000",
+          "num": 6339447000.0
+        },
+        "Dívida líquida": {
+          "raw": "-2.585.002.000",
+          "num": -2585002000.0
+        },
+        "Valor de mercado": {
+          "raw": "214.608.869.238",
+          "num": 214608869238.0
+        },
+        "Valor de firma": {
+          "raw": "212.023.867.238",
+          "num": 212023867238.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 4.197.317.998 PN 0": {
+          "raw": "4.197.317.998",
+          "num": 4197317998.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 1.460.506.056 Total de cada tipo de papel: ON 34,80% 1.460.506.056 PN --% --": {
+          "raw": "34,80%",
+          "num": 34.8
+        },
+        "D.Y": {
+          "raw": "2,30%",
+          "num": 2.3
+        },
+        "P/L": {
+          "raw": "34,23",
+          "num": 34.23
+        },
+        "PEG Ratio": {
+          "raw": "-10,37",
+          "num": -10.37
+        },
+        "P/VP": {
+          "raw": "10,75",
+          "num": 10.75
+        },
+        "EV/EBITDA": {
+          "raw": "23,39",
+          "num": 23.39
+        },
+        "EV/EBIT": {
+          "raw": "26,89",
+          "num": 26.89
+        },
+        "P/EBITDA": {
+          "raw": "23,67",
+          "num": 23.67
+        },
+        "P/EBIT": {
+          "raw": "27,22",
+          "num": 27.22
+        },
+        "VPA": {
+          "raw": "4,75",
+          "num": 4.75
+        },
+        "P/Ativo": {
+          "raw": "4,70",
+          "num": 4.7
+        },
+        "LPA": {
+          "raw": "1,49",
+          "num": 1.49
+        },
+        "P/SR": {
+          "raw": "5,27",
+          "num": 5.27
+        },
+        "P/Cap. Giro": {
+          "raw": "21,56",
+          "num": 21.56
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-12,46",
+          "num": -12.46
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,13",
+          "num": -0.13
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-0,29",
+          "num": -0.29
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "-0,33",
+          "num": -0.33
+        },
+        "PL/Ativos": {
+          "raw": "0,44",
+          "num": 0.44
+        },
+        "Passivos/Ativos": {
+          "raw": "0,53",
+          "num": 0.53
+        },
+        "Liq. corrente": {
+          "raw": "1,54",
+          "num": 1.54
+        },
+        "M. Bruta": {
+          "raw": "32,96%",
+          "num": 32.96
+        },
+        "M. EBITDA": {
+          "raw": "22,26%",
+          "num": 22.26
+        },
+        "M. EBIT": {
+          "raw": "19,36%",
+          "num": 19.36
+        },
+        "M. Líquida": {
+          "raw": "15,40%",
+          "num": 15.4
+        },
+        "ROE": {
+          "raw": "31,41%",
+          "num": 31.41
+        },
+        "ROA": {
+          "raw": "13,74%",
+          "num": 13.74
+        },
+        "ROIC": {
+          "raw": "26,00%",
+          "num": 26.0
+        },
+        "Giro ativos": {
+          "raw": "0,89",
+          "num": 0.89
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "18,49%",
+          "num": 18.49
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "21,78%",
+          "num": 21.78
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "Artigo detalhando Patrimônio líquido": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida bruta": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Dívida líquida": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de mercado": {
+          "raw": "R$",
+          "num": null
+        },
+        "Artigo detalhando Valor de firma": {
+          "raw": "R$",
+          "num": null
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "MXRF11": {
       "ticker": "MXRF11",
       "type": "fund",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
-      "updatedAt": "2026-11-21T19:05:08.700199+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:47.571055+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "8,50",
+          "num": 8.5
+        },
+        "Min. 52 semanas": {
+          "raw": "8,39",
+          "num": 8.39
+        },
+        "Máx. 52 semanas": {
+          "raw": "9,92",
+          "num": 9.92
+        },
+        "Dividend Yield help_outline Indicador utilizado para relacionar os proventos pagos pelo FII e o preço atual de suas cotas. Observação: O Dividend Yield foi calculado com base no valor bruto dos proventos com a DATA COM entre 21/11/2025 e 21/11/2026. Amortizações não são consideradas no cálculo.": {
+          "raw": "14,00",
+          "num": 14.0
+        },
+        "Valorização (12m)": {
+          "raw": "-2,30%",
+          "num": -2.3
+        },
+        "Val. patrim. p/cota": {
+          "raw": "9,26",
+          "num": 9.26
+        },
+        "P/VP": {
+          "raw": "0,92",
+          "num": 0.92
+        },
+        "Valor em caixa": {
+          "raw": "17,65",
+          "num": 17.65
+        },
+        "DY CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual de dividendos em dinheiro por cota nos últimos 3 anos": {
+          "raw": "0,00",
+          "num": 0.0
+        },
+        "Valor CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual por cota nos últimos 3 anos": {
+          "raw": "2,99",
+          "num": 2.99
+        },
+        "Nº de Cotistas": {
+          "raw": "1.509.087",
+          "num": 1509087.0
+        },
+        "PARTIC. NO IFIX": {
+          "raw": "3,567",
+          "num": 3.567
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,9700",
+          "num": 0.97
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,9900",
+          "num": 0.99
+        },
+        "Comparação": {
+          "raw": "2,06%",
+          "num": 2.06
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "2,06%",
+          "num": 2.06
+        },
+        "TOMADOR (média)": {
+          "raw": "1,42",
+          "num": 1.42
+        },
+        "DOADOR (média)": {
+          "raw": "1,42",
+          "num": 1.42
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "19.069",
+          "num": 19069.0
+        },
+        "VOLUME (dia)": {
+          "raw": "200.034",
+          "num": 200034.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "194",
+          "num": 194.0
+        },
+        "CNPJ": {
+          "raw": "97.521.225/0001-25",
+          "num": "97.521.225/0001-25"
+        },
+        "Nome Pregão": {
+          "raw": "Maxi Renda",
+          "num": "Maxi Renda"
+        },
+        "Ínicio do fundo": {
+          "raw": "04/07/2011",
+          "num": "04/07/2011"
+        },
+        "Prazo de duração": {
+          "raw": "Indeterminado",
+          "num": "Indeterminado"
+        },
+        "Segmento ANBIMA": {
+          "raw": "Logística",
+          "num": "Logística"
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pelo fundo direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pelo fundo": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "HGLG11": {
       "ticker": "HGLG11",
       "type": "fund",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
-      "updatedAt": "2026-11-21T19:05:09.466182+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:48.684991+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "141,80",
+          "num": 141.8
+        },
+        "Min. 52 semanas": {
+          "raw": "141,80",
+          "num": 141.8
+        },
+        "Máx. 52 semanas": {
+          "raw": "159,66",
+          "num": 159.66
+        },
+        "Dividend Yield help_outline Indicador utilizado para relacionar os proventos pagos pelo FII e o preço atual de suas cotas. Observação: O Dividend Yield foi calculado com base no valor bruto dos proventos com a DATA COM entre 21/11/2025 e 21/11/2026. Amortizações não são consideradas no cálculo.": {
+          "raw": "9,51",
+          "num": 9.51
+        },
+        "Valorização (12m)": {
+          "raw": "-5,32%",
+          "num": -5.32
+        },
+        "Val. patrim. p/cota": {
+          "raw": "166,43",
+          "num": 166.43
+        },
+        "P/VP": {
+          "raw": "0,85",
+          "num": 0.85
+        },
+        "Valor em caixa": {
+          "raw": "1,46",
+          "num": 1.46
+        },
+        "DY CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual de dividendos em dinheiro por cota nos últimos 3 anos": {
+          "raw": "0,70",
+          "num": 0.7
+        },
+        "Valor CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual por cota nos últimos 3 anos": {
+          "raw": "3,28",
+          "num": 3.28
+        },
+        "Nº de Cotistas": {
+          "raw": "608.345",
+          "num": 608345.0
+        },
+        "PARTIC. NO IFIX": {
+          "raw": "4,784",
+          "num": 4.784
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "11,0000",
+          "num": 11.0
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "11,2800",
+          "num": 11.28
+        },
+        "Comparação": {
+          "raw": "2,55%",
+          "num": 2.55
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "2,55%",
+          "num": 2.55
+        },
+        "TOMADOR (média)": {
+          "raw": "0,67",
+          "num": 0.67
+        },
+        "DOADOR (média)": {
+          "raw": "0,67",
+          "num": 0.67
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "633",
+          "num": 633.0
+        },
+        "VOLUME (dia)": {
+          "raw": "106.344",
+          "num": 106344.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "35",
+          "num": 35.0
+        },
+        "CNPJ": {
+          "raw": "11.728.688/0001-47",
+          "num": "11.728.688/0001-47"
+        },
+        "Nome Pregão": {
+          "raw": "PÁTRIA LOG",
+          "num": "PÁTRIA LOG"
+        },
+        "Ínicio do fundo": {
+          "raw": "06/05/2010",
+          "num": "06/05/2010"
+        },
+        "Prazo de duração": {
+          "raw": "Indeterminado",
+          "num": "Indeterminado"
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pelo fundo direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pelo fundo": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "XPML11": {
       "ticker": "XPML11",
       "type": "fund",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
-      "updatedAt": "2026-11-21T19:05:10.234272+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:49.712202+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "81,99",
+          "num": 81.99
+        },
+        "Min. 52 semanas": {
+          "raw": "81,99",
+          "num": 81.99
+        },
+        "Máx. 52 semanas": {
+          "raw": "111,25",
+          "num": 111.25
+        },
+        "Dividend Yield help_outline Indicador utilizado para relacionar os proventos pagos pelo FII e o preço atual de suas cotas. Observação: O Dividend Yield foi calculado com base no valor bruto dos proventos com a DATA COM entre 21/11/2025 e 21/11/2026. Amortizações não são consideradas no cálculo.": {
+          "raw": "13,32",
+          "num": 13.32
+        },
+        "Valorização (12m)": {
+          "raw": "-17,14%",
+          "num": -17.14
+        },
+        "Val. patrim. p/cota": {
+          "raw": "110,11",
+          "num": 110.11
+        },
+        "P/VP": {
+          "raw": "0,74",
+          "num": 0.74
+        },
+        "Valor em caixa": {
+          "raw": "3,50",
+          "num": 3.5
+        },
+        "DY CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual de dividendos em dinheiro por cota nos últimos 3 anos": {
+          "raw": "-0,15",
+          "num": -0.15
+        },
+        "Valor CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual por cota nos últimos 3 anos": {
+          "raw": "-1,49",
+          "num": -1.49
+        },
+        "Nº de Cotistas": {
+          "raw": "733.101",
+          "num": 733101.0
+        },
+        "PARTIC. NO IFIX": {
+          "raw": "3,901",
+          "num": 3.901
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "10,1200",
+          "num": 10.12
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "10,0000",
+          "num": 10.0
+        },
+        "Comparação": {
+          "raw": "1,19%",
+          "num": 1.19
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "1,19%",
+          "num": 1.19
+        },
+        "TOMADOR (média)": {
+          "raw": "0,17",
+          "num": 0.17
+        },
+        "DOADOR (média)": {
+          "raw": "0,17",
+          "num": 0.17
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "1.224",
+          "num": 1224.0
+        },
+        "VOLUME (dia)": {
+          "raw": "141.862",
+          "num": 141862.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "43",
+          "num": 43.0
+        },
+        "CNPJ": {
+          "raw": "28.757.546/0001-00",
+          "num": "28.757.546/0001-00"
+        },
+        "Nome Pregão": {
+          "raw": "XP Malls",
+          "num": "XP Malls"
+        },
+        "Ínicio do fundo": {
+          "raw": "27/12/2017",
+          "num": "27/12/2017"
+        },
+        "Prazo de duração": {
+          "raw": "Indeterminado",
+          "num": "Indeterminado"
+        },
+        "Segmento ANBIMA": {
+          "raw": "Shoppings",
+          "num": "Shoppings"
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pelo fundo direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pelo fundo": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "KNCR11": {
       "ticker": "KNCR11",
       "type": "fund",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
-      "updatedAt": "2026-11-21T19:05:10.998060+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:50.744126+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "102,85",
+          "num": 102.85
+        },
+        "Min. 52 semanas": {
+          "raw": "95,81",
+          "num": 95.81
+        },
+        "Máx. 52 semanas": {
+          "raw": "108,09",
+          "num": 108.09
+        },
+        "Dividend Yield help_outline Indicador utilizado para relacionar os proventos pagos pelo FII e o preço atual de suas cotas. Observação: O Dividend Yield foi calculado com base no valor bruto dos proventos com a DATA COM entre 21/11/2025 e 21/11/2026. Amortizações não são consideradas no cálculo.": {
+          "raw": "13,31",
+          "num": 13.31
+        },
+        "Valorização (12m)": {
+          "raw": "7,27%",
+          "num": 7.27
+        },
+        "Val. patrim. p/cota": {
+          "raw": "102,64",
+          "num": 102.64
+        },
+        "P/VP": {
+          "raw": "1,00",
+          "num": 1.0
+        },
+        "Valor em caixa": {
+          "raw": "4,28",
+          "num": 4.28
+        },
+        "DY CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual de dividendos em dinheiro por cota nos últimos 3 anos": {
+          "raw": "4,90",
+          "num": 4.9
+        },
+        "Valor CAGR (3 anos) help_outline CAGR (Compound Annual Growth Rate ou taxa de crescimento anual composta), indica a taxa de crescimento anual por cota nos últimos 3 anos": {
+          "raw": "12,40",
+          "num": 12.4
+        },
+        "Nº de Cotistas": {
+          "raw": "904.998",
+          "num": 904998.0
+        },
+        "PARTIC. NO IFIX": {
+          "raw": "10,005",
+          "num": 10.005
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "12,1200",
+          "num": 12.12
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "11,2800",
+          "num": 11.28
+        },
+        "Comparação": {
+          "raw": "6,93%",
+          "num": 6.93
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "6,93%",
+          "num": 6.93
+        },
+        "TOMADOR (média)": {
+          "raw": "0,83",
+          "num": 0.83
+        },
+        "DOADOR (média)": {
+          "raw": "0,83",
+          "num": 0.83
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "4.066",
+          "num": 4066.0
+        },
+        "VOLUME (dia)": {
+          "raw": "417.375",
+          "num": 417375.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "15",
+          "num": 15.0
+        },
+        "CNPJ": {
+          "raw": "16.706.958/0001-32",
+          "num": "16.706.958/0001-32"
+        },
+        "Nome Pregão": {
+          "raw": "Kinea Rendimentos Imobiliários",
+          "num": "Kinea Rendimentos Imobiliários"
+        },
+        "Ínicio do fundo": {
+          "raw": "15/10/2012",
+          "num": "15/10/2012"
+        },
+        "Prazo de duração": {
+          "raw": "Indeterminado",
+          "num": "Indeterminado"
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "De": {
+          "raw": "até",
+          "num": "até"
+        },
+        "Comunicado criado pelo fundo direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pelo fundo": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pelo fundo. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que um fundo nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        }
+      }
     },
     "NVDC34": {
       "ticker": "NVDC34",
       "type": "bdr",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "url": "https://statusinvest.com.br/bdrs/nvdc34",
-      "updatedAt": "2026-11-21T19:05:11.740600+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-21T19:10:51.858318+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "18,15",
+          "num": 18.15
+        },
+        "Min. 52 semanas": {
+          "raw": "18,05",
+          "num": 18.05
+        },
+        "Máx. 52 semanas": {
+          "raw": "25,49",
+          "num": 25.49
+        },
+        "Dividend Yield help_outline Indicador utilizado para relacionar os proventos pagos por uma companhia e o preço atual de suas ações. Observação: O Dividend Yield foi calculado com base no valor bruto dos proventos com a DATA COM entre 21/11/2025 e 21/11/2026. Amortizações não são consideradas no cálculo.": {
+          "raw": "0,21",
+          "num": 0.21
+        },
+        "Valorização (12m)": {
+          "raw": "-11,25%",
+          "num": -11.25
+        },
+        "TOMADOR (média)": {
+          "raw": "0,18",
+          "num": 0.18
+        },
+        "DOADOR (média)": {
+          "raw": "0,18",
+          "num": 0.18
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "86.598",
+          "num": 86598.0
+        },
+        "VOLUME (dia)": {
+          "raw": "8.139.346",
+          "num": 8139346.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "124",
+          "num": 124.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+          "raw": "0,0023",
+          "num": 0.0023
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+          "raw": "0,0373",
+          "num": 0.0373
+        },
+        "Comparação": {
+          "raw": "1.515,02%",
+          "num": 1515.02
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "1.515,02%",
+          "num": 1515.02
+        },
+        "NVIDIA CORP": {
+          "raw": "NVIDIA CORP",
+          "num": "NVIDIA CORP"
+        },
+        "D.Y": {
+          "raw": "0,21%",
+          "num": 0.21
+        },
+        "P/L": {
+          "raw": "18,38",
+          "num": 18.38
+        },
+        "PEG Ratio": {
+          "raw": "-",
+          "num": null
+        },
+        "P/VP": {
+          "raw": "15,48",
+          "num": 15.48
+        },
+        "EV/EBITDA": {
+          "raw": "12,98",
+          "num": 12.98
+        },
+        "EV/EBIT": {
+          "raw": "13,19",
+          "num": 13.19
+        },
+        "P/EBITDA": {
+          "raw": "15,17",
+          "num": 15.17
+        },
+        "P/EBIT": {
+          "raw": "15,41",
+          "num": 15.41
+        },
+        "VPA": {
+          "raw": "9,48",
+          "num": 9.48
+        },
+        "P/Ativo": {
+          "raw": "11,07",
+          "num": 11.07
+        },
+        "LPA": {
+          "raw": "7,99",
+          "num": 7.99
+        },
+        "P/SR": {
+          "raw": "10,71",
+          "num": 10.71
+        },
+        "P/Cap. Giro": {
+          "raw": "22,96",
+          "num": 22.96
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-28,85",
+          "num": -28.85
+        },
+        "Dív. líquida/PL": {
+          "raw": "-0,29",
+          "num": -0.29
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "-0,28",
+          "num": -0.28
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "-0,29",
+          "num": -0.29
+        },
+        "PL/Ativos": {
+          "raw": "0,71",
+          "num": 0.71
+        },
+        "Passivos/Ativos": {
+          "raw": "0,29",
+          "num": 0.29
+        },
+        "Liq. corrente": {
+          "raw": "4,59",
+          "num": 4.59
+        },
+        "M. Bruta": {
+          "raw": "74,70%",
+          "num": 74.7
+        },
+        "M. EBITDA": {
+          "raw": "70,59%",
+          "num": 70.59
+        },
+        "M. EBIT": {
+          "raw": "69,47%",
+          "num": 69.47
+        },
+        "M. Líquida": {
+          "raw": "58,26%",
+          "num": 58.26
+        },
+        "ROE": {
+          "raw": "84,23%",
+          "num": 84.23
+        },
+        "ROA": {
+          "raw": "60,22%",
+          "num": 60.22
+        },
+        "ROIC": {
+          "raw": "71,95%",
+          "num": 71.95
+        },
+        "Giro ativos": {
+          "raw": "1,03",
+          "num": 1.03
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "66,90%",
+          "num": 66.9
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "94,33%",
+          "num": 94.33
+        },
+        "Data de início da busca": {
+          "raw": "ATÉ",
+          "num": "ATÉ"
+        },
+        "ticker/código do ativo": {
+          "raw": "{name}",
+          "num": "{name}"
+        },
+        "Preço atual do ativo": {
+          "raw": "{price} % {helper}",
+          "num": "{price} % {helper}"
+        },
+        "Variação atual no preço do ativo": {
+          "raw": "{variation} % (12m)",
+          "num": "{variation} % (12m)"
+        },
+        "Comunicado criado pela empresa direcionado ao mercado": {
+          "raw": "PROVENTO",
+          "num": "PROVENTO"
+        },
+        "Data com do provento declarado pela empresa": {
+          "raw": "PAGAMENTO",
+          "num": "PAGAMENTO"
+        },
+        "Data de pagamento de provento": {
+          "raw": "EVENTOS",
+          "num": "EVENTOS"
+        },
+        "Evento realizado pela empresa. Desde reunião com diretoria até assembleias": {
+          "raw": "IPO",
+          "num": "IPO"
+        },
+        "Data que uma empresa nova abrirá capital e estará disponível na bolsa de valores": {
+          "raw": "FERIADO",
+          "num": "FERIADO"
+        }
+      }
     }
   },
-  "updatedAt": "2026-11-21T19:05:12.440846+00:00",
+  "updatedAt": "2026-11-21T19:10:52.558760+00:00",
   "stats": {
     "total": 10,
-    "ok": 0,
+    "ok": 10,
     "nodata": 0,
-    "neterr": 10,
+    "neterr": 0,
     "limit": 0
   }
 }
