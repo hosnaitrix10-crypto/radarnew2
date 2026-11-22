@@ -11,8 +11,6 @@ import requests
 CATALOGO_PATH = Path("catalogo_ativos.json")
 DADOS_PATH = Path("dados.json")
 
-TAMANHO_BLOCO = 10
-
 USER_AGENTS = [
     (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -55,6 +53,7 @@ def construir_headers() -> dict:
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
         "Referer": "https://statusinvest.com.br/",
+        "DNT": "1",
         "Upgrade-Insecure-Requests": "1",
     }
 
@@ -101,7 +100,13 @@ def extrair_dados_status_invest(html: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     indicadores = {}
 
-    for seletor in [".top-info .info", ".info-area .info", ".indicators .item", ".card .info"]:
+    seletores = [
+        ".top-info .info",
+        ".info-area .info",
+        ".indicators .item",
+        ".card .info",
+    ]
+    for seletor in seletores:
         for bloco in soup.select(seletor):
             titulo_el = bloco.select_one(".title, .name, h3, h2, span.d-block")
             valor_el = bloco.select_one(".value, strong, .number")
@@ -129,6 +134,13 @@ def achar_num(data_obj: dict, termos: list[str]):
 
 
 def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
+    """
+    Calcula métricas reais e indicação matemática baseada em:
+    1) Posição na amplitude de 52 semanas: p = (cot - min52) / (max52 - min52)
+    2) Preço teto (piso de DY de 6% a.a. para ações/BDRs ou 7.5% a.a. para FIIs):
+       preco_teto = cotacao * (dy_pct / piso_dy_pct)
+    3) Momentum de 12 meses (var12m)
+    """
     if not data_obj:
         return {
             "sinal": "Sem dados",
@@ -170,19 +182,19 @@ def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
     margem_teto_pct = None
     if cot is not None and cot > 0 and dy is not None and dy > 0:
         preco_teto = round(cot * (dy / piso_dy), 2)
-        margem_teto_pct = round(((preco_teto - cot) / preco_teto) * 100.0, 1)
+        margem_teto_pct = round(((preco_teto - cot) / cot) * 100.0, 1)
         if margem_teto_pct >= 15.0:
             score += 2
-            motivos.append(f"abaixo do teto (+{margem_teto_pct:.1f}% até R$ {preco_teto:.2f})")
+            motivos.append(f"acima do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
         elif margem_teto_pct >= 0.0:
             score += 1
-            motivos.append(f"abaixo do teto (+{margem_teto_pct:.1f}% até R$ {preco_teto:.2f})")
+            motivos.append(f"dentro do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
         elif margem_teto_pct <= -25.0:
             score -= 2
-            motivos.append(f"acima do teto ({margem_teto_pct:.1f}% vs R$ {preco_teto:.2f})")
+            motivos.append(f"distante do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
         else:
             score -= 1
-            motivos.append(f"acima do teto ({margem_teto_pct:.1f}% vs R$ {preco_teto:.2f})")
+            motivos.append(f"abaixo do teto ({margem_teto_pct:+.1f}% vs teto R$ {preco_teto:.2f})")
     elif dy is not None and dy == 0:
         score -= 1
         motivos.append("DY zerado")
@@ -214,7 +226,7 @@ def analisar_matematica(data_obj: dict, tipo_norm: str) -> dict:
     }
 
 
-def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int = 2):
+def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int = 3):
     for tentativa in range(1, tentativas + 1):
         try:
             resp = session.get(
@@ -224,27 +236,33 @@ def requisitar_com_backoff(session: requests.Session, url: str, tentativas: int 
                 allow_redirects=True,
             )
             if resp.status_code == 429:
-                time.sleep(random.uniform(12.0, 18.0) * tentativa)
-                if tentativa < tentativas:
-                    continue
-                return "limit", None, "HTTP 429"
+                espera = random.uniform(8.0, 14.0) * tentativa
+                print(f"    [429] {url} -> aguardando {espera:.1f}s (tentativa {tentativa}/{tentativas})")
+                time.sleep(espera)
+                continue
+
             if resp.status_code == 404:
                 return "nodata", None, "HTTP 404"
+
             if resp.status_code in {403, 503} or resp.status_code >= 500:
-                time.sleep(random.uniform(7.0, 11.0) * tentativa)
-                if tentativa < tentativas:
-                    continue
-                return "neterr", None, f"HTTP {resp.status_code}"
+                espera = random.uniform(5.0, 9.0) * tentativa
+                print(f"    [HTTP {resp.status_code}] {url} -> aguardando {espera:.1f}s (tentativa {tentativa}/{tentativas})")
+                time.sleep(espera)
+                continue
+
             if resp.status_code != 200:
                 return "neterr", None, f"HTTP {resp.status_code}"
 
             html = resp.text or ""
             if len(html) < 1000:
                 return "nodata", None, f"HTML curto ({len(html)} bytes)"
+
             return "ok", html, None
+
         except requests.RequestException as exc:
+            espera = random.uniform(4.0, 8.0) * tentativa
             if tentativa < tentativas:
-                time.sleep(random.uniform(5.0, 9.0) * tentativa)
+                time.sleep(espera)
                 continue
             return "neterr", None, f"{type(exc).__name__}: {str(exc)[:120]}"
 
@@ -347,7 +365,7 @@ def salvar_dados(base: dict, items: dict):
 def main():
     raw_batch = (os.getenv("BATCH_SIZE") or "").strip().lower()
     if not raw_batch:
-        batch_size = TAMANHO_BLOCO
+        batch_size = 50
     elif raw_batch in {"0", "all", "todos", "full"}:
         batch_size = 0
     else:
@@ -357,6 +375,7 @@ def main():
     base = carregar_dados()
     items = base["items"]
 
+    # 0 = nunca coletado; 1 = ok antigo; 2 = nodata; 3 = neterr/limit
     def prioridade(par):
         ticker, _ = par
         atual = items.get(ticker)
@@ -373,64 +392,67 @@ def main():
     ordenada = sorted(catalogo, key=prioridade)
     fila = ordenada if batch_size == 0 else ordenada[:batch_size]
 
-    blocos = [fila[i : i + TAMANHO_BLOCO] for i in range(0, len(fila), TAMANHO_BLOCO)]
-    print(f"Catalogo: {len(catalogo)} | Total na fila: {len(fila)} | Blocos de 10: {len(blocos)}")
+    print(f"Catalogo: {len(catalogo)} | Lote: {len(fila)}")
 
-    for num_bloco, bloco in enumerate(blocos, start=1):
-        print(f"--- Iniciando bloco {num_bloco}/{len(blocos)} ({len(bloco)} ativos) ---")
-        session = requests.Session()
-        try:
-            for ticker, tipo_norm in bloco:
-                url = montar_url(ticker, tipo_norm)
-                st_req, html, err = requisitar_com_backoff(session, url)
+    session = requests.Session()
+    erros_consecutivos = 0
+    try:
+        for idx, (ticker, tipo_norm) in enumerate(fila, start=1):
+            url = montar_url(ticker, tipo_norm)
+            st_req, html, err = requisitar_com_backoff(session, url)
 
-                if st_req == "ok" and html:
-                    indicadores = extrair_dados_status_invest(html)
-                    status_final = "ok" if indicadores else "nodata"
-                    analise = (
-                        analisar_matematica(indicadores, tipo_norm)
-                        if status_final == "ok"
-                        else analisar_matematica({}, tipo_norm)
-                    )
-                    items[ticker] = {
-                        "ticker": ticker,
-                        "type": tipo_norm,
-                        "source": "statusinvest",
-                        "status": status_final,
-                        "sinal": analise["sinal"],
-                        "analise": analise,
-                        "url": url,
-                        "updatedAt": agora_iso(),
-                        "error": None if status_final == "ok" else "Sem indicadores no HTML",
-                        "data": indicadores,
-                    }
-                else:
-                    anterior = items.get(ticker) or {}
-                    items[ticker] = {
-                        "ticker": ticker,
-                        "type": tipo_norm,
-                        "source": "statusinvest",
-                        "status": st_req,
-                        "sinal": anterior.get("sinal") or "Sem dados",
-                        "analise": anterior.get("analise") or analisar_matematica({}, tipo_norm),
-                        "url": url,
-                        "updatedAt": agora_iso(),
-                        "error": err,
-                        "data": anterior.get("data", {}),
-                    }
+            if st_req == "ok" and html:
+                erros_consecutivos = 0
+                indicadores = extrair_dados_status_invest(html)
+                status_final = "ok" if indicadores else "nodata"
+                analise = analisar_matematica(indicadores, tipo_norm) if status_final == "ok" else analisar_matematica({}, tipo_norm)
+                items[ticker] = {
+                    "ticker": ticker,
+                    "type": tipo_norm,
+                    "source": "statusinvest",
+                    "status": status_final,
+                    "sinal": analise["sinal"],
+                    "analise": analise,
+                    "url": url,
+                    "updatedAt": agora_iso(),
+                    "error": None if status_final == "ok" else "Sem indicadores no HTML",
+                    "data": indicadores,
+                }
+            else:
+                erros_consecutivos += 1
+                anterior = items.get(ticker) or {}
+                items[ticker] = {
+                    "ticker": ticker,
+                    "type": tipo_norm,
+                    "source": "statusinvest",
+                    "status": st_req,
+                    "sinal": anterior.get("sinal") or "Sem dados",
+                    "analise": anterior.get("analise") or analisar_matematica({}, tipo_norm),
+                    "url": url,
+                    "updatedAt": agora_iso(),
+                    "error": err,
+                    "data": anterior.get("data", {}),
+                }
 
-                print(f"  {ticker}: {items[ticker]['status']} | {items[ticker]['sinal']}")
-                time.sleep(random.uniform(2.5, 4.5))
-        finally:
-            session.close()
+            if idx % 10 == 0 or idx == len(fila):
+                salvar_dados(base, items)
+                print(f"  {idx}/{len(fila)} -> {ticker}: {items[ticker]['status']} | {items[ticker]['sinal']}")
 
-        salvar_dados(base, items)
-        print(f"--- Fim do bloco {num_bloco}/{len(blocos)} | Resumo: {base['stats']} ---")
+            # Pausa anti-bloqueio aleatória + respiro extra em caso de bloqueios seguidos
+            pausa = random.uniform(2.8, 6.2)
+            if erros_consecutivos >= 4:
+                pausa += random.uniform(10.0, 18.0)
+                print(f"  [Respiro anti-bloqueio] +{pausa:.1f}s após {erros_consecutivos} falhas seguidas")
+                erros_consecutivos = 0
+            if idx % 25 == 0:
+                pausa += random.uniform(6.0, 12.0)
 
-        if num_bloco < len(blocos):
-            parada = random.uniform(20.0, 35.0)
-            print(f"  [Parada entre blocos de 10] Aguardando {parada:.1f}s...")
-            time.sleep(parada)
+            time.sleep(pausa)
+    finally:
+        session.close()
+
+    salvar_dados(base, items)
+    print("Resumo:", base["stats"])
 
 
 if __name__ == "__main__":
