@@ -1,6 +1,6 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-21T22:56:50.618779+00:00",
+  "updatedAt": "2026-11-22T01:54:46.742983+00:00",
   "stats": {
     "total": 101,
     "ok": 0,
@@ -57,7 +57,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/abev3",
-      "updatedAt": "2026-11-21T22:51:11.030654+00:00",
+      "updatedAt": "2026-11-22T01:51:30.546202+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -87,7 +87,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/asai3",
-      "updatedAt": "2026-11-21T22:52:10.021248+00:00",
+      "updatedAt": "2026-11-22T01:51:57.840246+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -139,7 +139,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/b3sa3",
-      "updatedAt": "2026-11-21T22:52:41.214088+00:00",
+      "updatedAt": "2026-11-22T01:52:32.941421+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -158,7 +158,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/bbse3",
-      "updatedAt": "2026-11-21T22:53:13.022797+00:00",
+      "updatedAt": "2026-11-22T01:53:02.546890+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -177,7 +177,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/bbdc3",
-      "updatedAt": "2026-11-21T22:53:43.760046+00:00",
+      "updatedAt": "2026-11-22T01:53:36.623366+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -196,7 +196,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/bbdc4",
-      "updatedAt": "2026-11-21T22:54:13.320596+00:00",
+      "updatedAt": "2026-11-22T01:54:11.127508+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -226,7 +226,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/bbas3",
-      "updatedAt": "2026-11-21T22:54:44.945593+00:00",
+      "updatedAt": "2026-11-22T01:54:42.847735+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -486,7 +486,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/elet3",
-      "updatedAt": "2026-11-21T22:14:50.709912+00:00",
+      "updatedAt": "2026-11-22T01:21:50.763196+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -505,7 +505,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/elet6",
-      "updatedAt": "2026-11-21T22:15:16.481856+00:00",
+      "updatedAt": "2026-11-22T01:22:19.820710+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -524,7 +524,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/embr3",
-      "updatedAt": "2026-11-21T22:15:45.195785+00:00",
+      "updatedAt": "2026-11-22T01:22:53.253324+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -576,7 +576,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/eqtl3",
-      "updatedAt": "2026-11-21T22:16:10.323087+00:00",
+      "updatedAt": "2026-11-22T01:23:28.687276+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -617,7 +617,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/ggbr4",
-      "updatedAt": "2026-11-21T22:24:24.535101+00:00",
+      "updatedAt": "2026-11-22T01:24:02.262007+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -636,7 +636,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/goau4",
-      "updatedAt": "2026-11-21T22:24:51.947964+00:00",
+      "updatedAt": "2026-11-22T01:24:39.022312+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -699,7 +699,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/hapv3",
-      "updatedAt": "2026-11-21T22:25:24.954051+00:00",
+      "updatedAt": "2026-11-22T01:25:09.642605+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -718,7 +718,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/hype3",
-      "updatedAt": "2026-11-21T22:25:51.493399+00:00",
+      "updatedAt": "2026-11-22T01:25:42.668512+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -770,7 +770,7 @@
         "motivo": "acima do teto (+17.0% vs teto R$ 51.97)"
       },
       "url": "https://statusinvest.com.br/acoes/itub3",
-      "updatedAt": "2026-11-21T22:26:22.093657+00:00",
+      "updatedAt": "2026-11-22T01:26:10.631897+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -1022,7 +1022,7 @@
         "motivo": "próximo da mínima 52s (28.3%); acima do teto (+30.0% vs teto R$ 52.09)"
       },
       "url": "https://statusinvest.com.br/acoes/itub4",
-      "updatedAt": "2026-11-21T22:26:53.197974+00:00",
+      "updatedAt": "2026-11-22T01:26:42.985189+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -1296,7 +1296,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/klbn11",
-      "updatedAt": "2026-11-21T22:31:33.043331+00:00",
+      "updatedAt": "2026-11-22T01:31:17.291787+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -1315,7 +1315,7 @@
         "motivo": "próximo da mínima 52s (5.4%); acima do teto (+23.0% vs teto R$ 35.50); queda 12m (-28.8%)"
       },
       "url": "https://statusinvest.com.br/acoes/rent3",
-      "updatedAt": "2026-11-21T22:27:22.177147+00:00",
+      "updatedAt": "2026-11-22T01:27:46.932714+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -1567,7 +1567,7 @@
         "motivo": "metade inferior da faixa 52s (46.1%); acima do teto (+43.2% vs teto R$ 61.09)"
       },
       "url": "https://statusinvest.com.br/acoes/petr4",
-      "updatedAt": "2026-11-21T22:27:50.440377+00:00",
+      "updatedAt": "2026-11-22T01:28:11.751496+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -1819,7 +1819,7 @@
         "motivo": "dentro do teto (+14.7% vs teto R$ 55.76); alta forte 12m (+52.2%)"
       },
       "url": "https://statusinvest.com.br/acoes/petr3",
-      "updatedAt": "2026-11-21T22:28:23.944355+00:00",
+      "updatedAt": "2026-11-22T01:28:45.151426+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -2071,7 +2071,7 @@
         "motivo": "próximo da mínima 52s (0.0%); acima do teto (+60.0% vs teto R$ 93.57)"
       },
       "url": "https://statusinvest.com.br/acoes/vale3",
-      "updatedAt": "2026-11-21T22:28:53.307829+00:00",
+      "updatedAt": "2026-11-22T01:29:18.046497+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -2323,7 +2323,7 @@
         "motivo": "parte superior da faixa 52s (78.4%); distante do teto (-61.7% vs teto R$ 19.60)"
       },
       "url": "https://statusinvest.com.br/acoes/wege3",
-      "updatedAt": "2026-11-21T22:29:58.772229+00:00",
+      "updatedAt": "2026-11-22T01:29:45.927758+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -2575,7 +2575,7 @@
         "motivo": "parte superior da faixa 52s (81.1%); distante do teto (-66.3% vs teto R$ 18.62)"
       },
       "url": "https://statusinvest.com.br/acoes/suzb3",
-      "updatedAt": "2026-11-21T22:30:29.339243+00:00",
+      "updatedAt": "2026-11-22T01:30:14.463622+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -2827,7 +2827,7 @@
         "motivo": "alta forte 12m (+56.2%)"
       },
       "url": "https://statusinvest.com.br/acoes/prio3",
-      "updatedAt": "2026-11-21T22:31:00.487952+00:00",
+      "updatedAt": "2026-11-22T01:30:48.814569+00:00",
       "error": "HTTP 403",
       "data": {
         "Valor atual": {
@@ -3079,7 +3079,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/radl3",
-      "updatedAt": "2026-11-21T22:32:05.783106+00:00",
+      "updatedAt": "2026-11-22T01:31:48.075076+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3098,7 +3098,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/sbsp3",
-      "updatedAt": "2026-11-21T22:32:35.607826+00:00",
+      "updatedAt": "2026-11-22T01:32:20.679672+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3117,7 +3117,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/vivt3",
-      "updatedAt": "2026-11-21T22:33:02.886337+00:00",
+      "updatedAt": "2026-11-22T01:33:11.009378+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3136,7 +3136,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/tims3",
-      "updatedAt": "2026-11-21T22:33:37.964634+00:00",
+      "updatedAt": "2026-11-22T01:33:44.462423+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3155,7 +3155,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/taee11",
-      "updatedAt": "2026-11-21T22:34:11.975459+00:00",
+      "updatedAt": "2026-11-22T01:34:17.239284+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3174,7 +3174,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/usim5",
-      "updatedAt": "2026-11-21T22:34:40.959955+00:00",
+      "updatedAt": "2026-11-22T01:34:50.451366+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3193,7 +3193,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/ugpa3",
-      "updatedAt": "2026-11-21T22:35:40.294921+00:00",
+      "updatedAt": "2026-11-22T01:35:23.451061+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3212,7 +3212,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/vbbr3",
-      "updatedAt": "2026-11-21T22:36:16.677315+00:00",
+      "updatedAt": "2026-11-22T01:35:50.885682+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3231,7 +3231,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/rail3",
-      "updatedAt": "2026-11-21T22:36:45.648207+00:00",
+      "updatedAt": "2026-11-22T01:36:18.506709+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3250,7 +3250,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/rdor3",
-      "updatedAt": "2026-11-21T22:37:16.568093+00:00",
+      "updatedAt": "2026-11-22T01:36:49.270553+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3269,7 +3269,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/lren3",
-      "updatedAt": "2026-11-21T22:37:45.113935+00:00",
+      "updatedAt": "2026-11-22T01:37:18.773698+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3288,7 +3288,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/mxrf11",
-      "updatedAt": "2026-11-21T22:38:15.865632+00:00",
+      "updatedAt": "2026-11-22T01:37:53.180759+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3307,7 +3307,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/hglg11",
-      "updatedAt": "2026-11-21T22:38:44.560609+00:00",
+      "updatedAt": "2026-11-22T01:38:46.666337+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3326,7 +3326,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/xpml11",
-      "updatedAt": "2026-11-21T22:39:15.829604+00:00",
+      "updatedAt": "2026-11-22T01:39:18.454334+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3345,7 +3345,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/kncr11",
-      "updatedAt": "2026-11-21T22:39:42.800297+00:00",
+      "updatedAt": "2026-11-22T01:39:49.944239+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3364,7 +3364,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/knri11",
-      "updatedAt": "2026-11-21T22:40:13.117595+00:00",
+      "updatedAt": "2026-11-22T01:40:18.811038+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3383,7 +3383,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/xplg11",
-      "updatedAt": "2026-11-21T22:41:10.134139+00:00",
+      "updatedAt": "2026-11-22T01:40:49.818167+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3402,7 +3402,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/visc11",
-      "updatedAt": "2026-11-21T22:41:41.143992+00:00",
+      "updatedAt": "2026-11-22T01:41:19.718538+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3421,7 +3421,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/irdm11",
-      "updatedAt": "2026-11-21T22:42:11.125953+00:00",
+      "updatedAt": "2026-11-22T01:41:51.000129+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3440,7 +3440,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/cpts11",
-      "updatedAt": "2026-11-21T22:42:42.609879+00:00",
+      "updatedAt": "2026-11-22T01:42:21.674510+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3459,7 +3459,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/tgar11",
-      "updatedAt": "2026-11-21T22:43:14.332750+00:00",
+      "updatedAt": "2026-11-22T01:42:52.529668+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3478,7 +3478,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/vghf11",
-      "updatedAt": "2026-11-21T22:43:39.470366+00:00",
+      "updatedAt": "2026-11-22T01:43:20.556750+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3497,7 +3497,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/vgir11",
-      "updatedAt": "2026-11-21T22:44:07.647842+00:00",
+      "updatedAt": "2026-11-22T01:44:15.725467+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3516,7 +3516,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/btlg11",
-      "updatedAt": "2026-11-21T22:44:34.524186+00:00",
+      "updatedAt": "2026-11-22T01:44:46.576059+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3535,7 +3535,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/knsc11",
-      "updatedAt": "2026-11-21T22:45:07.347501+00:00",
+      "updatedAt": "2026-11-22T01:45:17.084591+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3554,7 +3554,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/trxf11",
-      "updatedAt": "2026-11-21T22:45:36.294186+00:00",
+      "updatedAt": "2026-11-22T01:45:46.945426+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3573,7 +3573,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/fundos-imobiliarios/alzr11",
-      "updatedAt": "2026-11-21T22:46:35.766797+00:00",
+      "updatedAt": "2026-11-22T01:46:16.725334+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3592,7 +3592,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/nvdc34",
-      "updatedAt": "2026-11-21T22:47:07.795845+00:00",
+      "updatedAt": "2026-11-22T01:46:46.198642+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3611,7 +3611,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/aapl34",
-      "updatedAt": "2026-11-21T22:47:39.643938+00:00",
+      "updatedAt": "2026-11-22T01:47:19.003068+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3630,7 +3630,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/msft34",
-      "updatedAt": "2026-11-21T22:48:10.171143+00:00",
+      "updatedAt": "2026-11-22T01:47:52.678737+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3649,7 +3649,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/amzo34",
-      "updatedAt": "2026-11-21T22:48:37.939702+00:00",
+      "updatedAt": "2026-11-22T01:48:25.017080+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3668,7 +3668,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/googl34",
-      "updatedAt": "2026-11-21T22:49:06.527118+00:00",
+      "updatedAt": "2026-11-22T01:48:56.635489+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3687,7 +3687,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/meta34",
-      "updatedAt": "2026-11-21T22:49:33.512264+00:00",
+      "updatedAt": "2026-11-22T01:49:59.322220+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3706,7 +3706,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/tsla34",
-      "updatedAt": "2026-11-21T22:50:03.143223+00:00",
+      "updatedAt": "2026-11-22T01:50:27.424747+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -3725,7 +3725,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/bdrs/meli34",
-      "updatedAt": "2026-11-21T22:50:38.016967+00:00",
+      "updatedAt": "2026-11-22T01:51:01.853522+00:00",
       "error": "HTTP 403",
       "data": {}
     }
