@@ -1,11 +1,11 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-22T02:38:52.235639+00:00",
+  "updatedAt": "2026-11-22T02:45:22.889634+00:00",
   "stats": {
     "total": 101,
-    "ok": 0,
+    "ok": 10,
     "nodata": 0,
-    "neterr": 101,
+    "neterr": 91,
     "limit": 0
   },
   "items": {
@@ -688,39 +688,505 @@
       "ticker": "HAPV3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
-      "sinal": "Sem dados",
+      "status": "ok",
+      "sinal": "Comprar",
       "analise": {
-        "sinal": "Sem dados",
-        "score": null,
-        "pos_52s_pct": null,
+        "sinal": "Comprar",
+        "score": 3,
+        "pos_52s_pct": 16.6,
         "preco_teto": null,
         "margem_teto_pct": null,
-        "motivo": "Sem indicadores numéricos disponíveis."
+        "motivo": "próximo da mínima 52s (16.6%); queda 12m (-64.0%)"
       },
       "url": "https://statusinvest.com.br/acoes/hapv3",
-      "updatedAt": "2026-11-22T01:25:09.642605+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-22T02:44:37.597838+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "6,16",
+          "num": 6.16
+        },
+        "Min. 52 semanas": {
+          "raw": "3,98",
+          "num": 3.98
+        },
+        "Máx. 52 semanas": {
+          "raw": "17,13",
+          "num": 17.13
+        },
+        "Dividend Yield": {
+          "raw": "-",
+          "num": null
+        },
+        "Valorização (12m)": {
+          "raw": "-64,04%",
+          "num": -64.04
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,08",
+          "num": 0.08
+        },
+        "DOADOR (média)": {
+          "raw": "0,08",
+          "num": 0.08
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "4.053.741",
+          "num": 4053741.0
+        },
+        "VOLUME (dia)": {
+          "raw": "15.242.066",
+          "num": 15242066.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "177",
+          "num": 177.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "0,00%",
+          "num": 0.0
+        },
+        "Ativos": {
+          "raw": "73.257.297.000",
+          "num": 73257297000.0
+        },
+        "Ativo circulante": {
+          "raw": "11.114.307.000",
+          "num": 11114307000.0
+        },
+        "Dívida bruta": {
+          "raw": "13.009.350.000",
+          "num": 13009350000.0
+        },
+        "Disponibilidade": {
+          "raw": "7.755.187.000",
+          "num": 7755187000.0
+        },
+        "Dívida líquida": {
+          "raw": "5.254.163.000",
+          "num": 5254163000.0
+        },
+        "Valor de mercado": {
+          "raw": "3.096.206.245",
+          "num": 3096206245.0
+        },
+        "Valor de firma": {
+          "raw": "8.350.369.245",
+          "num": 8350369245.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 502.630.884 PN 0": {
+          "raw": "502.630.884",
+          "num": 502630884.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 272.225.596 Total de cada tipo de papel: ON 54,16% 272.225.596 PN --% --": {
+          "raw": "54,16%",
+          "num": 54.16
+        },
+        "D.Y": {
+          "raw": "-%",
+          "num": null
+        },
+        "P/L": {
+          "raw": "-19,39",
+          "num": -19.39
+        },
+        "PEG Ratio": {
+          "raw": "0,40",
+          "num": 0.4
+        },
+        "P/VP": {
+          "raw": "0,06",
+          "num": 0.06
+        },
+        "EV/EBITDA": {
+          "raw": "3,78",
+          "num": 3.78
+        },
+        "EV/EBIT": {
+          "raw": "4,98",
+          "num": 4.98
+        },
+        "P/EBITDA": {
+          "raw": "1,40",
+          "num": 1.4
+        },
+        "P/EBIT": {
+          "raw": "1,85",
+          "num": 1.85
+        },
+        "VPA": {
+          "raw": "95,98",
+          "num": 95.98
+        },
+        "P/Ativo": {
+          "raw": "0,04",
+          "num": 0.04
+        },
+        "LPA": {
+          "raw": "-0,32",
+          "num": -0.32
+        },
+        "P/SR": {
+          "raw": "0,10",
+          "num": 0.1
+        },
+        "P/Cap. Giro": {
+          "raw": "0,63",
+          "num": 0.63
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,05",
+          "num": -0.05
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,11",
+          "num": 0.11
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "2,38",
+          "num": 2.38
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "3,13",
+          "num": 3.13
+        },
+        "PL/Ativos": {
+          "raw": "0,66",
+          "num": 0.66
+        },
+        "Passivos/Ativos": {
+          "raw": "0,34",
+          "num": 0.34
+        },
+        "Liq. corrente": {
+          "raw": "1,79",
+          "num": 1.79
+        },
+        "M. Bruta": {
+          "raw": "13,16%",
+          "num": 13.16
+        },
+        "M. EBITDA": {
+          "raw": "6,84%",
+          "num": 6.84
+        },
+        "M. EBIT": {
+          "raw": "5,20%",
+          "num": 5.2
+        },
+        "M. Líquida": {
+          "raw": "-0,50%",
+          "num": -0.5
+        },
+        "ROE": {
+          "raw": "-0,33%",
+          "num": -0.33
+        },
+        "ROA": {
+          "raw": "-0,22%",
+          "num": -0.22
+        },
+        "ROIC": {
+          "raw": "2,34%",
+          "num": 2.34
+        },
+        "Giro ativos": {
+          "raw": "0,44",
+          "num": 0.44
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "29,85%",
+          "num": 29.85
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "-%",
+          "num": null
+        }
+      }
     },
     "HYPE3": {
       "ticker": "HYPE3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
-      "sinal": "Sem dados",
+      "status": "ok",
+      "sinal": "Aguardar",
       "analise": {
-        "sinal": "Sem dados",
-        "score": null,
-        "pos_52s_pct": null,
-        "preco_teto": null,
-        "margem_teto_pct": null,
-        "motivo": "Sem indicadores numéricos disponíveis."
+        "sinal": "Aguardar",
+        "score": 1,
+        "pos_52s_pct": 25.3,
+        "preco_teto": 18.03,
+        "margem_teto_pct": -17.2,
+        "motivo": "próximo da mínima 52s (25.3%); abaixo do teto (-17.2% vs teto R$ 18.03)"
       },
       "url": "https://statusinvest.com.br/acoes/hype3",
-      "updatedAt": "2026-11-22T01:25:42.668512+00:00",
-      "error": "HTTP 403",
-      "data": {}
+      "updatedAt": "2026-11-22T02:44:40.896982+00:00",
+      "error": null,
+      "data": {
+        "Valor atual": {
+          "raw": "21,77",
+          "num": 21.77
+        },
+        "Min. 52 semanas": {
+          "raw": "19,89",
+          "num": 19.89
+        },
+        "Máx. 52 semanas": {
+          "raw": "27,32",
+          "num": 27.32
+        },
+        "Dividend Yield": {
+          "raw": "4,97",
+          "num": 4.97
+        },
+        "Valorização (12m)": {
+          "raw": "-10,45%",
+          "num": -10.45
+        },
+        "Tipo": {
+          "raw": "ON",
+          "num": "ON"
+        },
+        "PART. IBOV": {
+          "raw": "IBOV",
+          "num": "IBOV"
+        },
+        "MERCADO DE OPÇÕES": {
+          "raw": "OPÇÕES",
+          "num": "OPÇÕES"
+        },
+        "TOMADOR (média)": {
+          "raw": "0,28",
+          "num": 0.28
+        },
+        "DOADOR (média)": {
+          "raw": "0,28",
+          "num": 0.28
+        },
+        "Nº DE AÇÕES ALUGADAS (dia)": {
+          "raw": "1.241.481",
+          "num": 1241481.0
+        },
+        "VOLUME (dia)": {
+          "raw": "41.465.465",
+          "num": 41465465.0
+        },
+        "Nº DE CONTRATOS": {
+          "raw": "142",
+          "num": 142.0
+        },
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
+          "raw": "0,8775",
+          "num": 0.8775
+        },
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
+          "raw": "0,7891",
+          "num": 0.7891
+        },
+        "Comparação": {
+          "raw": "10,07%",
+          "num": 10.07
+        },
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+          "raw": "0,0000",
+          "num": 0.0
+        },
+        "Comparação + Provisionado": {
+          "raw": "10,07%",
+          "num": 10.07
+        },
+        "Ativos": {
+          "raw": "26.322.781.000",
+          "num": 26322781000.0
+        },
+        "Ativo circulante": {
+          "raw": "6.681.875.000",
+          "num": 6681875000.0
+        },
+        "Dívida bruta": {
+          "raw": "7.638.623.000",
+          "num": 7638623000.0
+        },
+        "Disponibilidade": {
+          "raw": "2.047.563.000",
+          "num": 2047563000.0
+        },
+        "Dívida líquida": {
+          "raw": "5.591.060.000",
+          "num": 5591060000.0
+        },
+        "Valor de mercado": {
+          "raw": "15.326.277.214",
+          "num": 15326277214.0
+        },
+        "Valor de firma": {
+          "raw": "20.917.337.214",
+          "num": 20917337214.0
+        },
+        "Nº total de papéis help_outline Total de de ações da empresa. Ações em livre circulação, em posse dos controladores, administradores, etc. ON 704.009.059 PN 0": {
+          "raw": "704.009.059",
+          "num": 704009059.0
+        },
+        "Segmento de listagem": {
+          "raw": "Novo Mercado",
+          "num": "Novo Mercado"
+        },
+        "Free Float format_quote help_outline O Free Float (FF) é a porcentagem de ações da empresa que estão em livre circulação no mercado, sendo negociadas através da bolsa de valores. Total de ações 296.007.718 Total de cada tipo de papel: ON 42,05% 296.007.718 PN --% --": {
+          "raw": "42,05%",
+          "num": 42.05
+        },
+        "D.Y": {
+          "raw": "4,97%",
+          "num": 4.97
+        },
+        "P/L": {
+          "raw": "8,46",
+          "num": 8.46
+        },
+        "PEG Ratio": {
+          "raw": "0,07",
+          "num": 0.07
+        },
+        "P/VP": {
+          "raw": "1,04",
+          "num": 1.04
+        },
+        "EV/EBITDA": {
+          "raw": "7,88",
+          "num": 7.88
+        },
+        "EV/EBIT": {
+          "raw": "8,22",
+          "num": 8.22
+        },
+        "P/EBITDA": {
+          "raw": "5,77",
+          "num": 5.77
+        },
+        "P/EBIT": {
+          "raw": "6,02",
+          "num": 6.02
+        },
+        "VPA": {
+          "raw": "20,98",
+          "num": 20.98
+        },
+        "P/Ativo": {
+          "raw": "0,58",
+          "num": 0.58
+        },
+        "LPA": {
+          "raw": "2,57",
+          "num": 2.57
+        },
+        "P/SR": {
+          "raw": "1,70",
+          "num": 1.7
+        },
+        "P/Cap. Giro": {
+          "raw": "5,43",
+          "num": 5.43
+        },
+        "P/Ativo Circ. Liq.": {
+          "raw": "-0,78",
+          "num": -0.78
+        },
+        "Dív. líquida/PL": {
+          "raw": "0,38",
+          "num": 0.38
+        },
+        "Dív. líquida/EBITDA": {
+          "raw": "2,10",
+          "num": 2.1
+        },
+        "Dív. líquida/EBIT": {
+          "raw": "2,20",
+          "num": 2.2
+        },
+        "PL/Ativos": {
+          "raw": "0,56",
+          "num": 0.56
+        },
+        "Passivos/Ativos": {
+          "raw": "0,44",
+          "num": 0.44
+        },
+        "Liq. corrente": {
+          "raw": "1,73",
+          "num": 1.73
+        },
+        "M. Bruta": {
+          "raw": "61,22%",
+          "num": 61.22
+        },
+        "M. EBITDA": {
+          "raw": "29,42%",
+          "num": 29.42
+        },
+        "M. EBIT": {
+          "raw": "28,19%",
+          "num": 28.19
+        },
+        "M. Líquida": {
+          "raw": "20,07%",
+          "num": 20.07
+        },
+        "ROE": {
+          "raw": "12,27%",
+          "num": 12.27
+        },
+        "ROA": {
+          "raw": "6,88%",
+          "num": 6.88
+        },
+        "ROIC": {
+          "raw": "9,76%",
+          "num": 9.76
+        },
+        "Giro ativos": {
+          "raw": "0,34",
+          "num": 0.34
+        },
+        "CAGR Receitas 5 anos": {
+          "raw": "13,49%",
+          "num": 13.49
+        },
+        "CAGR Lucros 5 anos": {
+          "raw": "6,94%",
+          "num": 6.94
+        }
+      }
     },
     "IGTI11": {
       "ticker": "IGTI11",
@@ -759,7 +1225,7 @@
       "ticker": "ITUB3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Comprar",
       "analise": {
         "sinal": "Comprar",
@@ -770,8 +1236,8 @@
         "motivo": "acima do teto (+17.0% vs teto R$ 51.97)"
       },
       "url": "https://statusinvest.com.br/acoes/itub3",
-      "updatedAt": "2026-11-22T01:26:10.631897+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:44:44.957085+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "44,42",
@@ -825,11 +1291,11 @@
           "raw": "62",
           "num": 62.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "2,4701",
           "num": 2.4701
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "0,8441",
           "num": 0.8441
         },
@@ -837,7 +1303,7 @@
           "raw": "65,83%",
           "num": 65.83
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0177",
           "num": 0.0177
         },
@@ -1011,7 +1477,7 @@
       "ticker": "ITUB4",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Comprar",
       "analise": {
         "sinal": "Comprar",
@@ -1022,8 +1488,8 @@
         "motivo": "próximo da mínima 52s (28.3%); acima do teto (+30.0% vs teto R$ 52.09)"
       },
       "url": "https://statusinvest.com.br/acoes/itub4",
-      "updatedAt": "2026-11-22T01:26:42.985189+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:44:50.674339+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "40,07",
@@ -1077,11 +1543,11 @@
           "raw": "4.619",
           "num": 4619.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "2,4701",
           "num": 2.4701
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "0,8441",
           "num": 0.8441
         },
@@ -1089,7 +1555,7 @@
           "raw": "65,83%",
           "num": 65.83
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0182",
           "num": 0.0182
         },
@@ -1304,7 +1770,7 @@
       "ticker": "RENT3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Comprar",
       "analise": {
         "sinal": "Comprar",
@@ -1315,8 +1781,8 @@
         "motivo": "próximo da mínima 52s (5.4%); acima do teto (+23.0% vs teto R$ 35.50); queda 12m (-28.8%)"
       },
       "url": "https://statusinvest.com.br/acoes/rent3",
-      "updatedAt": "2026-11-22T01:27:46.932714+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:44:57.047076+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "28,86",
@@ -1370,11 +1836,11 @@
           "raw": "405",
           "num": 405.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "1,4779",
           "num": 1.4779
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "1,6138",
           "num": 1.6138
         },
@@ -1382,7 +1848,7 @@
           "raw": "9,19%",
           "num": 9.19
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0000",
           "num": 0.0
         },
@@ -1556,7 +2022,7 @@
       "ticker": "PETR4",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Comprar",
       "analise": {
         "sinal": "Comprar",
@@ -1567,8 +2033,8 @@
         "motivo": "metade inferior da faixa 52s (46.1%); acima do teto (+43.2% vs teto R$ 61.09)"
       },
       "url": "https://statusinvest.com.br/acoes/petr4",
-      "updatedAt": "2026-11-22T01:28:11.751496+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:45:01.975408+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "42,67",
@@ -1622,11 +2088,11 @@
           "raw": "3.384",
           "num": 3384.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "1,9744",
           "num": 1.9744
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "2,7050",
           "num": 2.705
         },
@@ -1634,7 +2100,7 @@
           "raw": "37,00%",
           "num": 37.0
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "1,1873",
           "num": 1.1873
         },
@@ -1808,7 +2274,7 @@
       "ticker": "PETR3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Aguardar",
       "analise": {
         "sinal": "Aguardar",
@@ -1819,8 +2285,8 @@
         "motivo": "dentro do teto (+14.7% vs teto R$ 55.76); alta forte 12m (+52.2%)"
       },
       "url": "https://statusinvest.com.br/acoes/petr3",
-      "updatedAt": "2026-11-22T01:28:45.151426+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:45:05.407685+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "48,63",
@@ -1874,11 +2340,11 @@
           "raw": "231",
           "num": 231.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "1,9744",
           "num": 1.9744
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "2,3919",
           "num": 2.3919
         },
@@ -1886,7 +2352,7 @@
           "raw": "21,14%",
           "num": 21.14
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "1,1873",
           "num": 1.1873
         },
@@ -2060,7 +2526,7 @@
       "ticker": "VALE3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Comprar",
       "analise": {
         "sinal": "Comprar",
@@ -2071,8 +2537,8 @@
         "motivo": "próximo da mínima 52s (0.0%); acima do teto (+60.0% vs teto R$ 93.57)"
       },
       "url": "https://statusinvest.com.br/acoes/vale3",
-      "updatedAt": "2026-11-22T01:29:18.046497+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:45:10.200054+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "58,48",
@@ -2126,11 +2592,11 @@
           "raw": "609",
           "num": 609.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "4,0372",
           "num": 4.0372
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "2,0307",
           "num": 2.0307
         },
@@ -2138,7 +2604,7 @@
           "raw": "49,70%",
           "num": 49.7
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0000",
           "num": 0.0
         },
@@ -2312,7 +2778,7 @@
       "ticker": "WEGE3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Vender",
       "analise": {
         "sinal": "Vender",
@@ -2323,8 +2789,8 @@
         "motivo": "parte superior da faixa 52s (78.4%); distante do teto (-61.7% vs teto R$ 19.60)"
       },
       "url": "https://statusinvest.com.br/acoes/wege3",
-      "updatedAt": "2026-11-22T01:29:45.927758+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:45:14.623334+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "51,13",
@@ -2378,11 +2844,11 @@
           "raw": "315",
           "num": 315.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "0,7591",
           "num": 0.7591
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "0,3118",
           "num": 0.3118
         },
@@ -2390,7 +2856,7 @@
           "raw": "58,93%",
           "num": 58.93
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0000",
           "num": 0.0
         },
@@ -2564,7 +3030,7 @@
       "ticker": "SUZB3",
       "type": "stock",
       "source": "statusinvest",
-      "status": "neterr",
+      "status": "ok",
       "sinal": "Vender",
       "analise": {
         "sinal": "Vender",
@@ -2575,8 +3041,8 @@
         "motivo": "parte superior da faixa 52s (81.1%); distante do teto (-66.3% vs teto R$ 18.62)"
       },
       "url": "https://statusinvest.com.br/acoes/suzb3",
-      "updatedAt": "2026-11-22T01:30:14.463622+00:00",
-      "error": "HTTP 403",
+      "updatedAt": "2026-11-22T02:45:19.421287+00:00",
+      "error": null,
       "data": {
         "Valor atual": {
           "raw": "55,32",
@@ -2630,11 +3096,11 @@
           "raw": "255",
           "num": 255.0
         },
-        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 21/11/2025": {
+        "Ano passado help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2025 e 22/11/2025": {
           "raw": "0,0000",
           "num": 0.0
         },
-        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 21/11/2026": {
+        "Ano atual help_outline Observação: Esse indicador foi calculado com base nos dividendos recebidos entre 01/01/2026 e 22/11/2026": {
           "raw": "0,0031",
           "num": 0.0031
         },
@@ -2642,7 +3108,7 @@
           "raw": "0,00%",
           "num": 0.0
         },
-        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 21/11/2026, ou ainda não possuem uma data de pagamento definida.": {
+        "Provisionado help_outline Observação: Esse indicador foi calculado com base nos dividendos declarados, mas que possuem a data de pagamento superior a 22/11/2026, ou ainda não possuem uma data de pagamento definida.": {
           "raw": "0,0000",
           "num": 0.0
         },
