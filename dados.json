@@ -1,6 +1,6 @@
 {
   "source": "statusinvest",
-  "updatedAt": "2026-11-22T01:54:46.742983+00:00",
+  "updatedAt": "2026-11-22T02:38:52.235639+00:00",
   "stats": {
     "total": 101,
     "ok": 0,
@@ -311,7 +311,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/cmig4",
-      "updatedAt": "2026-11-21T22:55:17.895593+00:00",
+      "updatedAt": "2026-11-22T02:34:08.190178+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -363,7 +363,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/cmin3",
-      "updatedAt": "2026-11-21T22:55:46.208883+00:00",
+      "updatedAt": "2026-11-22T02:34:42.362941+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -393,7 +393,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/cple6",
-      "updatedAt": "2026-11-21T22:56:16.892379+00:00",
+      "updatedAt": "2026-11-22T02:35:06.594843+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -412,7 +412,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/csna3",
-      "updatedAt": "2026-11-21T22:56:47.483218+00:00",
+      "updatedAt": "2026-11-22T02:35:35.624959+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -486,7 +486,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/elet3",
-      "updatedAt": "2026-11-22T01:21:50.763196+00:00",
+      "updatedAt": "2026-11-22T02:36:10.801703+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -505,7 +505,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/elet6",
-      "updatedAt": "2026-11-22T01:22:19.820710+00:00",
+      "updatedAt": "2026-11-22T02:36:41.917615+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -524,7 +524,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/embr3",
-      "updatedAt": "2026-11-22T01:22:53.253324+00:00",
+      "updatedAt": "2026-11-22T02:37:13.034474+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -576,7 +576,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/eqtl3",
-      "updatedAt": "2026-11-22T01:23:28.687276+00:00",
+      "updatedAt": "2026-11-22T02:37:45.136431+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -617,7 +617,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/ggbr4",
-      "updatedAt": "2026-11-22T01:24:02.262007+00:00",
+      "updatedAt": "2026-11-22T02:38:17.217966+00:00",
       "error": "HTTP 403",
       "data": {}
     },
@@ -636,7 +636,7 @@
         "motivo": "Sem indicadores numéricos disponíveis."
       },
       "url": "https://statusinvest.com.br/acoes/goau4",
-      "updatedAt": "2026-11-22T01:24:39.022312+00:00",
+      "updatedAt": "2026-11-22T02:38:48.852814+00:00",
       "error": "HTTP 403",
       "data": {}
     },
