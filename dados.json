@@ -1,7 +1,11 @@
 {
   "source": "statusinvest",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "updatedAt": "2026-11-22T02:45:22.889634+00:00",
+=======
+  "updatedAt": "2026-11-22T02:51:29.340779+00:00",
+>>>>>>> Stashed changes
   "stats": {
     "total": 101,
     "ok": 10,
@@ -3264,6 +3268,7 @@
       },
       "url": "https://statusinvest.com.br/acoes/hapv3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:44:37.597838+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:28.823422+00:00",
@@ -3503,6 +3508,11 @@
           "num": null
         }
       }
+=======
+      "updatedAt": "2026-11-22T02:44:09.904719+00:00",
+      "error": "Limite de tentativas excedido",
+      "data": {}
+>>>>>>> Stashed changes
     },
     "HYPE3": {
       "ticker": "HYPE3",
@@ -3519,6 +3529,7 @@
         "motivo": "próximo da mínima 52s (25.3%); abaixo do teto (-17.2% vs teto R$ 18.03)"
       },
       "url": "https://statusinvest.com.br/acoes/hype3",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:44:40.896982+00:00",
 =======
@@ -3759,6 +3770,11 @@
           "num": 6.94
         }
       }
+=======
+      "updatedAt": "2026-11-22T02:45:00.578138+00:00",
+      "error": "Limite de tentativas excedido",
+      "data": {}
+>>>>>>> Stashed changes
     },
     "IGTI11": {
       "ticker": "IGTI11",
@@ -3809,11 +3825,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/itub3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:44:44.957085+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:36.167786+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:45:46.791897+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "44,42",
@@ -4065,11 +4086,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/itub4",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:44:50.674339+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:39.522422+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:46:29.167101+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "40,07",
@@ -4362,11 +4388,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/rent3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:44:57.047076+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:44.344250+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:47:36.092924+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "28,86",
@@ -4618,11 +4649,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/petr4",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:45:01.975408+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:50.116241+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:48:15.348847+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "42,67",
@@ -4874,11 +4910,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/petr3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:45:05.407685+00:00",
 =======
       "updatedAt": "2026-11-22T02:43:56.187728+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:48:55.915924+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "48,63",
@@ -5130,11 +5171,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/vale3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:45:10.200054+00:00",
 =======
       "updatedAt": "2026-11-22T02:44:01.175477+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:49:43.064035+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "58,48",
@@ -5386,11 +5432,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/wege3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:45:14.623334+00:00",
 =======
       "updatedAt": "2026-11-22T02:44:06.384919+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:50:40.156076+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "51,13",
@@ -5642,11 +5693,16 @@
       },
       "url": "https://statusinvest.com.br/acoes/suzb3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "updatedAt": "2026-11-22T02:45:19.421287+00:00",
 =======
       "updatedAt": "2026-11-22T02:44:09.677703+00:00",
 >>>>>>> Stashed changes
       "error": null,
+=======
+      "updatedAt": "2026-11-22T02:51:24.271205+00:00",
+      "error": "Limite de tentativas excedido",
+>>>>>>> Stashed changes
       "data": {
         "Valor atual": {
           "raw": "55,32",
